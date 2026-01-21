@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suspended Aerogel Stacks</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
+        :root {
+            --aerogel-haze: rgba(200, 230, 255, 0.08);
+            --aerogel-solid: rgba(240, 248, 255, 0.85);
+            --shadow-blue: rgba(100, 150, 255, 0.15);
+            --void-bg: #f8f9fc;
+            --text-main: #2a3b55;
+            --text-light: #7a8ba5;
+        }
+
+        body {
+            background: var(--void-bg);
+            /* Subtle atmospheric gradient */
+            background: radial-gradient(circle at 50% 50%, #ffffff 0%, #eef2f6 100%);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .container {
+            perspective: 2000px;
+        }
+
+        .aerogel-stack {
+            position: relative;
+            width: 320px;
+            height: 440px;
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        /* Hover Effect: The stack expands vertically */
+        .aerogel-stack:hover {
+            transform: rotateX(10deg) rotateY(-10deg);
+        }
+
+        .aerogel-stack:hover .slice:nth-child(1) {
+            transform: translateZ(80px);
+        }
+
+        .aerogel-stack:hover .slice:nth-child(2) {
+            transform: translateZ(50px);
+            opacity: 0.9;
+        }
+
+        .aerogel-stack:hover .slice:nth-child(3) {
+            transform: translateZ(20px);
+        }
+
+        /* General Slice Physics */
+        .slice {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 24px;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow:
+                0 20px 40px var(--shadow-blue),
+                0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+        }
+
+        /* 3. Base Shadow / Diffuser (Bottom Layer) */
+        .slice:nth-child(3) {
+            background: #fff;
+            transform: translateZ(0px) scale(0.95);
+            opacity: 0.6;
+            filter: blur(2px);
+            z-index: 1;
+        }
+
+        /* 2. Middle Structure (The Graphic) */
+        .slice:nth-child(2) {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            transform: translateZ(10px) scale(0.98);
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .abstract-form {
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(circle at 30% 30%, #e0eaff 0%, transparent 60%),
+                radial-gradient(circle at 70% 80%, #dbeafe 0%, transparent 50%);
+            opacity: 0.8;
+            filter: blur(30px);
+            animation: drift 10s infinite alternate ease-in-out;
+        }
+
+        /* 1. Top Interface (The Crisp Matter) */
+        .slice:nth-child(1) {
+            background: linear-gradient(160deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.6) 100%);
+            backdrop-filter: blur(5px);
+            transform: translateZ(20px);
+            z-index: 3;
+            padding: 32px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        /* Typography & Content */
+        .header {
+            opacity: 0.8;
+        }
+
+        h3 {
+            margin: 0;
+            font-weight: 600;
+            font-size: 1.5rem;
+            color: var(--text-main);
+            letter-spacing: -0.02em;
+        }
+
+        .meta {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-light);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .description {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-main);
+            font-weight: 300;
+            margin-top: auto;
+            margin-bottom: 30px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            padding-top: 20px;
+        }
+
+        .tag {
+            background: rgba(42, 59, 85, 0.05);
+            padding: 6px 12px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        .btn-air {
+            background: var(--text-main);
+            color: #fff;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s;
+        }
+
+        .btn-air:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes drift {
+            0% {
+                transform: translate(-5%, -5%) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(5%, 5%) rotate(5deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="aerogel-stack">
+            <!-- Layers ordered by z-index appearance (HTML order: 1 is top in Flex usually, but doing absolute positioning) -->
+            <!-- 3. Shadow Base -->
+            <div class="slice"></div>
+
+            <!-- 2. Atmosphere -->
+            <div class="slice">
+                <div class="abstract-form"></div>
+            </div>
+
+            <!-- 1. Information Slab -->
+            <div class="slice">
+                <div class="header">
+                    <span class="meta">Case Study 04</span>
+                    <h3>Ethereal Bank</h3>
+                </div>
+
+                <p class="description">
+                    A conceptual finance platform built on zero-knowledge proofs. Designed to feel weightless despite
+                    heavy encryption.
+                </p>
+
+                <div class="controls">
+                    <span class="tag">Fintech</span>
+                    <button class="btn-air">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

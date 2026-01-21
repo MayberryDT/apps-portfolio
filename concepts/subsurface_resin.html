@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subsurface Scattering Resin</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap');
+
+        :root {
+            --resin-dark: #1e1e24;
+            --resin-glow: #ff4d4d;
+            --resin-deep: #4d0000;
+            --highlight: rgba(255, 255, 255, 0.15);
+        }
+
+        body {
+            background-color: #0f0f12;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Outfit', sans-serif;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 50px;
+        }
+
+        /* The Resin Block */
+        .resin-card {
+            width: 320px;
+            height: 480px;
+            background: linear-gradient(180deg, rgba(30, 30, 36, 0.95) 0%, rgba(20, 20, 24, 0.98) 100%);
+            border-radius: 30px;
+            position: relative;
+            overflow: hidden;
+            box-shadow:
+                0 30px 60px -10px rgba(0, 0, 0, 0.8),
+                inset 0 1px 1px rgba(255, 255, 255, 0.1),
+                inset 0 -10px 20px rgba(0, 0, 0, 0.5);
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        /* The "Subsurface" Light Source */
+        .internal-light {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--resin-glow) 0%, transparent 60%);
+            top: -50px;
+            right: -100px;
+            filter: blur(50px);
+            opacity: 0.4;
+            transition: all 0.6s ease;
+            mix-blend-mode: screen;
+        }
+
+        .resin-card:hover .internal-light {
+            opacity: 0.7;
+            transform: scale(1.1) translate(-20px, 20px);
+        }
+
+        .resin-card:hover {
+            transform: translateY(-5px);
+            box-shadow:
+                0 40px 80px -12px rgba(255, 77, 77, 0.15),
+                inset 0 1px 1px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Surface Imperfections / Texture */
+        .surface-texture {
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+            opacity: 0.4;
+            mix-blend-mode: overlay;
+            pointer-events: none;
+        }
+
+        /* Content Layout */
+        .content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 30px;
+            box-sizing: border-box;
+            justify-content: flex-end;
+            color: #fff;
+        }
+
+        .card-image {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            height: 200px;
+            border-radius: 20px;
+            background: #000;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+            transition: opacity 0.4s;
+        }
+
+        .resin-card:hover .card-image img {
+            opacity: 1;
+        }
+
+        /* Typography */
+        h2 {
+            font-size: 2rem;
+            margin: 0 0 10px 0;
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin: 0 0 30px 0;
+            line-height: 1.5;
+        }
+
+        /* The Soft Gel Button */
+        .gel-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: none;
+            padding: 15px 0;
+            border-radius: 12px;
+            font-family: inherit;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .gel-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 20px var(--resin-glow);
+            border-color: rgba(255, 255, 255, 0.4);
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="resin-card">
+            <div class="internal-light"></div>
+            <div class="surface-texture"></div>
+
+            <div class="card-image">
+                <!-- Placeholder for image, using a gradient to simulate deep embedding -->
+                <div style="width:100%; height:100%; background: linear-gradient(45deg, #111, #222);">
+                    <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
+                        <path d="M0,100 Q50,50 100,100" stroke="rgba(255,77,77,0.5)" stroke-width="2" fill="none" />
+                        <path d="M0,80 Q50,30 100,80" stroke="rgba(255,77,77,0.3)" stroke-width="2" fill="none" />
+                    </svg>
+                </div>
+            </div>
+
+            <div class="content">
+                <h2>Cinnabar.JS</h2>
+                <p>A reactive framework for building heavy-data interfaces. Smooth, solid, and performant.</p>
+                <button class="gel-button">Explore Logic</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

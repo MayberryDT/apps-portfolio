@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpeg" href="favicon.jpg">
+    <title>Tyler Mayberry | Product Portfolio</title>
+    <style>
+        :root {
+            --glass-edge: rgba(255, 255, 255, 0.4);
+            --glass-surface: rgba(255, 255, 255, 0.05);
+            --glass-shadow: rgba(0, 0, 0, 0.2);
+            --accent: #00f0ff;
+            --accent-dim: rgba(0, 240, 255, 0.1);
+            --bg-dark: #0a0a0a;
+            --text-main: #e0e0e0;
+            --text-dim: #888;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            background-image:
+                linear-gradient(45deg, #050505 25%, transparent 25%, transparent 75%, #050505 75%, #050505),
+                linear-gradient(45deg, #050505 25%, transparent 25%, transparent 75%, #050505 75%, #050505);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+            min-height: 100vh;
+            font-family: 'Courier New', monospace;
+            margin: 0;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* --- Global Layout --- */
+        header {
+            width: 100%;
+            max-width: 800px;
+            padding: 80px 20px 40px 20px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-avatar {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            border: 2px solid var(--accent);
+            padding: 5px;
+            box-shadow: 0 0 20px var(--accent-dim);
+            background: rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        .hero-avatar img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            transition: filter 0.3s ease;
+        }
+
+        .hero-avatar:hover img {
+            filter: grayscale(0%) contrast(1);
+        }
+
+        h1 {
+            color: var(--text-main);
+            font-size: 2.5rem;
+            margin: 0 0 10px 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px var(--accent-dim);
+        }
+
+        .headline {
+            color: var(--accent);
+            font-size: 1rem;
+            margin-bottom: 30px;
+            display: inline-block;
+            border-bottom: 1px solid var(--accent-dim);
+            padding-bottom: 5px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background: rgba(0, 240, 255, 0.05);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+        }
+
+        .cta-button:hover {
+            background: var(--accent);
+            color: #000;
+            box-shadow: 0 0 30px var(--accent-dim);
+        }
+
+        /* --- The Grid --- */
+        main {
+            width: 100%;
+            max-width: 1200px;
+            padding: 40px 20px 100px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 60px;
+            justify-items: center;
+        }
+
+        /* --- Isometric Card Component (Resized & Adapted) --- */
+        .card-scene {
+            position: relative;
+            width: 300px;
+            height: 400px;
+            transform-style: preserve-3d;
+            /* The signature isometric tilt */
+            transform: perspective(2000px) rotateX(45deg) rotateZ(-30deg) scale(0.9);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .card-scene:hover {
+            /* Rotates to face user directly, scales up, and lifts for readability */
+            transform: perspective(2000px) rotateX(0deg) rotateZ(0deg) scale(1.1) translateY(-50px);
+            z-index: 100;
+        }
+
+        .assembly {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+        }
+
+        /* Generic Layer Logic */
+        .layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            transition: all 0.4s ease-out;
+            border-radius: 4px;
+        }
+
+        .layer-base {
+            background: #111;
+            box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.6), inset 0 0 0 1px #222;
+            transform: translateZ(0);
+        }
+
+        .layer-content {
+            background: linear-gradient(135deg, #1f1f1f, #151515);
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-sizing: border-box;
+            transform: translateZ(20px);
+            border: 1px solid #333;
+        }
+
+        .preview-graphic {
+            width: 100%;
+            height: 140px;
+            background: #000;
+            border: 1px solid var(--accent);
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .preview-graphic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .text-block h2 {
+            margin: 0 0 10px 0;
+            font-size: 1.2rem;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .text-block p {
+            margin: 0;
+            font-size: 0.8rem;
+            color: #888;
+            line-height: 1.4;
+        }
+
+        .layer-glass {
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid var(--glass-edge);
+            box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.05);
+            transform: translateZ(40px);
+        }
+
+        /* Glass Highlight */
+        .layer-glass::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, transparent 40%, transparent 100%);
+        }
+
+        .layer-ui {
+            transform: translateZ(60px);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding: 20px;
+            pointer-events: none;
+            /* Let clicks pass through to the link */
+        }
+
+        .badge {
+            background: var(--accent);
+            color: #000;
+            padding: 4px 8px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            box-shadow: 0 5px 15px var(--accent-dim);
+            letter-spacing: 1px;
+        }
+
+        /* Make the whole card clickable via a covering link */
+        .card-link {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 100;
+            transform: translateZ(100px);
+            cursor: pointer;
+        }
+
+        /* Hover Separations */
+        .card-scene:hover .layer-content {
+            transform: translateZ(30px);
+        }
+
+        .card-scene:hover .layer-glass {
+            transform: translateZ(60px);
+        }
+
+        .card-scene:hover .layer-ui {
+            transform: translateZ(80px);
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 40px;
+            color: #444;
+            font-size: 0.8rem;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .card-scene.in-view {
+                transform: perspective(2000px) rotateX(0deg) rotateZ(0deg) scale(1.05);
+                z-index: 100;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="hero-avatar">
+            <img src="CirclePresentation.jpeg" alt="Profile">
+        </div>
+        <h1>Tyler Mayberry</h1>
+        <div class="headline">Product Designer & Builder</div>
+        <br>
+        <a href="mailto:mayberrydt@gmail.com" class="cta-button">Contact Me</a>
+    </header>
+
+    <main>
+
+        <!-- Project 1 -->
+        <div class="card-scene">
+            <a href="https://executionr.com" class="card-link"></a>
+            <div class="assembly">
+                <div class="layer layer-base"></div>
+                <div class="layer layer-content">
+                    <div class="preview-graphic">
+                        <img src="Executioner.png" alt="Executioner Preview">
+                    </div>
+                    <div class="text-block">
+                        <h2>Executioner</h2>
+                        <p>My flagship personal execution system.</p>
+                    </div>
+                </div>
+                <div class="layer layer-glass"></div>
+                <div class="layer layer-ui">
+                    <div class="badge">LIVE</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="card-scene">
+            <a href="https://paycheck-sanity-checker.netlify.app" class="card-link"></a>
+            <div class="assembly">
+                <div class="layer layer-base"></div>
+                <div class="layer layer-content">
+                    <div class="preview-graphic">
+                        <img src="Paycheck.png" alt="Paycheck Preview">
+                    </div>
+                    <div class="text-block">
+                        <h2>Paycheck Sanity Checker</h2>
+                        <p>Reviews pay stubs to flag possible discrepancies.</p>
+                    </div>
+                </div>
+                <div class="layer layer-glass"></div>
+                <div class="layer layer-ui">
+                    <div class="badge">LIVE</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="card-scene">
+            <a href="https://ratdetective.online" class="card-link"></a>
+            <div class="assembly">
+                <div class="layer layer-base"></div>
+                <div class="layer layer-content">
+                    <div class="preview-graphic">
+                        <img src="RatDetective.png">
+                    </div>
+                    <div class="text-block">
+                        <h2>Rat Detective Online</h2>
+                        <p>Shoot cheeseballs and roleplay as your favorite Rat Detective in the city.</p>
+                    </div>
+                </div>
+                <div class="layer layer-glass"></div>
+                <div class="layer layer-ui">
+                    <div class="badge">WIP</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="card-scene">
+            <a href="https://digital-check-in.lovable.app/" class="card-link"></a>
+            <div class="assembly">
+                <div class="layer layer-base"></div>
+                <div class="layer layer-content">
+                    <div class="preview-graphic">
+                        <img src="InnTouchDemo.png" alt="Inn Touch Preview"
+                            style="width:100%; height:100%; object-fit:cover;">
+                    </div>
+                    <div class="text-block">
+                        <h2>Inn Touch Demo</h2>
+                        <p>Digital check-in demo that captures an email list. (Portuguese)</p>
+                    </div>
+                </div>
+                <div class="layer layer-glass"></div>
+                <div class="layer layer-ui">
+                    <div class="badge">LIVE</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="card-scene">
+            <a href="https://tyler-morning.lovable.app" class="card-link"></a>
+            <div class="assembly">
+                <div class="layer layer-base"></div>
+                <div class="layer layer-content">
+                    <div class="preview-graphic">
+                        <img src="Routine.png" alt="Routine Preview">
+                    </div>
+                    <div class="text-block">
+                        <h2>Morning Routine App</h2>
+                        <p>My personal morning routine app.</p>
+                    </div>
+                </div>
+                <div class="layer layer-glass"></div>
+                <div class="layer layer-ui">
+                    <div class="badge">LIVE</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 6 -->
+        <div class="card-scene">
+            <a href="https://audit-companion.rebuilt.credit" class="card-link"></a>
+            <div class="assembly">
+                <div class="layer layer-base"></div>
+                <div class="layer layer-content">
+                    <div class="preview-graphic">
+                        <img src="AuditCompanion.png">
+                    </div>
+                    <div class="text-block">
+                        <h2>Credit Audit Companion</h2>
+                        <p>Walks users through doing their own credit audit.</p>
+                    </div>
+                </div>
+                <div class="layer layer-glass"></div>
+                <div class="layer layer-ui">
+                    <div class="badge">LIVE</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 7 -->
+        <div class="card-scene">
+            <a href="https://dispute-app.rebuilt.credit" class="card-link"></a>
+            <div class="assembly">
+                <div class="layer layer-base"></div>
+                <div class="layer layer-content">
+                    <div class="preview-graphic">
+                        <img src="DisputeChecker.png">
+                    </div>
+                    <div class="text-block">
+                        <h2>Credit Dispute Checker</h2>
+                        <p>Helps users check if they are ready to dispute credit items.</p>
+                    </div>
+                </div>
+                <div class="layer layer-glass"></div>
+                <div class="layer layer-ui">
+                    <div class="badge">LIVE</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 8 -->
+        <div class="card-scene">
+            <a href="https://rebuild-planner.rebuilt.credit" class="card-link"></a>
+            <div class="assembly">
+                <div class="layer layer-base"></div>
+                <div class="layer layer-content">
+                    <div class="preview-graphic">
+                        <img src="RebuildPlanner.png">
+                    </div>
+                    <div class="text-block">
+                        <h2>Credit Rebuild Planner</h2>
+                        <p>Helps users plan out rebuilding their credit.</p>
+                    </div>
+                </div>
+                <div class="layer layer-glass"></div>
+                <div class="layer layer-ui">
+                    <div class="badge">LIVE</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 9 -->
+        <div class="card-scene">
+            <a href="https://inn-touch-concierge.lovable.app" class="card-link"></a>
+            <div class="assembly">
+                <div class="layer layer-base"></div>
+                <div class="layer layer-content">
+                    <div class="preview-graphic">
+                        <img src="InnTouch.png">
+                    </div>
+                    <div class="text-block">
+                        <h2>Inn Touch</h2>
+                        <p>Hospitality guest experience app with a focus on communications.</p>
+                    </div>
+                </div>
+                <div class="layer layer-glass"></div>
+                <div class="layer layer-ui">
+                    <div class="badge">WIP</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 10 -->
+        <div class="card-scene">
+            <a href="https://unwired-app.lovable.app/" class="card-link"></a>
+            <div class="assembly">
+                <div class="layer layer-base"></div>
+                <div class="layer layer-content">
+                    <div class="preview-graphic">
+                        <img src="Unwired.png">
+                    </div>
+                    <div class="text-block">
+                        <h2>Unwired</h2>
+                        <p>Masculinity reclamation app to end bad habits.</p>
+                    </div>
+                </div>
+                <div class="layer layer-glass"></div>
+                <div class="layer layer-ui">
+                    <div class="badge">WIP</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 11 -->
+        <div class="card-scene">
+            <a href="https://aml-risk-navigator-app.lovable.app/" class="card-link"></a>
+            <div class="assembly">
+                <div class="layer layer-base"></div>
+                <div class="layer layer-content">
+                    <div class="preview-graphic">
+                        <img src="AML.png">
+                    </div>
+                    <div class="text-block">
+                        <h2>AML Audit Compliance Tool</h2>
+                        <p>Helps businesses stay compliant with anti money laundering laws.</p>
+                    </div>
+                </div>
+                <div class="layer layer-glass"></div>
+                <div class="layer layer-ui">
+                    <div class="badge">WIP</div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        &copy; 2026 TYLER MAYBERRY
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                } else {
+                    entry.target.classList.remove('in-view');
+                }
+            });
+        }, { threshold: 0.75 });
+
+        document.querySelectorAll('.card-scene').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+
+</html>
