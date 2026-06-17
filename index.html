@@ -42,6 +42,7 @@
             text-align: center;
             position: relative;
             z-index: 10;
+            box-sizing: border-box;
         }
 
         .hero-avatar {
@@ -80,21 +81,37 @@
         .headline {
             color: var(--accent);
             font-size: 1rem;
-            margin-bottom: 30px;
+            margin-bottom: 16px;
             display: inline-block;
             border-bottom: 1px solid var(--accent-dim);
             padding-bottom: 5px;
         }
 
+        .subheadline {
+            max-width: 720px;
+            margin: 0 auto 24px;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .quick-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
         .cta-button {
             display: inline-block;
-            padding: 12px 30px;
+            padding: 11px 22px;
             background: rgba(0, 240, 255, 0.05);
             border: 1px solid var(--accent);
             color: var(--accent);
             text-decoration: none;
             font-weight: bold;
-            font-size: 0.9rem;
+            font-size: 0.78rem;
             letter-spacing: 1px;
             transition: all 0.3s ease;
             position: relative;
@@ -117,6 +134,7 @@
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 60px;
             justify-items: center;
+            box-sizing: border-box;
         }
 
         /* --- Isometric Card Component (Resized & Adapted) --- */
@@ -189,6 +207,31 @@
             object-fit: cover;
         }
 
+        .preview-graphic.pip-preview {
+            background: #f3ebdc;
+            border-color: #b7ff8a;
+        }
+
+        .preview-graphic.pip-preview img {
+            object-position: center;
+        }
+
+        .preview-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at 50% 35%, rgba(0, 240, 255, 0.18), rgba(0, 0, 0, 0.88) 62%);
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: bold;
+            letter-spacing: 0.12em;
+            line-height: 1.5;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
         .text-block h2 {
             margin: 0 0 10px 0;
             font-size: 1.2rem;
@@ -242,6 +285,18 @@
             letter-spacing: 1px;
         }
 
+        .badge.experiment {
+            background: #9aa0aa;
+        }
+
+        .badge.case-study {
+            background: #b7ff8a;
+        }
+
+        .badge.flagship {
+            background: #fff3a6;
+        }
+
         /* Make the whole card clickable via a covering link */
         .card-link {
             position: absolute;
@@ -276,9 +331,62 @@
         }
 
         @media (max-width: 768px) {
+            header {
+                padding-top: 48px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .subheadline {
+                font-size: 0.85rem;
+                padding: 0 8px;
+            }
+
+            .quick-links {
+                gap: 8px;
+            }
+
+            main {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 24px;
+                overflow: hidden;
+                padding-left: 0;
+                padding-right: 0;
+            }
+
+            .card-scene {
+                margin: -18px 0 -64px;
+                transform: perspective(2000px) rotateX(45deg) rotateZ(-30deg) scale(0.66);
+            }
+
             .card-scene.in-view {
-                transform: perspective(2000px) rotateX(0deg) rotateZ(0deg) scale(1.05);
+                margin: 0 0 20px;
+                transform: perspective(2000px) rotateX(0deg) rotateZ(0deg) scale(0.94);
                 z-index: 100;
+            }
+        }
+
+        @media (max-width: 360px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .headline {
+                font-size: 0.86rem;
+            }
+
+            .subheadline {
+                font-size: 0.8rem;
+            }
+
+            .card-scene {
+                transform: perspective(2000px) rotateX(45deg) rotateZ(-30deg) scale(0.62);
+            }
+
+            .card-scene.in-view {
+                transform: perspective(2000px) rotateX(0deg) rotateZ(0deg) scale(0.9);
             }
         }
     </style>
@@ -291,12 +399,39 @@
             <img src="CirclePresentation.jpeg" alt="Profile">
         </div>
         <h1>Tyler Mayberry</h1>
-        <div class="headline">Product Designer & Builder</div>
-        <br>
-        <a href="mailto:mayberrydt@gmail.com" class="cta-button">Contact Me</a>
+        <div class="headline">AI Systems Builder & Practical Product Engineer</div>
+        <p class="subheadline">I build agentic workflows, internal tools, automation systems, and practical product prototypes that turn messy real-world work into usable software.</p>
+        <div class="quick-links">
+            <a href="mailto:tyler@animasai.co" class="cta-button">Email</a>
+            <a href="https://github.com/MayberryDT" class="cta-button">GitHub</a>
+            <a href="https://www.linkedin.com/in/mayberrydt/" class="cta-button">LinkedIn</a>
+            <a href="https://animasai.co" class="cta-button">Animas AI</a>
+            <a href="https://spendwithpip.com" class="cta-button">Pip</a>
+        </div>
     </header>
 
     <main>
+
+        <!-- Featured Project -->
+        <div class="card-scene">
+            <a href="https://animasai.co/pip.html" class="card-link"></a>
+            <div class="assembly">
+                <div class="layer layer-base"></div>
+                <div class="layer layer-content">
+                    <div class="preview-graphic pip-preview">
+                        <img src="Pip.png" alt="Pip product preview">
+                    </div>
+                    <div class="text-block">
+                        <h2>Pip</h2>
+                        <p>AI-native spending companion centered on Spendable Cash Today, deterministic financial logic, and agent-assisted explanation.</p>
+                    </div>
+                </div>
+                <div class="layer layer-glass"></div>
+                <div class="layer layer-ui">
+                    <div class="badge flagship">FLAGSHIP</div>
+                </div>
+            </div>
+        </div>
 
         <!-- Project 1 -->
         <div class="card-scene">
@@ -309,17 +444,38 @@
                     </div>
                     <div class="text-block">
                         <h2>Executioner</h2>
-                        <p>My flagship personal execution system.</p>
+                        <p>Personal execution system that turns messy brain dumps into structured outcomes and schedule previews.</p>
                     </div>
                 </div>
                 <div class="layer layer-glass"></div>
                 <div class="layer layer-ui">
-                    <div class="badge">LIVE</div>
+                    <div class="badge case-study">CASE STUDY</div>
                 </div>
             </div>
         </div>
 
         <!-- Project 2 -->
+        <div class="card-scene">
+            <a href="https://inn-touch-concierge.lovable.app" class="card-link"></a>
+            <div class="assembly">
+                <div class="layer layer-base"></div>
+                <div class="layer layer-content">
+                    <div class="preview-graphic">
+                        <img src="InnTouch.png" alt="Inn Touch Preview">
+                    </div>
+                    <div class="text-block">
+                        <h2>Inn Touch</h2>
+                        <p>Hospitality guest-experience prototype shaped by real hotel operations and communication workflows.</p>
+                    </div>
+                </div>
+                <div class="layer layer-glass"></div>
+                <div class="layer layer-ui">
+                    <div class="badge">PROTOTYPE</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 3 -->
         <div class="card-scene">
             <a href="https://paycheck-sanity-checker.netlify.app" class="card-link"></a>
             <div class="assembly">
@@ -330,33 +486,12 @@
                     </div>
                     <div class="text-block">
                         <h2>Paycheck Sanity Checker</h2>
-                        <p>Reviews pay stubs to flag possible discrepancies.</p>
+                        <p>Operations-minded tool for reviewing pay stubs and flagging possible discrepancies.</p>
                     </div>
                 </div>
                 <div class="layer layer-glass"></div>
                 <div class="layer layer-ui">
-                    <div class="badge">LIVE</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Project 3 -->
-        <div class="card-scene">
-            <a href="https://ratdetective.online" class="card-link"></a>
-            <div class="assembly">
-                <div class="layer layer-base"></div>
-                <div class="layer layer-content">
-                    <div class="preview-graphic">
-                        <img src="RatDetective.png">
-                    </div>
-                    <div class="text-block">
-                        <h2>Rat Detective Online</h2>
-                        <p>Shoot cheeseballs and roleplay as your favorite Rat Detective in the city.</p>
-                    </div>
-                </div>
-                <div class="layer layer-glass"></div>
-                <div class="layer layer-ui">
-                    <div class="badge">WIP</div>
+                    <div class="badge">LIVE PROTOTYPE</div>
                 </div>
             </div>
         </div>
@@ -373,12 +508,12 @@
                     </div>
                     <div class="text-block">
                         <h2>Inn Touch Demo</h2>
-                        <p>Digital check-in demo that captures an email list. (Portuguese)</p>
+                        <p>Digital check-in concept for guest onboarding and hospitality lead capture.</p>
                     </div>
                 </div>
                 <div class="layer layer-glass"></div>
                 <div class="layer layer-ui">
-                    <div class="badge">LIVE</div>
+                    <div class="badge">DEMO</div>
                 </div>
             </div>
         </div>
@@ -394,12 +529,12 @@
                     </div>
                     <div class="text-block">
                         <h2>Morning Routine App</h2>
-                        <p>My personal morning routine app.</p>
+                        <p>Personal workflow experiment for recurring routines and lightweight execution systems.</p>
                     </div>
                 </div>
                 <div class="layer layer-glass"></div>
                 <div class="layer layer-ui">
-                    <div class="badge">LIVE</div>
+                    <div class="badge experiment">EXPERIMENT</div>
                 </div>
             </div>
         </div>
@@ -415,12 +550,12 @@
                     </div>
                     <div class="text-block">
                         <h2>Credit Audit Companion</h2>
-                        <p>Walks users through doing their own credit audit.</p>
+                        <p>Guided workflow prototype for turning intimidating credit-review steps into a clearer process.</p>
                     </div>
                 </div>
                 <div class="layer layer-glass"></div>
                 <div class="layer layer-ui">
-                    <div class="badge">LIVE</div>
+                    <div class="badge">DEMO</div>
                 </div>
             </div>
         </div>
@@ -436,12 +571,12 @@
                     </div>
                     <div class="text-block">
                         <h2>Credit Dispute Checker</h2>
-                        <p>Helps users check if they are ready to dispute credit items.</p>
+                        <p>Readiness-check prototype for consumer credit dispute workflows.</p>
                     </div>
                 </div>
                 <div class="layer layer-glass"></div>
                 <div class="layer layer-ui">
-                    <div class="badge">LIVE</div>
+                    <div class="badge">DEMO</div>
                 </div>
             </div>
         </div>
@@ -457,33 +592,33 @@
                     </div>
                     <div class="text-block">
                         <h2>Credit Rebuild Planner</h2>
-                        <p>Helps users plan out rebuilding their credit.</p>
+                        <p>Planning prototype for breaking a messy credit rebuild into next steps.</p>
                     </div>
                 </div>
                 <div class="layer layer-glass"></div>
                 <div class="layer layer-ui">
-                    <div class="badge">LIVE</div>
+                    <div class="badge">DEMO</div>
                 </div>
             </div>
         </div>
 
         <!-- Project 9 -->
         <div class="card-scene">
-            <a href="https://inn-touch-concierge.lovable.app" class="card-link"></a>
+            <a href="https://github.com/MayberryDT/relationship-pattern-quiz" class="card-link"></a>
             <div class="assembly">
                 <div class="layer layer-base"></div>
                 <div class="layer layer-content">
                     <div class="preview-graphic">
-                        <img src="InnTouch.png">
+                        <div class="preview-placeholder">Pattern<br>Diagnostic</div>
                     </div>
                     <div class="text-block">
-                        <h2>Inn Touch</h2>
-                        <p>Hospitality guest experience app with a focus on communications.</p>
+                        <h2>Relationship Pattern Quiz</h2>
+                        <p>Consumer diagnostic-flow prototype for personalization, quiz UX, and AI media experiments.</p>
                     </div>
                 </div>
                 <div class="layer layer-glass"></div>
                 <div class="layer layer-ui">
-                    <div class="badge">WIP</div>
+                    <div class="badge">PROTOTYPE</div>
                 </div>
             </div>
         </div>
@@ -499,12 +634,12 @@
                     </div>
                     <div class="text-block">
                         <h2>Unwired</h2>
-                        <p>Masculinity reclamation app to end bad habits.</p>
+                        <p>Behavior-change app experiment with a strong product voice and consumer positioning.</p>
                     </div>
                 </div>
                 <div class="layer layer-glass"></div>
                 <div class="layer layer-ui">
-                    <div class="badge">WIP</div>
+                    <div class="badge experiment">EXPERIMENT</div>
                 </div>
             </div>
         </div>
@@ -520,12 +655,33 @@
                     </div>
                     <div class="text-block">
                         <h2>AML Audit Compliance Tool</h2>
-                        <p>Helps businesses stay compliant with anti money laundering laws.</p>
+                        <p>Compliance workflow prototype for translating checklist-heavy business rules into guided software.</p>
                     </div>
                 </div>
                 <div class="layer layer-glass"></div>
                 <div class="layer layer-ui">
-                    <div class="badge">WIP</div>
+                    <div class="badge experiment">EXPERIMENT</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 12 -->
+        <div class="card-scene">
+            <a href="https://rat-detective-online.netlify.app" class="card-link"></a>
+            <div class="assembly">
+                <div class="layer layer-base"></div>
+                <div class="layer layer-content">
+                    <div class="preview-graphic">
+                        <img src="RatDetective.png" alt="Rat Detective Preview">
+                    </div>
+                    <div class="text-block">
+                        <h2>Rat Detective Online</h2>
+                        <p>Playable multiplayer browser game built with Three.js, TypeScript, socket.io, and physics-based interactions.</p>
+                    </div>
+                </div>
+                <div class="layer layer-glass"></div>
+                <div class="layer layer-ui">
+                    <div class="badge">LIVE GAME</div>
                 </div>
             </div>
         </div>
