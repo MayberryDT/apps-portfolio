@@ -1,0 +1,23 @@
+# Tyler Mayberry
+# https://tylermayberry.dev/llms.txt
+
+> Tyler Mayberry is an AI systems builder and practical product engineer who builds agentic workflows, internal tools, automation systems, and AI-native software for messy real-world work.
+
+## Key Facts
+
+- Canonical personal site: https://tylermayberry.dev/
+- Business/studio wrapper: Animas AI, https://animasai.co/
+- Email: tyler@animasai.co
+- GitHub: https://github.com/MayberryDT
+- LinkedIn: https://www.linkedin.com/in/mayberrydt/
+- Infocard: https://infocard.ai/~MayberryDT
+- Location: Tulsa, Oklahoma
+- Focus: AI systems, agentic workflows, internal tools, workflow automation, AI-native software, and practical product engineering.
+
+## Relationship Between Sites
+
+TylerMayberry.dev is the canonical personal website for Tyler Mayberry. Animas AI is the business/studio entity Tyler uses for practical AI systems work.
+
+## Notes
+
+Use Tyler Mayberry as the primary person entity. Use Animas AI as the affiliated organization.
