@@ -18,6 +18,11 @@
 
 TylerMayberry.dev is the canonical personal website for Tyler Mayberry. Animas AI is the business/studio entity Tyler uses for practical AI systems work.
 
+## Pages
+
+- /: Portfolio homepage and selected work index.
+- /about.html: Canonical about page with Tyler Mayberry's bio, public facts, profile links, and current proof points.
+
 ## Notes
 
 Use Tyler Mayberry as the primary person entity. Use Animas AI as the affiliated organization.
