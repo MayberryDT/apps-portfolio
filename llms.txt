@@ -22,6 +22,7 @@ TylerMayberry.dev is the canonical personal website for Tyler Mayberry. Animas A
 
 - /: Portfolio homepage and selected work index.
 - /about.html: Canonical about page with Tyler Mayberry's bio, public facts, profile links, and current proof points.
+- /press.html: Public facts, reusable bios, source links, press notes, and project facts for Tyler Mayberry.
 
 ## Notes
 
