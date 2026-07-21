@@ -99,21 +99,11 @@
           "@id": "https://tylermayberry.dev/#portfolio-artifacts",
           "name": "Tyler Mayberry Portfolio Artifacts",
           "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Masthead", "url": "https://animasai.co/masthead.html" },
-            { "@type": "ListItem", "position": 2, "name": "Pip", "url": "https://animasai.co/pip.html" },
+            { "@type": "ListItem", "position": 1, "name": "Masthead", "url": "https://usemasthead.com" },
+            { "@type": "ListItem", "position": 2, "name": "Pip", "url": "https://spendwithpip.com" },
             { "@type": "ListItem", "position": 3, "name": "Executioner", "url": "https://executionr.com" },
-            { "@type": "ListItem", "position": 4, "name": "Milkbench", "url": "https://milk.animasai.co/" },
-            { "@type": "ListItem", "position": 5, "name": "Inn Touch", "url": "https://inn-touch-concierge.lovable.app" },
-            { "@type": "ListItem", "position": 6, "name": "Paycheck Sanity Checker", "url": "https://paycheck-sanity-checker.netlify.app" },
-            { "@type": "ListItem", "position": 7, "name": "Inn Touch Demo", "url": "https://digital-check-in.lovable.app/" },
-            { "@type": "ListItem", "position": 8, "name": "Morning Routine App", "url": "https://tyler-morning.lovable.app" },
-            { "@type": "ListItem", "position": 9, "name": "Credit Audit Companion", "url": "https://audit-companion.rebuilt.credit" },
-            { "@type": "ListItem", "position": 10, "name": "Credit Dispute Checker", "url": "https://dispute-app.rebuilt.credit" },
-            { "@type": "ListItem", "position": 11, "name": "Credit Rebuild Planner", "url": "https://rebuild-planner.rebuilt.credit" },
-            { "@type": "ListItem", "position": 12, "name": "Relationship Pattern Quiz", "url": "https://github.com/MayberryDT/relationship-pattern-quiz" },
-            { "@type": "ListItem", "position": 13, "name": "Unwired", "url": "https://unwired-app.lovable.app/" },
-            { "@type": "ListItem", "position": 14, "name": "AML Audit Compliance Tool", "url": "https://aml-risk-navigator-app.lovable.app/" },
-            { "@type": "ListItem", "position": 15, "name": "Rat Detective Online", "url": "https://rat-detective-online.netlify.app" }
+            { "@type": "ListItem", "position": 4, "name": "Rat Detective Online", "url": "https://rat-detective.animasai.co" },
+            { "@type": "ListItem", "position": 5, "name": "Milkbench", "url": "https://milk.animasai.co/" }
           ]
         }
       ]
@@ -277,6 +267,10 @@
             text-transform: uppercase;
         }
 
+        h2.eyebrow {
+            line-height: 1.2;
+        }
+
         h1,
         h2,
         h3,
@@ -356,13 +350,6 @@
             margin-bottom: clamp(20px, 4vw, 36px);
         }
 
-        .work-head h2 {
-            margin-bottom: 0;
-            font-size: clamp(1.85rem, 4vw, 3.2rem);
-            line-height: 0.9;
-            letter-spacing: -0.055em;
-        }
-
         .work-head p {
             margin-bottom: 0;
             color: var(--muted);
@@ -370,23 +357,48 @@
         }
 
         .featured-grid,
-        .portfolio-grid {
+        .supporting-grid {
             display: grid;
             gap: 12px;
         }
 
         .featured-grid {
-            grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
+            grid-template-columns: minmax(0, 1fr);
             margin-bottom: 12px;
         }
 
-        .feature-stack {
-            display: grid;
-            gap: 12px;
+        .project.featured {
+            grid-template-columns: minmax(0, 1.65fr) minmax(300px, 0.7fr);
+            grid-template-rows: auto;
         }
 
-        .portfolio-grid {
-            grid-template-columns: repeat(3, minmax(0, 1fr));
+        .supporting-grid {
+            grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+            grid-template-areas:
+                "pip executioner"
+                "rat rat"
+                "milk milk";
+            align-items: start;
+        }
+
+        .supporting-grid .project.primary-support {
+            grid-area: pip;
+        }
+
+        .supporting-grid .project.logo-card {
+            grid-area: executioner;
+        }
+
+        .supporting-grid .project.rat-card {
+            grid-area: rat;
+            grid-template-columns: minmax(0, 0.95fr) minmax(320px, 1.05fr);
+            grid-template-rows: auto;
+        }
+
+        .supporting-grid .project.milk-card {
+            grid-area: milk;
+            grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
+            grid-template-rows: auto;
         }
 
         .project {
@@ -421,27 +433,46 @@
             width: 100%;
             height: 100%;
             min-height: 210px;
+            box-sizing: border-box;
             object-fit: cover;
             opacity: 0.9;
         }
 
         .project.featured .project-media img {
-            min-height: 320px;
+            min-height: clamp(300px, 38vw, 460px);
         }
 
-        .placeholder {
-            min-height: 210px;
+        .project.primary-support .project-media img {
+            min-height: 300px;
+        }
+
+        .project.logo-card .project-media {
             display: grid;
             place-items: center;
-            padding: 22px;
-            background: #0d0d0d;
-            color: var(--text);
-            font-family: var(--mono);
-            font-size: 0.86rem;
-            font-weight: 900;
-            letter-spacing: 0.12em;
-            text-align: center;
-            text-transform: uppercase;
+            background:
+                radial-gradient(circle at 50% 45%, rgba(255, 255, 255, 0.14), transparent 35%),
+                #050505;
+        }
+
+        .project.logo-card .project-media img {
+            height: clamp(240px, 26vw, 300px);
+            min-height: 0;
+            padding: clamp(28px, 4vw, 54px);
+            object-fit: contain;
+            opacity: 1;
+        }
+
+        .project.rat-card .project-media img {
+            min-height: 300px;
+        }
+
+        .project.rat-card .project-media img {
+            object-position: center 42%;
+        }
+
+        .project.milk-card .project-media img {
+            min-height: 300px;
+            object-position: center;
         }
 
         .project-body {
@@ -453,6 +484,10 @@
 
         .project.featured .project-body {
             padding: clamp(20px, 3vw, 30px);
+        }
+
+        .supporting-grid .project-body {
+            align-content: start;
         }
 
         .project-meta {
@@ -544,12 +579,37 @@
         @media (max-width: 980px) {
             .hero-grid,
             .work-head,
-            .featured-grid {
+            .featured-grid,
+            .project.featured,
+            .supporting-grid {
                 grid-template-columns: 1fr;
             }
 
-            .portfolio-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
+            .supporting-grid {
+                grid-template-rows: auto;
+                grid-template-areas:
+                    "pip"
+                    "executioner"
+                    "rat"
+                    "milk";
+            }
+
+            .supporting-grid .project.primary-support {
+                grid-area: pip;
+            }
+
+            .supporting-grid .project.logo-card {
+                grid-area: executioner;
+            }
+
+            .supporting-grid .project.rat-card {
+                grid-area: rat;
+                grid-template-columns: 1fr;
+            }
+
+            .supporting-grid .project.milk-card {
+                grid-area: milk;
+                grid-template-columns: 1fr;
             }
 
             .project.featured .project-media img {
@@ -611,12 +671,7 @@
                 flex: 1 1 auto;
             }
 
-            .portfolio-grid {
-                grid-template-columns: 1fr;
-            }
-
             .project-media img,
-            .placeholder,
             .project.featured .project-media img {
                 min-height: 190px;
             }
@@ -680,15 +735,14 @@
         <section class="shell work" id="work" aria-labelledby="work-title">
             <div class="work-head">
                 <div>
-                    <p class="eyebrow">Apps, prototypes, tools, experiments</p>
-                    <h2 id="work-title">Work.</h2>
+                    <h2 class="eyebrow" id="work-title">Apps, prototypes, tools, and experiments</h2>
                 </div>
-                <p>A focused index of shipped projects, prototypes, workflow tools, case studies, practical utilities, and creative experiments.</p>
+                <p>A focused index of five current public products: Masthead, Pip, Executioner, Rat Detective, and Milkbench.</p>
             </div>
 
             <div class="featured-grid" aria-label="Featured work">
                 <article class="project featured">
-                    <a class="cover-link" href="https://animasai.co/masthead.html" target="_blank" rel="noopener noreferrer" aria-label="Open Masthead"></a>
+                    <a class="cover-link" href="https://usemasthead.com" target="_blank" rel="noopener noreferrer" aria-label="Open Masthead"></a>
                     <div class="project-media">
                         <img src="Masthead.png" alt="Masthead product visual showing the interface preview" loading="eager">
                     </div>
@@ -704,48 +758,64 @@
                         <span class="open">Open project →</span>
                     </div>
                 </article>
-
-                <div class="feature-stack">
-                    <article class="project">
-                        <a class="cover-link" href="https://animasai.co/pip.html" target="_blank" rel="noopener noreferrer" aria-label="Open Pip"></a>
-                        <div class="project-media">
-                            <img src="Pip.png" alt="Pip product preview" loading="lazy">
-                        </div>
-                        <div class="project-body">
-                            <div class="project-meta">
-                                <span class="status case-study">Case study</span>
-                                <span class="domain">Finance workflow</span>
-                            </div>
-                            <div>
-                                <h3>Pip</h3>
-                                <p>AI-native spending companion centered on Spendable Cash Today, deterministic financial logic, and agent-assisted explanation.</p>
-                            </div>
-                            <span class="open">Open case study →</span>
-                        </div>
-                    </article>
-
-                    <article class="project">
-                        <a class="cover-link" href="https://executionr.com" target="_blank" rel="noopener noreferrer" aria-label="Open Executioner"></a>
-                        <div class="project-media">
-                            <img src="Executioner.png" alt="Executioner product preview" loading="lazy">
-                        </div>
-                        <div class="project-body">
-                            <div class="project-meta">
-                                <span class="status case-study">Case study</span>
-                                <span class="domain">Execution</span>
-                            </div>
-                            <div>
-                                <h3>Executioner</h3>
-                                <p>Personal execution system that turns messy brain dumps into structured outcomes and schedule previews.</p>
-                            </div>
-                            <span class="open">Open system →</span>
-                        </div>
-                    </article>
-                </div>
             </div>
 
-            <div class="portfolio-grid" aria-label="Project portfolio">
-                <article class="project">
+            <div class="supporting-grid" aria-label="Project portfolio">
+                <article class="project primary-support">
+                    <a class="cover-link" href="https://spendwithpip.com" target="_blank" rel="noopener noreferrer" aria-label="Open Pip"></a>
+                    <div class="project-media">
+                        <img src="Pip.png" alt="Pip product preview" loading="lazy">
+                    </div>
+                    <div class="project-body">
+                        <div class="project-meta">
+                            <span class="status case-study">Case study</span>
+                            <span class="domain">Finance workflow</span>
+                        </div>
+                        <div>
+                            <h3>Pip</h3>
+                            <p>AI-native spending companion centered on Spendable Cash Today, deterministic financial logic, and agent-assisted explanation.</p>
+                        </div>
+                        <span class="open">Open product →</span>
+                    </div>
+                </article>
+
+                <article class="project logo-card">
+                    <a class="cover-link" href="https://executionr.com" target="_blank" rel="noopener noreferrer" aria-label="Open Executioner"></a>
+                    <div class="project-media">
+                        <img src="Executioner.png?v=20260701" alt="Executioner logo" loading="lazy">
+                    </div>
+                    <div class="project-body">
+                        <div class="project-meta">
+                            <span class="status case-study">Case study</span>
+                            <span class="domain">Execution</span>
+                        </div>
+                        <div>
+                            <h3>Executioner</h3>
+                            <p>Personal execution system that turns messy brain dumps into structured outcomes and schedule previews.</p>
+                        </div>
+                        <span class="open">Open system →</span>
+                    </div>
+                </article>
+
+                <article class="project rat-card">
+                    <a class="cover-link" href="https://rat-detective.animasai.co" target="_blank" rel="noopener noreferrer" aria-label="Open Rat Detective Online"></a>
+                    <div class="project-media">
+                        <img src="RatDetective.png?v=20260701" alt="Rat Detective Online multiplayer game preview" loading="lazy">
+                    </div>
+                    <div class="project-body">
+                        <div class="project-meta">
+                            <span class="status game">Live game</span>
+                            <span class="domain">Creative web</span>
+                        </div>
+                        <div>
+                            <h3>Rat Detective Online</h3>
+                            <p>Playable multiplayer browser game built with Three.js, TypeScript, socket.io, and physics-based interactions.</p>
+                        </div>
+                        <span class="open">Open game →</span>
+                    </div>
+                </article>
+
+                <article class="project milk-card">
                     <a class="cover-link" href="https://milk.animasai.co/" target="_blank" rel="noopener noreferrer" aria-label="Open Milkbench"></a>
                     <div class="project-media">
                         <img src="Milkbench.png" alt="Milkbench visual with a milk pour, model names, and Luna, Terra, and Sol results." loading="lazy">
@@ -760,202 +830,6 @@
                             <p>A playful visual benchmark for comparing GPT 5.6 models on taste, with Luna, Terra, and Sol presented as distinct model personalities.</p>
                         </div>
                         <span class="open">Open experiment →</span>
-                    </div>
-                </article>
-
-                <article class="project">
-                    <a class="cover-link" href="https://inn-touch-concierge.lovable.app" target="_blank" rel="noopener noreferrer" aria-label="Open Inn Touch"></a>
-                    <div class="project-media">
-                        <img src="InnTouch.png" alt="Inn Touch hospitality prototype preview" loading="lazy">
-                    </div>
-                    <div class="project-body">
-                        <div class="project-meta">
-                            <span class="status">Prototype</span>
-                            <span class="domain">Hospitality</span>
-                        </div>
-                        <div>
-                            <h3>Inn Touch</h3>
-                            <p>Hospitality guest-experience prototype shaped by real hotel operations and communication workflows.</p>
-                        </div>
-                        <span class="open">Open prototype →</span>
-                    </div>
-                </article>
-
-                <article class="project">
-                    <a class="cover-link" href="https://paycheck-sanity-checker.netlify.app" target="_blank" rel="noopener noreferrer" aria-label="Open Paycheck Sanity Checker"></a>
-                    <div class="project-media">
-                        <img src="Paycheck.png" alt="Paycheck Sanity Checker operations utility preview" loading="lazy">
-                    </div>
-                    <div class="project-body">
-                        <div class="project-meta">
-                            <span class="status">Live prototype</span>
-                            <span class="domain">Utility</span>
-                        </div>
-                        <div>
-                            <h3>Paycheck Sanity Checker</h3>
-                            <p>Operations-minded tool for reviewing pay stubs and flagging possible discrepancies.</p>
-                        </div>
-                        <span class="open">Open tool →</span>
-                    </div>
-                </article>
-
-                <article class="project">
-                    <a class="cover-link" href="https://digital-check-in.lovable.app/" target="_blank" rel="noopener noreferrer" aria-label="Open Inn Touch Demo"></a>
-                    <div class="project-media">
-                        <img src="InnTouchDemo.png" alt="Inn Touch digital check-in demo preview" loading="lazy">
-                    </div>
-                    <div class="project-body">
-                        <div class="project-meta">
-                            <span class="status">Demo</span>
-                            <span class="domain">Hospitality</span>
-                        </div>
-                        <div>
-                            <h3>Inn Touch Demo</h3>
-                            <p>Digital check-in concept for guest onboarding and hospitality lead capture.</p>
-                        </div>
-                        <span class="open">Open demo →</span>
-                    </div>
-                </article>
-
-                <article class="project">
-                    <a class="cover-link" href="https://tyler-morning.lovable.app" target="_blank" rel="noopener noreferrer" aria-label="Open Morning Routine App"></a>
-                    <div class="project-media">
-                        <img src="Routine.png" alt="Morning Routine App preview" loading="lazy">
-                    </div>
-                    <div class="project-body">
-                        <div class="project-meta">
-                            <span class="status experiment">Experiment</span>
-                            <span class="domain">Execution</span>
-                        </div>
-                        <div>
-                            <h3>Morning Routine App</h3>
-                            <p>Personal workflow experiment for recurring routines and lightweight execution systems.</p>
-                        </div>
-                        <span class="open">Open experiment →</span>
-                    </div>
-                </article>
-
-                <article class="project">
-                    <a class="cover-link" href="https://audit-companion.rebuilt.credit" target="_blank" rel="noopener noreferrer" aria-label="Open Credit Audit Companion"></a>
-                    <div class="project-media">
-                        <img src="AuditCompanion.png" alt="Credit Audit Companion workflow preview" loading="lazy">
-                    </div>
-                    <div class="project-body">
-                        <div class="project-meta">
-                            <span class="status">Demo</span>
-                            <span class="domain">Credit workflow</span>
-                        </div>
-                        <div>
-                            <h3>Credit Audit Companion</h3>
-                            <p>Guided workflow prototype for turning intimidating credit-review steps into a clearer process.</p>
-                        </div>
-                        <span class="open">Open demo →</span>
-                    </div>
-                </article>
-
-                <article class="project">
-                    <a class="cover-link" href="https://dispute-app.rebuilt.credit" target="_blank" rel="noopener noreferrer" aria-label="Open Credit Dispute Checker"></a>
-                    <div class="project-media">
-                        <img src="DisputeChecker.png" alt="Credit Dispute Checker readiness workflow preview" loading="lazy">
-                    </div>
-                    <div class="project-body">
-                        <div class="project-meta">
-                            <span class="status">Demo</span>
-                            <span class="domain">Credit workflow</span>
-                        </div>
-                        <div>
-                            <h3>Credit Dispute Checker</h3>
-                            <p>Readiness-check prototype for consumer credit dispute workflows.</p>
-                        </div>
-                        <span class="open">Open demo →</span>
-                    </div>
-                </article>
-
-                <article class="project">
-                    <a class="cover-link" href="https://rebuild-planner.rebuilt.credit" target="_blank" rel="noopener noreferrer" aria-label="Open Credit Rebuild Planner"></a>
-                    <div class="project-media">
-                        <img src="RebuildPlanner.png" alt="Credit Rebuild Planner preview" loading="lazy">
-                    </div>
-                    <div class="project-body">
-                        <div class="project-meta">
-                            <span class="status">Demo</span>
-                            <span class="domain">Credit workflow</span>
-                        </div>
-                        <div>
-                            <h3>Credit Rebuild Planner</h3>
-                            <p>Planning prototype for breaking a messy credit rebuild into next steps.</p>
-                        </div>
-                        <span class="open">Open planner →</span>
-                    </div>
-                </article>
-
-                <article class="project">
-                    <a class="cover-link" href="https://github.com/MayberryDT/relationship-pattern-quiz" target="_blank" rel="noopener noreferrer" aria-label="Open Relationship Pattern Quiz repository"></a>
-                    <div class="placeholder">Pattern<br>Diagnostic</div>
-                    <div class="project-body">
-                        <div class="project-meta">
-                            <span class="status">Prototype</span>
-                            <span class="domain">Diagnostic UX</span>
-                        </div>
-                        <div>
-                            <h3>Relationship Pattern Quiz</h3>
-                            <p>Consumer diagnostic-flow prototype for personalization, quiz UX, and AI media experiments.</p>
-                        </div>
-                        <span class="open">Open repo →</span>
-                    </div>
-                </article>
-
-                <article class="project">
-                    <a class="cover-link" href="https://unwired-app.lovable.app/" target="_blank" rel="noopener noreferrer" aria-label="Open Unwired"></a>
-                    <div class="project-media">
-                        <img src="Unwired.png" alt="Unwired behavior-change app preview" loading="lazy">
-                    </div>
-                    <div class="project-body">
-                        <div class="project-meta">
-                            <span class="status experiment">Experiment</span>
-                            <span class="domain">Consumer app</span>
-                        </div>
-                        <div>
-                            <h3>Unwired</h3>
-                            <p>Behavior-change app experiment with a strong product voice and consumer positioning.</p>
-                        </div>
-                        <span class="open">Open experiment →</span>
-                    </div>
-                </article>
-
-                <article class="project">
-                    <a class="cover-link" href="https://aml-risk-navigator-app.lovable.app/" target="_blank" rel="noopener noreferrer" aria-label="Open AML Audit Compliance Tool"></a>
-                    <div class="project-media">
-                        <img src="AML.png" alt="AML Audit Compliance Tool preview" loading="lazy">
-                    </div>
-                    <div class="project-body">
-                        <div class="project-meta">
-                            <span class="status experiment">Experiment</span>
-                            <span class="domain">Compliance</span>
-                        </div>
-                        <div>
-                            <h3>AML Audit Compliance Tool</h3>
-                            <p>Compliance workflow prototype for translating checklist-heavy business rules into guided software.</p>
-                        </div>
-                        <span class="open">Open tool →</span>
-                    </div>
-                </article>
-
-                <article class="project">
-                    <a class="cover-link" href="https://rat-detective-online.netlify.app" target="_blank" rel="noopener noreferrer" aria-label="Open Rat Detective Online"></a>
-                    <div class="project-media">
-                        <img src="RatDetective.png" alt="Rat Detective Online multiplayer game preview" loading="lazy">
-                    </div>
-                    <div class="project-body">
-                        <div class="project-meta">
-                            <span class="status game">Live game</span>
-                            <span class="domain">Creative web</span>
-                        </div>
-                        <div>
-                            <h3>Rat Detective Online</h3>
-                            <p>Playable multiplayer browser game built with Three.js, TypeScript, socket.io, and physics-based interactions.</p>
-                        </div>
-                        <span class="open">Open game →</span>
                     </div>
                 </article>
             </div>
