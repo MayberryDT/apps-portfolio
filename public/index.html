@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpeg" href="favicon.jpg">
+    <title>Tyler Mayberry | AI Systems Builder & Practical Product Engineer</title>
+    <meta name="description" content="Tyler Mayberry is an AI systems builder and practical product engineer who builds agentic workflows, internal tools, automation systems, and AI-native software for messy real-world work.">
+    <link rel="canonical" href="https://tylermayberry.dev/">
+    <meta property="og:title" content="Tyler Mayberry | AI Systems Builder & Practical Product Engineer">
+    <meta property="og:description" content="Tyler Mayberry is an AI systems builder and practical product engineer who builds agentic workflows, internal tools, automation systems, and AI-native software for messy real-world work.">
+    <meta property="og:url" content="https://tylermayberry.dev/">
+    <meta property="og:type" content="profile">
+    <meta property="og:site_name" content="Tyler Mayberry">
+    <meta property="og:image" content="https://tylermayberry.dev/CirclePresentation.jpeg">
+    <meta property="profile:first_name" content="Tyler">
+    <meta property="profile:last_name" content="Mayberry">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tyler Mayberry | AI Systems Builder & Practical Product Engineer">
+    <meta name="twitter:description" content="Tyler Mayberry is an AI systems builder and practical product engineer who builds agentic workflows, internal tools, automation systems, and AI-native software for messy real-world work.">
+    <meta name="twitter:image" content="https://tylermayberry.dev/CirclePresentation.jpeg">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://tylermayberry.dev/#tyler-mayberry",
+          "name": "Tyler Mayberry",
+          "alternateName": "MayberryDT",
+          "url": "https://tylermayberry.dev/",
+          "image": "https://tylermayberry.dev/CirclePresentation.jpeg",
+          "email": "tyler@animasai.co",
+          "jobTitle": "AI Systems Builder and Practical Product Engineer",
+          "description": "Tyler Mayberry is an AI systems builder and practical product engineer who builds agentic workflows, internal tools, automation systems, and AI-native software for messy real-world work.",
+          "homeLocation": {
+            "@type": "Place",
+            "name": "Tulsa, Oklahoma"
+          },
+          "affiliation": {
+            "@id": "https://animasai.co/#organization"
+          },
+          "sameAs": [
+            "https://github.com/MayberryDT",
+            "https://www.linkedin.com/in/mayberrydt/",
+            "https://animasai.co",
+            "https://usemasthead.com",
+            "https://infocard.ai/~MayberryDT"
+          ],
+          "knowsAbout": [
+            "AI systems",
+            "Agentic workflows",
+            "Internal tools",
+            "Workflow automation",
+            "AI-native software",
+            "Product engineering",
+            "Product prototypes"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://tylermayberry.dev/#website",
+          "name": "Tyler Mayberry",
+          "url": "https://tylermayberry.dev/",
+          "publisher": {
+            "@id": "https://tylermayberry.dev/#tyler-mayberry"
+          }
+        },
+        {
+          "@type": "ProfilePage",
+          "@id": "https://tylermayberry.dev/#profile-page",
+          "url": "https://tylermayberry.dev/",
+          "name": "Tyler Mayberry | AI Systems Builder & Practical Product Engineer",
+          "description": "Portfolio and about page for Tyler Mayberry, covering practical AI systems, internal tools, automation workflows, product prototypes, and creative technical experiments.",
+          "about": {
+            "@id": "https://tylermayberry.dev/#tyler-mayberry"
+          },
+          "mainEntity": {
+            "@id": "https://tylermayberry.dev/#tyler-mayberry"
+          },
+          "isPartOf": {
+            "@id": "https://tylermayberry.dev/#website"
+          }
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://animasai.co/#organization",
+          "name": "Animas AI",
+          "url": "https://animasai.co/",
+          "logo": "https://animasai.co/logo-mark-v2-lg.webp",
+          "founder": {
+            "@id": "https://tylermayberry.dev/#tyler-mayberry"
+          },
+          "description": "Animas AI is the business/studio wrapper Tyler Mayberry uses for practical AI systems work."
+        },
+        {
+          "@type": "ItemList",
+          "@id": "https://tylermayberry.dev/#portfolio-artifacts",
+          "name": "Tyler Mayberry Portfolio Artifacts",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Masthead", "url": "https://usemasthead.com" },
+            { "@type": "ListItem", "position": 2, "name": "Pip", "url": "https://spendwithpip.com" },
+            { "@type": "ListItem", "position": 3, "name": "Executioner", "url": "https://executionr.com" },
+            { "@type": "ListItem", "position": 4, "name": "Rat Detective Online", "url": "https://rat-detective.animasai.co" },
+            { "@type": "ListItem", "position": 5, "name": "Milkbench", "url": "https://milk.animasai.co/" }
+          ]
+        }
+      ]
+    }
+    </script>
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #080808;
+            --panel: #101010;
+            --panel-2: #151515;
+            --line: #2b2b2b;
+            --line-strong: #505050;
+            --text: #f5f5f0;
+            --muted: #a0a0a0;
+            --quiet: #666666;
+            --accent: #d8ff64;
+            --accent-2: #8dd7ff;
+            --max: 1180px;
+            --pad: clamp(18px, 3.4vw, 40px);
+            --mono: "SFMono-Regular", "Cascadia Code", "Liberation Mono", Consolas, monospace;
+            --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 88px;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--sans);
+            line-height: 1.5;
+            text-rendering: optimizeLegibility;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        a:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 4px;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        .shell {
+            width: min(100%, var(--max));
+            margin: 0 auto;
+            padding: 0 var(--pad);
+        }
+
+        .skip-link {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            z-index: 40;
+            padding: 10px 12px;
+            background: var(--text);
+            color: var(--bg);
+            font-weight: 800;
+            text-decoration: none;
+            transform: translateY(-160%);
+            transition: transform 160ms ease;
+        }
+
+        .skip-link:focus {
+            transform: translateY(0);
+        }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            border-bottom: 1px solid var(--line);
+            background: rgba(8, 8, 8, 0.94);
+            backdrop-filter: blur(12px);
+        }
+
+        .nav {
+            min-height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: baseline;
+            gap: 12px;
+            min-width: 0;
+            text-decoration: none;
+        }
+
+        .brand strong {
+            font-size: 0.86rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .brand span {
+            color: var(--quiet);
+            font-family: var(--mono);
+            font-size: 0.72rem;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 4px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            padding: 8px 9px;
+            color: var(--muted);
+            font-size: 0.74rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+            background: var(--panel-2);
+        }
+
+        .hero {
+            padding: clamp(24px, 4vw, 46px) 0 clamp(22px, 4vw, 38px);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 0.8fr) minmax(320px, 0.68fr);
+            gap: clamp(18px, 4vw, 48px);
+            align-items: end;
+        }
+
+        .eyebrow {
+            margin: 0 0 16px;
+            color: var(--accent);
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            font-weight: 900;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        h2.eyebrow {
+            line-height: 1.2;
+        }
+
+        h1,
+        h2,
+        h3,
+        p {
+            margin-top: 0;
+        }
+
+        h1 {
+            max-width: 880px;
+            margin-bottom: 0;
+            font-size: clamp(2rem, 4.2vw, 3.9rem);
+            line-height: 0.98;
+            letter-spacing: -0.055em;
+            text-wrap: balance;
+        }
+
+        .hero-copy {
+            display: grid;
+            gap: 18px;
+        }
+
+        .hero-copy p {
+            margin: 0;
+            color: #d7d7d2;
+            font-size: clamp(1rem, 1.7vw, 1.18rem);
+        }
+
+        .link-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 10px 12px;
+            border: 1px solid var(--line-strong);
+            background: transparent;
+            color: var(--text);
+            font-size: 0.75rem;
+            font-weight: 900;
+            letter-spacing: 0.08em;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
+        }
+
+        .button:hover {
+            border-color: var(--text);
+            background: var(--text);
+            color: var(--bg);
+        }
+
+        .button.primary {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .button.primary:hover {
+            background: var(--accent);
+            color: #111111;
+        }
+
+        .work {
+            padding: clamp(24px, 4vw, 46px) 0 clamp(48px, 8vw, 92px);
+        }
+
+        .work-head {
+            display: grid;
+            grid-template-columns: minmax(0, 0.8fr) minmax(320px, 0.58fr);
+            gap: clamp(18px, 4vw, 44px);
+            align-items: end;
+            margin-bottom: clamp(20px, 4vw, 36px);
+        }
+
+        .work-head p {
+            margin-bottom: 0;
+            color: var(--muted);
+            font-size: 1rem;
+        }
+
+        .featured-grid,
+        .supporting-grid {
+            display: grid;
+            gap: 12px;
+        }
+
+        .featured-grid {
+            grid-template-columns: minmax(0, 1fr);
+            margin-bottom: 12px;
+        }
+
+        .project.featured {
+            grid-template-columns: minmax(0, 1.65fr) minmax(300px, 0.7fr);
+            grid-template-rows: auto;
+        }
+
+        .supporting-grid {
+            grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+            grid-template-areas:
+                "pip executioner"
+                "rat rat"
+                "milk milk";
+            align-items: start;
+        }
+
+        .supporting-grid .project.primary-support {
+            grid-area: pip;
+        }
+
+        .supporting-grid .project.logo-card {
+            grid-area: executioner;
+        }
+
+        .supporting-grid .project.rat-card {
+            grid-area: rat;
+            grid-template-columns: minmax(0, 0.95fr) minmax(320px, 1.05fr);
+            grid-template-rows: auto;
+        }
+
+        .supporting-grid .project.milk-card {
+            grid-area: milk;
+            grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
+            grid-template-rows: auto;
+        }
+
+        .project {
+            position: relative;
+            display: grid;
+            grid-template-rows: auto 1fr;
+            min-height: 100%;
+            border: 1px solid var(--line);
+            background: var(--panel);
+            transition: border-color 160ms ease, background 160ms ease;
+        }
+
+        .project:hover {
+            border-color: var(--line-strong);
+            background: var(--panel-2);
+        }
+
+        .project a.cover-link {
+            position: absolute;
+            inset: 0;
+            z-index: 4;
+        }
+
+        .project-media {
+            position: relative;
+            border-bottom: 1px solid var(--line);
+            background: #050505;
+            overflow: hidden;
+        }
+
+        .project-media img {
+            width: 100%;
+            height: 100%;
+            min-height: 210px;
+            box-sizing: border-box;
+            object-fit: cover;
+            opacity: 0.9;
+        }
+
+        .project.featured .project-media img {
+            min-height: clamp(300px, 38vw, 460px);
+        }
+
+        .project.primary-support .project-media img {
+            min-height: 300px;
+        }
+
+        .project.logo-card .project-media {
+            display: grid;
+            place-items: center;
+            background:
+                radial-gradient(circle at 50% 45%, rgba(255, 255, 255, 0.14), transparent 35%),
+                #050505;
+        }
+
+        .project.logo-card .project-media img {
+            height: clamp(240px, 26vw, 300px);
+            min-height: 0;
+            padding: clamp(28px, 4vw, 54px);
+            object-fit: contain;
+            opacity: 1;
+        }
+
+        .project.rat-card .project-media img {
+            min-height: 300px;
+        }
+
+        .project.rat-card .project-media img {
+            object-position: center 42%;
+        }
+
+        .project.milk-card .project-media img {
+            min-height: 300px;
+            object-position: center;
+        }
+
+        .project-body {
+            display: grid;
+            align-content: space-between;
+            gap: 22px;
+            padding: 18px;
+        }
+
+        .project.featured .project-body {
+            padding: clamp(20px, 3vw, 30px);
+        }
+
+        .supporting-grid .project-body {
+            align-content: start;
+        }
+
+        .project-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .status,
+        .domain {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--muted);
+            font-family: var(--mono);
+            font-size: 0.64rem;
+            font-weight: 900;
+            letter-spacing: 0.11em;
+            text-transform: uppercase;
+        }
+
+        .status {
+            color: var(--accent);
+        }
+
+        .status.case-study {
+            color: var(--accent-2);
+        }
+
+        .status.experiment {
+            color: #cfcfcf;
+        }
+
+        .status.game {
+            color: #f0b8ff;
+        }
+
+        .project h3 {
+            margin-bottom: 10px;
+            font-size: clamp(1.25rem, 2.2vw, 2.15rem);
+            line-height: 0.98;
+            letter-spacing: -0.045em;
+        }
+
+        .project:not(.featured) h3 {
+            font-size: clamp(1.1rem, 1.5vw, 1.42rem);
+        }
+
+        .project p {
+            margin-bottom: 0;
+            color: var(--muted);
+            font-size: 0.93rem;
+        }
+
+        .project.featured p {
+            max-width: 620px;
+            font-size: 1.02rem;
+        }
+
+        .open {
+            color: var(--text);
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            font-weight: 900;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .footer {
+            border-top: 1px solid var(--line);
+            padding: 28px 0 40px;
+        }
+
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            flex-wrap: wrap;
+            color: var(--quiet);
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 980px) {
+            .hero-grid,
+            .work-head,
+            .featured-grid,
+            .project.featured,
+            .supporting-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .supporting-grid {
+                grid-template-rows: auto;
+                grid-template-areas:
+                    "pip"
+                    "executioner"
+                    "rat"
+                    "milk";
+            }
+
+            .supporting-grid .project.primary-support {
+                grid-area: pip;
+            }
+
+            .supporting-grid .project.logo-card {
+                grid-area: executioner;
+            }
+
+            .supporting-grid .project.rat-card {
+                grid-area: rat;
+                grid-template-columns: 1fr;
+            }
+
+            .supporting-grid .project.milk-card {
+                grid-area: milk;
+                grid-template-columns: 1fr;
+            }
+
+            .project.featured .project-media img {
+                min-height: 280px;
+            }
+        }
+
+        @media (max-width: 680px) {
+            :root {
+                --pad: 16px;
+            }
+
+            .topbar {
+                position: relative;
+            }
+
+            .nav {
+                align-items: flex-start;
+                flex-direction: column;
+                padding: 14px 0;
+            }
+
+            .nav-links {
+                justify-content: flex-start;
+                width: 100%;
+                overflow-x: auto;
+                flex-wrap: nowrap;
+                scrollbar-width: none;
+            }
+
+            .nav-links::-webkit-scrollbar {
+                display: none;
+            }
+
+            .nav-links a {
+                flex: 0 0 auto;
+            }
+
+            .hero {
+                padding-top: 22px;
+            }
+
+            .hero-grid,
+            .hero-copy,
+            .work-head {
+                gap: 16px;
+            }
+
+            h1 {
+                font-size: clamp(2rem, 10.5vw, 3rem);
+            }
+
+            .hero-copy p {
+                font-size: 0.98rem;
+            }
+
+            .button {
+                min-height: 44px;
+                flex: 1 1 auto;
+            }
+
+            .project-media img,
+            .project.featured .project-media img {
+                min-height: 190px;
+            }
+
+            .project-body {
+                padding: 16px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <a class="skip-link" href="#work">Skip to work</a>
+
+    <header class="topbar" aria-label="Site header">
+        <div class="shell nav">
+            <a class="brand" href="#top" aria-label="Tyler Mayberry home">
+                <strong>Tyler Mayberry</strong>
+                <span>AI systems builder</span>
+            </a>
+            <nav class="nav-links" aria-label="Primary links">
+                <a href="/about.html">About</a>
+                <a href="#work">Work</a>
+                <a href="mailto:tyler@animasai.co">Email</a>
+                <a href="https://github.com/MayberryDT" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://www.linkedin.com/in/mayberrydt/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a href="https://animasai.co" target="_blank" rel="noopener noreferrer">Animas AI</a>
+                <a href="https://usemasthead.com" target="_blank" rel="noopener noreferrer">Masthead</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="top">
+        <section class="shell hero" aria-labelledby="hero-title">
+            <div class="hero-grid">
+                <div>
+                    <p class="eyebrow">Personal portfolio</p>
+                    <h1 id="hero-title">AI systems builder. Practical product engineer.</h1>
+                </div>
+                <div class="hero-copy">
+                    <p>I build agentic workflows, internal tools, automation systems, and AI-native software for messy real-world work.</p>
+                    <div class="link-row" aria-label="Contact and profile links">
+                        <a class="button primary" href="mailto:tyler@animasai.co">Email</a>
+                        <a class="button" href="/about.html">About</a>
+                        <a class="button" href="https://github.com/MayberryDT" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        <a class="button" href="https://www.linkedin.com/in/mayberrydt/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="shell work" id="work" aria-labelledby="work-title">
+            <div class="work-head">
+                <div>
+                    <h2 class="eyebrow" id="work-title">Apps, prototypes, tools, and experiments</h2>
+                </div>
+                <p>A focused index of five current public products: Masthead, Pip, Executioner, Rat Detective, and Milkbench.</p>
+            </div>
+
+            <div class="featured-grid" aria-label="Featured work">
+                <article class="project featured">
+                    <a class="cover-link" href="https://usemasthead.com" target="_blank" rel="noopener noreferrer" aria-label="Open Masthead"></a>
+                    <div class="project-media">
+                        <img src="Masthead.png" alt="Masthead product visual showing the interface preview" loading="eager">
+                    </div>
+                    <div class="project-body">
+                        <div class="project-meta">
+                            <span class="status">Flagship</span>
+                            <span class="domain">AI systems</span>
+                        </div>
+                        <div>
+                            <h3>Masthead</h3>
+                            <p>Local-first session memory for AI-agent work: searchable history, live context, and read-only MCP retrieval.</p>
+                        </div>
+                        <span class="open">Open project →</span>
+                    </div>
+                </article>
+            </div>
+
+            <div class="supporting-grid" aria-label="Project portfolio">
+                <article class="project primary-support">
+                    <a class="cover-link" href="https://spendwithpip.com" target="_blank" rel="noopener noreferrer" aria-label="Open Pip"></a>
+                    <div class="project-media">
+                        <img src="Pip.png" alt="Pip product preview" loading="lazy">
+                    </div>
+                    <div class="project-body">
+                        <div class="project-meta">
+                            <span class="status case-study">Case study</span>
+                            <span class="domain">Finance workflow</span>
+                        </div>
+                        <div>
+                            <h3>Pip</h3>
+                            <p>AI-native spending companion centered on Spendable Cash Today, deterministic financial logic, and agent-assisted explanation.</p>
+                        </div>
+                        <span class="open">Open product →</span>
+                    </div>
+                </article>
+
+                <article class="project logo-card">
+                    <a class="cover-link" href="https://executionr.com" target="_blank" rel="noopener noreferrer" aria-label="Open Executioner"></a>
+                    <div class="project-media">
+                        <img src="Executioner.png?v=20260701" alt="Executioner logo" loading="lazy">
+                    </div>
+                    <div class="project-body">
+                        <div class="project-meta">
+                            <span class="status case-study">Case study</span>
+                            <span class="domain">Execution</span>
+                        </div>
+                        <div>
+                            <h3>Executioner</h3>
+                            <p>Personal execution system that turns messy brain dumps into structured outcomes and schedule previews.</p>
+                        </div>
+                        <span class="open">Open system →</span>
+                    </div>
+                </article>
+
+                <article class="project rat-card">
+                    <a class="cover-link" href="https://rat-detective.animasai.co" target="_blank" rel="noopener noreferrer" aria-label="Open Rat Detective Online"></a>
+                    <div class="project-media">
+                        <img src="RatDetective.png?v=20260701" alt="Rat Detective Online multiplayer game preview" loading="lazy">
+                    </div>
+                    <div class="project-body">
+                        <div class="project-meta">
+                            <span class="status game">Live game</span>
+                            <span class="domain">Creative web</span>
+                        </div>
+                        <div>
+                            <h3>Rat Detective Online</h3>
+                            <p>Playable multiplayer browser game built with Three.js, TypeScript, socket.io, and physics-based interactions.</p>
+                        </div>
+                        <span class="open">Open game →</span>
+                    </div>
+                </article>
+
+                <article class="project milk-card">
+                    <a class="cover-link" href="https://milk.animasai.co/" target="_blank" rel="noopener noreferrer" aria-label="Open Milkbench"></a>
+                    <div class="project-media">
+                        <img src="Milkbench.png" alt="Milkbench visual with a milk pour, model names, and Luna, Terra, and Sol results." loading="lazy">
+                    </div>
+                    <div class="project-body">
+                        <div class="project-meta">
+                            <span class="status">Live experiment</span>
+                            <span class="domain">AI evaluation</span>
+                        </div>
+                        <div>
+                            <h3>Milkbench</h3>
+                            <p>A playful visual benchmark for comparing GPT 5.6 models on taste, with Luna, Terra, and Sol presented as distinct model personalities.</p>
+                        </div>
+                        <span class="open">Open experiment →</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="shell footer-inner">
+            <span>&copy; 2026 Tyler Mayberry · tylermayberry.dev</span>
+            <div class="link-row" aria-label="Footer links">
+                <a href="mailto:tyler@animasai.co">Email</a>
+                <a href="/about.html">About</a>
+                <a href="https://github.com/MayberryDT" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://www.linkedin.com/in/mayberrydt/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
