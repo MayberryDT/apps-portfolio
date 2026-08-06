@@ -103,7 +103,8 @@
             { "@type": "ListItem", "position": 2, "name": "Pip", "url": "https://spendwithpip.com" },
             { "@type": "ListItem", "position": 3, "name": "Executioner", "url": "https://executionr.com" },
             { "@type": "ListItem", "position": 4, "name": "Rat Detective Online", "url": "https://rat-detective.animasai.co" },
-            { "@type": "ListItem", "position": 5, "name": "Milkbench", "url": "https://milk.animasai.co/" }
+            { "@type": "ListItem", "position": 5, "name": "Milkbench", "url": "https://milk.animasai.co/" },
+            { "@type": "ListItem", "position": 6, "name": "Wargus TypeScript", "url": "https://wargus.animasai.co" }
           ]
         }
       ]
@@ -377,7 +378,7 @@
             grid-template-areas:
                 "pip executioner"
                 "rat rat"
-                "milk milk";
+                "milk wargus";
             align-items: start;
         }
 
@@ -397,6 +398,12 @@
 
         .supporting-grid .project.milk-card {
             grid-area: milk;
+            grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
+            grid-template-rows: auto;
+        }
+
+        .supporting-grid .project.wargus-card {
+            grid-area: wargus;
             grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
             grid-template-rows: auto;
         }
@@ -471,6 +478,11 @@
         }
 
         .project.milk-card .project-media img {
+            min-height: 300px;
+            object-position: center;
+        }
+
+        .project.wargus-card .project-media img {
             min-height: 300px;
             object-position: center;
         }
@@ -591,7 +603,8 @@
                     "pip"
                     "executioner"
                     "rat"
-                    "milk";
+                    "milk"
+                    "wargus";
             }
 
             .supporting-grid .project.primary-support {
@@ -609,6 +622,11 @@
 
             .supporting-grid .project.milk-card {
                 grid-area: milk;
+                grid-template-columns: 1fr;
+            }
+
+            .supporting-grid .project.wargus-card {
+                grid-area: wargus;
                 grid-template-columns: 1fr;
             }
 
@@ -737,7 +755,7 @@
                 <div>
                     <h2 class="eyebrow" id="work-title">Apps, prototypes, tools, and experiments</h2>
                 </div>
-                <p>A focused index of five current public products: Masthead, Pip, Executioner, Rat Detective, and Milkbench.</p>
+                <p>A focused index of current public products: Masthead, Pip, Executioner, Rat Detective, Milkbench, and Wargus TypeScript.</p>
             </div>
 
             <div class="featured-grid" aria-label="Featured work">
@@ -830,6 +848,24 @@
                             <p>A playful visual benchmark for comparing GPT 5.6 models on taste, with Luna, Terra, and Sol presented as distinct model personalities.</p>
                         </div>
                         <span class="open">Open experiment →</span>
+                    </div>
+                </article>
+
+                <article class="project wargus-card">
+                    <a class="cover-link" href="https://wargus.animasai.co" target="_blank" rel="noopener noreferrer" aria-label="Open Wargus TypeScript"></a>
+                    <div class="project-media">
+                        <img src="Wargus.png" alt="Wargus TypeScript browser RTS demo on Garden of War" loading="lazy">
+                    </div>
+                    <div class="project-body">
+                        <div class="project-meta">
+                            <span class="status game">Live demo</span>
+                            <span class="domain">Browser RTS</span>
+                        </div>
+                        <div>
+                            <h3>Wargus TypeScript</h3>
+                            <p>Browser-native TypeScript/PixiJS port of Wargus gameplay. Fixed Garden of War 1v1 demo with harvest, production, and combat in the browser.</p>
+                        </div>
+                        <span class="open">Open demo →</span>
                     </div>
                 </article>
             </div>
