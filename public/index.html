@@ -104,7 +104,8 @@
             { "@type": "ListItem", "position": 3, "name": "Executioner", "url": "https://executionr.com" },
             { "@type": "ListItem", "position": 4, "name": "Rat Detective Online", "url": "https://rat-detective.animasai.co" },
             { "@type": "ListItem", "position": 5, "name": "Milkbench", "url": "https://milk.animasai.co/" },
-            { "@type": "ListItem", "position": 6, "name": "Wargus TypeScript", "url": "https://wargus.animasai.co" }
+            { "@type": "ListItem", "position": 6, "name": "Wargus TypeScript", "url": "https://wargus.animasai.co" },
+            { "@type": "ListItem", "position": 7, "name": "Hotel Cleaning Schedule", "url": "https://hotelcleaningschedule.com" }
           ]
         }
       ]
@@ -378,7 +379,8 @@
             grid-template-areas:
                 "pip executioner"
                 "rat rat"
-                "milk wargus";
+                "milk wargus"
+                "hcs hcs";
             align-items: start;
         }
 
@@ -405,6 +407,12 @@
         .supporting-grid .project.wargus-card {
             grid-area: wargus;
             grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
+            grid-template-rows: auto;
+        }
+
+        .supporting-grid .project.hcs-card {
+            grid-area: hcs;
+            grid-template-columns: minmax(0, 0.95fr) minmax(320px, 1.05fr);
             grid-template-rows: auto;
         }
 
@@ -485,6 +493,11 @@
         .project.wargus-card .project-media img {
             min-height: 300px;
             object-position: center;
+        }
+
+        .project.hcs-card .project-media img {
+            min-height: 300px;
+            object-position: center top;
         }
 
         .project-body {
@@ -604,7 +617,8 @@
                     "executioner"
                     "rat"
                     "milk"
-                    "wargus";
+                    "wargus"
+                    "hcs";
             }
 
             .supporting-grid .project.primary-support {
@@ -627,6 +641,11 @@
 
             .supporting-grid .project.wargus-card {
                 grid-area: wargus;
+                grid-template-columns: 1fr;
+            }
+
+            .supporting-grid .project.hcs-card {
+                grid-area: hcs;
                 grid-template-columns: 1fr;
             }
 
@@ -755,7 +774,7 @@
                 <div>
                     <h2 class="eyebrow" id="work-title">Apps, prototypes, tools, and experiments</h2>
                 </div>
-                <p>A focused index of current public products: Masthead, Pip, Executioner, Rat Detective, Milkbench, and Wargus TypeScript.</p>
+                <p>A focused index of current public products: Masthead, Pip, Executioner, Rat Detective, Milkbench, Wargus TypeScript, and Hotel Cleaning Schedule.</p>
             </div>
 
             <div class="featured-grid" aria-label="Featured work">
@@ -866,6 +885,24 @@
                             <p>Browser-native TypeScript/PixiJS port of Wargus gameplay. Fixed Garden of War 1v1 demo with harvest, production, and combat in the browser.</p>
                         </div>
                         <span class="open">Open demo →</span>
+                    </div>
+                </article>
+
+                <article class="project hcs-card">
+                    <a class="cover-link" href="https://hotelcleaningschedule.com" target="_blank" rel="noopener noreferrer" aria-label="Open Hotel Cleaning Schedule"></a>
+                    <div class="project-media">
+                        <img src="HotelCleaningSchedule.png" alt="Hotel Cleaning Schedule deep-clean calendar with validated room assignments" loading="lazy">
+                    </div>
+                    <div class="project-body">
+                        <div class="project-meta">
+                            <span class="status">Live product</span>
+                            <span class="domain">Hospitality ops</span>
+                        </div>
+                        <div>
+                            <h3>Hotel Cleaning Schedule</h3>
+                            <p>Deep-clean schedule planner for hotel operators: room list and capacity in, a validated room-by-room calendar out with blackouts and export.</p>
+                        </div>
+                        <span class="open">Open product →</span>
                     </div>
                 </article>
             </div>
