@@ -390,8 +390,7 @@
 
         .supporting-grid .project.hcs-card {
             grid-area: hcs;
-            grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
-            grid-template-rows: auto;
+            /* Stack media over body — this cell is too narrow for side-by-side */
         }
 
         .supporting-grid .project.rat-card {
@@ -629,7 +628,6 @@
 
             .supporting-grid .project.hcs-card {
                 grid-area: hcs;
-                grid-template-columns: 1fr;
             }
 
             .supporting-grid .project.rat-card {
