@@ -101,11 +101,11 @@
           "itemListElement": [
             { "@type": "ListItem", "position": 1, "name": "Masthead", "url": "https://usemasthead.com" },
             { "@type": "ListItem", "position": 2, "name": "Pip", "url": "https://spendwithpip.com" },
-            { "@type": "ListItem", "position": 3, "name": "Executioner", "url": "https://executionr.com" },
+            { "@type": "ListItem", "position": 3, "name": "Hotel Cleaning Schedule", "url": "https://hotelcleaningschedule.com" },
             { "@type": "ListItem", "position": 4, "name": "Rat Detective Online", "url": "https://rat-detective.animasai.co" },
             { "@type": "ListItem", "position": 5, "name": "Milkbench", "url": "https://milk.animasai.co/" },
             { "@type": "ListItem", "position": 6, "name": "Wargus TypeScript", "url": "https://wargus.animasai.co" },
-            { "@type": "ListItem", "position": 7, "name": "Hotel Cleaning Schedule", "url": "https://hotelcleaningschedule.com" }
+            { "@type": "ListItem", "position": 7, "name": "Executioner", "url": "https://executionr.com" }
           ]
         }
       ]
@@ -377,10 +377,10 @@
         .supporting-grid {
             grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
             grid-template-areas:
-                "pip executioner"
+                "pip hcs"
                 "rat rat"
                 "milk wargus"
-                "hcs hcs";
+                "executioner executioner";
             align-items: start;
         }
 
@@ -388,8 +388,10 @@
             grid-area: pip;
         }
 
-        .supporting-grid .project.logo-card {
-            grid-area: executioner;
+        .supporting-grid .project.hcs-card {
+            grid-area: hcs;
+            grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
+            grid-template-rows: auto;
         }
 
         .supporting-grid .project.rat-card {
@@ -410,8 +412,8 @@
             grid-template-rows: auto;
         }
 
-        .supporting-grid .project.hcs-card {
-            grid-area: hcs;
+        .supporting-grid .project.logo-card {
+            grid-area: executioner;
             grid-template-columns: minmax(0, 0.95fr) minmax(320px, 1.05fr);
             grid-template-rows: auto;
         }
@@ -614,19 +616,20 @@
                 grid-template-rows: auto;
                 grid-template-areas:
                     "pip"
-                    "executioner"
+                    "hcs"
                     "rat"
                     "milk"
                     "wargus"
-                    "hcs";
+                    "executioner";
             }
 
             .supporting-grid .project.primary-support {
                 grid-area: pip;
             }
 
-            .supporting-grid .project.logo-card {
-                grid-area: executioner;
+            .supporting-grid .project.hcs-card {
+                grid-area: hcs;
+                grid-template-columns: 1fr;
             }
 
             .supporting-grid .project.rat-card {
@@ -644,8 +647,8 @@
                 grid-template-columns: 1fr;
             }
 
-            .supporting-grid .project.hcs-card {
-                grid-area: hcs;
+            .supporting-grid .project.logo-card {
+                grid-area: executioner;
                 grid-template-columns: 1fr;
             }
 
@@ -774,7 +777,7 @@
                 <div>
                     <h2 class="eyebrow" id="work-title">Apps, prototypes, tools, and experiments</h2>
                 </div>
-                <p>A focused index of current public products: Masthead, Pip, Executioner, Rat Detective, Milkbench, Wargus TypeScript, and Hotel Cleaning Schedule.</p>
+                <p>A focused index of current public products: Masthead, Pip, Hotel Cleaning Schedule, Rat Detective, Milkbench, Wargus TypeScript, and Executioner.</p>
             </div>
 
             <div class="featured-grid" aria-label="Featured work">
@@ -816,21 +819,21 @@
                     </div>
                 </article>
 
-                <article class="project logo-card">
-                    <a class="cover-link" href="https://executionr.com" target="_blank" rel="noopener noreferrer" aria-label="Open Executioner"></a>
+                <article class="project hcs-card">
+                    <a class="cover-link" href="https://hotelcleaningschedule.com" target="_blank" rel="noopener noreferrer" aria-label="Open Hotel Cleaning Schedule"></a>
                     <div class="project-media">
-                        <img src="Executioner.png?v=20260701" alt="Executioner logo" loading="lazy">
+                        <img src="HotelCleaningSchedule.png" alt="Hotel Cleaning Schedule product showcase with deep-clean calendar UI and validated schedule" loading="lazy">
                     </div>
                     <div class="project-body">
                         <div class="project-meta">
-                            <span class="status case-study">Case study</span>
-                            <span class="domain">Execution</span>
+                            <span class="status">Live product</span>
+                            <span class="domain">Hospitality ops</span>
                         </div>
                         <div>
-                            <h3>Executioner</h3>
-                            <p>Personal execution system that turns messy brain dumps into structured outcomes and schedule previews.</p>
+                            <h3>Hotel Cleaning Schedule</h3>
+                            <p>Deep-clean schedule planner for hotel operators: room list and capacity in, a validated room-by-room calendar out with blackouts and export.</p>
                         </div>
-                        <span class="open">Open system →</span>
+                        <span class="open">Open product →</span>
                     </div>
                 </article>
 
@@ -888,21 +891,21 @@
                     </div>
                 </article>
 
-                <article class="project hcs-card">
-                    <a class="cover-link" href="https://hotelcleaningschedule.com" target="_blank" rel="noopener noreferrer" aria-label="Open Hotel Cleaning Schedule"></a>
+                <article class="project logo-card">
+                    <a class="cover-link" href="https://executionr.com" target="_blank" rel="noopener noreferrer" aria-label="Open Executioner"></a>
                     <div class="project-media">
-                        <img src="HotelCleaningSchedule.png" alt="Hotel Cleaning Schedule product showcase with deep-clean calendar UI and validated schedule" loading="lazy">
+                        <img src="Executioner.png?v=20260701" alt="Executioner logo" loading="lazy">
                     </div>
                     <div class="project-body">
                         <div class="project-meta">
-                            <span class="status">Live product</span>
-                            <span class="domain">Hospitality ops</span>
+                            <span class="status case-study">Case study</span>
+                            <span class="domain">Execution</span>
                         </div>
                         <div>
-                            <h3>Hotel Cleaning Schedule</h3>
-                            <p>Deep-clean schedule planner for hotel operators: room list and capacity in, a validated room-by-room calendar out with blackouts and export.</p>
+                            <h3>Executioner</h3>
+                            <p>Personal execution system that turns messy brain dumps into structured outcomes and schedule previews.</p>
                         </div>
-                        <span class="open">Open product →</span>
+                        <span class="open">Open system →</span>
                     </div>
                 </article>
             </div>
