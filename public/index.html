@@ -390,7 +390,21 @@
 
         .supporting-grid .project.hcs-card {
             grid-area: hcs;
-            /* Stack media over body — this cell is too narrow for side-by-side */
+            /* Narrow cell: always image on top, copy below (never side-by-side) */
+            display: flex;
+            flex-direction: column;
+            grid-template-columns: none;
+            grid-template-rows: none;
+        }
+
+        .supporting-grid .project.hcs-card > .project-media {
+            flex: 0 0 auto;
+            width: 100%;
+        }
+
+        .supporting-grid .project.hcs-card > .project-body {
+            flex: 1 1 auto;
+            width: 100%;
         }
 
         .supporting-grid .project.rat-card {
@@ -628,6 +642,8 @@
 
             .supporting-grid .project.hcs-card {
                 grid-area: hcs;
+                display: flex;
+                flex-direction: column;
             }
 
             .supporting-grid .project.rat-card {
@@ -817,10 +833,11 @@
                     </div>
                 </article>
 
+                <!-- hcs-layout: stacked-2026-08-07 -->
                 <article class="project hcs-card">
                     <a class="cover-link" href="https://hotelcleaningschedule.com" target="_blank" rel="noopener noreferrer" aria-label="Open Hotel Cleaning Schedule"></a>
                     <div class="project-media">
-                        <img src="HotelCleaningSchedule.png" alt="Hotel Cleaning Schedule product showcase with deep-clean calendar UI and validated schedule" loading="lazy">
+                        <img src="HotelCleaningSchedule.png?v=20260807-stack" alt="Hotel Cleaning Schedule product showcase with deep-clean calendar UI and validated schedule" loading="lazy">
                     </div>
                     <div class="project-body">
                         <div class="project-meta">
