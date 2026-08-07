@@ -9,11 +9,11 @@
 - Live Hotel Cleaning Schedule URL: https://hotelcleaningschedule.com
 - Deploy: Cloudflare Worker custom domains for tylermayberry.dev only (not Netlify).
 
-## Current supporting cards (as of 2026-08-07)
+## Current supporting cards (display order as of 2026-08-07)
 
 1. Pip
-2. Executioner
+2. Hotel Cleaning Schedule
 3. Rat Detective Online
 4. Milkbench
 5. Wargus TypeScript
-6. Hotel Cleaning Schedule
+6. Executioner
