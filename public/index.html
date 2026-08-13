@@ -45,8 +45,9 @@
             "https://github.com/MayberryDT",
             "https://www.linkedin.com/in/mayberrydt/",
             "https://animasai.co",
-            "https://usemasthead.com",
-            "https://infocard.ai/~MayberryDT"
+             "https://usemasthead.com",
+             "https://chartstead.com",
+             "https://infocard.ai/~MayberryDT"
           ],
           "knowsAbout": [
             "AI systems",
@@ -100,12 +101,13 @@
           "name": "Tyler Mayberry Portfolio Artifacts",
           "itemListElement": [
             { "@type": "ListItem", "position": 1, "name": "Masthead", "url": "https://usemasthead.com" },
-            { "@type": "ListItem", "position": 2, "name": "Pip", "url": "https://spendwithpip.com" },
-            { "@type": "ListItem", "position": 3, "name": "Hotel Cleaning Schedule", "url": "https://hotelcleaningschedule.com" },
-            { "@type": "ListItem", "position": 4, "name": "Rat Detective Online", "url": "https://rat-detective.animasai.co" },
-            { "@type": "ListItem", "position": 5, "name": "Milkbench", "url": "https://milk.animasai.co/" },
-            { "@type": "ListItem", "position": 6, "name": "Wargus TypeScript", "url": "https://wargus.animasai.co" },
-            { "@type": "ListItem", "position": 7, "name": "Executioner", "url": "https://executionr.com" }
+            { "@type": "ListItem", "position": 2, "name": "ChartStead", "url": "https://chartstead.com" },
+            { "@type": "ListItem", "position": 3, "name": "Pip", "url": "https://spendwithpip.com" },
+            { "@type": "ListItem", "position": 4, "name": "Hotel Cleaning Schedule", "url": "https://hotelcleaningschedule.com" },
+            { "@type": "ListItem", "position": 5, "name": "Executioner", "url": "https://executionr.com" },
+            { "@type": "ListItem", "position": 6, "name": "Rat Detective Online", "url": "https://rat-detective.animasai.co" },
+            { "@type": "ListItem", "position": 7, "name": "Wargus TypeScript", "url": "https://wargus.animasai.co" },
+            { "@type": "ListItem", "position": 8, "name": "Milkbench", "url": "https://milk.animasai.co/" }
           ]
         }
       ]
@@ -377,15 +379,29 @@
         .supporting-grid {
             grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
             grid-template-areas:
-                "pip hcs"
+                "chartstead pip"
+                "hcs executioner"
                 "rat rat"
-                "milk wargus"
-                "executioner executioner";
+                "wargus milk";
             align-items: start;
         }
 
         .supporting-grid .project.primary-support {
+            grid-area: chartstead;
+        }
+
+        .supporting-grid .project.pip-card {
             grid-area: pip;
+            display: flex;
+            flex-direction: column;
+            grid-template-columns: none;
+            grid-template-rows: none;
+        }
+
+        .supporting-grid .project.pip-card > .project-media,
+        .supporting-grid .project.pip-card > .project-body {
+            flex: 1 1 auto;
+            width: 100%;
         }
 
         .supporting-grid .project.hcs-card {
@@ -427,8 +443,10 @@
 
         .supporting-grid .project.logo-card {
             grid-area: executioner;
-            grid-template-columns: minmax(0, 0.95fr) minmax(320px, 1.05fr);
-            grid-template-rows: auto;
+            display: flex;
+            flex-direction: column;
+            grid-template-columns: none;
+            grid-template-rows: none;
         }
 
         .project {
@@ -628,15 +646,20 @@
             .supporting-grid {
                 grid-template-rows: auto;
                 grid-template-areas:
+                    "chartstead"
                     "pip"
                     "hcs"
+                    "executioner"
                     "rat"
-                    "milk"
                     "wargus"
-                    "executioner";
+                    "milk";
             }
 
             .supporting-grid .project.primary-support {
+                grid-area: chartstead;
+            }
+
+            .supporting-grid .project.pip-card {
                 grid-area: pip;
             }
 
@@ -763,6 +786,7 @@
                 <a href="https://www.linkedin.com/in/mayberrydt/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                 <a href="https://animasai.co" target="_blank" rel="noopener noreferrer">Animas AI</a>
                 <a href="https://usemasthead.com" target="_blank" rel="noopener noreferrer">Masthead</a>
+                <a href="https://chartstead.com" target="_blank" rel="noopener noreferrer">ChartStead</a>
             </nav>
         </div>
     </header>
@@ -791,7 +815,7 @@
                 <div>
                     <h2 class="eyebrow" id="work-title">Apps, prototypes, tools, and experiments</h2>
                 </div>
-                <p>A focused index of current public products: Masthead, Pip, Hotel Cleaning Schedule, Rat Detective, Milkbench, Wargus TypeScript, and Executioner.</p>
+                 <p>A focused index of current public products: Masthead, ChartStead, Pip, Hotel Cleaning Schedule, Executioner, Rat Detective, Wargus TypeScript, and Milkbench.</p>
             </div>
 
             <div class="featured-grid" aria-label="Featured work">
@@ -816,6 +840,24 @@
 
             <div class="supporting-grid" aria-label="Project portfolio">
                 <article class="project primary-support">
+                    <a class="cover-link" href="https://chartstead.com" target="_blank" rel="noopener noreferrer" aria-label="Open ChartStead"></a>
+                    <div class="project-media">
+                        <img src="Chartstead.jpg" alt="Conceptual ChartStead UI visual for conference programming, with fictional sample data" loading="lazy">
+                    </div>
+                    <div class="project-body">
+                        <div class="project-meta">
+                            <span class="status">Second product</span>
+                            <span class="domain">Conference programming</span>
+                        </div>
+                        <div>
+                            <h3>ChartStead</h3>
+                            <p>Conference programming and speaker management, from the first proposal to the final agenda.</p>
+                        </div>
+                        <span class="open">Open product →</span>
+                    </div>
+                </article>
+
+                <article class="project pip-card">
                     <a class="cover-link" href="https://spendwithpip.com" target="_blank" rel="noopener noreferrer" aria-label="Open Pip"></a>
                     <div class="project-media">
                         <img src="Pip.jpg" alt="Pip product preview" loading="lazy">
@@ -849,6 +891,24 @@
                             <p>Deep-clean schedule planner for hotel operators: room list and capacity in, a validated room-by-room calendar out with blackouts and export.</p>
                         </div>
                         <span class="open">Open product →</span>
+                    </div>
+                </article>
+
+                <article class="project logo-card">
+                    <a class="cover-link" href="https://executionr.com" target="_blank" rel="noopener noreferrer" aria-label="Open Executioner"></a>
+                    <div class="project-media">
+                        <img src="Executioner.png?v=20260701" alt="Executioner logo" loading="lazy">
+                    </div>
+                    <div class="project-body">
+                        <div class="project-meta">
+                            <span class="status case-study">Case study</span>
+                            <span class="domain">Execution</span>
+                        </div>
+                        <div>
+                            <h3>Executioner</h3>
+                            <p>Personal execution system that turns messy brain dumps into structured outcomes and schedule previews.</p>
+                        </div>
+                        <span class="open">Open system →</span>
                     </div>
                 </article>
 
@@ -903,24 +963,6 @@
                             <p>A classic RTS in the browser. Human Alliance vs the CPU on Garden of War—harvest, train, build, and fight live without a desktop install.</p>
                         </div>
                         <span class="open">Open demo →</span>
-                    </div>
-                </article>
-
-                <article class="project logo-card">
-                    <a class="cover-link" href="https://executionr.com" target="_blank" rel="noopener noreferrer" aria-label="Open Executioner"></a>
-                    <div class="project-media">
-                        <img src="Executioner.png?v=20260701" alt="Executioner logo" loading="lazy">
-                    </div>
-                    <div class="project-body">
-                        <div class="project-meta">
-                            <span class="status case-study">Case study</span>
-                            <span class="domain">Execution</span>
-                        </div>
-                        <div>
-                            <h3>Executioner</h3>
-                            <p>Personal execution system that turns messy brain dumps into structured outcomes and schedule previews.</p>
-                        </div>
-                        <span class="open">Open system →</span>
                     </div>
                 </article>
             </div>

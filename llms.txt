@@ -13,6 +13,8 @@
 - Infocard: https://infocard.ai/~MayberryDT
 - Location: Tulsa, Oklahoma
 - Focus: AI systems, agentic workflows, internal tools, workflow automation, AI-native software, and practical product engineering.
+- Flagship product: Masthead, https://usemasthead.com
+- Second product: ChartStead, https://chartstead.com
 
 ## Relationship Between Sites
 
