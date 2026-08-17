@@ -398,10 +398,24 @@
             grid-template-rows: none;
         }
 
-        .supporting-grid .project.pip-card > .project-media,
+        .supporting-grid .project.pip-card > .project-media {
+            flex: 0 0 auto;
+            width: 100%;
+            background: #f4f1e8;
+        }
+
         .supporting-grid .project.pip-card > .project-body {
             flex: 1 1 auto;
             width: 100%;
+        }
+
+        .supporting-grid .project.pip-card .project-media img {
+            height: auto;
+            min-height: 0;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            object-position: center;
+            opacity: 1;
         }
 
         .supporting-grid .project.hcs-card {
@@ -860,7 +874,7 @@
                 <article class="project pip-card">
                     <a class="cover-link" href="https://spendwithpip.com" target="_blank" rel="noopener noreferrer" aria-label="Open Pip"></a>
                     <div class="project-media">
-                        <img src="Pip.jpg" alt="Pip product preview" loading="lazy">
+                        <img src="Pip.jpg?v=20260817" alt="Pip product preview" loading="lazy">
                     </div>
                     <div class="project-body">
                         <div class="project-meta">
