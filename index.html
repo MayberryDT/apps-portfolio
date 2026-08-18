@@ -105,9 +105,9 @@
             { "@type": "ListItem", "position": 3, "name": "Pip", "url": "https://spendwithpip.com" },
             { "@type": "ListItem", "position": 4, "name": "Hotel Cleaning Schedule", "url": "https://hotelcleaningschedule.com" },
             { "@type": "ListItem", "position": 5, "name": "Executioner", "url": "https://executionr.com" },
-            { "@type": "ListItem", "position": 6, "name": "Rat Detective Online", "url": "https://rat-detective.animasai.co" },
+            { "@type": "ListItem", "position": 6, "name": "Milkbench", "url": "https://milk.animasai.co/" },
             { "@type": "ListItem", "position": 7, "name": "Wargus TypeScript", "url": "https://wargus.animasai.co" },
-            { "@type": "ListItem", "position": 8, "name": "Milkbench", "url": "https://milk.animasai.co/" }
+            { "@type": "ListItem", "position": 8, "name": "Rat Detective Online", "url": "https://rat-detective.animasai.co" }
           ]
         }
       ]
@@ -381,8 +381,8 @@
             grid-template-areas:
                 "chartstead pip"
                 "hcs executioner"
-                "rat rat"
-                "wargus milk";
+                "milk milk"
+                "wargus rat";
             align-items: start;
         }
 
@@ -437,16 +437,38 @@
             width: 100%;
         }
 
-        .supporting-grid .project.rat-card {
-            grid-area: rat;
+        .supporting-grid .project.milk-card {
+            grid-area: milk;
             grid-template-columns: minmax(0, 0.95fr) minmax(320px, 1.05fr);
             grid-template-rows: auto;
         }
 
-        .supporting-grid .project.milk-card {
-            grid-area: milk;
-            grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
-            grid-template-rows: auto;
+        .supporting-grid .project.rat-card {
+            grid-area: rat;
+            display: flex;
+            flex-direction: column;
+            grid-template-columns: none;
+            grid-template-rows: none;
+        }
+
+        .supporting-grid .project.rat-card > .project-media {
+            flex: 0 0 auto;
+            width: 100%;
+            background: #12081c;
+        }
+
+        .supporting-grid .project.rat-card > .project-body {
+            flex: 1 1 auto;
+            width: 100%;
+        }
+
+        .supporting-grid .project.rat-card .project-media img {
+            height: auto;
+            min-height: 0;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            object-position: center;
+            opacity: 1;
         }
 
         .supporting-grid .project.wargus-card {
@@ -522,14 +544,6 @@
             padding: clamp(28px, 4vw, 54px);
             object-fit: contain;
             opacity: 1;
-        }
-
-        .project.rat-card .project-media img {
-            min-height: 300px;
-        }
-
-        .project.rat-card .project-media img {
-            object-position: center 42%;
         }
 
         .project.milk-card .project-media img {
@@ -664,9 +678,9 @@
                     "pip"
                     "hcs"
                     "executioner"
-                    "rat"
+                    "milk"
                     "wargus"
-                    "milk";
+                    "rat";
             }
 
             .supporting-grid .project.primary-support {
@@ -683,14 +697,15 @@
                 flex-direction: column;
             }
 
-            .supporting-grid .project.rat-card {
-                grid-area: rat;
-                grid-template-columns: 1fr;
-            }
-
             .supporting-grid .project.milk-card {
                 grid-area: milk;
                 grid-template-columns: 1fr;
+            }
+
+            .supporting-grid .project.rat-card {
+                grid-area: rat;
+                display: flex;
+                flex-direction: column;
             }
 
             .supporting-grid .project.wargus-card {
@@ -829,7 +844,7 @@
                 <div>
                     <h2 class="eyebrow" id="work-title">Apps, prototypes, tools, and experiments</h2>
                 </div>
-                 <p>A focused index of current public products: Masthead, ChartStead, Pip, Hotel Cleaning Schedule, Executioner, Rat Detective, Wargus TypeScript, and Milkbench.</p>
+                 <p>A focused index of current public products: Masthead, ChartStead, Pip, Hotel Cleaning Schedule, Executioner, Milkbench, Wargus TypeScript, and Rat Detective.</p>
             </div>
 
             <div class="featured-grid" aria-label="Featured work">
@@ -926,24 +941,6 @@
                     </div>
                 </article>
 
-                <article class="project rat-card">
-                    <a class="cover-link" href="https://rat-detective.animasai.co" target="_blank" rel="noopener noreferrer" aria-label="Open Rat Detective Online"></a>
-                    <div class="project-media">
-                        <img src="RatDetective.png?v=20260701" alt="Rat Detective Online multiplayer game preview" loading="lazy">
-                    </div>
-                    <div class="project-body">
-                        <div class="project-meta">
-                            <span class="status game">Live game</span>
-                            <span class="domain">Creative web</span>
-                        </div>
-                        <div>
-                            <h3>Rat Detective Online</h3>
-                            <p>Playable multiplayer browser game built with Three.js, TypeScript, socket.io, and physics-based interactions.</p>
-                        </div>
-                        <span class="open">Open game →</span>
-                    </div>
-                </article>
-
                 <article class="project milk-card">
                     <a class="cover-link" href="https://milk.animasai.co/" target="_blank" rel="noopener noreferrer" aria-label="Open Milkbench"></a>
                     <div class="project-media">
@@ -977,6 +974,24 @@
                             <p>A classic RTS in the browser. Human Alliance vs the CPU on Garden of War—harvest, train, build, and fight live without a desktop install.</p>
                         </div>
                         <span class="open">Open demo →</span>
+                    </div>
+                </article>
+
+                <article class="project rat-card">
+                    <a class="cover-link" href="https://rat-detective.animasai.co" target="_blank" rel="noopener noreferrer" aria-label="Open Rat Detective Online"></a>
+                    <div class="project-media">
+                        <img src="RatDetective.png?v=20260817" alt="Rat Detective: City Under Siege title screen" loading="lazy">
+                    </div>
+                    <div class="project-body">
+                        <div class="project-meta">
+                            <span class="status game">Live game</span>
+                            <span class="domain">Creative web</span>
+                        </div>
+                        <div>
+                            <h3>Rat Detective Online</h3>
+                            <p>Playable multiplayer browser game built with Three.js, TypeScript, socket.io, and physics-based interactions.</p>
+                        </div>
+                        <span class="open">Open game →</span>
                     </div>
                 </article>
             </div>
