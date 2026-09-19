@@ -15,6 +15,7 @@
 - Focus: AI systems, agentic workflows, internal tools, workflow automation, AI-native software, and practical product engineering.
 - Flagship product: Masthead, https://usemasthead.com
 - Second product: ChartStead, https://chartstead.com
+- Open-source developer tool: Chartroom, https://tylermayberry.dev/chartroom.html (source: https://github.com/MayberryDT/chartroom). Local GBrain and TypeSafe Jev preview, not a hosted service.
 
 ## Relationship Between Sites
 
@@ -25,6 +26,7 @@ TylerMayberry.dev is the canonical personal website for Tyler Mayberry. Animas A
 - /: Portfolio homepage and selected work index.
 - /about.html: Canonical about page with Tyler Mayberry's bio, public facts, profile links, and current proof points.
 - /press.html: Public facts, reusable bios, source links, press notes, and project facts for Tyler Mayberry.
+- /chartroom.html: Chartroom project page, local preview scope, small synthetic comparison, and source links.
 
 ## Notes
 
