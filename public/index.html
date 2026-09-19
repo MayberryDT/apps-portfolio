@@ -477,14 +477,6 @@
             grid-template-rows: auto;
         }
 
-        .project.chartroom-card {
-            grid-template-columns: minmax(0, 1fr) minmax(280px, 0.75fr);
-            margin-top: 12px;
-            overflow: hidden;
-        }
-
-        .chartroom-card .open { position: relative; z-index: 2; }
-
         .supporting-grid .project.logo-card {
             grid-area: executioner;
             display: flex;
@@ -725,8 +717,6 @@
                 grid-area: executioner;
                 grid-template-columns: 1fr;
             }
-
-            .project.chartroom-card { grid-template-columns: 1fr; }
 
             .project.featured .project-media img {
                 min-height: 280px;
@@ -1005,17 +995,6 @@
                     </div>
                 </article>
             </div>
-            <section class="project chartroom-card" aria-labelledby="chartroom-title">
-                <div class="project-body">
-                    <div class="project-meta"><span class="status">Open source</span><span class="domain">Agent knowledge</span></div>
-                    <div>
-                        <h3 id="chartroom-title">Chartroom</h3>
-                        <p>A local second brain built on GBrain with TypeSafe Jev for search ranking and inspectable page connections. A working MIT-licensed preview with synthetic examples.</p>
-                    </div>
-                    <a class="open" href="/chartroom.html">Read the project →</a>
-                </div>
-                <div class="project-media"><img src="/chartroom/banner.png" alt="Concept illustration of connected knowledge on a map" loading="lazy"></div>
-            </section>
         </section>
     </main>
 
