@@ -1,5 +1,24 @@
 # Agent notes — apps-portfolio
 
+## Production deployment hold — 2026-09-19
+
+The public `tylermayberry.dev` Worker serves the newer personal studio, **not**
+the static card site on this `master` branch. A push from this branch replaced
+the studio on 2026-09-19; Worker version
+`4e657500-50f9-452b-8292-efbadeb43ffe` was restored. The sole Cloudflare
+Workers Builds trigger for `product-portfolio-preview` was removed and must
+remain absent while source and production diverge.
+
+Do not deploy this checkout, re-enable a GitHub build trigger, or treat a green
+HTTP status as proof of the right site. Before any future production release,
+read the current studio guidance at `/home/halla/tylermayberry.dev/AGENTS.md`,
+identify the active Worker version, compare the candidate's complete public
+asset manifest and key room/portfolio routes against the live studio, and use
+that project's reviewed release procedure. Reconcile the studio into a clean
+repository revision before considering automatic deployment. Preserve the
+last-known-good Worker version for rollback. A Git push alone is never a
+portfolio release while this hold is in force.
+
 ## Product cards
 
 - The homepage is a curated product index (featured Masthead + supporting cards).

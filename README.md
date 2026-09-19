@@ -1,5 +1,10 @@
 # Tyler Mayberry App Portfolio
 
+> **Deployment hold (2026-09-19):** This `master` branch is older than the live
+> personal studio. Its Cloudflare Workers Builds trigger is disabled. Do not
+> deploy this checkout or re-enable automatic builds; see [AGENTS.md](AGENTS.md)
+> and the current Halla studio release guidance before any production change.
+
 A lightweight public portfolio for Tyler Mayberry's product prototypes, demos, and experiments.
 
 Live site: https://tylermayberry.dev
