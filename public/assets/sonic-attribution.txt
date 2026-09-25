@@ -1,0 +1,11 @@
+Sonic the Hedgehog / Sonic Adventure (original Dreamcast character)
+Character and original game assets: SEGA / Sonic Team.
+Source geometry and original textures: Dreamcast Characters Pack, ItsEasyActually/SA1_Chars.
+https://github.com/ItsEasyActually/SA1_Chars
+Source commit: 271c26c0ce172bdd00e2f554c772a13937bebc95
+Textures: SONIC_DC.pvmx, release 1.87 (original Dreamcast texture pack).
+The source reference assets/sonic-inspect.glb retains the original character geometry.
+The active v26 assets/models/sonic.glb is a Blender derivative: refined head/shoes,
+rebuilt ears/limbs, posed stance, and a centered display base.
+Editable source: hybrid-v26/source/blender/sonic.blend (private source package).
+Conversion, modeling, room lighting and placement: this personal studio project.

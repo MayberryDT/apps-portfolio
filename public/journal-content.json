@@ -1,0 +1,617 @@
+{
+  "schemaVersion": 2,
+  "title": "Things I've made",
+  "subtitle": "Projects, experiments and the choices behind them",
+  "fictional": false,
+  "projects": [
+    {
+      "id": "masthead",
+      "title": "Masthead",
+      "category": "Apps",
+      "date": "Started 2026-06",
+      "aliases": [],
+      "summary": "By keeping agent work locally and turning selected sessions into useful pages, Masthead addresses the problem of finding context again. Something the next session can work from. You can have a whole transcript and still struggle to find the one decision you need.",
+      "sections": [
+        {
+          "heading": "The answer is somewhere in there",
+          "text": "History spread across tools, with session lists that aren't always much help: finding the conversation is only a start. Masthead gives the work a separate local record (and a way to turn it into an answer). You still need the fix, the reason or the failed approach. Coding agents leave plenty of history behind."
+        },
+        {
+          "heading": "From conversation to page",
+          "text": "Capturing a conversation keeps evidence available without making every statement true: mistakes, guesses and abandoned ideas come with it.\n\nFrom selected material in the Workbench, a runbook, decision record, project dossier or incident timeline. Publish the reviewed page to the Local Logbook. Behind that process, the desktop app collects supported sessions through adapters."
+        },
+        {
+          "heading": "Keeping the context useful",
+          "text": "Even when the hosted service is unavailable, your local work keeps working without publishing anything. Sources connect the tools, and public sharing is optional through Masthead Pages. The Workbench turns a session into a page; the Logbook keeps it. For agents, published knowledge is available through read-only MCP (the Model Context Protocol)."
+        },
+        {
+          "heading": "Making those steps make sense",
+          "text": "As I worked with coding agents on the app, design and movement between capture, writing and retrieval, I kept reviewing the screens. What each one was responsible for. Someone needs to see where a page's information came from; they also need to decide whether it's worth keeping.\n\nWhen you're deciding that, the question is about the product, too. Storage is part of it."
+        }
+      ],
+      "decision": "With the original work preserved, be selective about the page: a reviewed explanation is a better starting point for the next person or agent.",
+      "links": [
+        {
+          "label": "Project website",
+          "url": "https://usemasthead.com"
+        }
+      ],
+      "image": {
+        "src": "journal-assets/projects/masthead.webp",
+        "alt": "Masthead branding beside layered dark interface panels for agent sessions and published knowledge.",
+        "caption": "Illustrative marketing composition · Tyler Mayberry portfolio."
+      }
+    },
+    {
+      "id": "masthead-pages",
+      "title": "Masthead Pages",
+      "category": "Apps",
+      "date": "Started 2026-08",
+      "aliases": [],
+      "summary": "Knowledge worth sharing can come out of your private Masthead work. Masthead Pages gives it a place to go. Choose the piece you want to share. Then people can read it and agents can retrieve it, with the private session store still private.",
+      "sections": [
+        {
+          "heading": "A different job from keeping history",
+          "text": "Publishing: an audience and a page they can use. A reader doesn't need the desktop app, and the desktop app stays useful without publishing history. Separate jobs (that's why I kept Masthead Pages separate). Local capture belongs to the person doing the work."
+        },
+        {
+          "heading": "A page with its own history",
+          "text": "When an explanation changes, keep its versions; the service supports that with a publisher workspace, versioned pages, public logbooks, reporting and moderation. A runbook or decision gets a publication history of its own. Someone can read it without reconstructing the conversation that produced it."
+        },
+        {
+          "heading": "Letting agents read it",
+          "text": "The public MCP connection is read-only; automating retrieval doesn't change what's shared. A human and an agent meet the same boundary: material someone deliberately made public. For the agent, access means consulting those pages without control of the account or access to the private source store."
+        },
+        {
+          "heading": "Making publication a choice",
+          "text": "Before raw conversations, private identifiers or account information could reach a page, there needs to be a publishing choice. You need to see what is going out and where (keeping that visible is a large part of the service).\n\nI worked on that separation from Masthead, along with the publishing language and release checks."
+        }
+      ],
+      "decision": "Without opening the private record, a useful explanation to share. Choose the page, then choose where it goes.",
+      "links": [
+        {
+          "label": "Project website",
+          "url": "https://masthead.page"
+        }
+      ]
+    },
+    {
+      "id": "chartstead",
+      "title": "ChartStead",
+      "category": "Apps",
+      "date": "Started 2026-08",
+      "aliases": [],
+      "summary": "When an organizer takes an action that affects someone else, I want the consequence to be clear. That's a focus of ChartStead: behind the public agenda are proposals, reviewers, speakers, missing information and a schedule that has to fit. Connected work, all the way to the program people see.",
+      "sections": [
+        {
+          "heading": "The work between the forms",
+          "text": "Through each stage, ChartStead carries the context forward (finished forms can still leave a biography missing or a scheduling conflict unresolved). A proposal, a speaker and a scheduled session are views of the same event.\n\nThose loose ends become consequential when the program goes public."
+        },
+        {
+          "heading": "Following a proposal through",
+          "text": "The work includes documentation, too. Show what's missing at each stage; start with an event and submissions, then move through decisions, speaker preparation and scheduling. The application supports those steps with organizer screens, speaker workflows, review, agenda tools and public embeds. Assembling a program doesn't by itself make it ready to publish."
+        },
+        {
+          "heading": "Before a decision reaches someone",
+          "text": "Tell a speaker they've been accepted, and something has happened outside the app. Editing a draft is a different action; the organizer needs to know who will be affected, what will happen and how a mistake can be corrected.\n\nIn ChartStead, ordinary edits stay straightforward. Consequential actions get a reviewable plan and a recovery path."
+        },
+        {
+          "heading": "What I worked on",
+          "text": "Setting the direction around a program people can trust, I worked through interface and implementation reviews with coding agents. The application, its public presentation and documentation.\n\nUse the demonstrations to understand the workflow, rather than as customer results. The conferences, people and numbers in them are sample data."
+        }
+      ],
+      "decision": "Before an action happens, make the distinction visible: editing information or communicating a decision that reaches someone else.",
+      "links": [
+        {
+          "label": "Project website",
+          "url": "https://chartstead.com"
+        }
+      ],
+      "image": {
+        "src": "journal-assets/projects/chartstead.webp",
+        "alt": "ChartStead branding with event agenda and attendee planning interface panels.",
+        "caption": "Illustrative marketing composition · Tyler Mayberry portfolio."
+      }
+    },
+    {
+      "id": "pip",
+      "title": "Pip",
+      "category": "Apps",
+      "date": "Started 2026-05",
+      "aliases": [
+        "FreeCash"
+      ],
+      "summary": "Pip grew from a familiar money problem and centers the conversation on Spendable Cash Today. The application calculates it; ordinary language explains it. Underneath, the arithmetic stays in inspectable code. Look at a bank balance and it's easy to see spending money, even when some already belongs to upcoming bills.",
+      "sections": [
+        {
+          "heading": "The number people already look at",
+          "text": "With obligations still ahead, I saw people treat their bank balance as permission to spend. Pip starts with that behavior. It asks what is available today and why (without requiring someone to learn a budgeting system first). More categories and charts would make a different product.\n\nFor Pip, I kept the question narrow."
+        },
+        {
+          "heading": "What supports the conversation",
+          "text": "Keep the inputs, rules and arithmetic in application code, because calculation and explanation need separate foundations. Behind the conversation are a web app, Android shell, account connection and refresh flows, money calculations, conversational tools, savings goals and reporting; conversation is how you get into that information. A model can explain a number fluently and still be wrong about how to calculate it."
+        },
+        {
+          "heading": "What an answer depends on",
+          "text": "This account describes software, rather than giving financial advice or guaranteeing someone's circumstances. Use Pip as a read-only money companion: the agent doesn't invent the financial basis of an answer. Its job is application facts and bounded proposals inside the product. Available information and freshness still affect how a result should be interpreted."
+        },
+        {
+          "heading": "Keeping the product focused",
+          "text": "As the supporting application grew, keeping the question understandable remained the job. I worked with coding agents through product reviews, mobile use and separating public source from private material, having supplied the observation and narrowed the conversational product.\n\nWithout learning the application's organization first, a person should still be able to ask about their money."
+        }
+      ],
+      "decision": "With the application doing the calculation, the agent can explain. Making the interface simpler doesn't mean letting a model improvise the numbers underneath it.",
+      "links": [
+        {
+          "label": "Project website",
+          "url": "https://spendwithpip.com"
+        },
+        {
+          "label": "Public source",
+          "url": "https://github.com/MayberryDT/Pip"
+        }
+      ],
+      "image": {
+        "src": "journal-assets/projects/pip.webp",
+        "alt": "Pip's small guide character beside a wallet-themed spending interface.",
+        "caption": "Illustrative marketing composition · Tyler Mayberry portfolio."
+      }
+    },
+    {
+      "id": "hotel-cleaning-schedule",
+      "title": "Hotel Cleaning Schedule",
+      "category": "Apps",
+      "date": "Started 2026-07",
+      "aliases": [],
+      "summary": "The result is a validated room-by-room calendar you can export. Hotel Cleaning Schedule builds it from rooms, capacity, dates and blackouts, and says when the work doesn't fit. A calendar can look convincing while asking the team to do something impossible.",
+      "sections": [
+        {
+          "heading": "One hotel problem",
+          "text": "For an operating hotel's deep cleaning, I kept the scope focused on combining rooms, dates, capacity and blackout periods. The room list tells you what needs cleaning (it doesn't say when). Those inputs have to agree with the amount of work. Trying to make every other hotel tool at once would lose that focus."
+        },
+        {
+          "heading": "Getting to a usable plan",
+          "text": "Describe the work through intake, a scheduling engine, validation, the browser app and exports: feasibility needs explaining along that path. Dates are useful when the assignments can actually happen. Take the calendar into the team's working process after generating and inspecting the proposal."
+        },
+        {
+          "heading": "When there isn't enough capacity",
+          "text": "Change the inputs with the last valid plan still available. Filling only the slots that fit could disguise an incomplete schedule as a finished one: explain the conflict and preserve the usable plan. That matters when, after blackouts, there simply aren't enough dates for all the rooms."
+        },
+        {
+          "heading": "The work around that rule",
+          "text": "With scheduling tests alongside the user-facing flow, the behavior is part of the product. The impossible request included. An understandable answer matters for a small utility, too, and I worked on that with coding agents through scheduling and interface alternatives. I supplied the hospitality direction and chose the focused product and credit model."
+        }
+      ],
+      "decision": "When the work won't fit, explain why and keep the last schedule that worked. The operator's usable plan, still there after a failed attempt.",
+      "links": [
+        {
+          "label": "Project website",
+          "url": "https://hotelcleaningschedule.com"
+        }
+      ],
+      "image": {
+        "src": "journal-assets/projects/hotel-cleaning-schedule.webp",
+        "alt": "Hotel cleaning schedule cards arranged beside room-status symbols.",
+        "caption": "Illustrative marketing composition · Tyler Mayberry portfolio."
+      }
+    },
+    {
+      "id": "executioner",
+      "title": "Executioner",
+      "category": "Apps",
+      "date": "Started 2026-05",
+      "aliases": [],
+      "summary": "When writing all my thoughts down didn't tell me what to do with a day, I started Executioner. Work gets an ending here, even if the decision is to stop, and a schedule stays a proposal until you review it. Outcomes, supporting steps and a plan made from the original brain dump.",
+      "sections": [
+        {
+          "heading": "A thought isn't a commitment yet",
+          "text": "A proposal, built from outcomes and supporting steps. That's what Executioner makes from a brain dump. In those notes are obligations, possibilities, reminders and projects bigger than they first sound. Time shouldn't be quietly reserved for an idea just because you wrote it down."
+        },
+        {
+          "heading": "Planning with limits",
+          "text": "The project grew account flows and a public source version as it moved beyond my own use. Inside the React app: intake, outcomes, checklists, buckets, playbooks, constraints, capacity rules and rescheduling. Review a plan, commit to it and adjust it when circumstances change. Together those pieces describe the work and the time available to do it."
+        },
+        {
+          "heading": "Executed or abandoned",
+          "text": "In inspectable code, the application owns scheduling and closure rules. Stopping is an outcome (AI helps propose structure from the notes). Every outcome ends as executed or abandoned. Record the decision to abandon something, instead of carrying it through the next plan and the one after that."
+        },
+        {
+          "heading": "Using it and building it",
+          "text": "Get from a lot of thinking to a manageable set of things you've committed to: that was the practical question throughout. I defined the product, used it for my planning and worked with coding agents on implementation and release.\n\nThe open-source version needed its own cleanup, separating reusable code from private history and data."
+        }
+      ],
+      "decision": "At the end of the work, record what happened, including a deliberate decision to abandon it. Before that, the proposed schedule needs your review before becoming a commitment.",
+      "links": [
+        {
+          "label": "Project website",
+          "url": "https://executionr.com"
+        },
+        {
+          "label": "Application",
+          "url": "https://executionr.app"
+        }
+      ]
+    },
+    {
+      "id": "milkbench",
+      "title": "MILK Bench",
+      "category": "Experiments",
+      "date": "Started 2026-06",
+      "aliases": [
+        "Milkbench",
+        "MILK / 01"
+      ],
+      "summary": "Whole milk, presented as a prestigious product launch. MILK Bench began with that deliberately over-serious premise, then gave different models and reasoning settings the same brief. What the gallery preserves is the result: intact websites you can judge for yourself.",
+      "sections": [
+        {
+          "heading": "Why ordinary milk works",
+          "text": "Typography, images, composition and presentation are immediately available to compare. Milk needs little explanation. The starting idea was an over-serious website about it. With the brief frozen, models could work on the same creative problem without a complicated application getting in the way."
+        },
+        {
+          "heading": "What the comparison preserves",
+          "text": "The choices that worked and the choices that didn't are both visible. No hand-polishing after the models finished. Each directory keeps its run's result. The project includes the fixed prompt, launcher, run log, a directory per model and effort combination, and the comparison gallery."
+        },
+        {
+          "heading": "What to take from it",
+          "text": "For differences in taste and execution on this assignment, it's useful. Debugging, reliability and every other design brief are outside that claim. A good milk website is a good milk website. A limited setup, letting you examine the artifacts without asking them to prove too much."
+        },
+        {
+          "heading": "My part in the experiment",
+          "text": "A changed method or prompt: a new generation, with the original results kept as the record of that assignment. The individual sites, to be clear, are model outputs. Before the comparison, I came up with the premise, froze the rules, directed the runs and built the presentation."
+        }
+      ],
+      "decision": "The runs stay intact. When the prompt changes, start a new comparison rather than quietly changing what an old result represents.",
+      "links": [
+        {
+          "label": "Project website",
+          "url": "https://milk.animasai.co"
+        }
+      ],
+      "image": {
+        "src": "journal-assets/projects/milkbench.webp",
+        "alt": "Milkbench benchmark identity in a stylized technical workspace.",
+        "caption": "Illustrative marketing composition · Tyler Mayberry portfolio."
+      }
+    },
+    {
+      "id": "rat-detective-online",
+      "title": "Rat Detective Online",
+      "category": "Games",
+      "date": "Started 2026-05",
+      "aliases": [
+        "Rat Detective"
+      ],
+      "summary": "Rat Detective Online grew from a silly 3D prototype into a multiplayer browser shooter where detective rats throw bouncing cheese balls. The setting is dark and run-down while the action is physical comedy; the city expanded into streets, interiors, sewers, hazards and incidents.",
+      "sections": [
+        {
+          "heading": "Letting the premise shape the game",
+          "text": "Let ricocheting projectiles and physics-driven characters produce situations that become funny as they unfold: that guided the work beyond the first prototype. The rats have their shabby city to move through. Noir looks and slapstick mechanics, together."
+        },
+        {
+          "heading": "More things in the city",
+          "text": "The city does more than provide a backdrop. Spaces and systems for players to encounter. Hazards, machines and server-owned AI opponents joined a game built with Three.js, networking, physics-driven rats and projectiles, enterable landmarks, sewers and incident systems."
+        },
+        {
+          "heading": "The technical part of throwing cheese",
+          "text": "Across different screens, gameplay, networking and physics need to agree enough for an encounter to make sense. The strange interactions still need a responsive world. In shared play, the account of events matters: repeated reliability and production passes accompanied the visual and gameplay work."
+        },
+        {
+          "heading": "How I worked on it",
+          "text": "When a city full of detective rats is reason enough to make something, there's room for the playful side of this collection.\n\nI chose the noir-comedy direction, names and unusual mechanics, then worked through successive versions with coding agents. Trying things inside the game and revising them was part of that process."
+        }
+      ],
+      "decision": "For these odd encounters to work, keep the physical comedy central and give it the atmosphere and technical behavior it needs.",
+      "links": [
+        {
+          "label": "Game website",
+          "url": "https://ratdetective.online"
+        }
+      ],
+      "image": {
+        "src": "journal-assets/projects/rat-detective-online.webp",
+        "alt": "Rat Detective title screen with illustrated noir characters and multiplayer controls.",
+        "caption": "Title-screen capture · Rat Detective Online."
+      }
+    },
+    {
+      "id": "sextant",
+      "title": "Sextant",
+      "category": "Apps",
+      "date": "Started 2026-07",
+      "aliases": [],
+      "summary": "A diagram tied to a captured revision of the code. That's the starting point, because you can build with agents faster than you understand what you've built. If two things are shown as connected, you need a reason for the connection. Sextant explores that problem through visual investigations grounded in source evidence.",
+      "sections": [
+        {
+          "heading": "Start with something you need to understand",
+          "text": "For a page's data, a dependency or the component responsible for a behavior, you need a way to investigate. A picture tied to a captured repository revision, with questions organizing the work.\n\nIf it only looks comprehensive, it hasn't explained the code. The picture needs to help with the actual question."
+        },
+        {
+          "heading": "What the first version established",
+          "text": "Known cases give the deterministic checks a basis, and a bounded MCP controller exposes selected operations. The first slice passed local and hosted checks and was prepared for review in July 2026. Behind it are repository capture and analysis, immutable revisions, evidence-linked investigations, interactive graph views and saved layouts."
+        },
+        {
+          "heading": "A convincing picture still needs evidence",
+          "text": "For every entity or relationship, a traceable source. An agent's plausible explanation can't become a canonical fact on its own: the agent can suggest a view or direct an investigation, and the screen arrangement stays separate from the evidence. Rearranging that view mustn't silently change the claims."
+        },
+        {
+          "heading": "Where my work focused",
+          "text": "Read this as an account of the first implementation and its decisions; the target was an inspectable path through a real question. The larger vision goes beyond that work. I defined the product, vocabulary, interaction limits and acceptance standard, then worked on the first slice with coding agents."
+        }
+      ],
+      "decision": "Evidence is still needed for a proposed explanation. With an agent helping investigate, the source keeps its authority over what the graph can claim.",
+      "links": []
+    },
+    {
+      "id": "tylermayberry-dev",
+      "title": "TylerMayberry.dev",
+      "category": "Websites",
+      "date": "",
+      "aliases": [
+        "Personal Studio"
+      ],
+      "summary": "Starting with project cards, I moved this site toward a personal working studio (projects at the desk, the rest of my life around them). Photos, books, figures and a journal give you ways into those stories. The room as navigation.",
+      "sections": [
+        {
+          "heading": "Starting at the doorway",
+          "text": "Inside a rural tiny home, a compact studio for getting away and focusing: the main destinations are visible from the doorway. Work and personal objects share a place, and you can find the main parts without hunting through it.\n\nChoose something and you move closer. Return, and it goes back into the room."
+        },
+        {
+          "heading": "What you'll find here",
+          "text": "Longer project stories in Notes (selected projects on the laptop).\n\nAt the desk, the portrait monitor introduces Omarchy and the phone previews Helm; at the entry table, a separate phone is Contact. Books, figures and keepsakes on the shelves. Japan, Bali, Colorado and Oklahoma on the wall."
+        },
+        {
+          "heading": "Making it feel connected",
+          "text": "Within the photographic room are selected 3D objects you can inspect. The journal adds page navigation, search and topics. On mobile, reading and controls get more space while the outside-to-studio journey remains. Moving in, turning an object and returning it need to feel like parts of that same experience."
+        },
+        {
+          "heading": "The small things took work",
+          "text": "The site itself, another project in the collection. We looked at prop placement, return movement and enough room to read the story. Through those revisions, I supplied the direction and personal photographs and references, working with coding agents on the visual and interaction details."
+        }
+      ],
+      "decision": "Every object needs a reason to be here and a clear way to put it back. Explore something, then find your way home.",
+      "links": [
+        {
+          "label": "Project website",
+          "url": "https://tylermayberry.dev"
+        }
+      ]
+    },
+    {
+      "id": "animas-ai",
+      "title": "Animas AI",
+      "category": "Websites",
+      "date": "",
+      "aliases": [],
+      "summary": "The collection connects through Animas AI while each project keeps its purpose and stage of development; a money companion, scheduling app and browser game need different introductions. Products, tools and experiments, with a shared place on the web.",
+      "sections": [
+        {
+          "heading": "Different work needs different introductions",
+          "text": "When an experiment is presented beside a finished app, its description still needs to reflect what it is.\n\nA first-time visitor needs to understand the purpose and next destination; a shared site can make that easier.\n\nAcross the collection, problems and maturity vary."
+        },
+        {
+          "heading": "What went into the site",
+          "text": "Case studies, project ordering, public policies and structured metadata sit within the multi-page marketing site. Design and copy connected the overview to individual stories through repeated revisions.\n\nAs the collection developed, the public site went through successive Cloudflare releases."
+        },
+        {
+          "heading": "Getting the descriptions right",
+          "text": "The longer account needs to explain the work behind its image: a small card needs a useful promise. An attractive picture alone doesn't establish a product's state. Project selection and claims are part of building the site, because the words have to match what actually exists."
+        },
+        {
+          "heading": "How the two sites fit",
+          "text": "Choosing the work to feature, I worked with coding agents on positioning, language and design: Animas AI introduces the collection. For more of the surrounding stories, interests and decisions, this personal studio. The projects overlap, with a different experience of reading about them."
+        }
+      ],
+      "decision": "Introduce each project accurately: the collection should make its differences and connections easier to see.",
+      "links": [
+        {
+          "label": "Project website",
+          "url": "https://animasai.co"
+        }
+      ]
+    },
+    {
+      "id": "server-automation",
+      "title": "Server Automation",
+      "category": "Tools",
+      "date": "",
+      "aliases": [],
+      "summary": "Start a file server, find the computer's address and explain the next step (without a cloud service). Server Automation brought that setup together in a small Windows utility for transferring files to an isolated phone over the local network.",
+      "sections": [
+        {
+          "heading": "The repeated setup",
+          "text": "For the phone to receive the files, it needs a clear next step.\n\nWith a local file server doing the transfer, someone still has to start it and find the address. A small task with a practical reason to automate it. Put the sequence together, and setup doesn't depend on remembering every piece each time."
+        },
+        {
+          "heading": "The pieces doing the work",
+          "text": "With scripts coordinating, a server exposing files and an address for the phone to connect to: PowerShell and batch scripts, a Python HTTP server, local address detection and instructions, according to the historical account. Familiar components with a clearer beginning and end."
+        },
+        {
+          "heading": "A small tool can be enough",
+          "text": "For one recurring annoyance, this sort of utility belongs in the archive too. No need for the breadth of a hosted sharing service when the task is local transfer. The useful work was connecting the pieces into a repeatable process someone could understand."
+        },
+        {
+          "heading": "What remains of the project",
+          "text": "There isn't a maintained download here. The account preserves the purpose and components, but the original folder and exact date aren't available in this archive. Gaps in the record of earlier work.\n\nRecorded as a utility I built or directed."
+        }
+      ],
+      "decision": "When the task is local transfer, use enough tooling to make it easier; a small repeated problem doesn't always need a larger product around it.",
+      "links": []
+    },
+    {
+      "id": "helm",
+      "title": "Helm",
+      "summary": "Although the underlying system is unfinished, Helm explores a persistent assistant built around an Android phone; goals, tasks, capabilities and evidence belong to the system itself. The handset here is an interactive visual preview. It doesn't connect to the assistant.",
+      "sections": [
+        {
+          "heading": "What continuing a task requires",
+          "text": "Continuing work needs more than the last chat's wording, including the goal, permitted actions, what happened and the results that support that account. Helm gives those things an application structure. If a connection drops or a process is interrupted, the work needs to resume coherently."
+        },
+        {
+          "heading": "The foundation so far",
+          "text": "Keep demonstrated checkpoints separate from unfinished work. Common structures let components agree about goals and tasks; the work includes an Android foundation, shared contracts, phone-shell interactions, connection and recovery behavior, and staged checks. Foundations for the larger system."
+        },
+        {
+          "heading": "The phone you can try here",
+          "text": "Your preview has no connection to my personal apps or the underlying assistant. Explore the screens and turn the handset around. Music, messages, maps, browsing and video in Tokyo Night. Playback, replies and navigation stay inside the demonstration; Contact is the separate phone on the entry table."
+        },
+        {
+          "heading": "Keeping the system's own record",
+          "text": "Working with coding agents through staged implementation, I defined the direction and chose physical and interaction references. Continuity in the application itself: reasoning engines can change while Helm retains its goals, capabilities and evidence. With that choice, recovery becomes part of the design."
+        }
+      ],
+      "decision": "A new reasoning engine, without discarding the current task or established work. Goals, tasks and evidence stay with the system.",
+      "category": "Systems",
+      "date": "Started 2026-09",
+      "aliases": [],
+      "links": []
+    },
+    {
+      "id": "personal-app",
+      "title": "Personal App",
+      "summary": "In Personal App, the original note stays available. Private voice and text material can be captured first, with agents organizing and exploring it afterward. Interpretations, uncertainty and corrections kept distinct from the recording. A note doesn't always fit one subject.",
+      "sections": [
+        {
+          "heading": "Let the note be messy",
+          "text": "Start with capture and organize later; asking for a category before saving adds work at the wrong moment. Even when the interpretation changes, the source stays useful. When a note contains several subjects, it still needs somewhere to go."
+        },
+        {
+          "heading": "From capture to a later question",
+          "text": "Tested on my device: a Kotlin and Compose phone app, local storage, source-linked processing, synchronization and exploration views. Without making a cleaned-up summary the only surviving version. Together, those pieces connect the quick note to a question about it later."
+        },
+        {
+          "heading": "Corrections need somewhere to go",
+          "text": "Keep a correction beside the observation while retaining them as different records; the apparently simple distinction matters when an agent draws conclusions from incomplete notes. The app preserves both, with uncertainty and supporting material. An omitted detail, by itself, doesn't prove something didn't happen."
+        },
+        {
+          "heading": "What I wanted the app to preserve",
+          "text": "For the capture model, privacy limits, correction requirements and staged roadmap, I set the direction and worked with coding agents on implementation; the notes themselves stay private. This account concerns the software. The assistant can organize the record while leaving me able to inspect and correct it, and find the source behind an answer."
+        }
+      ],
+      "decision": "The original observation, kept. Add traceable interpretations and corrections without quietly erasing the source or its uncertainty.",
+      "category": "Apps",
+      "date": "Started 2026-09",
+      "aliases": [
+        "Personal Health App"
+      ],
+      "links": []
+    },
+    {
+      "id": "halla-operator",
+      "title": "Halla Operator",
+      "summary": "Keeping the context between a thought and the work it becomes. Halla Operator grew from an idea organizer into an internal place for projects, reviews and artifacts. Ideas and active work share the first screen.",
+      "sections": [
+        {
+          "heading": "The first screen set the direction",
+          "text": "Both in one compact view; that was my priority as detailed project and review flows were added. Separate ideas and projects too much and the connection gets harder to follow. They're different stages of related work."
+        },
+        {
+          "heading": "Opening the work around a project",
+          "text": "Archiving keeps older work in the record without giving it the same position as current activity, and the app connects it through stored records, search, lifecycle filters, reviews, project pages and artifact views. From the overview, you can open a project and its material."
+        },
+        {
+          "heading": "Keeping the relationships visible",
+          "text": "The app connects the records and views to make their relationships accessible (compactness isn't a count of controls on screen). An artifact, easier to understand with its project and review.\n\nFor an idea, the useful connection is into active work."
+        },
+        {
+          "heading": "An internal tool",
+          "text": "For internal use, this remains an application rather than a public operational view. Carrying context between stages is its recurring problem. The account here explains that purpose while private records and operational views stay private. I chose the priorities, naming, density and workflow requirements, then worked with coding agents on implementation."
+        }
+      ],
+      "decision": "The context that made an idea worth pursuing should survive the move into active work. Keep the idea connected to the project it becomes.",
+      "category": "Apps",
+      "date": "Started 2026-07",
+      "aliases": [
+        "Idea Organizer"
+      ],
+      "links": []
+    },
+    {
+      "id": "xmax-software-lab",
+      "title": "XMAX Custom Software Lab",
+      "summary": "Through observations and captures, the XMAX Custom Software Lab studies the display and its companion app. It started with a real-device question about what the Yamaha XMAX 300's connected display can do, and established a research foundation. No completed custom firmware or replacement app.",
+      "sections": [
+        {
+          "heading": "Start with the screen you have",
+          "text": "Understanding the boundary came first; I wanted to know which functions belonged to the display and which depended on the app. That would determine what was worth modifying: a screen can look like a general-purpose computer while doing something much narrower."
+        },
+        {
+          "heading": "Gathering the clues",
+          "text": "With captures I gathered, agents helped organize and analyze the material. Some interpretations supported; some questions still open. App-package inspection, string analysis, Bluetooth-log analysis and display photographs: different views of the connection from the phone and the device's behavior."
+        },
+        {
+          "heading": "A string isn't a working feature",
+          "text": "Narrow the options before committing to a modification. A package label doesn't explain a whole feature. Finding one also doesn't establish what the display will accept.\n\nAgainst actual device behavior, the observations still need to connect."
+        },
+        {
+          "heading": "What this work reached",
+          "text": "With the hardware context and research direction I supplied, the result is an investigation of the display and companion-app connection, with captures and analysis for later work. No finished firmware or app download. A better understanding of the system is what the project reached."
+        }
+      ],
+      "decision": "Before choosing a modification, observe the device and companion software. Then work from what that evidence actually supports.",
+      "category": "Experiments",
+      "date": "Started 2026-06",
+      "aliases": [
+        "XMAX Lab"
+      ],
+      "links": []
+    },
+    {
+      "id": "wargus-typescript",
+      "title": "Wargus TypeScript",
+      "summary": "A reliable experience first, room to expand afterward. That scope decision narrowed Wargus TypeScript to one Garden of War match against the computer. It had begun as a broad attempt to bring Warcraft II-derived RTS play into the browser.",
+      "sections": [
+        {
+          "heading": "Getting a match to work",
+          "text": "Make the gameplay rules, loaded content and controls agree. Give the player a match they can understand and control from beginning to end; recognizable assets alone don't establish that. Gather, build, train and fight."
+        },
+        {
+          "heading": "The implementation",
+          "text": "With the broader port preserved in the archive, the later demo focuses on a fixed human-versus-computer Garden of War match. Behind it: a TypeScript runtime, extracted-content pipeline, asset validation and a verifier suite. The smaller match gives gameplay and reliability checks a specific target."
+        },
+        {
+          "heading": "Why one match mattered",
+          "text": "A faithful baseline before more content (the broad port had many partly working systems to make agree). One fixed match gives the decision a concrete meaning. With that target, the components have a defined experience to support together."
+        },
+        {
+          "heading": "My work and the original creators",
+          "text": "The game, engines and assets have upstream creators, including Warcraft II and Wargus/Stratagus. I set scope and worked with coding agents on implementation, gameplay and reliability. Separate contributions with their own credit.\n\nFor my part, the browser adaptation and its development process."
+        }
+      ],
+      "decision": "Before adding content, establish an experience that can support it. The fixed match needs to work faithfully.",
+      "category": "Games",
+      "date": "Started 2026-06",
+      "aliases": [],
+      "links": []
+    },
+    {
+      "id": "trail-commons",
+      "title": "Trail Commons",
+      "summary": "With lasting map changes separated from temporary conditions, Trail Commons remains a concept and prototype project shaped around poor signal, gloves, sweat and account-setup friction. It's a trail-map and field-report idea I worked on with my father.",
+      "sections": [
+        {
+          "heading": "A map outside the office",
+          "text": "Wet hands, weak signal, a moment to check a route. Ordinary outdoor constraints shaped the interaction from the beginning; an easy desktop interface doesn't automatically handle them. For someone with a useful condition report, creating an account first can be another obstacle."
+        },
+        {
+          "heading": "The trail and today's conditions",
+          "text": "To protect the map and keep fresh observations useful, separate the 2 kinds of contribution. A geometry change affects a lasting record and may need moderation; a report can concern the same trail while needing different treatment. Tied to a time and place, a condition report can quickly become outdated."
+        },
+        {
+          "heading": "What took shape",
+          "text": "Design and prototype artifacts.\n\nFor a shared resource with riders, local hosts and stewards, the work includes product and architecture records, interaction prototypes, offline-sync decisions and a web/native split.\n\nThose records don't establish a launched mapping service."
+        },
+        {
+          "heading": "Working on it with my father",
+          "text": "For basic maps and contribution, the intention was access without a paywall. The project centers the people using and maintaining trails. My part included product and interaction direction alongside my father, while the record doesn't establish a more detailed authorship split. It remains a shared project."
+        }
+      ],
+      "decision": "Give lasting map edits and temporary reports different treatment: basic access and contribution should work in the outdoor conditions the tool is meant for.",
+      "category": "Apps",
+      "date": "Started 2026-07",
+      "aliases": [
+        "BikeTrails"
+      ],
+      "links": []
+    }
+  ]
+}

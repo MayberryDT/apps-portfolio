@@ -1,551 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><link rel="stylesheet" href="vendor/basecoat/basecoat.min.css"><link rel="stylesheet" href="style.css">
+<script type="importmap">{"imports":{"three":"./vendor/build/three.module.js","three/addons/":"./vendor/examples/jsm/"}}</script><script type="module" src="app.js"></script>
+<link rel="stylesheet" href="workstation.css">
+<link rel="stylesheet" href="tab-motion.css">
+<link rel="stylesheet" href="studio-ui.css">
+<link rel="stylesheet" href="contact-landing.css">
+<link rel="stylesheet" href="photo-frames.css">
+<link rel="stylesheet" href="photo-gallery.css">
+<link rel="stylesheet" href="shelf-gallery.css">
+<link rel="stylesheet" href="return-navigation.css">
+<link rel="stylesheet" href="journal.css">
+<link rel="stylesheet" href="mobile.css"><link rel="icon" type="image/png" sizes="96x96" href="/favicon-tm.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="integrated-content.css"><link rel="stylesheet" href="studio-fullscreen.css"><script src="studio-fullscreen.js" defer></script><title>About Tyler Mayberry | AI Systems Builder</title><meta name="description" content="Tyler Mayberry is an AI systems builder and practical product engineer who builds agentic workflows, internal tools, automation systems, and AI-native software for messy real-world work."><link rel="canonical" href="https://tylermayberry.dev/about.html"><meta property="og:title" content="About Tyler Mayberry | AI Systems Builder"><meta property="og:description" content="Tyler Mayberry is an AI systems builder and practical product engineer who builds agentic workflows, internal tools, automation systems, and AI-native software for messy real-world work."><meta property="og:url" content="https://tylermayberry.dev/about.html"><meta property="og:type" content="profile"><meta property="og:site_name" content="Tyler Mayberry"><meta property="og:image" content="https://tylermayberry.dev/assets/share-studio-8ede03e393cc.png"><meta property="profile:first_name" content="Tyler"><meta property="profile:last_name" content="Mayberry"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="About Tyler Mayberry | AI Systems Builder"><meta name="twitter:description" content="Tyler Mayberry is an AI systems builder and practical product engineer who builds agentic workflows, internal tools, automation systems, and AI-native software for messy real-world work."><meta name="twitter:image" content="https://tylermayberry.dev/assets/share-studio-8ede03e393cc.png"><script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Person", "@id": "https://tylermayberry.dev/#tyler-mayberry", "name": "Tyler Mayberry", "alternateName": "MayberryDT", "url": "https://tylermayberry.dev/", "image": "https://tylermayberry.dev/CirclePresentation.jpeg", "email": "tyler@animasai.co", "jobTitle": "AI Systems Builder and Practical Product Engineer", "description": "Tyler Mayberry is an AI systems builder and practical product engineer who builds agentic workflows, internal tools, automation systems, and AI-native software for messy real-world work.", "homeLocation": {"@type": "Place", "name": "Tulsa, Oklahoma"}, "affiliation": {"@id": "https://animasai.co/#organization"}, "sameAs": ["https://github.com/MayberryDT", "https://www.linkedin.com/in/mayberrydt/", "https://infocard.ai/~MayberryDT"], "knowsAbout": ["AI systems", "Agentic workflows", "Internal tools", "Workflow automation", "AI-native software", "Product engineering", "Product prototypes"]}, {"@type": "WebSite", "@id": "https://tylermayberry.dev/#website", "name": "Tyler Mayberry", "url": "https://tylermayberry.dev/", "publisher": {"@id": "https://tylermayberry.dev/#tyler-mayberry"}}, {"@type": ["ProfilePage", "AboutPage"], "@id": "https://tylermayberry.dev/about.html#about-page", "url": "https://tylermayberry.dev/about.html", "name": "About Tyler Mayberry", "description": "About page for Tyler Mayberry, an AI systems builder and practical product engineer focused on agentic workflows, internal tools, automation systems, and AI-native software.", "about": {"@id": "https://tylermayberry.dev/#tyler-mayberry"}, "mainEntity": {"@id": "https://tylermayberry.dev/#tyler-mayberry"}, "isPartOf": {"@id": "https://tylermayberry.dev/#website"}}, {"@type": "Organization", "@id": "https://animasai.co/#organization", "name": "Animas AI", "url": "https://animasai.co/", "logo": "https://animasai.co/logo-mark-v2-lg.webp", "founder": {"@id": "https://tylermayberry.dev/#tyler-mayberry"}, "description": "Animas AI is the business/studio wrapper Tyler Mayberry uses for practical AI systems work."}, {"@type": "BreadcrumbList", "@id": "https://tylermayberry.dev/about.html#breadcrumb", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Tyler Mayberry", "item": "https://tylermayberry.dev/"}, {"@type": "ListItem", "position": 2, "name": "About Tyler Mayberry", "item": "https://tylermayberry.dev/about.html"}]}]}</script><meta property="og:image:width" content="1734"><meta property="og:image:height" content="907"><meta property="og:image:type" content="image/png"><meta property="og:image:alt" content="Tyler outside his studio, with his name over the sky."><meta name="twitter:image:alt" content="Tyler outside his studio, with his name over the sky."></head><body data-area="room" data-focused="false" data-entry="about" data-entry-title="About Tyler Mayberry | AI Systems Builder">
+<main id="world" tabindex="-1" aria-label="Tyler’s personal working studio">
+  <div id="room-ambient" aria-hidden="true"></div><div id="scene"><img id="plate" src="scenes/overview.webp" srcset="scenes/overview-phone.webp 1448w, scenes/overview.webp 2896w" sizes="(max-width:700px) 700px, 1448px" alt="Warm afternoon light in Tyler’s personal studio."><div id="details"></div></div><canvas id="objects" aria-hidden="true" hidden></canvas>
+  <svg id="node-leaders" aria-hidden="true"></svg>
+  <div id="hotspots" aria-label="Explore the room"></div>
+  <button id="figure-drag" aria-label="Shaco figure. Drag or use arrow keys to turn." hidden></button>
+  <button id="phone-drag" aria-label="Helm phone. Drag to tilt, arrow keys to turn, tap the screen to explore." hidden></button>
+  <div id="shelf-controls" hidden aria-label="Object controls"><span>Drag to turn · tilt to inspect</span><div><button type="button" class="btn studio-control" data-prop-action="left" aria-label="Turn object left">↶</button><button type="button" class="btn studio-control" data-prop-action="reset">Reset view</button><button type="button" class="btn studio-control" data-prop-action="right" aria-label="Turn object right">↷</button></div></div>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/jpeg" href="favicon.jpg">
-    <title>About Tyler Mayberry | AI Systems Builder</title>
-    <meta name="description" content="Tyler Mayberry is an AI systems builder and practical product engineer who builds agentic workflows, internal tools, automation systems, and AI-native software for messy real-world work.">
-    <link rel="canonical" href="https://tylermayberry.dev/about.html">
-    <meta property="og:title" content="About Tyler Mayberry | AI Systems Builder">
-    <meta property="og:description" content="Tyler Mayberry is an AI systems builder and practical product engineer who builds agentic workflows, internal tools, automation systems, and AI-native software for messy real-world work.">
-    <meta property="og:url" content="https://tylermayberry.dev/about.html">
-    <meta property="og:type" content="profile">
-    <meta property="og:site_name" content="Tyler Mayberry">
-    <meta property="og:image" content="https://tylermayberry.dev/CirclePresentation.jpeg">
-    <meta property="profile:first_name" content="Tyler">
-    <meta property="profile:last_name" content="Mayberry">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="About Tyler Mayberry | AI Systems Builder">
-    <meta name="twitter:description" content="Tyler Mayberry is an AI systems builder and practical product engineer who builds agentic workflows, internal tools, automation systems, and AI-native software for messy real-world work.">
-    <meta name="twitter:image" content="https://tylermayberry.dev/CirclePresentation.jpeg">
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "Person",
-          "@id": "https://tylermayberry.dev/#tyler-mayberry",
-          "name": "Tyler Mayberry",
-          "alternateName": "MayberryDT",
-          "url": "https://tylermayberry.dev/",
-          "image": "https://tylermayberry.dev/CirclePresentation.jpeg",
-          "email": "tyler@animasai.co",
-          "jobTitle": "AI Systems Builder and Practical Product Engineer",
-          "description": "Tyler Mayberry is an AI systems builder and practical product engineer who builds agentic workflows, internal tools, automation systems, and AI-native software for messy real-world work.",
-          "homeLocation": {
-            "@type": "Place",
-            "name": "Tulsa, Oklahoma"
-          },
-          "affiliation": {
-            "@id": "https://animasai.co/#organization"
-          },
-          "sameAs": [
-            "https://github.com/MayberryDT",
-            "https://www.linkedin.com/in/mayberrydt/",
-            "https://animasai.co",
-            "https://usemasthead.com",
-            "https://infocard.ai/~MayberryDT"
-          ],
-          "knowsAbout": [
-            "AI systems",
-            "Agentic workflows",
-            "Internal tools",
-            "Workflow automation",
-            "AI-native software",
-            "Product engineering",
-            "Product prototypes"
-          ]
-        },
-        {
-          "@type": "WebSite",
-          "@id": "https://tylermayberry.dev/#website",
-          "name": "Tyler Mayberry",
-          "url": "https://tylermayberry.dev/",
-          "publisher": {
-            "@id": "https://tylermayberry.dev/#tyler-mayberry"
-          }
-        },
-        {
-          "@type": ["ProfilePage", "AboutPage"],
-          "@id": "https://tylermayberry.dev/about.html#about-page",
-          "url": "https://tylermayberry.dev/about.html",
-          "name": "About Tyler Mayberry",
-          "description": "About page for Tyler Mayberry, an AI systems builder and practical product engineer focused on agentic workflows, internal tools, automation systems, and AI-native software.",
-          "about": {
-            "@id": "https://tylermayberry.dev/#tyler-mayberry"
-          },
-          "mainEntity": {
-            "@id": "https://tylermayberry.dev/#tyler-mayberry"
-          },
-          "isPartOf": {
-            "@id": "https://tylermayberry.dev/#website"
-          }
-        },
-        {
-          "@type": "Organization",
-          "@id": "https://animasai.co/#organization",
-          "name": "Animas AI",
-          "url": "https://animasai.co/",
-          "logo": "https://animasai.co/logo-mark-v2-lg.webp",
-          "founder": {
-            "@id": "https://tylermayberry.dev/#tyler-mayberry"
-          },
-          "description": "Animas AI is the business/studio wrapper Tyler Mayberry uses for practical AI systems work."
-        },
-        {
-          "@type": "BreadcrumbList",
-          "@id": "https://tylermayberry.dev/about.html#breadcrumb",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "name": "Tyler Mayberry",
-              "item": "https://tylermayberry.dev/"
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "name": "About Tyler Mayberry",
-              "item": "https://tylermayberry.dev/about.html"
-            }
-          ]
-        }
-      ]
-    }
-    </script>
-    <style>
-        :root {
-            color-scheme: dark;
-            --bg: #080808;
-            --panel: #101010;
-            --panel-2: #151515;
-            --line: #2b2b2b;
-            --line-strong: #505050;
-            --text: #f5f5f0;
-            --muted: #a0a0a0;
-            --quiet: #666666;
-            --accent: #d8ff64;
-            --accent-2: #8dd7ff;
-            --max: 1180px;
-            --pad: clamp(18px, 3.4vw, 40px);
-            --mono: "SFMono-Regular", "Cascadia Code", "Liberation Mono", Consolas, monospace;
-            --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 88px;
-        }
-
-        body {
-            margin: 0;
-            min-height: 100vh;
-            background: var(--bg);
-            color: var(--text);
-            font-family: var(--sans);
-            line-height: 1.5;
-            text-rendering: optimizeLegibility;
-        }
-
-        a {
-            color: inherit;
-        }
-
-        a:focus-visible {
-            outline: 2px solid var(--accent);
-            outline-offset: 4px;
-        }
-
-        img {
-            display: block;
-            max-width: 100%;
-        }
-
-        h1,
-        h2,
-        h3,
-        p {
-            margin-top: 0;
-        }
-
-        .shell {
-            width: min(100%, var(--max));
-            margin: 0 auto;
-            padding: 0 var(--pad);
-        }
-
-        .skip-link {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            z-index: 40;
-            padding: 10px 12px;
-            background: var(--text);
-            color: var(--bg);
-            font-weight: 800;
-            text-decoration: none;
-            transform: translateY(-160%);
-            transition: transform 160ms ease;
-        }
-
-        .skip-link:focus {
-            transform: translateY(0);
-        }
-
-        .topbar {
-            position: sticky;
-            top: 0;
-            z-index: 20;
-            border-bottom: 1px solid var(--line);
-            background: rgba(8, 8, 8, 0.94);
-            backdrop-filter: blur(12px);
-        }
-
-        .nav {
-            min-height: 56px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 18px;
-        }
-
-        .brand {
-            display: inline-flex;
-            align-items: baseline;
-            gap: 12px;
-            min-width: 0;
-            text-decoration: none;
-        }
-
-        .brand strong {
-            font-size: 0.86rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-        }
-
-        .brand span {
-            color: var(--quiet);
-            font-family: var(--mono);
-            font-size: 0.72rem;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            gap: 4px;
-            flex-wrap: wrap;
-        }
-
-        .nav-links a {
-            padding: 8px 9px;
-            color: var(--muted);
-            font-size: 0.74rem;
-            font-weight: 800;
-            letter-spacing: 0.08em;
-            text-decoration: none;
-            text-transform: uppercase;
-        }
-
-        .nav-links a:hover,
-        .nav-links a[aria-current="page"] {
-            color: var(--text);
-            background: var(--panel-2);
-        }
-
-        .eyebrow {
-            margin: 0 0 16px;
-            color: var(--accent);
-            font-family: var(--mono);
-            font-size: 0.72rem;
-            font-weight: 900;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-        }
-
-        .button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 42px;
-            padding: 10px 12px;
-            border: 1px solid var(--line-strong);
-            background: transparent;
-            color: var(--text);
-            font-size: 0.75rem;
-            font-weight: 900;
-            letter-spacing: 0.08em;
-            text-decoration: none;
-            text-transform: uppercase;
-            transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
-        }
-
-        .button:hover {
-            border-color: var(--text);
-            background: var(--text);
-            color: var(--bg);
-        }
-
-        .button.primary {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
-
-        .button.primary:hover {
-            background: var(--accent);
-            color: #111111;
-        }
-
-        .link-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .about-hero {
-            padding: clamp(28px, 5vw, 64px) 0 clamp(28px, 5vw, 58px);
-            border-bottom: 1px solid var(--line);
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: minmax(0, 0.86fr) minmax(280px, 0.44fr);
-            gap: clamp(22px, 5vw, 58px);
-            align-items: end;
-        }
-
-        h1 {
-            max-width: 880px;
-            margin-bottom: 20px;
-            font-size: clamp(2.1rem, 4.4vw, 4.2rem);
-            line-height: 0.98;
-            letter-spacing: -0.055em;
-            text-wrap: balance;
-        }
-
-        .lead {
-            max-width: 760px;
-            margin-bottom: 22px;
-            color: #d7d7d2;
-            font-size: clamp(1rem, 1.7vw, 1.2rem);
-        }
-
-        .portrait-panel {
-            border: 1px solid var(--line);
-            background: var(--panel);
-        }
-
-        .portrait-panel img {
-            width: 100%;
-            aspect-ratio: 1 / 1;
-            object-fit: cover;
-            border-bottom: 1px solid var(--line);
-        }
-
-        .portrait-copy {
-            padding: 18px;
-        }
-
-        .portrait-copy strong {
-            display: block;
-            margin-bottom: 6px;
-            font-size: 1rem;
-        }
-
-        .portrait-copy span {
-            color: var(--muted);
-            font-family: var(--mono);
-            font-size: 0.72rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
-
-        .section {
-            padding: clamp(30px, 5vw, 64px) 0;
-            border-bottom: 1px solid var(--line);
-        }
-
-        .section-grid {
-            display: grid;
-            grid-template-columns: minmax(200px, 0.34fr) minmax(0, 0.66fr);
-            gap: clamp(20px, 5vw, 58px);
-            align-items: start;
-        }
-
-        .section-title h2 {
-            margin-bottom: 0;
-            font-size: clamp(1.7rem, 3.4vw, 3.1rem);
-            line-height: 0.92;
-            letter-spacing: -0.055em;
-        }
-
-        .body-copy {
-            display: grid;
-            gap: 16px;
-        }
-
-        .body-copy p {
-            margin-bottom: 0;
-            color: var(--muted);
-            font-size: 1rem;
-        }
-
-        .fact-grid,
-        .proof-grid {
-            display: grid;
-            gap: 12px;
-        }
-
-        .fact-grid {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-
-        .proof-grid {
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-        }
-
-        .fact,
-        .proof {
-            border: 1px solid var(--line);
-            background: var(--panel);
-            padding: 18px;
-        }
-
-        .fact span,
-        .proof span {
-            display: block;
-            margin-bottom: 10px;
-            color: var(--accent);
-            font-family: var(--mono);
-            font-size: 0.64rem;
-            font-weight: 900;
-            letter-spacing: 0.11em;
-            text-transform: uppercase;
-        }
-
-        .fact strong,
-        .proof h3 {
-            display: block;
-            margin: 0 0 8px;
-            font-size: 1.05rem;
-            line-height: 1.1;
-        }
-
-        .fact a {
-            color: var(--text);
-            text-decoration-color: var(--line-strong);
-        }
-
-        .proof p {
-            margin-bottom: 16px;
-            color: var(--muted);
-            font-size: 0.94rem;
-        }
-
-        .proof a {
-            color: var(--text);
-            font-family: var(--mono);
-            font-size: 0.68rem;
-            font-weight: 900;
-            letter-spacing: 0.1em;
-            text-decoration: none;
-            text-transform: uppercase;
-        }
-
-        .short-bio {
-            border: 1px solid var(--line);
-            background: var(--panel-2);
-            padding: clamp(18px, 3vw, 28px);
-        }
-
-        .short-bio p {
-            margin-bottom: 0;
-            color: var(--text);
-            font-size: clamp(1.05rem, 2vw, 1.34rem);
-            line-height: 1.45;
-        }
-
-        .footer {
-            border-top: 1px solid var(--line);
-            padding: 28px 0 40px;
-        }
-
-        .footer-inner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 18px;
-            flex-wrap: wrap;
-            color: var(--quiet);
-            font-family: var(--mono);
-            font-size: 0.72rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
-
-        @media (max-width: 900px) {
-            .about-grid,
-            .section-grid,
-            .proof-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .portrait-panel {
-                max-width: 360px;
-            }
-        }
-
-        @media (max-width: 680px) {
-            :root {
-                --pad: 16px;
-            }
-
-            .topbar {
-                position: relative;
-            }
-
-            .nav {
-                align-items: flex-start;
-                flex-direction: column;
-                padding: 14px 0;
-            }
-
-            .nav-links {
-                justify-content: flex-start;
-                width: 100%;
-                overflow-x: auto;
-                flex-wrap: nowrap;
-                scrollbar-width: none;
-            }
-
-            .nav-links::-webkit-scrollbar {
-                display: none;
-            }
-
-            .nav-links a {
-                flex: 0 0 auto;
-            }
-
-            .fact-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .button {
-                min-height: 44px;
-                flex: 1 1 auto;
-            }
-        }
-    </style>
-</head>
-
-<body>
+  
+  <aside id="story-panel" aria-labelledby="story-title" aria-hidden="true" inert>
+    <div class="glass-content">
+      <div class="panel-topline"><span id="category"></span><span id="mark" class="favorite-mark"></span></div>
+      <h1 id="story-title"></h1>
+      <div id="story-tabs" class="tabs studio-tabs">
+        <div id="tabs" class="glass-tabs t-tabs" role="tablist" aria-label="Object stories" aria-orientation="horizontal"></div>
+        <div id="stories"></div>
+      </div>
+      <div class="panel-footnote"><span class="tiny-diamond" aria-hidden="true"></span><span id="footnote"></span></div>
+    </div>
+  </aside>
+  <nav id="return-navigation" aria-label="Return navigation"><a id="outside" class="btn studio-control" href="index.html#hero">Outside</a><button id="return" class="btn studio-control" type="button" hidden>Back</button>
+  <button id="room-return" class="btn studio-control" type="button" hidden>Back to Room</button></nav>
+  <div id="loading" class="notice" role="status">Opening the studio…</div>
+  <div id="error" class="notice" role="alert" hidden><p id="error-message"></p><button id="retry" class="btn studio-control" type="button">Try again</button><button id="error-dismiss" class="btn studio-control" type="button">Dismiss</button></div>
+  <div id="announcement" role="status" aria-live="polite" class="sr-only"></div>
+  
+</main><button id="fullscreen" type="button" aria-label="Enter full screen" aria-pressed="false" hidden><span aria-hidden="true">⛶</span><span class="fullscreen-label">Full screen</span></button><p id="fullscreen-status" role="status" aria-live="polite"></p><section id="entry-fallback" class="entry-fallback" aria-label="About Tyler">
     <a class="skip-link" href="#about-main">Skip to about</a>
 
     <header class="topbar" aria-label="Site header">
@@ -554,7 +62,7 @@
                 <strong>Tyler Mayberry</strong>
                 <span>AI systems builder</span>
             </a>
-            <nav class="nav-links" aria-label="Primary links">
+            <nav class="nav-links" aria-label="Primary links"><a href="/room.html#room">Studio</a>
                 <a href="/about.html" aria-current="page">About</a>
                 <a href="/press.html">Facts</a>
                 <a href="/#work">Work</a>
@@ -700,6 +208,4 @@
             </div>
         </div>
     </footer>
-</body>
-
-</html>
+</section></body></html>

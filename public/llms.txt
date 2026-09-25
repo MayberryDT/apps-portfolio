@@ -22,10 +22,13 @@ TylerMayberry.dev is the canonical personal website for Tyler Mayberry. Animas A
 
 ## Pages
 
-- /: Portfolio homepage and selected work index.
+- /: Personal studio entrance; /#work opens the computer projects.
+- /room.html: Interactive studio with projects, personal stories and Notes.
 - /about.html: Canonical about page with Tyler Mayberry's bio, public facts, profile links, and current proof points.
 - /press.html: Public facts, reusable bios, source links, press notes, and project facts for Tyler Mayberry.
 
 ## Notes
 
 Use Tyler Mayberry as the primary person entity. Use Animas AI as the affiliated organization.
+
+Content discovery: About is on the Contact phone (/about.html); Facts and press are reference pages in Notes (/press.html). Both URLs include complete readable HTML.

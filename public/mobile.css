@@ -1,0 +1,246 @@
+/* Mobile keeps the room as navigation, with no additional menu shell. */
+#room-ambient{display:none;pointer-events:none}
+@media(max-width:700px) and (orientation:portrait){
+ #world{touch-action:pan-y}
+ #room-ambient{display:block;position:absolute;inset:-20px;background:linear-gradient(#211c1766,#211c17aa),url('scenes/overview-phone.webp') center/cover;filter:blur(16px);opacity:.7}
+ #scene{box-shadow:0 18px 64px #100b0733}
+ #hotspots .scene-node{font-size:12px;min-height:44px;padding:0 12px;gap:6px;border-radius:12px;background-color:#40362bda}
+ #hotspots .scene-node>span{font-size:12px}
+ body[data-area=room] #hotspots .scene-node{min-height:40px;padding:0 10px;gap:5px}
+ body[data-area=room] #hotspots .scene-node>span{font-size:11px}
+ #hero #hero-enter{width:190px;height:64px;min-height:64px}
+ .small-control{top:max(12px,env(safe-area-inset-top));right:max(12px,env(safe-area-inset-right))}
+ #return-navigation #outside{position:relative}
+ #outside::after{content:"";position:absolute;inset:-6px 0}
+ body[data-focused=true] #story-panel{max-height:calc(52dvh - 90px)}
+ #story-panel :is([role=tabpanel],.single-story){font-size:15px;line-height:1.65}
+ #story-panel .glass-content{padding:20px}
+ #story-title{font-size:34px}
+ #journal-search{font-size:16px}
+}
+@media(pointer:coarse){
+ #return-navigation :is(#return,#room-return){min-height:44px}
+ #photo-targets .photo-target,#shelf-targets .shelf-target{touch-action:manipulation}
+}
+@media(max-width:350px) and (orientation:portrait){
+ body[data-area=room] #hotspots .scene-node{padding:0 8px}
+ body[data-area=room] #hotspots .scene-node>span{font-size:10px}
+}
+
+@media(max-width:700px){.j-page{background-image:url('mobile/journal-assets/notebook-photo.webp')} .hero-identity{--hero-title-size:clamp(38px,11.3vw,46px);top:max(16px,env(safe-area-inset-top))} .hero-subtitle{margin-top:6px}}
+
+/* Helm leaves the phone centre stage; background stays the registered desk. */
+@media(max-width:700px),(max-height:600px) and (pointer:coarse){
+body[data-object=helm] #story-panel{width:350px;border-radius:20px}
+body[data-object=helm] #story-panel .glass-content{padding:18px}
+body[data-object=helm] :is(.panel-topline,.panel-footnote,#story-title span){display:none}
+body[data-object=helm] #story-title{font-size:26px;margin:0 0 10px;letter-spacing:-.035em}
+body[data-object=helm] #story-panel .single-story{margin:0;font-size:12px;line-height:1.5}
+body[data-object=helm] .helm-controls{display:flex;gap:6px;margin:0 0 6px;flex-wrap:nowrap}
+body[data-object=helm] .helm-controls button{flex:1;min-width:0;min-height:40px;padding:0 8px;font-size:12px;line-height:1.2;border-radius:9px;white-space:nowrap}
+body[data-object=helm] .helm-apps{gap:3px;border-bottom:1px solid #fff3;padding-bottom:6px}
+body[data-object=helm] .helm-apps button{padding:0 3px;font-size:11px;background:transparent;border-color:transparent}
+body[data-object=helm] .helm-apps button[aria-pressed=true]{background:#bba6d72b;border-color:#ccb5ee55}
+body[data-object=helm] .helm-hardware-controls button{background:transparent;border-color:transparent;color:#e6d8c4}
+.helm-about summary{cursor:pointer;min-height:32px;display:list-item;align-content:center;color:#e6d8c4;list-style-position:inside}
+.helm-about summary:focus-visible{outline:2px solid #f5dfb9;outline-offset:2px;border-radius:4px}
+body[data-object=helm] #story-panel .helm-about p{font-size:12px;line-height:1.55;margin:8px 0}
+}
+@media(max-width:700px) and (orientation:portrait){
+ body[data-object=helm][data-focused=true] #story-panel{left:12px;right:12px;width:auto;top:auto;bottom:max(70px,calc(env(safe-area-inset-bottom) + 66px));max-height:246px;transform:none}
+ body[data-object=helm] #story-panel .glass-content{padding:12px}
+ body[data-object=helm] #story-title{font-size:20px;margin:0 0 4px}
+ body[data-object=helm] .helm-controls button{min-height:40px}
+ body[data-object=helm] .helm-about summary{min-height:30px}
+}
+@media(max-height:600px) and (orientation:landscape) and (pointer:coarse){
+ body[data-object=helm][data-focused=true] #story-panel{left:auto;right:max(16px,env(safe-area-inset-right));width:44vw;max-width:350px;top:16px;bottom:auto;max-height:calc(100dvh - 86px);transform:none}
+ body[data-object=helm] #story-panel .glass-content{padding:12px}
+ body[data-object=helm] #story-title{font-size:20px;margin:0 0 4px}
+}
+/* Phone affordances follow orientation, including wide phone landscape. */
+@media(max-width:700px),(max-height:600px) and (pointer:coarse){
+ .hero-identity{--hero-title-size:clamp(28px,8.5vw,40px);left:max(24px,env(safe-area-inset-left));top:calc(max(16px,env(safe-area-inset-top)) + 8px)}
+ .hero-identity h1{max-width:none;white-space:nowrap}
+ .hero-subtitle{font-size:14px;margin-top:6px}
+}
+#rotation-hint{position:fixed;z-index:100;top:50%;left:50%;bottom:auto;right:auto;transform:translate(-50%,-50%);width:max-content;max-width:calc(100vw - 32px);display:flex;align-items:center;gap:9px;min-height:44px;padding:6px 12px;border:1px solid #fff2;border-radius:12px;background:#302820cc;color:#eee1cd;font:11px Studio,Arial,sans-serif;box-shadow:0 3px 16px #0002}
+#rotation-hint svg{width:22px;height:22px;flex:none}
+#rotation-hint:not([hidden]) .rotation-phone{transform-origin:12px 12px;animation:suggest-rotation 2.4s .5s ease-in-out 1}
+@keyframes suggest-rotation{0%,100%{transform:rotate(0)}35%,70%{transform:rotate(90deg)}}
+@media(prefers-reduced-motion:reduce){#rotation-hint .rotation-phone{animation:none!important}}
+/* Keep project hierarchy within its computer window. */
+.project-desktop[data-project-open=true] .file-count{display:none}
+#project-up{white-space:nowrap}
+#desktop-path{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+/* Selection feedback remains separate from the content and never blocks Back. */
+#selection-loading{position:absolute;z-index:24;left:50%;bottom:max(76px,calc(env(safe-area-inset-bottom) + 72px));transform:translateX(-50%);display:flex;align-items:center;gap:10px;max-width:calc(100% - 32px);padding:12px 16px;border:1px solid #fff3;border-radius:12px;background:#302820ef;color:#fff3df;font-size:13px;pointer-events:none;box-shadow:0 5px 24px #0002}
+.loading-ring{flex:none;width:17px;height:17px;border:2px solid #fff4;border-top-color:#fff1d8;border-radius:50%;animation:loading-turn .85s linear infinite}
+@keyframes loading-turn{to{transform:rotate(1turn)}}
+@media(prefers-reduced-motion:reduce){.loading-ring{animation:none;border-style:dotted}}
+.mobile-journal,.mobile-contents-close{display:none}
+@media(max-width:700px),(max-height:600px) and (pointer:coarse){
+ /* One calm paper surface; contents takes its place when explicitly opened. */
+ body[data-object=notebook] #journal-reader[data-interactive=true] :is(.journal-stage,.journal-footer){visibility:hidden;pointer-events:none}
+ body[data-object=notebook] .journal-binding{display:none}
+ .mobile-journal{position:absolute;inset:max(12px,env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) max(72px,calc(env(safe-area-inset-bottom) + 68px)) max(12px,env(safe-area-inset-left));display:flex;flex-direction:column;pointer-events:auto;border:1px solid #c6b79a;border-radius:14px;background:#f1e9d5;color:#3e392e;box-shadow:0 12px 45px #170f0755;overflow:hidden}
+ .mobile-journal-header,.mobile-journal-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;flex:none;padding:8px 16px;background:#eee4cc;border-color:#ab987644;font:14px Studio,sans-serif}
+ .mobile-journal-header{border-bottom:1px solid #ab987644;min-height:57px}
+ .mobile-journal-header>span{font-size:20px;letter-spacing:-.025em}
+ .mobile-journal-header small{font-size:9px;letter-spacing:.12em;margin-left:8px;color:#88795c}
+ .mobile-journal button{border:0;background:transparent;color:#514632;min-height:44px;padding:6px 8px;border-radius:7px;touch-action:manipulation}
+ .mobile-journal button:focus-visible{outline:2px solid #8d6038;outline-offset:-2px}
+ .mobile-journal button:disabled{opacity:.35;cursor:default}
+ .mobile-journal-header button{font-size:13px;border:1px solid #af9c7855;display:flex;gap:10px;align-items:center}
+ .mobile-journal-page{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y;scrollbar-width:thin;scrollbar-color:#9f8b6466 transparent;padding:26px 24px 30px}
+ .mobile-journal-page .j-page{position:static!important;width:100%!important;height:auto!important;overflow:visible;background:transparent!important;font:16px/1.75 Georgia,serif}
+ .mobile-journal-page .j-page-inner{padding:0!important;height:auto!important;min-height:0!important;overflow:visible!important;display:block!important;text-align:left!important}
+ .mobile-journal-page .j-kicker{position:static!important;display:block;font-size:10px;letter-spacing:.1em;margin:0 0 20px}
+ .mobile-journal-page .j-page :is(h1,h2){font:400 clamp(27px,7vw,36px)/1.13 Georgia,serif!important;white-space:normal!important;max-width:none!important;letter-spacing:-.045em;margin:0 0 20px!important;text-wrap:pretty;overflow:visible}
+ .mobile-journal-page .j-page h3{font-size:11px;line-height:1.5;margin-top:22px}
+ .mobile-journal-page .j-page p{font-size:16px;line-height:1.75;margin-bottom:20px}
+ .mobile-journal-page .j-page .j-deck{font-size:18px;line-height:1.55;max-width:none!important}
+ .mobile-journal-page :is(.j-page-footer,.j-rule){display:none}
+ .mobile-journal-page .j-title-page{padding-top:24px}
+ .mobile-journal-page .j-fixture-label{display:block;margin-top:28px;font-size:11px}
+ .mobile-journal-page .journal-study{max-height:none!important;margin:24px 0!important}
+ .mobile-journal-page .journal-study img{width:100%;height:auto!important;max-height:none!important;object-fit:contain}
+ .mobile-journal-page .j-index-preview button{min-height:44px;font-size:15px}
+ .mobile-journal-page .j-text-link{font:14px/1.5 Studio,sans-serif;display:inline-flex;min-height:44px;align-items:center}
+ .mobile-journal-footer{border-top:1px solid #ab987644;padding:4px 10px;min-height:53px}
+ .mobile-journal-footer button{font-size:13px;min-width:88px}
+ .mobile-page-count{font-size:11px;color:#827357;white-space:nowrap}
+ body[data-object=notebook] #story-panel{display:none!important}
+ body[data-object=notebook][data-journal-contents=true] #story-panel{display:flex!important;z-index:18;inset:max(12px,env(safe-area-inset-top)) 12px max(72px,calc(env(safe-area-inset-bottom) + 68px));width:auto;height:auto;max-height:none;transform:none;border-radius:14px;background:#30291ff5;transition:none;opacity:1;visibility:visible;pointer-events:auto}
+ body[data-object=notebook][data-journal-contents=true] #story-panel .glass-content{padding:22px 20px 14px;max-height:none;flex:1;min-height:0}
+ body[data-object=notebook] #story-panel .panel-topline{display:none}
+ body[data-object=notebook] #story-title{font-size:28px;margin:0 80px 24px 0}
+ #journal-contents{flex:1;min-height:0}
+ .mobile-contents-close{display:block;position:absolute;right:16px;top:13px;min-height:44px;padding:8px 12px;border:1px solid #fff3;border-radius:9px;background:#fff1;color:#f9ebd5;font-size:13px}
+ #journal-results{min-height:0;flex:1}
+ #journal-results .j-result{padding:14px 4px;min-height:74px}
+ #journal-results .j-result em{display:none}
+ .journal-tools{margin-top:10px;padding-top:8px;border-top:1px solid #fff2}
+ .journal-topic-menu{z-index:30}
+}
+@media(max-height:500px) and (pointer:coarse){
+ .mobile-journal-header{min-height:48px;padding:2px 14px}.mobile-journal-page{padding:22px 28px}.mobile-journal-footer{min-height:48px;padding:0 10px}
+ body[data-object=notebook][data-journal-contents=true] #story-panel .glass-content{padding:12px 18px}
+ body[data-object=notebook] #story-title{font-size:22px;margin-bottom:10px}
+ .j-search-label,.journal-tools,.j-result-count{display:none!important}
+ #journal-contents{display:grid;grid-template-columns:1fr 1fr;gap:10px;grid-template-rows:44px 1fr}
+ #journal-search{grid-column:1}.journal-filters{grid-column:2;grid-row:1;margin:0}.journal-filters>#journal-topic-label{display:none}
+ #journal-results{grid-column:1/-1;grid-row:2}
+ .mobile-contents-close{top:5px}
+}
+.shelf-number,.shelf-index-number{display:none}
+@media(max-width:700px),(max-height:600px) and (pointer:coarse){
+ body[data-area=bookshelf][data-focused=false] #shelf-collection[data-persistent=true]{display:flex;flex-direction:column;left:12px;right:12px;width:auto;top:49dvh;bottom:max(72px,calc(env(safe-area-inset-bottom) + 68px));max-height:none;transform:none;padding:14px;overflow:hidden}
+ #shelf-collection[data-persistent=true] .shelf-collection-heading{flex:none;font-size:12px;padding:0 0 10px}
+ #shelf-collection[data-persistent=true] .shelf-collection-list{overflow:auto;min-height:0;gap:5px;touch-action:pan-y;scrollbar-width:thin}
+ #shelf-collection[data-persistent=true] .shelf-list-item{position:relative;min-height:50px;padding:9px 8px 9px 31px;line-height:1.2;font-size:12px}
+ #shelf-collection[data-persistent=true] .shelf-list-item small{display:none}
+ .shelf-index-number{display:block;position:absolute;left:9px;top:50%;transform:translateY(-50%);font:10px Studio,sans-serif;color:#d1b99b}
+ .shelf-number{display:flex;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:22px;height:22px;align-items:center;justify-content:center;border:1px solid #f1d9b380;border-radius:7px;background:#302719dd;color:#fff3df;font:10px Studio,sans-serif;box-shadow:0 2px 8px #0004;pointer-events:none}
+}
+@media(max-height:600px) and (orientation:landscape) and (pointer:coarse){
+ body[data-area=bookshelf][data-focused=false] #shelf-collection[data-persistent=true]{left:51%;top:12px;right:12px}
+ #shelf-collection[data-persistent=true] .shelf-collection-list{grid-template-columns:1fr}
+}
+
+.mobile-journal-page:focus{outline:none}
+
+@media(max-width:700px),(max-height:600px) and (pointer:coarse){.shelf-target[data-kind=book] .shelf-number{top:var(--number-y)}}
+
+/* Desktop Helm belongs to the same story-panel family as the other objects. */
+.helm-desktop-copy h2{font:400 21px/1.4 Georgia,serif;letter-spacing:-.025em;color:#fff7e8;margin:24px 0 12px}
+body[data-object=helm] .helm-actions button{min-width:125px}
+@media(min-width:701px) and (min-height:601px),(min-width:701px) and (pointer:fine){
+ body[data-object=helm] #story-panel{width:clamp(360px,33vw,460px);height:min(690px,calc(100dvh - 140px));max-height:calc(100dvh - 140px);top:48%;bottom:auto;border-radius:28px}
+ body[data-object=helm][data-focused=true] #story-panel{transform:translateY(-50%) scale(1)}
+ body[data-object=helm] #story-panel .glass-content{height:100%;max-height:100%;overflow:auto;padding:clamp(26px,2.6vw,38px)}
+ body[data-object=helm] #story-title{font-size:clamp(48px,4.5vw,66px);margin:25px 0}
+ body[data-object=helm] .helm-controls{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}
+ body[data-object=helm] .helm-controls button{min-height:44px;padding:10px 14px;font-size:13px}
+ body[data-object=helm] .helm-apps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+ body[data-object=helm] .helm-apps button{min-width:0;padding:10px 4px;font-size:12px}
+ body[data-object=helm] .helm-about{display:none}
+ body[data-object=helm] .helm-demo-note{font-size:12px;color:#d6c5ad;line-height:1.6}
+}
+@media(max-width:700px),(max-height:600px) and (pointer:coarse){
+ body[data-object=helm] .helm-desktop-copy{display:none}
+ body[data-object=helm] .helm-actions button{min-width:0}
+ body[data-object=helm][data-focused=true] #story-panel{height:246px}
+}
+/* Landscape Notes uses the header for return navigation, freeing the bottom strip. */
+.journal-header-actions{display:flex;align-items:center;gap:8px}
+.journal-room-return{display:none!important}
+@media(orientation:landscape) and (max-height:600px) and (pointer:coarse){
+ .mobile-journal{bottom:max(12px,env(safe-area-inset-bottom))}
+ .journal-room-return{display:inline-flex!important;align-items:center;justify-content:center;white-space:nowrap;min-height:44px}
+ body[data-object=notebook]:has(#journal-reader[data-interactive=true]) #return-navigation{display:none}
+ body[data-object=notebook][data-journal-contents=true] #story-panel{bottom:max(12px,env(safe-area-inset-bottom))}
+ body[data-object=notebook] #story-title{margin-right:210px}
+ .journal-contents-room{position:absolute;right:100px;top:5px;padding:8px 12px;border:1px solid #fff3;border-radius:9px;background:#fff1;color:#f9ebd5;font-size:13px}
+}
+/* A larger mobile frame for the original student portrait, with its story below/beside. */
+@media(max-width:700px) and (orientation:portrait){
+ body[data-object=student-drawing][data-focused=true] #story-panel{top:auto;bottom:72px;height:clamp(180px,30dvh,240px);max-height:clamp(180px,30dvh,240px);transform:none}
+ body[data-object=student-drawing] #story-panel .glass-content{padding:12px 16px}
+ body[data-object=student-drawing] #story-title{font-size:26px;margin:0 0 8px}
+ body[data-object=student-drawing] :is(.panel-topline,#story-title span,#shelf-controls>span,.shelf-counter){display:none}
+ body[data-object=student-drawing] #shelf-navigation{padding:5px 12px 8px}
+ body[data-object=student-drawing] #story-title span{font-size:11px}
+ body[data-object=student-drawing] #story-panel :is([role=tabpanel],.single-story){margin-top:12px}
+ body[data-object=student-drawing] .panel-footnote{display:none}
+}
+@media(max-height:600px) and (orientation:landscape) and (pointer:coarse){
+ body[data-object=student-drawing][data-focused=true] #story-panel{left:auto;right:16px;top:16px;bottom:72px;width:42%;height:auto;max-height:none;transform:none}
+ body[data-object=student-drawing] #story-panel .glass-content{padding:18px 22px}
+ body[data-object=student-drawing] #story-title{font-size:28px;margin:12px 0}
+}
+
+/* Contents owns the remaining height; no inherited 170px landscape list cap. */
+@media(max-width:700px),(max-height:600px) and (pointer:coarse){
+ body[data-object=notebook][data-journal-contents=true] #story-panel .glass-content{display:flex;flex-direction:column;overflow:hidden}
+ body[data-object=notebook] #journal-contents{display:flex;flex-direction:column;min-height:0;flex:1;overflow:hidden}
+ body[data-object=notebook] #journal-results{max-height:none;min-height:0;flex:1;overflow:auto}
+}
+@media(max-height:500px) and (pointer:coarse){
+ body[data-object=notebook] #journal-contents{display:grid;grid-template-rows:44px minmax(0,1fr);grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+}
+/* Remaining shelf objects receive the same generous mobile inspection space. */
+@media(max-width:700px) and (orientation:portrait){
+ body[data-area=bookshelf][data-focused=true]:not([data-object=student-drawing]) #story-panel{top:auto;bottom:72px;height:clamp(180px,30dvh,240px);max-height:clamp(180px,30dvh,240px);transform:none}
+ body[data-area=bookshelf]:not([data-object=student-drawing]) #story-panel .glass-content{padding:12px 16px}
+ body[data-area=bookshelf]:not([data-object=student-drawing]) #story-title{font-size:26px;margin:0 0 8px}
+ body[data-area=bookshelf]:not([data-object=student-drawing]) :is(.panel-topline,#story-title span,#shelf-controls>span,.shelf-counter){display:none}
+ body[data-area=bookshelf]:not([data-object=student-drawing]) #shelf-navigation{padding:5px 12px 8px}
+ body[data-area=bookshelf]:not([data-object=student-drawing]) #story-panel :is([role=tabpanel],.single-story){margin-top:12px}
+}
+@media(max-height:600px) and (orientation:landscape) and (pointer:coarse){
+ body[data-area=bookshelf][data-focused=true]:not([data-object=student-drawing]) #story-panel{left:auto;right:16px;top:16px;bottom:72px;width:42%;height:auto;max-height:none;transform:none}
+ body[data-area=bookshelf]:not([data-object=student-drawing]) #story-panel .glass-content{padding:18px 22px}
+ body[data-area=bookshelf]:not([data-object=student-drawing]) #story-title{font-size:28px;margin:12px 0}
+}
+
+/* Give objects and their stories equal space; direct touch replaces a control strip. */
+@media(max-width:700px),(max-height:600px) and (pointer:coarse){
+ #shelf-controls{display:none!important}
+ body[data-area=bookshelf][data-object] #story-title{font-size:24px;line-height:1.12;margin:0 0 6px}
+ body[data-area=bookshelf] :is(.panel-topline,#story-title span){display:none}
+ body[data-area=bookshelf][data-focused=true][data-object] #story-panel .glass-content{display:flex;flex-direction:column;padding:16px 18px;overflow:hidden}
+ body[data-area=bookshelf] #story-tabs{display:flex;flex-direction:column;flex:1;min-height:0}
+ body[data-area=bookshelf] #tabs{flex:none}
+ body[data-area=bookshelf] #stories{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;touch-action:pan-y;scrollbar-width:thin;scrollbar-color:#e8d4b755 transparent}
+ body[data-area=bookshelf] #story-panel :is([role=tabpanel],.single-story){font-size:14px;line-height:1.6;margin-top:12px}
+ body[data-area=bookshelf][data-object] #story-panel .single-story{margin-top:0}
+ body[data-area=bookshelf] #story-panel p{margin-bottom:12px}
+ body[data-area=bookshelf] #story-panel .panel-lead{font-size:18px;line-height:1.4}
+}
+@media(max-width:700px) and (orientation:portrait){
+ body[data-area=bookshelf][data-focused=true][data-object] #story-panel{top:calc((100dvh - 72px)/2);bottom:72px;height:calc((100dvh - 72px)/2);max-height:none;transform:none}
+}
+@media(max-height:600px) and (orientation:landscape) and (pointer:coarse){
+ body[data-area=bookshelf][data-focused=true][data-object] #story-panel{left:51%;right:12px;top:12px;bottom:72px;width:auto;height:auto;max-height:none;transform:none}
+}

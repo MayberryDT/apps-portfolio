@@ -1,0 +1,7 @@
+/* Real grain, a molded rail profile and four independent miter cuts around an
+   exact-ratio photograph. Source units share the room's camera transform. */
+.photo-frame{position:absolute;isolation:isolate;pointer-events:none}
+.frame-depth{position:absolute;inset:0;transform:translate(1.3px,1.9px);background:#322419;border-radius:.4px;box-shadow:.35px .6px .6px #26190f80,1.8px 3px 2.8px #27170955,3.7px 5.2px 6px #25170c2e;z-index:0}
+.photo-frame .wall-photo{position:absolute;display:block;max-width:none;object-fit:fill;filter:brightness(.98) saturate(.97);z-index:1}
+.frame-glazing{position:absolute;z-index:2;box-shadow:inset .65px .9px .8px #160e0860,inset -.2px -.3px .35px #f6e9d445;background:linear-gradient(124deg,#fff8e708 0%,transparent 38%,transparent 72%,#fff7df03 100%)}
+.frame-joinery{position:absolute;inset:0;display:block;width:100%;height:100%;overflow:visible;z-index:3}
