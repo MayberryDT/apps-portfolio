@@ -1,0 +1,21 @@
+/* Stable viewport-centered return controls shared by every section. */
+#return-navigation{position:absolute;z-index:20;left:50%;bottom:max(14px,calc(env(safe-area-inset-bottom) + 10px));transform:translateX(-50%);display:flex;flex-direction:row;align-items:center;gap:6px;pointer-events:none}
+#return-navigation :is(#room-return,#return,#outside){position:static;left:auto;bottom:auto;transform:none;width:auto;min-height:40px;font-size:12px;padding:8px 18px;white-space:nowrap;pointer-events:auto;display:block;background:linear-gradient(130deg,#fff8ea25,#fff8ea09),#3d3327c9;border:1px solid #fff7e962;border-radius:12px;backdrop-filter:blur(17px) saturate(135%)}
+body[data-focused=true] #story-panel{max-height:calc(100dvh - 190px)}
+@media(max-width:700px) and (min-aspect-ratio:1/1){body[data-focused=true] #story-panel{max-height:calc(100dvh - 160px)}}
+@media(max-width:700px) and (max-aspect-ratio:1/1){body[data-focused=true] #story-panel{bottom:max(116px,calc(env(safe-area-inset-bottom) + 112px));max-height:calc(52dvh - 90px)}}
+/* Inspection target names stay accessible without hover bubbles. */
+.shelf-target>span,#figure-hit>span{display:none!important}
+
+
+#shelf-navigation{grid-template-columns:44px 1fr 44px}#shelf-navigation>button:last-child{grid-column:3}#photo-navigation>button:last-child{grid-column:3}
+@media(max-height:500px) and (min-aspect-ratio:1/1){
+ body[data-focused=true] #story-panel{top:64px;bottom:112px;max-height:calc(100dvh - 176px);transform:none}
+ body[data-area=bookshelf] #shelf-controls>span{display:none}
+ body[data-area=bookshelf] #shelf-controls button{min-height:34px;padding:4px 8px;line-height:20px}
+}
+
+/* Outside occupies the overview's otherwise empty return-navigation slot. */
+#return-navigation #outside{height:32px;min-height:32px;padding:5px 16px;line-height:20px;border-radius:10px;text-decoration:none}
+body:not([data-area=room]) #return-navigation #outside{display:none}
+#outside[aria-disabled=true]{cursor:wait}

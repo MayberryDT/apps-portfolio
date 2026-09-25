@@ -1,0 +1,159 @@
+/* Notes uses the room's story-panel glass and the existing studio controls.
+   Only the photographed paper surface travels; no full-screen wash or entrance. */
+#journal-reader{position:absolute;inset:0;z-index:2;pointer-events:none;color:#302d24;--ink:#34342c;--paper:#f3ecd9;--quiet:#8a806b}
+.journal-shell{position:absolute;inset:0;pointer-events:none}
+.journal-stage{position:absolute;left:0;top:0;transform-origin:0 0;pointer-events:none;filter:drop-shadow(0 6px 8px #20140740)}
+.journal-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;clip-path:polygon(2.7% 9.2%,9% 8.1%,47.8% 6.9%,49.8% 9.2%,50.5% 9.2%,52% 6.9%,92% 8.1%,97.2% 9.2%,98.7% 91.2%,54% 91.8%,50% 92.2%,46% 91.8%,1.4% 91.3%);user-select:none}
+.journal-binding{position:absolute;left:5.2%;top:7.4%;isolation:isolate;pointer-events:none}
+#journal-reader[data-interactive=true] .journal-binding{pointer-events:auto;touch-action:pan-y}
+.journal-book{position:relative;z-index:2;overflow:hidden;border-radius:8px 12px 12px 8px}
+.j-page{color:var(--ink);overflow:hidden;font:15px/1.6 Georgia,serif;position:relative;background-color:var(--paper);background-image:url('journal-assets/notebook-photo.webp');background-size:280% 140%;background-position:15% 32%}
+.j-page.j-paper-right{background-position:85% 32%}
+.journal-binding:after{content:"";position:absolute;left:calc(50% - 1px);top:1px;bottom:1px;width:2px;background:#66533b35;box-shadow:0 0 13px 3px #6d573c20;z-index:3;pointer-events:none}
+.journal-binding.j-single:after{display:none}
+.journal-footer{position:absolute;transform:translateX(-50%);display:flex;align-items:center;justify-content:center;gap:18px;color:#fff3e1;opacity:0;pointer-events:none}
+#journal-reader[data-interactive=true] .journal-footer{opacity:1;pointer-events:auto}
+.journal-footer button{width:44px;height:44px;flex:none}
+.journal-pagination{min-width:160px;text-align:center;display:flex;flex-direction:column;gap:6px;text-shadow:0 1px 5px #211307}
+.journal-page-number{font:12px Studio,sans-serif;letter-spacing:.06em}.journal-instruction{font:11px Studio,sans-serif;color:#fff0dc}
+.journal-load{position:absolute;left:8%;top:40%;padding:20px;border-radius:12px;background:#30271bea;color:#f6e4c5;pointer-events:auto}
+body[data-object=notebook] #story-panel .glass-content{display:flex;flex-direction:column;overflow:hidden}
+body[data-object=notebook] #story-tabs,body[data-object=notebook] #story-panel .panel-footnote{display:none}
+body[data-object=notebook] #story-title{flex:none;margin:16px 0 22px}
+#journal-contents{display:flex;flex-direction:column;min-height:0;overflow:hidden}
+.j-search-label{font:12px Studio,sans-serif;margin-bottom:8px;color:#fff4e5}
+#journal-search{appearance:none;flex:none;border:1px solid var(--studio-control-border,#fff7e954);border-radius:10px;background:var(--studio-control-background,#ffffff15);padding:12px;font:14px Studio,sans-serif;color:#fff7ea;min-height:44px;width:100%}
+#journal-search::placeholder{color:#e8d9c4b0}#journal-search:focus-visible{outline:2px solid #ffe7c4;outline-offset:2px}
+.journal-filters{flex:none;display:flex;align-items:center;gap:12px;min-width:0;overflow:visible;margin-top:12px}
+.journal-filters>#journal-topic-label{font:12px Studio,sans-serif;color:#eadbc7;white-space:nowrap}
+.journal-topic-field{position:relative;display:block;flex:1;min-width:0}
+#journal-topic{display:flex;width:100%;min-width:0;align-items:center;justify-content:space-between;gap:16px;min-height:44px;padding:10px 12px;font:13px Studio,sans-serif;text-align:left;color:#fff7e8;cursor:pointer}
+.journal-topic-value{overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.journal-topic-chevron{flex:none;display:block;width:7px;height:7px;margin-right:3px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(45deg)}
+#journal-topic[aria-expanded=true]{border-color:#fff0da99;background:var(--studio-control-hover,#ffffff29)}
+#journal-topic[aria-expanded=true] .journal-topic-chevron{transform:translateY(2px) rotate(225deg)}
+#journal-topic:focus-visible{outline:2px solid #ffe7c4;outline-offset:2px}
+.journal-topic-menu{position:fixed;z-index:100;box-sizing:border-box;padding:7px;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;touch-action:pan-y;scrollbar-width:thin;scrollbar-color:#e8d4b766 transparent;border:1px solid #fff7e978;border-radius:14px;color:#fff7e8;background:linear-gradient(130deg,#fff8ea25,#fff8ea09 55%,#fff8e916),#3d3327c9;box-shadow:inset 0 1px 1px #fffdf575,inset 0 -1px 1px #fff3d226,0 12px 32px #1b100b45;backdrop-filter:blur(22px) saturate(135%);-webkit-backdrop-filter:blur(22px) saturate(135%)}
+.journal-topic-menu [role=option]{position:relative;box-sizing:border-box;display:flex;align-items:center;min-height:44px;padding:10px 36px 10px 12px;border-radius:8px;font:13px/1.4 Studio,sans-serif;white-space:nowrap;cursor:pointer;user-select:none}
+.journal-topic-menu [role=option][aria-selected=true]{background:#fff0d81c;color:#fff9ec}
+.journal-topic-menu [role=option][aria-selected=true]::after{content:"";position:absolute;right:15px;width:5px;height:10px;border-right:1.5px solid #f5dfba;border-bottom:1.5px solid #f5dfba;transform:translateY(-2px) rotate(45deg)}
+.journal-topic-menu [role=option][data-active=true]{background:#fff0d82b;box-shadow:inset 0 0 0 1px #fff2db40}
+@media(hover:hover){.journal-topic-menu [role=option]:hover{background:#fff0d82b}}
+#story-panel .j-result-count{font:11px Studio,sans-serif;color:#dfcfb9;margin:12px 0 6px;flex:none}
+.journal-results{overflow:auto;flex:1;min-height:65px;overscroll-behavior:contain;touch-action:pan-y;scrollbar-width:thin;scrollbar-color:#e8d4b766 transparent}
+.j-result{width:100%;min-height:64px;border:0;border-bottom:1px solid #fff1d928;background:none;display:flex;gap:12px;align-items:center;justify-content:space-between;text-align:left;padding:12px 4px;color:#fff7e8}
+.j-result:hover,.j-result[aria-current=page]{background:#fff4df13}.j-result:focus-visible{outline:2px solid #ffe7c4;outline-offset:-2px;border-radius:6px}
+.j-result>span:first-child{display:flex;flex-direction:column;gap:5px}.j-result small{font:9px Studio,sans-serif;color:#ddc8a8;text-transform:uppercase;letter-spacing:.1em}.j-result strong{font:17px Studio,sans-serif;font-weight:400}.j-result em{font:12px/1.45 Studio,sans-serif;color:#e5d8c6;font-style:normal}.j-result-page{font:14px Studio,sans-serif;color:#e5d1b1;padding-right:4px}
+.journal-tools{display:flex;gap:12px;align-items:center;margin-top:16px;flex:none}.j-demo-notice{font:10px/1.5 Studio,sans-serif;color:#e1cfb5}.journal-tools .studio-control{font-size:11px;white-space:nowrap}
+.j-empty{font:14px/1.6 Studio,sans-serif;color:#eedfc9}
+.j-page-inner{height:100%;position:relative;padding:32px 35px 43px;overflow:hidden;display:flex;flex-direction:column;align-items:flex-start}
+.j-kicker{font:9px/1.5 Studio,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#817258;margin-bottom:24px}
+.j-page h1,.j-page h2{font:400 40px/1.02 Georgia,serif;letter-spacing:-.055em;color:#39382e;margin:0 0 20px;max-width:100%;text-wrap:balance}.j-page h1{font-size:52px}.j-page h3{font:11px Studio,sans-serif;letter-spacing:.1em;text-transform:uppercase;margin:0 0 12px;color:#77664d}
+.j-page p{margin:0 0 18px}.j-page .j-deck{font:italic 17px/1.5 Georgia,serif;color:#746a56;margin-bottom:22px}.j-page blockquote{font:italic 23px/1.3 Georgia,serif;color:#8e593e;border-left:2px solid #c4a280;margin:9px 0 22px;padding:1px 0 1px 16px;letter-spacing:-.025em}
+.j-page-footer{position:absolute;bottom:17px;left:35px;right:35px;display:flex;justify-content:space-between;border-top:1px solid #95846640;padding-top:9px;gap:10px;font:9px Studio,sans-serif;color:#8b7b62;letter-spacing:.04em;width:auto}
+.j-title-page .j-page-inner{align-items:center;text-align:center;justify-content:center}.j-title-page .j-kicker{position:absolute;top:30px}.j-title-page h1{max-width:300px}.j-title-page .j-deck{max-width:250px}.j-rule{width:40px;height:1px;background:#99815f;margin:0 0 23px}.j-title-note{font:14px/1.7 Georgia,serif;color:#8a7c65}.j-fixture-label{font:9px/1.5 Studio,sans-serif;color:#97876e;letter-spacing:.025em;margin-top:auto}.j-title-page .j-fixture-label{margin-top:10px}
+.j-index-preview{width:100%;margin:4px 0 14px}.j-index-preview button{background:none;color:#504a3b;border:0;display:flex;align-items:baseline;gap:10px;width:100%;min-height:35px;padding:6px 0;text-align:left;font:13px Georgia,serif}.j-index-preview button i{flex:1;border-bottom:1px dotted #9b8b6f}.j-index-preview button:hover,.j-text-link:hover{color:#a15534}.j-text-link{background:none;border:0;border-bottom:1px solid #ab8d60;padding:3px 0 7px;color:#7f5236;font:12px Studio,sans-serif;margin-bottom:22px}.j-page .j-small-note{font:12px/1.65 Georgia,serif;color:#8a7c65}.j-page .j-image-caption{font:10px/1.5 Studio,sans-serif;color:#8a7c65;margin-top:12px}
+.journal-study{width:100%;flex:1;min-height:90px;max-height:255px;position:relative;background:color-mix(in srgb,var(--accent) 12%,#e6decb);border:1px solid #84745322;overflow:hidden;box-shadow:2px 3px 0 #826d4120;transform:rotate(-1deg)}
+.study-grid{position:absolute;inset:0;background-image:linear-gradient(#5a635012 1px,transparent 1px),linear-gradient(90deg,#5a635012 1px,transparent 1px);background-size:23px 23px}
+.study-orbits{position:absolute;width:140px;height:140px;left:50%;top:49%;transform:translate(-50%,-50%);border:1px solid var(--accent);border-radius:50%}.study-orbits:before{content:"";position:absolute;inset:20%;border:1px solid var(--accent);border-radius:50%}.study-orbits:after{content:"";position:absolute;inset:38%;background:var(--accent);border-radius:50%}.study-orbits i{position:absolute;width:10px;height:10px;background:var(--accent);border-radius:50%;left:20px;top:15px}.study-orbits i:nth-child(2){left:125px;top:60px;width:6px;height:6px}.study-orbits i:nth-child(3){left:40px;top:130px;width:5px;height:5px}
+.study-card{display:none;position:absolute;inset:22% 16%;background:#faf4e8;box-shadow:7px 9px 0 color-mix(in srgb,var(--accent) 25%,transparent);padding:16px;border:1px solid #b4a88d55;transform:rotate(3deg)}.study-card span{font:italic 17px Georgia,serif;color:var(--accent)}.study-card b{display:block;width:36%;height:7px;background:var(--accent);margin:12px 0}.study-card i{display:block;background:#a99e8940;height:3px;width:90%;margin:7px 0}.study-card i:last-child{width:65%}.study-post .study-card,.study-cards .study-card,.study-radio .study-card,.study-window .study-card{display:block}.study-post .study-orbits,.study-cards .study-orbits,.study-radio .study-orbits,.study-window .study-orbits{display:none}.study-cards .study-card{transform:rotate(-7deg);inset:18% 24%;box-shadow:12px 10px 0 #f9f0dc,20px 18px 0 color-mix(in srgb,var(--accent) 20%,transparent)}.study-radio .study-card{border-radius:16px;inset:25% 13%;background:var(--accent)}.study-radio .study-card span{color:#fff4da}.study-radio .study-card b{border-radius:50%;background:#f6eacb;width:33px;height:33px;position:absolute;right:20px;top:30px}.study-radio .study-card i{width:48%;background:#fff3}.study-window .study-card{transform:rotate(0);border-radius:70px 70px 0 0;inset:10% 27% 0;padding-top:55px;background:var(--accent)}.study-window .study-card span{color:#f9edcc;font-size:12px}.study-map .study-orbits{border-radius:30% 70% 20% 80%;transform:translate(-50%,-50%) rotate(-25deg);border-style:dashed;width:180px;height:100px}.study-kite .study-orbits{border-radius:0;width:100px;height:100px;transform:translate(-50%,-50%) rotate(45deg)}.study-kite .study-orbits:before{border-radius:0}.study-label,.study-number{position:absolute;font:8px Studio,sans-serif;letter-spacing:.13em;color:var(--accent);bottom:12px;left:12px}.study-number{top:12px;bottom:auto;right:12px;left:auto}
+.journal-riffle{position:absolute;inset:0;z-index:4;perspective:5000px;transform-style:preserve-3d;pointer-events:none;overflow:visible}.j-riffle-under{position:absolute;inset:0;overflow:hidden;border-radius:8px 12px 12px 8px}.j-riffle-strip{position:absolute;top:0;transform-origin:0 50%;overflow:hidden;backface-visibility:visible;background:#f3ecd9;will-change:transform}.j-riffle-face{position:absolute;top:0;pointer-events:none}.j-riffle-back{transform:scaleX(-1)}.j-riffle-face .j-page{width:100%;height:100%}.j-riffle-hidden{visibility:hidden}
+/* Short screens retain all copy through a scrollable page, without shrinking the text. */
+.j-short .j-page-inner{overflow:auto;overscroll-behavior:contain;touch-action:pan-y;display:block}.j-short .j-page-footer{position:static;margin-top:20px}.j-short .j-kicker{display:block}.j-short .journal-study{height:145px;min-height:145px}.j-short .j-title-page .j-page-inner{display:flex}.j-short .j-title-page .j-kicker{position:static;margin-bottom:10px}.j-short .j-title-page h1{font-size:32px}.j-short .j-title-page .j-page-footer{width:100%;margin-top:auto}.j-short .j-title-page .j-fixture-label{margin-bottom:10px}.j-short .j-fixture-label{display:block}.j-short .j-page .j-small-note{margin-bottom:12px}
+@media(max-width:740px){.j-intro-page .j-page-inner{display:block;overflow:auto;overscroll-behavior:contain;touch-action:pan-y}.j-intro-page .j-kicker{display:block}.j-intro-page .j-page-footer{position:static;margin-top:20px}}
+
+
+/* Compact inspections use one scrollable page while contents stay available. */
+@media(max-width:700px) and (max-aspect-ratio:1/1){
+ body[data-object=notebook] #story-title{font-size:32px;margin:10px 0 14px}
+ body[data-object=notebook] #story-panel .glass-content{padding:18px}
+ .j-search-label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+ .journal-filters{margin-top:8px}.journal-tools{margin-top:10px}.j-result em{display:none}
+ .journal-pagination{min-width:145px}.journal-footer{gap:10px}.journal-instruction{font-size:10px}
+ .j-page-inner{padding:22px 25px 34px}.j-page h2{font-size:32px}.j-page h1{font-size:35px}
+ .j-page{font-size:14px}.j-page blockquote{font-size:21px}.j-kicker{margin-bottom:15px}
+}
+@media(max-height:600px){
+ .journal-instruction{display:none}.journal-pagination{min-width:95px}.journal-footer{gap:10px}
+ body[data-object=notebook] #story-title{font-size:30px;margin:8px 0 12px}
+ body[data-object=notebook] #story-panel .glass-content{padding:16px}
+ .j-search-label,.j-result em{display:none}.journal-tools{margin-top:8px}
+ .journal-tools .studio-control{min-height:34px;padding:6px 10px}
+ .j-page-inner{padding:20px 22px 34px}.j-page{font-size:14px}.j-page h2{font-size:30px}
+ .j-short .j-title-page .j-page-inner{display:block}.j-short .j-title-page h1{font-size:28px}
+}
+/* Keep focus-driven scrolling inside pages/contents, never the room itself. */
+body[data-object=notebook] #world{touch-action:pan-y;overflow:clip}
+.j-project-image{margin:0;transform:rotate(-1deg)}.j-project-image img{width:100%;height:100%;object-fit:contain;display:block}
+
+@media(max-height:600px){
+ body[data-object=notebook] #story-panel .glass-content{display:block;overflow:auto}
+ #journal-contents{display:block;overflow:visible}
+ .journal-results{max-height:170px;min-height:0}.journal-tools{margin-top:12px}
+ .j-result{min-height:58px}.j-title-note,.j-rule{display:none}
+ .j-short .j-page-inner{padding-top:15px}.j-short .j-title-page h1{font-size:26px}
+}
+
+.detail-layer[data-detail=journal-clean]{opacity:0}
+body[data-journal-ready=true] .detail-layer[data-detail=journal-clean]{opacity:1}
+body[data-journal-ready=true] .detail-layer[data-detail=notebook]{opacity:0}
+
+body[data-object=notebook] #story-panel{height:calc(100dvh - 190px)}
+body[data-object=notebook] #story-panel .glass-content{height:100%}
+#journal-contents{flex:1}
+@media(max-width:700px) and (max-aspect-ratio:1/1){body[data-object=notebook] #story-panel{height:calc(52dvh - 90px)}}
+
+#journal-reader[data-asset-failed=true] .journal-stage{visibility:hidden}
+@media(max-height:600px) and (min-aspect-ratio:1/1){
+ body[data-object=notebook] #story-panel{left:auto;right:18px;top:64px;bottom:76px;width:46%;height:calc(100dvh - 140px);max-height:calc(100dvh - 140px);transform:none}
+}
+
+#journal-reader[data-turning=true] .journal-book{pointer-events:none}
+
+/* Archive copy can grow independently of the photographed paper dimensions. */
+.j-archive-page .j-page-inner{display:block;overflow:auto;overscroll-behavior:contain;touch-action:pan-y}
+.j-archive-page .j-kicker{display:block}
+.j-archive-page .j-page-footer{position:static;margin-top:24px}
+.j-archive-page h2{overflow-wrap:anywhere}
+.j-archive-page .j-deck{font-size:16px;line-height:1.5}
+.j-archive-page section{margin-bottom:22px}
+.j-archive-page section p{margin-bottom:0}
+.j-archive-page .j-project-image{height:auto;min-height:0;max-height:none;overflow:visible;background:none;box-shadow:none;border:0;transform:none}
+.j-archive-page .j-project-image img{height:auto;max-height:240px;object-fit:contain;border:1px solid #84745322}
+.j-project-image figcaption{font:10px/1.5 Studio,sans-serif;color:#8a7c65;margin:10px 0 18px}
+.j-project-decision{border-top:1px solid #95846640;padding-top:18px}
+.j-project-links{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:20px}
+.j-project-links .j-text-link{display:inline-block;min-height:32px;margin:0;line-height:1.5;text-decoration:none}
+.j-project-links a:focus-visible{outline:2px solid #a15534;outline-offset:3px}
+
+/* Quiet paper-toned scroll affordance, scoped to the notebook pages. */
+.j-page-inner{color-scheme:light;scrollbar-width:thin;scrollbar-color:#a58b67 transparent}
+.j-notes-page .j-page-inner{container-type:inline-size}
+.j-notes-page h2{white-space:nowrap;font-size:clamp(16px,11cqi,34px);line-height:1.1;margin-bottom:16px}
+@supports selector(::-webkit-scrollbar){
+ .j-page-inner{scrollbar-width:auto;scrollbar-color:auto}
+ .j-page-inner::-webkit-scrollbar{width:6px;height:6px}
+ .j-page-inner::-webkit-scrollbar-track{background:transparent;margin-block:20px}
+ .j-page-inner::-webkit-scrollbar-thumb{background:#a58b6799;border-radius:99px}
+ .j-page-inner::-webkit-scrollbar-thumb:hover{background:#8b704ddd}
+ .j-page-inner::-webkit-scrollbar-button{display:none;width:0;height:0}
+ .j-page-inner::-webkit-scrollbar-corner{background:transparent}
+}
+
+
+/* Short opening pages start at the top so removed decoration leaves no clipped title. */
+.j-short .j-title-page .j-page-inner{justify-content:flex-start}
+.j-title-page .j-page-inner>*{flex-shrink:0}
+
+/* Long introductory copy stays reachable at every desktop page height. */
+.j-intro-page .j-page-inner{display:block;overflow:auto;overscroll-behavior:contain;touch-action:pan-y}
+.j-intro-page .j-kicker{display:block}
+.j-intro-page .j-page-footer{position:static;margin-top:24px}
+
+/* Read authored headings in sentence case; preserve deliberate paragraph breaks. */
+.j-page .j-kicker,.j-page h3{text-transform:none;letter-spacing:normal}
+.j-page h3{font-size:13px;line-height:1.4}
+.j-page .j-deck{font-style:normal}
+.j-archive-page section p+p{margin-top:16px}
+.project-description{white-space:pre-line}
+.panel-topline{text-transform:none;letter-spacing:normal}

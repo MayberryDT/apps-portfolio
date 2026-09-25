@@ -1,0 +1,133 @@
+@font-face{font-family:Studio;src:url('vendor/Lato-Regular.woff2') format('woff2');font-display:swap}
+@font-face{font-family:Studio;src:url('vendor/Lato-Latin.eb9baa740a77.woff2') format('woff2');font-display:swap;unicode-range:U+0-024F,U+2000-206F,U+2100-21FF}
+:root{font-family:Studio,sans-serif;color:#f5efdf;color-scheme:dark;background:#211c17}*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden}button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}button:focus-visible{outline:2px solid #f5dfb9;outline-offset:5px}#world{width:100%;height:100dvh;position:relative;overflow:hidden;touch-action:none}#scene{position:absolute;transform-origin:0 0;will-change:transform}#plate,#objects{position:absolute;inset:0;display:block;width:100%;height:100%}#plate{object-fit:fill;user-select:none;-webkit-user-drag:none}#objects{pointer-events:none}#figure-hit{position:absolute;background:transparent;border:0;min-width:44px;min-height:44px;padding:0;cursor:zoom-in;touch-action:none}#figure-hit span{position:absolute;bottom:-28px;left:50%;transform:translateX(-50%);font-size:12px;white-space:nowrap;opacity:0;background:#29231ddc;padding:7px 10px;border:1px solid #e9d1a442;border-radius:4px;transition:opacity .18s}#figure-hit span span{position:static;padding:0;border:0;background:none;opacity:1}#figure-hit:hover>span,#figure-hit:focus-visible>span{opacity:1}body[data-focused=true] #figure-hit{cursor:grab}body[data-dragging=true] #figure-hit{cursor:grabbing}body[data-focused=true] #figure-hit>span{display:none}
+#dock{position:absolute;bottom:max(40px,calc(env(safe-area-inset-bottom) + 30px));left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:5px;padding:4px;background:#29231ddc;border:1px solid #e9d1a44a;border-radius:8px;box-shadow:0 4px 20px #0002;backdrop-filter:blur(12px);white-space:nowrap}#dock button{min-height:44px;border:0;background:none;border-radius:4px;padding:0 18px;font-size:13px}#dock button:hover{background:#f9e8c318}#dock .rotate{font-size:22px;min-width:44px;padding:0 10px;border-left:1px solid #f5ead229}#hint{position:absolute;bottom:max(12px,env(safe-area-inset-bottom));left:0;width:100%;text-align:center;font-size:11px;letter-spacing:.025em;color:#fff8eb;opacity:.8;margin:0;text-shadow:0 1px 6px #000;pointer-events:none}.small-control{position:absolute;top:max(18px,env(safe-area-inset-top));right:18px;width:44px;height:44px;background:#29231ddc;border:1px solid #e9d1a44a;border-radius:6px;font-size:24px;backdrop-filter:blur(12px)}.notice{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);border:1px solid #e9d1a44a;border-radius:7px;background:#29231df5;padding:22px 28px;font-size:14px;line-height:1.5;text-align:center;max-width:calc(100% - 32px)}.notice p{margin:0 0 12px}.notice button{border:0;border-radius:4px;background:#e8d8b9;color:#302720;min-height:44px;padding:0 20px}[hidden]{display:none!important}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+@media(max-width:600px){.small-control{top:12px;right:12px}#dock button{padding:0 13px}#hint{font-size:10px}}
+@media(max-height:500px){#dock{bottom:12px}#hint{display:none}.small-control{top:12px}}
+@media(prefers-reduced-motion:reduce){#figure-hit span{transition:none}}
+
+/* A warm glass object floating inside the studio, with the wood visible through it. */
+#story-panel{
+  position:absolute;right:7vw;top:48%;width:clamp(330px,33vw,460px);
+  max-height:calc(100dvh - 170px);border-radius:28px;isolation:isolate;
+  color:#fff9ef;visibility:hidden;opacity:0;pointer-events:none;
+  transform:translateY(calc(-50% + 18px)) scale(.97);
+  background:linear-gradient(135deg,#fff3d32e 0%,#f8f0db12 32%,#fff4df08 64%,#ffedd323 100%),#30251dc2;
+  border:1px solid #fff2dc69;
+  box-shadow:inset 0 1px 1px #fffdf399,inset 1px 0 0 #fff5df32,inset -1px -1px 1px #fff2da26,0 25px 70px #130e0a38,0 3px 8px #0b09061c;
+  -webkit-backdrop-filter:blur(22px) saturate(145%);backdrop-filter:blur(22px) saturate(145%);
+  transition:opacity .28s ease,transform .55s cubic-bezier(.2,.8,.2,1),visibility 0s linear .3s;
+}
+@supports ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  #story-panel{background:linear-gradient(135deg,#fff3d330 0%,#f8f0db12 35%,#fff4df0a 65%,#ffedd329 100%),#30251d8f}
+}
+#story-panel::before{
+  content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:radial-gradient(ellipse at 0 0,#fffce526,transparent 58%);
+  box-shadow:inset 0 0 0 1px #fffaf012;
+}
+body[data-focused=true] #story-panel{
+  visibility:visible;opacity:1;pointer-events:auto;transform:translateY(-50%) scale(1);
+  transition-delay:.23s,.18s,0s;
+}
+.glass-content{position:relative;padding:clamp(26px,2.6vw,38px);max-height:inherit;overflow:auto;overscroll-behavior:contain;touch-action:pan-y;scrollbar-width:thin;scrollbar-color:#e8d4b766 transparent;border-radius:inherit}
+.panel-topline{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:10px;text-transform:uppercase;letter-spacing:.13em;color:#f3e8d7}
+.favorite-mark{display:inline-flex;align-items:center;gap:5px;color:#f5d8a7;font-size:10px;text-transform:none;letter-spacing:.02em}
+#story-title{margin:25px 0 25px;font-size:clamp(48px,4.5vw,66px);font-weight:400;letter-spacing:-.055em;line-height:1.04;text-shadow:0 2px 20px #21160c22}
+#story-title span{display:block;margin-top:10px;font-size:12px;font-weight:400;letter-spacing:.04em;color:#e8d9c3}
+#story-panel :is([role=tabpanel],.single-story){margin-top:25px;font-size:14px;line-height:1.75;color:#f0e6d7;text-wrap:pretty}
+#story-panel :is([role=tabpanel],.single-story):focus-visible{outline:1px solid #f5dfb9;outline-offset:6px;border-radius:3px}
+#story-panel p{margin:0 0 16px}
+#story-panel .panel-lead{font-family:Georgia,serif;font-size:21px;line-height:1.4;letter-spacing:-.025em;color:#fff7e8;margin-bottom:18px}
+.panel-footnote{display:flex;align-items:center;gap:8px;border-top:1px solid #fff4df26;padding-top:19px;margin-top:24px;color:#d6c5ad;font-size:10px;letter-spacing:.025em}
+.tiny-diamond{width:5px;height:5px;transform:rotate(45deg);border:1px solid currentColor}
+#dock{transition:left .8s cubic-bezier(.65,0,.35,1)}
+body[data-focused=true] #dock{left:30%}
+body[data-focused=true] #hint{width:60%}
+@media(max-width:1000px) and (min-width:701px){
+  #story-panel{right:4vw;width:39vw;max-height:calc(100dvh - 120px)}
+  .glass-content{padding:24px}.panel-topline{font-size:9px;letter-spacing:.07em}
+  #story-panel :is([role=tabpanel],.single-story){font-size:13px}#story-title{font-size:48px}
+  #story-panel .panel-lead{font-size:19px}
+}
+@media(max-width:700px){
+  #story-panel{left:16px;right:16px;width:auto;top:auto;bottom:109px;max-height:calc(58dvh - 105px);border-radius:23px;transform:translateY(20px) scale(.98)}
+  body[data-focused=true] #story-panel{transform:translateY(0) scale(1)}
+  .glass-content{padding:22px 23px}
+  #story-title{font-size:40px;margin:16px 0 18px}
+  #story-title span{margin-top:7px;font-size:11px}
+  #story-panel :is([role=tabpanel],.single-story){font-size:13px;line-height:1.7;margin-top:19px}
+  #story-panel .panel-lead{font-size:18px;margin-bottom:13px}
+  #story-panel p{margin-bottom:12px}.panel-footnote{margin-top:18px;padding-top:15px}
+  .glass-tabs button{font-size:12px}
+  body[data-focused=true] #dock{left:50%}
+  body[data-focused=true] #hint{width:100%}
+}
+@media(max-height:600px) and (min-width:701px){
+  #story-panel{top:50%;max-height:calc(100dvh - 38px);right:5vw}
+  .glass-content{padding:22px 26px}#story-title{font-size:42px;margin:15px 0 18px}
+}
+@media(prefers-reduced-motion:reduce){#story-panel,#dock,.glass-tabs button{transition:none!important}}
+/* The room itself is the interface; every control floats inside it. */
+#location{position:absolute;left:24px;top:max(22px,env(safe-area-inset-top));display:flex;align-items:center;gap:10px;color:#fff6e8;font-size:12px;letter-spacing:.025em;text-shadow:0 1px 6px #22160cbb}#location-name{padding:9px 13px;border-radius:6px;background:#29231d9e;backdrop-filter:blur(12px);border:1px solid #f5e4c72b}#return{width:44px;height:44px;border:1px solid #e9d1a44a;border-radius:6px;background:#29231ddc;font-size:20px;backdrop-filter:blur(12px)}
+#areas{position:absolute;bottom:max(25px,calc(env(safe-area-inset-bottom) + 16px));left:50%;transform:translateX(-50%);display:flex;align-items:center;padding:4px;border:1px solid #fff2dc55;border-radius:12px;background:#30251dc7;box-shadow:inset 0 1px 0 #fff4dd35,0 6px 24px #26180b24;backdrop-filter:blur(16px)}
+#areas a{display:flex;align-items:center;justify-content:center;min-height:44px;padding:0 20px;color:#eddfcd;text-decoration:none;font-size:12px;border-radius:8px;border:1px solid transparent}#areas a:hover{background:#fff8e810}#areas a[aria-current=page]{color:#fff9ef;background:#fff3dd1b;border-color:#fff2dd32}a:focus-visible{outline:2px solid #f5dfb9;outline-offset:3px}
+#dock{bottom:max(96px,calc(env(safe-area-inset-bottom) + 87px))}#hint{bottom:max(8px,env(safe-area-inset-bottom));font-size:10px}body[data-focused=true] #hint{width:100%}body[data-focused=true] #dock{left:30%}#story-panel{max-height:calc(100dvh - 155px);top:47%}
+#hotspots{position:absolute;inset:0;pointer-events:none}#hotspots button{position:absolute;pointer-events:auto}.area-hit{transform:translate(-50%,-50%);height:44px;min-width:44px;padding:0;display:flex;align-items:center;gap:8px;border:0;background:transparent;border-radius:30px;text-shadow:0 1px 5px #0007}.area-hit i{display:block;flex:none;width:14px;height:14px;margin-left:8px;border:1px solid #fff9e7;border-radius:50%;background:#fff6df5c;box-shadow:0 0 0 6px #352b211e,0 1px 8px #30211144}.area-hit span{font-size:12px;padding:9px 12px;border:1px solid #fff2dc5c;border-radius:7px;background:#30251daf;backdrop-filter:blur(12px);box-shadow:inset 0 1px 0 #fff2dc22}.area-hit:hover i{background:#fff9e7}.area-hit:hover span{background:#30251ddb}
+.object-hit{border:0;background:none;cursor:zoom-in;padding:0;touch-action:none;border-radius:4px}.object-hit>span{position:absolute;top:100%;left:50%;transform:translateX(-50%);padding:8px 12px;background:#29231de8;border:1px solid #e9d1a44a;border-radius:5px;font-size:12px;white-space:nowrap;opacity:0;transition:opacity .18s}.object-hit:hover>span,.object-hit:focus-visible>span{opacity:1}body[data-focused=true] .object-hit{cursor:grab}body[data-focused=true] .object-hit>span{display:none}body[data-dragging=true] .object-hit{cursor:grabbing}
+.project-links{display:grid;gap:0}.project-links a,.contact-link{display:flex;justify-content:space-between;gap:12px;color:#fff7e8;text-decoration:none;border-bottom:1px solid #fff4df24;padding:11px 0;min-height:44px;font-size:14px}.project-links a:hover,.contact-link:hover{color:#ffdfac}.project-links a span,.contact-link span{color:#dbc5a5}.project-links a:last-child{border-bottom:0}.contact-link{font-size:17px}
+@media(max-width:700px){#location{left:12px;top:12px;gap:7px;font-size:11px}#areas{width:calc(100% - 24px);bottom:max(22px,calc(env(safe-area-inset-bottom) + 10px));justify-content:space-around;gap:0}#areas a{padding:0 8px;font-size:11px;flex:1}#dock{bottom:max(90px,calc(env(safe-area-inset-bottom) + 78px))}body[data-focused=true] #dock{left:50%}#story-panel{top:auto;bottom:153px;max-height:calc(59dvh - 132px)}#hint{font-size:9px}.area-hit span{font-size:10px;padding:7px 9px}.area-hit i{width:10px;height:10px}#story-title{font-size:37px}.glass-content{padding:20px 22px}}
+@media(max-height:550px) and (min-width:701px){#story-panel{top:48%;max-height:calc(100dvh - 108px)}#areas{bottom:14px}#dock{bottom:81px}#hint{display:none}}
+@media(prefers-reduced-motion:reduce){#scene,.object-hit span{transition:none!important}}
+
+#story-title:focus,#location-name:focus{outline:none}
+/* Every route shares this one photographic plane. Details never swap on zoom. */
+#scene{width:1448px;height:1086px;transform-origin:0 0}
+#details,.detail-layer{position:absolute;inset:0;width:1448px;height:1086px;pointer-events:none}
+.detail-layer{mask-size:100% 100%;mask-repeat:no-repeat}
+.detail-layer img{position:absolute;display:block;max-width:none;user-select:none;-webkit-user-drag:none}
+#objects{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+#story-panel{transition:opacity .25s ease,transform .35s cubic-bezier(.2,.8,.2,1),visibility 0s linear .25s}
+body[data-focused=true] #story-panel{transition-delay:0s}
+/* Let Chromium rasterize images at the settled zoom, not cache a doorway bitmap. */
+#scene{will-change:auto}
+
+/* Navigation belongs to the room: one small visible glass node per destination. */
+
+#node-leaders{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+#node-leaders line{stroke:#fff4dd;stroke-width:1;vector-effect:non-scaling-stroke}
+#figure-drag{position:absolute;min-width:44px;min-height:44px;border:0;background:transparent;cursor:grab;touch-action:none}
+body[data-dragging=true] #figure-drag{cursor:grabbing}
+#story-panel{max-height:calc(100dvh - 100px);top:50%}
+@media(max-width:700px){
+ #hotspots .scene-node{font-size:11px;padding:0 11px;gap:6px;border-radius:12px}
+ #hotspots .scene-node>span{font-size:11px}
+ #story-panel{top:auto;bottom:20px;max-height:calc(52dvh - 20px)}
+}
+@media(prefers-reduced-motion:reduce){#hotspots .scene-node{transition:none}}
+
+.wall-photo{position:absolute;object-fit:cover;filter:brightness(.94) sepia(.06);pointer-events:none}
+#phone-drag{position:absolute;border:0;background:transparent;cursor:grab;touch-action:none;min-width:44px;min-height:44px}
+#phone-drag:active{cursor:grabbing}#phone-drag:focus-visible{outline:1px solid #fff3d0;outline-offset:8px;border-radius:20px}
+.helm-controls{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+
+.object-still{position:absolute;display:block;max-width:none;pointer-events:none;user-select:none}
+[data-detail="helm-reveal"]{opacity:1}
+/* The clean desk and exact model still form the resting photograph. Only swap
+   the still once its live counterpart is ready, in the same rendered frame. */
+body[data-live-object="helm"] #still-helm-rest{visibility:hidden}
+
+/* Helm: native control equivalents remain comfortably tappable at every size. */
+.helm-demo-note{font-size:12px!important;line-height:1.6!important;opacity:.7;margin-top:18px!important}
+.helm-hardware-controls{padding-top:14px;border-top:1px solid #ffffff20}
+
+#world:focus{outline:none}
+
+/* Contact uses the same resting-model swap, over its permanent clean photo. */
+body[data-live-object="pixel"] #still-contact-rest{visibility:hidden}
+.contact-turn-hint{font-size:11px!important;opacity:.75;margin-top:12px!important}
+.contact-hardware-controls{margin-top:16px}
+
+/* The complete baked overview is replaced atomically after area details decode. */
+body:not([data-desk-ready=true]) :is(#laptop-screen-still,#omarchy-screen-still){visibility:hidden}
+.detail-region{position:absolute;inset:0;pointer-events:none}

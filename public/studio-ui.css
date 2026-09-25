@@ -1,0 +1,152 @@
+/* Studio skin for Basecoat's standalone primitives. Layout stays in style.css
+   and workstation.css; change shared controls and their tokens here. */
+:root {
+  line-height: normal;
+  --font-sans: Studio, sans-serif;
+  --font-heading: Studio, sans-serif;
+  --background: #211c17;
+  --foreground: #fff9ef;
+  --primary: #e8d8b9;
+  --primary-foreground: #302720;
+  --muted-foreground: #e0d3c2;
+  --border: #fff7e954;
+  --ring: #f5dfb9;
+  --studio-control-height: 44px;
+  --studio-control-radius: 10px;
+  --studio-control-background: #ffffff15;
+  --studio-control-hover: #ffffff29;
+  --studio-focus-offset: 3px;
+  --studio-ui-duration: 180ms;
+  --studio-tab-background: #1e160e24;
+  --studio-tab-active: linear-gradient(145deg, #fff7e529, #fff9ed12);
+}
+
+.btn {
+  font-family: inherit;
+  transition-property: background-color, border-color, color, box-shadow, transform;
+  transition-duration: var(--studio-ui-duration);
+  transition-timing-function: ease;
+  touch-action: manipulation;
+}
+
+.studio-control {
+  min-height: var(--studio-control-height);
+  padding: 10px 14px;
+  gap: 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--studio-control-radius);
+  background: var(--studio-control-background);
+  color: #fff5e7;
+}
+.studio-control:hover { background: var(--studio-control-hover); }
+.studio-control:disabled { opacity: .45; cursor: default; }
+.studio-control:focus-visible,
+.studio-tabs [role="tab"]:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: var(--studio-focus-offset);
+}
+.studio-icon { width: 44px; height: 44px; padding: 0; }
+
+/* Basecoat supplies flex/selection behavior; the studio supplies the glass skin. */
+.studio-tabs { min-width: 0; }
+.studio-tabs :is([role="tabpanel"],.single-story) > :last-child { margin-bottom: 0; }
+.studio-tabs > .glass-tabs {
+  width: 100%;
+  gap: 3px;
+  padding: 4px;
+  border: 1px solid #fff5e321;
+  background: var(--studio-tab-background);
+  border-radius: 12px;
+  box-shadow: inset 0 1px 3px #130d0720;
+}
+.glass-tabs button {
+  flex: 1;
+  min-height: var(--studio-control-height);
+  padding: 9px 12px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: none;
+  color: var(--muted-foreground);
+  font-size: 12px;
+  transition: background-color var(--studio-ui-duration), color var(--studio-ui-duration);
+  white-space: nowrap;
+  touch-action: manipulation;
+}
+.glass-tabs button:hover { background: #fff8e810; color: var(--foreground); }
+.glass-tabs button[aria-selected="true"] {
+  color: #fffdf5;
+  background: transparent;
+}
+
+.helm-controls .studio-control:active { transform: scale(.96); }
+.helm-controls .studio-control[aria-pressed="true"] {
+  background: #7aa2f737;
+  box-shadow: inset 0 0 0 1px #bb9af780;
+}
+.helm-controls { --ring: #bb9af7; }
+
+/* Native project buttons keep their authored thumbnail layout. */
+.project-file.btn { white-space: normal; }
+.project-desktop { --ring: #a8cfff; }
+
+@media (prefers-reduced-motion: reduce) {
+  .btn, .glass-tabs button { transition: none !important; }
+}
+
+/* Spatial navigation retains the established photographic anchor geometry. */
+#hotspots .scene-node,#hero .studio-entry{position:absolute;transform:translate(-50%,-50%);display:flex;align-items:center;justify-content:center;gap:8px;min-width:44px;min-height:44px;width:auto;height:auto;padding:0 14px;border:1px solid #fff7e978;border-radius:14px;cursor:pointer;color:#fff9ef;background:linear-gradient(130deg,#fff8ea32,#fff8ea0d 50%,#fff8e91d),#3d332787;box-shadow:inset 0 1px 1px #fffdf59e,inset 0 -1px 1px #fff3d226,0 5px 18px #1b100b24;backdrop-filter:blur(17px) saturate(135%);-webkit-backdrop-filter:blur(17px) saturate(135%);text-shadow:0 1px 4px #30231766;touch-action:manipulation;transition:background .18s,box-shadow .18s}
+#hotspots .scene-node>span,#hero .studio-entry>span{position:static;display:block;transform:none;opacity:1;padding:0;background:none;border:none;border-radius:0;box-shadow:none;backdrop-filter:none;font-size:12px;white-space:nowrap;line-height:1.2;color:inherit}
+#hotspots .scene-node>i,#hero .studio-entry>i{display:block;flex:none;width:5px;height:5px;margin:0;border:1px solid #fff9ea;border-radius:50%;background:#fffae78c;box-shadow:0 0 6px #ffedbd33}
+#hotspots .scene-node:hover,#hero .studio-entry:hover{background:linear-gradient(130deg,#fff8ea48,#fff8ea16),#3d3327a6;box-shadow:inset 0 1px 1px #fffdf5bf,0 7px 24px #1b100b30}
+#hotspots .scene-node:focus-visible,#hero .studio-entry:focus-visible{outline:2px solid #fff3d0;outline-offset:4px}
+#location-name,#return,.small-control{background:linear-gradient(130deg,#fff8ea25,#fff8ea09),#3d332789;border:1px solid #fff7e962;box-shadow:inset 0 1px 1px #fffdf575;backdrop-filter:blur(17px) saturate(135%);border-radius:12px}
+@media(max-width:700px){
+  #hotspots .scene-node,#hero .studio-entry{font-size:11px;padding:0 11px;gap:6px;border-radius:12px}
+  #hotspots .scene-node>span,#hero .studio-entry>span{font-size:11px}
+}
+@media(prefers-reduced-motion:reduce){#hotspots .scene-node,#hero .studio-entry{transition:none}}
+
+/* Preserve one footprint for every story in an inspection. Inactive panels
+   contribute only their size: hidden + visibility + inert exclude their UI. */
+#stories { display: grid; }
+#stories > [role="tabpanel"] { grid-area: 1 / 1; min-width: 0; align-self: start; }
+#stories > [role="tabpanel"][hidden] {
+  visibility: hidden;
+  pointer-events: none;
+}
+/* Match Basecoat’s reset layer: layered !important beats unlayered rules. */
+@layer base {
+  #stories > [role="tabpanel"][hidden] { display: block !important; }
+}
+#stories > [role="tabpanel"]:not([hidden]) { animation: story-enter 180ms ease-out; }
+@keyframes story-enter { from { opacity: 0; } to { opacity: 1; } }
+.studio-tabs .t-tabs-pill {
+  border-radius: 8px;
+  background: var(--studio-tab-active);
+  border: 1px solid #fff4de36;
+  box-shadow: inset 0 1px 0 #fff9ef45, 0 2px 5px #17100814;
+}
+.glass-tabs .t-tab { height: auto; }
+#room-return {
+  position: absolute;
+  z-index: 6;
+  bottom: max(14px, calc(env(safe-area-inset-bottom) + 10px));
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  background: linear-gradient(130deg,#fff8ea25,#fff8ea09),#3d3327c9;
+  backdrop-filter: blur(17px) saturate(135%);
+  box-shadow: inset 0 1px 1px #fffdf575;
+}
+#room-return:hover { background-color: #564736; }
+#story-panel { max-height: calc(100dvh - 150px); }
+@media(max-width:700px) {
+  #story-panel { bottom: max(76px, calc(env(safe-area-inset-bottom) + 72px)); max-height: calc(52dvh - 60px); }
+}
+@media(prefers-reduced-motion:reduce) {
+  #stories > [role="tabpanel"] { animation: none !important; }
+}
+
+/* A single story is ordinary content, with no redundant selector or tab gap. */
+#tabs[hidden]{display:none!important}
+#story-panel .single-story{margin-top:0}

@@ -1,1014 +1,159 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<script type="importmap">{"imports":{"three":"./vendor/build/three.module.js","three/addons/":"./vendor/examples/jsm/"}}</script><script type="module" src="hero.js"></script>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/jpeg" href="favicon.jpg">
+
+
+
+
+
+
+
+
+
+<template id="room-styles"><link rel="stylesheet" href="room-bundle.css"></template>
+<style id="hero-critical">@font-face{font-family:HeroStudio;src:url('vendor/Lato-Hero.0a95f1973a80.woff2') format('woff2');font-display:swap;unicode-range:U+0-024F,U+2000-206F,U+2100-21FF}
+:root{font-family:Studio,sans-serif;color:#f5efdf;color-scheme:dark;background:#211c17;--foreground:#fff9ef;--primary-foreground:#302720;--border:#fff7e954;--ring:#f5dfb9}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden}button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}[hidden]{display:none!important}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+#hero .studio-control{min-height:44px;padding:10px 14px;gap:8px;border:1px solid var(--border);border-radius:10px;background:#ffffff15;color:#fff5e7}
+#hero .studio-entry{position:absolute;transform:translate(-50%,-50%);display:flex;align-items:center;justify-content:center;min-width:44px;cursor:pointer;font-size:16px}
+#hero .studio-entry>span{display:block;white-space:nowrap;color:inherit}
+#hero .studio-entry:focus-visible{outline:2px solid #fff3d0;outline-offset:4px}
+/* Hero layout; Enter shares the room's actual scene-node skin in studio-ui.css. */
+#hero{position:fixed;inset:0;z-index:50;isolation:isolate;overflow:hidden;background:#302b25;color:var(--foreground);container-type:inline-size;touch-action:pan-y;font-family:HeroStudio,Arial,sans-serif}
+#hero[hidden]{display:none!important}
+#hero-art{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;user-select:none;pointer-events:none;transform-origin:0 0}
+.hero-identity{--hero-title-size:min(4.8cqw,92px);position:absolute;left:max(32px,4.8vw);top:6%;color:var(--primary-foreground)}
+.hero-identity h1{font-size:var(--hero-title-size);font-weight:700;line-height:1.02;max-width:none;white-space:nowrap;letter-spacing:normal;margin:0}
+.hero-subtitle{margin:12px 0 0 calc(var(--hero-title-size) * .44875);font-size:18px;line-height:1.4;font-weight:700}
+#hero a,#hero button{touch-action:manipulation;font-family:inherit}
+#hero-enter{left:57.5%;top:58%;text-decoration:none;line-height:normal}
+#hero-enter .hero-arrow{font:18px HeroStudio,Arial,sans-serif}
+#hero-enter[aria-disabled=true]{cursor:wait}
+#hero-notice{position:absolute;z-index:5;top:70%;left:50%;transform:translateX(-50%);color:var(--foreground);max-width:calc(100% - 32px);width:340px;line-height:1.5;text-align:center;text-shadow:0 1px 5px #000}
+#hero-status{margin:0 0 10px;font-size:13px;max-width:280px}
+.hero-notice-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+#hero-notice button,#hero-notice a{display:inline-flex;align-items:center;font-size:12px;text-decoration:none}
+body[data-arrival=hero] #world,body[data-arrival=loading] #world{visibility:hidden}
+body:is([data-arrival=entering],[data-arrival=leaving]) :is(.hero-identity,#hero-enter){pointer-events:none}
+#hero:focus{outline:none}
+body[data-arrival=room] #hero{display:none}
+#hero.image-unavailable #hero-art{visibility:hidden}
+#hero.image-unavailable .hero-identity{color:var(--foreground)}
+@media(max-width:700px){
+#hero-art{object-position:67% center}
+.hero-identity{--hero-title-size:50px;left:7%;top:max(20px,env(safe-area-inset-top))}
+.hero-identity h1{max-width:250px;line-height:1}
+.hero-subtitle{font-size:16px;margin-top:10px}
+#hero-enter{left:43%;top:62%}
+#hero-notice{top:74%;max-width:calc(100% - 20px)}
+}
+@media(max-width:350px){.hero-identity{--hero-title-size:44px;top:max(12px,env(safe-area-inset-top))}.hero-subtitle{font-size:14px;margin-top:6px}.hero-identity h1{max-width:220px}}
+@media(max-height:540px){
+.hero-identity{--hero-title-size:clamp(28px,4vw,42px);top:6%;left:5%}
+.hero-identity h1{max-width:none}
+.hero-subtitle{margin-top:8px;font-size:14px}
+#hero-enter{top:62%}
+#hero-notice{top:auto;bottom:4%;left:50%;width:340px}
+}
+@media(max-height:540px) and (max-width:550px){
+#hero-notice{top:auto;bottom:3%;left:3%;right:3%;transform:none;width:auto;max-width:none}
+#hero-status{max-width:none}
+}
+@media(prefers-reduced-motion:reduce){#hero *,#hero *:before,#hero *:after{transition:none!important;animation:none!important}}
+/* Optional keyboard exits stay out of the visual transition unless focused. */
+.hero-assist{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+.hero-assist:focus-visible{left:50%;bottom:24px;transform:translateX(-50%);width:auto;height:auto;min-height:44px;padding:10px 18px;clip-path:none;background:#302b25;color:var(--foreground);border:1px solid var(--border);border-radius:8px;outline:2px solid var(--foreground);outline-offset:3px;z-index:6}
+
+/* Selected CTA09: room edge treatment over an opaque primary-action surface. */
+#hero #hero-enter{width:216px;height:76px;min-height:76px;max-width:calc(100vw - 48px);padding:0 28px;gap:12px;border-radius:14px;border:1px solid #b7a58a;background:linear-gradient(130deg,#fff8ea0f,#fff8ea03 50%,#fff8e909),#302b25;color:var(--foreground);box-shadow:inset 0 1px 1px #fffdf54d,inset 0 -1px 1px #fff3d214,0 5px 18px #1b100b30;backdrop-filter:none;-webkit-backdrop-filter:none;text-shadow:0 1px 4px #30231733;transition:background-color 220ms cubic-bezier(.2,.7,.2,1),border-color 220ms cubic-bezier(.2,.7,.2,1),box-shadow 220ms cubic-bezier(.2,.7,.2,1),transform 220ms cubic-bezier(.2,.7,.2,1)}
+#hero #hero-enter>span{font-size:20px;line-height:1.2}
+#hero #hero-enter .hero-arrow{font-size:22px;transition:transform 220ms cubic-bezier(.2,.7,.2,1)}
+#hero #hero-enter:hover{background-color:#3b342c;border-color:#d3bea0;box-shadow:inset 0 1px 1px #fffdf566,inset 0 -1px 1px #fff3d214,0 6px 20px #1b100b38;transform:translate(-50%,-50%) translateY(-1px)}
+#hero #hero-enter:hover .hero-arrow{transform:translateX(2px)}
+#hero #hero-enter:active{transform:translate(-50%,-50%) translateY(1px);transition-duration:100ms;box-shadow:inset 0 1px 1px #fffdf533,0 2px 8px #1b100b30}
+#hero #hero-enter[aria-disabled=true]{transform:translate(-50%,-50%)}
+#hero #hero-enter[aria-disabled=true] .hero-arrow{transform:none}
+@media(prefers-reduced-motion:reduce){#hero #hero-enter:hover,#hero #hero-enter:active{transform:translate(-50%,-50%)}#hero #hero-enter:hover .hero-arrow{transform:none}}
+@media(max-width:700px){#hero .studio-entry{font-size:11px}}
+@media(max-width:700px) and (orientation:portrait){#hero #hero-enter{width:190px;height:64px;min-height:64px}}
+@media(max-width:700px),(max-height:600px) and (pointer:coarse){.hero-identity{--hero-title-size:clamp(28px,8.5vw,40px);left:max(24px,env(safe-area-inset-left));top:calc(max(16px,env(safe-area-inset-top)) + 8px)}.hero-identity h1{max-width:none;white-space:nowrap}.hero-subtitle{font-size:14px;margin-top:6px}}
+#rotation-hint{position:fixed;z-index:100;top:50%;left:50%;bottom:auto;right:auto;transform:translate(-50%,-50%);width:max-content;max-width:calc(100vw - 32px);display:flex;align-items:center;gap:9px;min-height:44px;padding:6px 12px;border:1px solid #fff2;border-radius:12px;background:#302820cc;color:#eee1cd;font:11px HeroStudio,Arial,sans-serif;box-shadow:0 3px 16px #0002}
+#rotation-hint svg{width:22px;height:22px;flex:none}
+#rotation-hint:not([hidden]) .rotation-phone{transform-origin:12px 12px;animation:suggest-rotation 2.4s .5s ease-in-out 1}
+@keyframes suggest-rotation{0%,100%{transform:rotate(0)}35%,70%{transform:rotate(90deg)}}
+@media(prefers-reduced-motion:reduce){#rotation-hint .rotation-phone{animation:none!important}}
+#hero-art{background:url(data:image/webp;base64,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) center/cover no-repeat;color:transparent}@media(max-width:700px){#hero-art{background-position:67% center}}</style>
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-tm.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <title>Tyler Mayberry | AI Systems Builder & Practical Product Engineer</title>
-    <meta name="description" content="Tyler Mayberry is an AI systems builder and practical product engineer who builds agentic workflows, internal tools, automation systems, and AI-native software for messy real-world work.">
+    <meta name="description" content="My projects, notes and a few things I like are here (come in and have a look). In the studio, you’ll find the software and AI tools I build.">
     <link rel="canonical" href="https://tylermayberry.dev/">
-    <meta property="og:title" content="Tyler Mayberry | AI Systems Builder & Practical Product Engineer">
-    <meta property="og:description" content="Tyler Mayberry is an AI systems builder and practical product engineer who builds agentic workflows, internal tools, automation systems, and AI-native software for messy real-world work.">
+    <meta property="og:title" content="Tyler Mayberry | A personal studio">
+    <meta property="og:description" content="My projects, notes and a few things I like are here (come in and have a look). In the studio, you’ll find the software and AI tools I build.">
     <meta property="og:url" content="https://tylermayberry.dev/">
     <meta property="og:type" content="profile">
     <meta property="og:site_name" content="Tyler Mayberry">
-    <meta property="og:image" content="https://tylermayberry.dev/CirclePresentation.jpeg">
+    <meta property="og:image" content="https://tylermayberry.dev/assets/share-studio-8ede03e393cc.png">
     <meta property="profile:first_name" content="Tyler">
     <meta property="profile:last_name" content="Mayberry">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Tyler Mayberry | AI Systems Builder & Practical Product Engineer">
-    <meta name="twitter:description" content="Tyler Mayberry is an AI systems builder and practical product engineer who builds agentic workflows, internal tools, automation systems, and AI-native software for messy real-world work.">
-    <meta name="twitter:image" content="https://tylermayberry.dev/CirclePresentation.jpeg">
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "Person",
-          "@id": "https://tylermayberry.dev/#tyler-mayberry",
-          "name": "Tyler Mayberry",
-          "alternateName": "MayberryDT",
-          "url": "https://tylermayberry.dev/",
-          "image": "https://tylermayberry.dev/CirclePresentation.jpeg",
-          "email": "tyler@animasai.co",
-          "jobTitle": "AI Systems Builder and Practical Product Engineer",
-          "description": "Tyler Mayberry is an AI systems builder and practical product engineer who builds agentic workflows, internal tools, automation systems, and AI-native software for messy real-world work.",
-          "homeLocation": {
-            "@type": "Place",
-            "name": "Tulsa, Oklahoma"
-          },
-          "affiliation": {
-            "@id": "https://animasai.co/#organization"
-          },
-          "sameAs": [
-            "https://github.com/MayberryDT",
-            "https://www.linkedin.com/in/mayberrydt/",
-            "https://animasai.co",
-             "https://usemasthead.com",
-             "https://chartstead.com",
-             "https://infocard.ai/~MayberryDT"
-          ],
-          "knowsAbout": [
-            "AI systems",
-            "Agentic workflows",
-            "Internal tools",
-            "Workflow automation",
-            "AI-native software",
-            "Product engineering",
-            "Product prototypes"
-          ]
-        },
-        {
-          "@type": "WebSite",
-          "@id": "https://tylermayberry.dev/#website",
-          "name": "Tyler Mayberry",
-          "url": "https://tylermayberry.dev/",
-          "publisher": {
-            "@id": "https://tylermayberry.dev/#tyler-mayberry"
-          }
-        },
-        {
-          "@type": "ProfilePage",
-          "@id": "https://tylermayberry.dev/#profile-page",
-          "url": "https://tylermayberry.dev/",
-          "name": "Tyler Mayberry | AI Systems Builder & Practical Product Engineer",
-          "description": "Portfolio and about page for Tyler Mayberry, covering practical AI systems, internal tools, automation workflows, product prototypes, and creative technical experiments.",
-          "about": {
-            "@id": "https://tylermayberry.dev/#tyler-mayberry"
-          },
-          "mainEntity": {
-            "@id": "https://tylermayberry.dev/#tyler-mayberry"
-          },
-          "isPartOf": {
-            "@id": "https://tylermayberry.dev/#website"
-          }
-        },
-        {
-          "@type": "Organization",
-          "@id": "https://animasai.co/#organization",
-          "name": "Animas AI",
-          "url": "https://animasai.co/",
-          "logo": "https://animasai.co/logo-mark-v2-lg.webp",
-          "founder": {
-            "@id": "https://tylermayberry.dev/#tyler-mayberry"
-          },
-          "description": "Animas AI is the business/studio wrapper Tyler Mayberry uses for practical AI systems work."
-        },
-        {
-          "@type": "ItemList",
-          "@id": "https://tylermayberry.dev/#portfolio-artifacts",
-          "name": "Tyler Mayberry Portfolio Artifacts",
-          "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Masthead", "url": "https://usemasthead.com" },
-            { "@type": "ListItem", "position": 2, "name": "ChartStead", "url": "https://chartstead.com" },
-            { "@type": "ListItem", "position": 3, "name": "Pip", "url": "https://spendwithpip.com" },
-            { "@type": "ListItem", "position": 4, "name": "Hotel Cleaning Schedule", "url": "https://hotelcleaningschedule.com" },
-            { "@type": "ListItem", "position": 5, "name": "Executioner", "url": "https://executionr.com" },
-            { "@type": "ListItem", "position": 6, "name": "Milkbench", "url": "https://milk.animasai.co/" },
-            { "@type": "ListItem", "position": 7, "name": "Wargus TypeScript", "url": "https://wargus.animasai.co" },
-            { "@type": "ListItem", "position": 8, "name": "Rat Detective Online", "url": "https://rat-detective.animasai.co" }
-          ]
-        }
-      ]
-    }
-    </script>
-    <style>
-        :root {
-            color-scheme: dark;
-            --bg: #080808;
-            --panel: #101010;
-            --panel-2: #151515;
-            --line: #2b2b2b;
-            --line-strong: #505050;
-            --text: #f5f5f0;
-            --muted: #a0a0a0;
-            --quiet: #666666;
-            --accent: #d8ff64;
-            --accent-2: #8dd7ff;
-            --max: 1180px;
-            --pad: clamp(18px, 3.4vw, 40px);
-            --mono: "SFMono-Regular", "Cascadia Code", "Liberation Mono", Consolas, monospace;
-            --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 88px;
-        }
-
-        body {
-            margin: 0;
-            min-height: 100vh;
-            background: var(--bg);
-            color: var(--text);
-            font-family: var(--sans);
-            line-height: 1.5;
-            text-rendering: optimizeLegibility;
-        }
-
-        a {
-            color: inherit;
-        }
-
-        a:focus-visible {
-            outline: 2px solid var(--accent);
-            outline-offset: 4px;
-        }
-
-        img {
-            display: block;
-            max-width: 100%;
-        }
-
-        .shell {
-            width: min(100%, var(--max));
-            margin: 0 auto;
-            padding: 0 var(--pad);
-        }
-
-        .skip-link {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            z-index: 40;
-            padding: 10px 12px;
-            background: var(--text);
-            color: var(--bg);
-            font-weight: 800;
-            text-decoration: none;
-            transform: translateY(-160%);
-            transition: transform 160ms ease;
-        }
-
-        .skip-link:focus {
-            transform: translateY(0);
-        }
-
-        .topbar {
-            position: sticky;
-            top: 0;
-            z-index: 20;
-            border-bottom: 1px solid var(--line);
-            background: rgba(8, 8, 8, 0.94);
-            backdrop-filter: blur(12px);
-        }
-
-        .nav {
-            min-height: 56px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 18px;
-        }
-
-        .brand {
-            display: inline-flex;
-            align-items: baseline;
-            gap: 12px;
-            min-width: 0;
-            text-decoration: none;
-        }
-
-        .brand strong {
-            font-size: 0.86rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-        }
-
-        .brand span {
-            color: var(--quiet);
-            font-family: var(--mono);
-            font-size: 0.72rem;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            gap: 4px;
-            flex-wrap: wrap;
-        }
-
-        .nav-links a {
-            padding: 8px 9px;
-            color: var(--muted);
-            font-size: 0.74rem;
-            font-weight: 800;
-            letter-spacing: 0.08em;
-            text-decoration: none;
-            text-transform: uppercase;
-        }
-
-        .nav-links a:hover {
-            color: var(--text);
-            background: var(--panel-2);
-        }
-
-        .hero {
-            padding: clamp(24px, 4vw, 46px) 0 clamp(22px, 4vw, 38px);
-            border-bottom: 1px solid var(--line);
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: minmax(0, 0.8fr) minmax(320px, 0.68fr);
-            gap: clamp(18px, 4vw, 48px);
-            align-items: end;
-        }
-
-        .eyebrow {
-            margin: 0 0 16px;
-            color: var(--accent);
-            font-family: var(--mono);
-            font-size: 0.72rem;
-            font-weight: 900;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-        }
-
-        h2.eyebrow {
-            line-height: 1.2;
-        }
-
-        h1,
-        h2,
-        h3,
-        p {
-            margin-top: 0;
-        }
-
-        h1 {
-            max-width: 880px;
-            margin-bottom: 0;
-            font-size: clamp(2rem, 4.2vw, 3.9rem);
-            line-height: 0.98;
-            letter-spacing: -0.055em;
-            text-wrap: balance;
-        }
-
-        .hero-copy {
-            display: grid;
-            gap: 18px;
-        }
-
-        .hero-copy p {
-            margin: 0;
-            color: #d7d7d2;
-            font-size: clamp(1rem, 1.7vw, 1.18rem);
-        }
-
-        .link-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 42px;
-            padding: 10px 12px;
-            border: 1px solid var(--line-strong);
-            background: transparent;
-            color: var(--text);
-            font-size: 0.75rem;
-            font-weight: 900;
-            letter-spacing: 0.08em;
-            text-decoration: none;
-            text-transform: uppercase;
-            transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
-        }
-
-        .button:hover {
-            border-color: var(--text);
-            background: var(--text);
-            color: var(--bg);
-        }
-
-        .button.primary {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
-
-        .button.primary:hover {
-            background: var(--accent);
-            color: #111111;
-        }
-
-        .work {
-            padding: clamp(24px, 4vw, 46px) 0 clamp(48px, 8vw, 92px);
-        }
-
-        .work-head {
-            display: grid;
-            grid-template-columns: minmax(0, 0.8fr) minmax(320px, 0.58fr);
-            gap: clamp(18px, 4vw, 44px);
-            align-items: end;
-            margin-bottom: clamp(20px, 4vw, 36px);
-        }
-
-        .work-head p {
-            margin-bottom: 0;
-            color: var(--muted);
-            font-size: 1rem;
-        }
-
-        .featured-grid,
-        .supporting-grid {
-            display: grid;
-            gap: 12px;
-        }
-
-        .featured-grid {
-            grid-template-columns: minmax(0, 1fr);
-            margin-bottom: 12px;
-        }
-
-        .project.featured {
-            grid-template-columns: minmax(0, 1.65fr) minmax(300px, 0.7fr);
-            grid-template-rows: auto;
-        }
-
-        .supporting-grid {
-            grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
-            grid-template-areas:
-                "chartstead pip"
-                "hcs executioner"
-                "milk milk"
-                "wargus rat";
-            align-items: start;
-        }
-
-        .supporting-grid .project.primary-support {
-            grid-area: chartstead;
-        }
-
-        .supporting-grid .project.pip-card {
-            grid-area: pip;
-            display: flex;
-            flex-direction: column;
-            grid-template-columns: none;
-            grid-template-rows: none;
-        }
-
-        .supporting-grid .project.pip-card > .project-media {
-            flex: 0 0 auto;
-            width: 100%;
-            background: #f4f1e8;
-        }
-
-        .supporting-grid .project.pip-card > .project-body {
-            flex: 1 1 auto;
-            width: 100%;
-        }
-
-        .supporting-grid .project.pip-card .project-media img {
-            height: auto;
-            min-height: 0;
-            aspect-ratio: 16 / 9;
-            object-fit: cover;
-            object-position: center;
-            opacity: 1;
-        }
-
-        .supporting-grid .project.hcs-card {
-            grid-area: hcs;
-            /* Narrow cell: always image on top, copy below (never side-by-side) */
-            display: flex;
-            flex-direction: column;
-            grid-template-columns: none;
-            grid-template-rows: none;
-        }
-
-        .supporting-grid .project.hcs-card > .project-media {
-            flex: 0 0 auto;
-            width: 100%;
-        }
-
-        .supporting-grid .project.hcs-card > .project-body {
-            flex: 1 1 auto;
-            width: 100%;
-        }
-
-        .supporting-grid .project.milk-card {
-            grid-area: milk;
-            grid-template-columns: minmax(0, 0.95fr) minmax(320px, 1.05fr);
-            grid-template-rows: auto;
-        }
-
-        .supporting-grid .project.rat-card {
-            grid-area: rat;
-            display: flex;
-            flex-direction: column;
-            grid-template-columns: none;
-            grid-template-rows: none;
-        }
-
-        .supporting-grid .project.rat-card > .project-media {
-            flex: 0 0 auto;
-            width: 100%;
-            background: #12081c;
-        }
-
-        .supporting-grid .project.rat-card > .project-body {
-            flex: 1 1 auto;
-            width: 100%;
-        }
-
-        .supporting-grid .project.rat-card .project-media img {
-            height: auto;
-            min-height: 0;
-            aspect-ratio: 16 / 9;
-            object-fit: cover;
-            object-position: center;
-            opacity: 1;
-        }
-
-        .supporting-grid .project.wargus-card {
-            grid-area: wargus;
-            grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
-            grid-template-rows: auto;
-        }
-
-        .supporting-grid .project.logo-card {
-            grid-area: executioner;
-            display: flex;
-            flex-direction: column;
-            grid-template-columns: none;
-            grid-template-rows: none;
-        }
-
-        .project {
-            position: relative;
-            display: grid;
-            grid-template-rows: auto 1fr;
-            min-height: 100%;
-            border: 1px solid var(--line);
-            background: var(--panel);
-            transition: border-color 160ms ease, background 160ms ease;
-        }
-
-        .project:hover {
-            border-color: var(--line-strong);
-            background: var(--panel-2);
-        }
-
-        .project a.cover-link {
-            position: absolute;
-            inset: 0;
-            z-index: 4;
-        }
-
-        .project-media {
-            position: relative;
-            border-bottom: 1px solid var(--line);
-            background: #050505;
-            overflow: hidden;
-        }
-
-        .project-media img {
-            width: 100%;
-            height: 100%;
-            min-height: 210px;
-            box-sizing: border-box;
-            object-fit: cover;
-            opacity: 0.9;
-        }
-
-        .project.featured .project-media img {
-            min-height: clamp(300px, 38vw, 460px);
-        }
-
-        .project.primary-support .project-media img {
-            min-height: 300px;
-        }
-
-        .project.logo-card .project-media {
-            display: grid;
-            place-items: center;
-            background:
-                radial-gradient(circle at 50% 45%, rgba(255, 255, 255, 0.14), transparent 35%),
-                #050505;
-        }
-
-        .project.logo-card .project-media img {
-            height: clamp(240px, 26vw, 300px);
-            min-height: 0;
-            padding: clamp(28px, 4vw, 54px);
-            object-fit: contain;
-            opacity: 1;
-        }
-
-        .project.milk-card .project-media img {
-            min-height: 300px;
-            object-position: center;
-        }
-
-        .project.wargus-card .project-media img {
-            min-height: 300px;
-            object-position: center;
-        }
-
-        .project.hcs-card .project-media img {
-            min-height: 300px;
-            object-position: center top;
-        }
-
-        .project-body {
-            display: grid;
-            align-content: space-between;
-            gap: 22px;
-            padding: 18px;
-        }
-
-        .project.featured .project-body {
-            padding: clamp(20px, 3vw, 30px);
-        }
-
-        .supporting-grid .project-body {
-            align-content: start;
-        }
-
-        .project-meta {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .status,
-        .domain {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--muted);
-            font-family: var(--mono);
-            font-size: 0.64rem;
-            font-weight: 900;
-            letter-spacing: 0.11em;
-            text-transform: uppercase;
-        }
-
-        .status {
-            color: var(--accent);
-        }
-
-        .status.case-study {
-            color: var(--accent-2);
-        }
-
-        .status.experiment {
-            color: #cfcfcf;
-        }
-
-        .status.game {
-            color: #f0b8ff;
-        }
-
-        .project h3 {
-            margin-bottom: 10px;
-            font-size: clamp(1.25rem, 2.2vw, 2.15rem);
-            line-height: 0.98;
-            letter-spacing: -0.045em;
-        }
-
-        .project:not(.featured) h3 {
-            font-size: clamp(1.1rem, 1.5vw, 1.42rem);
-        }
-
-        .project p {
-            margin-bottom: 0;
-            color: var(--muted);
-            font-size: 0.93rem;
-        }
-
-        .project.featured p {
-            max-width: 620px;
-            font-size: 1.02rem;
-        }
-
-        .open {
-            color: var(--text);
-            font-family: var(--mono);
-            font-size: 0.68rem;
-            font-weight: 900;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-        }
-
-        .footer {
-            border-top: 1px solid var(--line);
-            padding: 28px 0 40px;
-        }
-
-        .footer-inner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 18px;
-            flex-wrap: wrap;
-            color: var(--quiet);
-            font-family: var(--mono);
-            font-size: 0.72rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
-
-        @media (max-width: 980px) {
-            .hero-grid,
-            .work-head,
-            .featured-grid,
-            .project.featured,
-            .supporting-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .supporting-grid {
-                grid-template-rows: auto;
-                grid-template-areas:
-                    "chartstead"
-                    "pip"
-                    "hcs"
-                    "executioner"
-                    "milk"
-                    "wargus"
-                    "rat";
-            }
-
-            .supporting-grid .project.primary-support {
-                grid-area: chartstead;
-            }
-
-            .supporting-grid .project.pip-card {
-                grid-area: pip;
-            }
-
-            .supporting-grid .project.hcs-card {
-                grid-area: hcs;
-                display: flex;
-                flex-direction: column;
-            }
-
-            .supporting-grid .project.milk-card {
-                grid-area: milk;
-                grid-template-columns: 1fr;
-            }
-
-            .supporting-grid .project.rat-card {
-                grid-area: rat;
-                display: flex;
-                flex-direction: column;
-            }
-
-            .supporting-grid .project.wargus-card {
-                grid-area: wargus;
-                grid-template-columns: 1fr;
-            }
-
-            .supporting-grid .project.logo-card {
-                grid-area: executioner;
-                grid-template-columns: 1fr;
-            }
-
-            .project.featured .project-media img {
-                min-height: 280px;
-            }
-        }
-
-        @media (max-width: 680px) {
-            :root {
-                --pad: 16px;
-            }
-
-            .topbar {
-                position: relative;
-            }
-
-            .nav {
-                align-items: flex-start;
-                flex-direction: column;
-                padding: 14px 0;
-            }
-
-            .nav-links {
-                justify-content: flex-start;
-                width: 100%;
-                overflow-x: auto;
-                flex-wrap: nowrap;
-                scrollbar-width: none;
-            }
-
-            .nav-links::-webkit-scrollbar {
-                display: none;
-            }
-
-            .nav-links a {
-                flex: 0 0 auto;
-            }
-
-            .hero {
-                padding-top: 22px;
-            }
-
-            .hero-grid,
-            .hero-copy,
-            .work-head {
-                gap: 16px;
-            }
-
-            h1 {
-                font-size: clamp(2rem, 10.5vw, 3rem);
-            }
-
-            .hero-copy p {
-                font-size: 0.98rem;
-            }
-
-            .button {
-                min-height: 44px;
-                flex: 1 1 auto;
-            }
-
-            .project-media img,
-            .project.featured .project-media img {
-                min-height: 190px;
-            }
-
-            .project-body {
-                padding: 16px;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                scroll-behavior: auto !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-    </style>
-</head>
-
-<body>
-    <a class="skip-link" href="#work">Skip to work</a>
-
-    <header class="topbar" aria-label="Site header">
-        <div class="shell nav">
-            <a class="brand" href="#top" aria-label="Tyler Mayberry home">
-                <strong>Tyler Mayberry</strong>
-                <span>AI systems builder</span>
-            </a>
-            <nav class="nav-links" aria-label="Primary links">
-                <a href="/about.html">About</a>
-                <a href="#work">Work</a>
-                <a href="mailto:tyler@animasai.co">Email</a>
-                <a href="https://github.com/MayberryDT" target="_blank" rel="noopener noreferrer">GitHub</a>
-                <a href="https://www.linkedin.com/in/mayberrydt/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                <a href="https://animasai.co" target="_blank" rel="noopener noreferrer">Animas AI</a>
-                <a href="https://usemasthead.com" target="_blank" rel="noopener noreferrer">Masthead</a>
-                <a href="https://chartstead.com" target="_blank" rel="noopener noreferrer">ChartStead</a>
-            </nav>
-        </div>
-    </header>
-
-    <main id="top">
-        <section class="shell hero" aria-labelledby="hero-title">
-            <div class="hero-grid">
-                <div>
-                    <p class="eyebrow">Personal portfolio</p>
-                    <h1 id="hero-title">AI systems builder. Practical product engineer.</h1>
-                </div>
-                <div class="hero-copy">
-                    <p>I build agentic workflows, internal tools, automation systems, and AI-native software for messy real-world work.</p>
-                    <div class="link-row" aria-label="Contact and profile links">
-                        <a class="button primary" href="mailto:tyler@animasai.co">Email</a>
-                        <a class="button" href="/about.html">About</a>
-                        <a class="button" href="https://github.com/MayberryDT" target="_blank" rel="noopener noreferrer">GitHub</a>
-                        <a class="button" href="https://www.linkedin.com/in/mayberrydt/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="shell work" id="work" aria-labelledby="work-title">
-            <div class="work-head">
-                <div>
-                    <h2 class="eyebrow" id="work-title">Apps, prototypes, tools, and experiments</h2>
-                </div>
-                 <p>A focused index of current public products: Masthead, ChartStead, Pip, Hotel Cleaning Schedule, Executioner, Milkbench, Wargus TypeScript, and Rat Detective.</p>
-            </div>
-
-            <div class="featured-grid" aria-label="Featured work">
-                <article class="project featured">
-                    <a class="cover-link" href="https://usemasthead.com" target="_blank" rel="noopener noreferrer" aria-label="Open Masthead"></a>
-                    <div class="project-media">
-                        <img src="Masthead.jpg" alt="Masthead product art: the work is still there — keeps the record" loading="eager">
-                    </div>
-                    <div class="project-body">
-                        <div class="project-meta">
-                            <span class="status">Flagship</span>
-                            <span class="domain">AI systems</span>
-                        </div>
-                        <div>
-                            <h3>Masthead</h3>
-                            <p>Local-first session data layer for coding agents: capture work, publish artifacts, retrieve via read-only MCP.</p>
-                        </div>
-                        <span class="open">Open project →</span>
-                    </div>
-                </article>
-            </div>
-
-            <div class="supporting-grid" aria-label="Project portfolio">
-                <article class="project primary-support">
-                    <a class="cover-link" href="https://chartstead.com" target="_blank" rel="noopener noreferrer" aria-label="Open ChartStead"></a>
-                    <div class="project-media">
-                        <img src="Chartstead.jpg?v=20260817" alt="ChartStead product showcase: publish a program you trust, with agenda readiness and fictional sample data" loading="lazy">
-                    </div>
-                    <div class="project-body">
-                        <div class="project-meta">
-                            <span class="status">Second product</span>
-                            <span class="domain">Conference programming</span>
-                        </div>
-                        <div>
-                            <h3>ChartStead</h3>
-                            <p>Conference programming and speaker management—from first proposal to a public program you trust.</p>
-                        </div>
-                        <span class="open">Open product →</span>
-                    </div>
-                </article>
-
-                <article class="project pip-card">
-                    <a class="cover-link" href="https://spendwithpip.com" target="_blank" rel="noopener noreferrer" aria-label="Open Pip"></a>
-                    <div class="project-media">
-                        <img src="Pip.jpg?v=20260817" alt="Pip product preview" loading="lazy">
-                    </div>
-                    <div class="project-body">
-                        <div class="project-meta">
-                            <span class="status case-study">Case study</span>
-                            <span class="domain">Finance workflow</span>
-                        </div>
-                        <div>
-                            <h3>Pip</h3>
-                            <p>AI-native spending companion centered on Spendable Cash Today, deterministic financial logic, and agent-assisted explanation.</p>
-                        </div>
-                        <span class="open">Open product →</span>
-                    </div>
-                </article>
-
-                <!-- hcs-layout: stacked-2026-08-07 -->
-                <article class="project hcs-card">
-                    <a class="cover-link" href="https://hotelcleaningschedule.com" target="_blank" rel="noopener noreferrer" aria-label="Open Hotel Cleaning Schedule"></a>
-                    <div class="project-media">
-                        <img src="HotelCleaningSchedule.jpg?v=20260808" alt="Hotel Cleaning Schedule product showcase with deep-clean calendar UI and validated schedule" loading="lazy">
-                    </div>
-                    <div class="project-body">
-                        <div class="project-meta">
-                            <span class="status">Live product</span>
-                            <span class="domain">Hospitality ops</span>
-                        </div>
-                        <div>
-                            <h3>Hotel Cleaning Schedule</h3>
-                            <p>Deep-clean schedule planner for hotel operators: room list and capacity in, a validated room-by-room calendar out with blackouts and export.</p>
-                        </div>
-                        <span class="open">Open product →</span>
-                    </div>
-                </article>
-
-                <article class="project logo-card">
-                    <a class="cover-link" href="https://executionr.com" target="_blank" rel="noopener noreferrer" aria-label="Open Executioner"></a>
-                    <div class="project-media">
-                        <img src="Executioner.png?v=20260701" alt="Executioner logo" loading="lazy">
-                    </div>
-                    <div class="project-body">
-                        <div class="project-meta">
-                            <span class="status case-study">Case study</span>
-                            <span class="domain">Execution</span>
-                        </div>
-                        <div>
-                            <h3>Executioner</h3>
-                            <p>Personal execution system that turns messy brain dumps into structured outcomes and schedule previews.</p>
-                        </div>
-                        <span class="open">Open system →</span>
-                    </div>
-                </article>
-
-                <article class="project milk-card">
-                    <a class="cover-link" href="https://milk.animasai.co/" target="_blank" rel="noopener noreferrer" aria-label="Open Milkbench"></a>
-                    <div class="project-media">
-                        <img src="Milkbench.jpg" alt="Milkbench visual with a milk pour, model names, and Luna, Terra, and Sol results." loading="lazy">
-                    </div>
-                    <div class="project-body">
-                        <div class="project-meta">
-                            <span class="status">Live experiment</span>
-                            <span class="domain">AI evaluation</span>
-                        </div>
-                        <div>
-                            <h3>Milkbench</h3>
-                            <p>A playful visual benchmark for comparing GPT 5.6 models on taste, with Luna, Terra, and Sol presented as distinct model personalities.</p>
-                        </div>
-                        <span class="open">Open experiment →</span>
-                    </div>
-                </article>
-
-                <article class="project wargus-card">
-                    <a class="cover-link" href="https://wargus.animasai.co" target="_blank" rel="noopener noreferrer" aria-label="Open Wargus TypeScript"></a>
-                    <div class="project-media">
-                        <img src="Wargus.jpg?v=20260808" alt="Wargus TypeScript: classic RTS in the browser, Garden of War human vs CPU" loading="lazy">
-                    </div>
-                    <div class="project-body">
-                        <div class="project-meta">
-                            <span class="status game">Live demo</span>
-                            <span class="domain">Browser RTS</span>
-                        </div>
-                        <div>
-                            <h3>Wargus TypeScript</h3>
-                            <p>A classic RTS in the browser. Human Alliance vs the CPU on Garden of War—harvest, train, build, and fight live without a desktop install.</p>
-                        </div>
-                        <span class="open">Open demo →</span>
-                    </div>
-                </article>
-
-                <article class="project rat-card">
-                    <a class="cover-link" href="https://rat-detective.animasai.co" target="_blank" rel="noopener noreferrer" aria-label="Open Rat Detective Online"></a>
-                    <div class="project-media">
-                        <img src="RatDetective.png?v=20260817" alt="Rat Detective: City Under Siege title screen" loading="lazy">
-                    </div>
-                    <div class="project-body">
-                        <div class="project-meta">
-                            <span class="status game">Live game</span>
-                            <span class="domain">Creative web</span>
-                        </div>
-                        <div>
-                            <h3>Rat Detective Online</h3>
-                            <p>Playable multiplayer browser game built with Three.js, TypeScript, socket.io, and physics-based interactions.</p>
-                        </div>
-                        <span class="open">Open game →</span>
-                    </div>
-                </article>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <div class="shell footer-inner">
-            <span>&copy; 2026 Tyler Mayberry · tylermayberry.dev</span>
-            <div class="link-row" aria-label="Footer links">
-                <a href="mailto:tyler@animasai.co">Email</a>
-                <a href="/about.html">About</a>
-                <a href="https://github.com/MayberryDT" target="_blank" rel="noopener noreferrer">GitHub</a>
-                <a href="https://www.linkedin.com/in/mayberrydt/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            </div>
-        </div>
-    </footer>
-</body>
-
-</html>
+    <meta name="twitter:title" content="Tyler Mayberry | A personal studio">
+    <meta name="twitter:description" content="My projects, notes and a few things I like are here (come in and have a look). In the studio, you’ll find the software and AI tools I build.">
+    <meta name="twitter:image" content="https://tylermayberry.dev/assets/share-studio-8ede03e393cc.png"><script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Person", "@id": "https://tylermayberry.dev/#tyler-mayberry", "name": "Tyler Mayberry", "alternateName": "MayberryDT", "url": "https://tylermayberry.dev/", "image": "https://tylermayberry.dev/CirclePresentation.jpeg", "email": "tyler@animasai.co", "jobTitle": "AI Systems Builder and Practical Product Engineer", "description": "Tyler Mayberry is an AI systems builder and practical product engineer who builds agentic workflows, internal tools, automation systems, and AI-native software for messy real-world work.", "homeLocation": {"@type": "Place", "name": "Tulsa, Oklahoma"}, "affiliation": {"@id": "https://animasai.co/#organization"}, "sameAs": ["https://github.com/MayberryDT", "https://www.linkedin.com/in/mayberrydt/", "https://infocard.ai/~MayberryDT"], "knowsAbout": ["AI systems", "Agentic workflows", "Internal tools", "Workflow automation", "AI-native software", "Product engineering", "Product prototypes"]}, {"@type": "WebSite", "@id": "https://tylermayberry.dev/#website", "name": "Tyler Mayberry", "url": "https://tylermayberry.dev/", "publisher": {"@id": "https://tylermayberry.dev/#tyler-mayberry"}}, {"@type": "ProfilePage", "@id": "https://tylermayberry.dev/#profile-page", "url": "https://tylermayberry.dev/", "name": "Tyler Mayberry | AI Systems Builder & Practical Product Engineer", "description": "Portfolio and about page for Tyler Mayberry, covering practical AI systems, internal tools, automation workflows, product prototypes, and creative technical experiments.", "about": {"@id": "https://tylermayberry.dev/#tyler-mayberry"}, "mainEntity": {"@id": "https://tylermayberry.dev/#tyler-mayberry"}, "isPartOf": {"@id": "https://tylermayberry.dev/#website"}}, {"@type": "Organization", "@id": "https://animasai.co/#organization", "name": "Animas AI", "url": "https://animasai.co/", "logo": "https://animasai.co/logo-mark-v2-lg.webp", "founder": {"@id": "https://tylermayberry.dev/#tyler-mayberry"}, "description": "Animas AI is the business/studio wrapper Tyler Mayberry uses for practical AI systems work."}, {"@type": "ItemList", "@id": "https://tylermayberry.dev/#portfolio-artifacts", "name": "Tyler Mayberry Portfolio Artifacts", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Masthead", "url": "https://usemasthead.com"}, {"@type": "ListItem", "position": 2, "name": "ChartStead", "url": "https://chartstead.com"}, {"@type": "ListItem", "position": 3, "name": "Pip", "url": "https://spendwithpip.com"}, {"@type": "ListItem", "position": 4, "name": "Hotel Cleaning Schedule", "url": "https://hotelcleaningschedule.com"}, {"@type": "ListItem", "position": 5, "name": "Executioner", "url": "https://executionr.com"}, {"@type": "ListItem", "position": 6, "name": "Milkbench", "url": "https://milk.animasai.co/"}, {"@type": "ListItem", "position": 7, "name": "Wargus TypeScript", "url": "https://wargus.animasai.co"}, {"@type": "ListItem", "position": 8, "name": "Rat Detective Online", "url": "https://rat-detective.animasai.co"}]}]}</script><link rel="stylesheet" href="integrated-content.css"><meta property="og:image:width" content="1734"><meta property="og:image:height" content="907"><meta property="og:image:type" content="image/png"><meta property="og:image:alt" content="Tyler outside his studio, with his name over the sky."><meta name="twitter:image:alt" content="Tyler outside his studio, with his name over the sky."><link rel="stylesheet" href="studio-fullscreen.css"><script src="studio-fullscreen.js" defer></script></head><body data-focused="false" data-area="room" data-arrival="hero">
+
+<section id="hero" aria-labelledby="hero-title" tabindex="-1">
+  <picture><source srcset="assets/hero-exterior-v6.8381e6b31875.avif" type="image/avif"><img id="hero-art" src="assets/hero-exterior-v6.webp" width="1672" height="941" fetchpriority="high" alt="Tyler outside his rural studio, with the open doorway leading to his desk."></picture>
+  <div class="hero-identity"><h1 id="hero-title">Tyler Mayberry</h1><p class="hero-subtitle">A Personal Studio</p></div>
+  <a class="btn studio-control studio-entry" id="hero-enter" href="room.html#room" data-arrival-target="#room" aria-label="Enter"><span>Enter</span><span class="hero-arrow" aria-hidden="true">↗</span></a>
+  <p id="hero-live" class="sr-only" role="status" aria-live="polite"></p>
+  <button id="hero-skip" class="hero-assist" type="button" hidden>Skip animation</button><button id="hero-cancel" class="hero-assist" type="button" hidden>Back to exterior</button>
+  <div id="hero-notice" hidden><p id="hero-status" role="status" aria-live="polite"></p><div class="hero-notice-actions"><button class="btn studio-control" id="hero-retry" type="button" hidden>Try again</button><a class="btn studio-control" id="hero-fallback" href="room.html#room" hidden>Open room directly</a></div></div>
+</section>
+<main id="world" inert aria-hidden="true" tabindex="-1" aria-label="Tyler’s personal working studio">
+  <div id="room-ambient" aria-hidden="true"></div><div id="scene"><img id="plate" data-src="scenes/overview.webp" alt="Warm afternoon light in Tyler’s personal studio."><div id="details"></div></div><canvas id="objects" aria-hidden="true" hidden></canvas>
+  <svg id="node-leaders" aria-hidden="true"></svg>
+  <div id="hotspots" aria-label="Explore the room"></div>
+  <button id="figure-drag" aria-label="Shaco figure. Drag or use arrow keys to turn." hidden></button>
+  <button id="phone-drag" aria-label="Helm phone. Drag to tilt, arrow keys to turn, tap the screen to explore." hidden></button>
+  <div id="shelf-controls" hidden aria-label="Object controls"><span>Drag to turn · tilt to inspect</span><div><button type="button" class="btn studio-control" data-prop-action="left" aria-label="Turn object left">↶</button><button type="button" class="btn studio-control" data-prop-action="reset">Reset view</button><button type="button" class="btn studio-control" data-prop-action="right" aria-label="Turn object right">↷</button></div></div>
+
+  
+  <aside id="story-panel" aria-labelledby="story-title" aria-hidden="true" inert>
+    <div class="glass-content">
+      <div class="panel-topline"><span id="category"></span><span id="mark" class="favorite-mark"></span></div>
+      <h1 id="story-title"></h1>
+      <div id="story-tabs" class="tabs studio-tabs">
+        <div id="tabs" class="glass-tabs t-tabs" role="tablist" aria-label="Object stories" aria-orientation="horizontal"></div>
+        <div id="stories"></div>
+      </div>
+      <div class="panel-footnote"><span class="tiny-diamond" aria-hidden="true"></span><span id="footnote"></span></div>
+    </div>
+  </aside>
+  <nav id="return-navigation" aria-label="Return navigation"><a id="outside" class="btn studio-control" href="index.html#hero">Outside</a><button id="return" class="btn studio-control" type="button" hidden>Back</button>
+  <button id="room-return" class="btn studio-control" type="button" hidden>Back to Room</button></nav>
+  <div id="loading" class="notice" role="status">Opening the studio…</div>
+  <div id="error" class="notice" role="alert" hidden><p id="error-message"></p><button id="retry" class="btn studio-control" type="button">Try again</button><button id="error-dismiss" class="btn studio-control" type="button">Dismiss</button></div>
+  <div id="announcement" role="status" aria-live="polite" class="sr-only"></div>
+  <noscript><div class="notice">Enable JavaScript to explore the studio.</div></noscript>
+</main><script>// Three short suggestions per tab, independent of room readiness and route.
+(()=>{
+const portrait=matchMedia('(max-width:700px) and (orientation:portrait) and (pointer:coarse)');
+const key='studio-rotation-hint-v2';
+let count=0,retired=false,timer=0,hideTimer=0;
+try{const saved=JSON.parse(sessionStorage.getItem(key)||'{}');count=Math.min(3,Math.max(0,Number(saved.count)||0));retired=!!saved.retired}catch{}
+const hint=document.createElement('button');hint.id='rotation-hint';hint.type='button';hint.hidden=true;hint.setAttribute('aria-label','More room in landscape. Dismiss rotation suggestion.');
+hint.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><g class="rotation-phone"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M10 18h4"/></g></svg><span>More room in landscape</span>';
+document.body.append(hint);
+function save(){try{sessionStorage.setItem(key,JSON.stringify({count,retired}))}catch{}}
+function hide(){hint.hidden=true;clearTimeout(hideTimer)}
+function eligible(){return !retired&&count<3&&portrait.matches&&!document.hidden}
+function schedule(delay=0){clearTimeout(timer);if(eligible())timer=setTimeout(show,delay)}
+function show(){if(!eligible())return;hint.hidden=false;count++;save();hideTimer=setTimeout(hide,3000);schedule(5000)}
+hint.onclick=()=>{retired=true;save();hide();clearTimeout(timer)};
+portrait.addEventListener('change',()=>{if(innerWidth>innerHeight&&matchMedia('(pointer:coarse)').matches){retired=true;save()}hide();schedule()});
+document.addEventListener('visibilitychange',()=>{hide();schedule()});
+if(eligible())show();
+})();
+</script><section id="work" class="studio-source" aria-labelledby="work-title" tabindex="-1"><div class="portfolio-reading-inner"><a class="reading-close" href="#hero">Back to studio</a><h2 id="work-title">AI systems builder. Practical product engineer.</h2><p>Tyler Mayberry is an AI systems builder and practical product engineer who builds agentic workflows, internal tools, automation systems, and AI-native software for messy real-world work.</p><p>Tyler Mayberry · Tulsa, Oklahoma. <a href="https://animasai.co/">Animas AI</a> is my business and studio.</p><nav aria-label="Profile links"><a href="/about.html">About Tyler</a><a href="/press.html">Facts and press</a><a href="mailto:tyler@animasai.co">Email</a><a href="https://github.com/MayberryDT">GitHub</a><a href="https://www.linkedin.com/in/mayberrydt/">LinkedIn</a></nav><h2>Selected work</h2><ul><li><h3><a href="https://usemasthead.com">Masthead</a></h3><p>Local-first session data layer for coding agents: capture work, publish artifacts, retrieve via read-only MCP.</p></li><li><h3><a href="https://chartstead.com">ChartStead</a></h3><p>Conference programming and speaker management—from first proposal to a public program you trust.</p></li><li><h3><a href="https://spendwithpip.com">Pip</a></h3><p>AI-native spending companion centered on Spendable Cash Today, deterministic financial logic, and agent-assisted explanation.</p></li><li><h3><a href="https://hotelcleaningschedule.com">Hotel Cleaning Schedule</a></h3><p>Deep-clean schedule planner for hotel operators: room list and capacity in, a validated room-by-room calendar out with blackouts and export.</p></li><li><h3><a href="https://executionr.com">Executioner</a></h3><p>Personal execution system that turns messy brain dumps into structured outcomes and schedule previews.</p></li><li><h3><a href="https://milk.animasai.co/">Milkbench</a></h3><p>A playful visual benchmark for comparing GPT 5.6 models on taste, with Luna, Terra, and Sol presented as distinct model personalities.</p></li><li><h3><a href="https://wargus.animasai.co">Wargus TypeScript</a></h3><p>A classic RTS in the browser. Human Alliance vs the CPU on Garden of War—harvest, train, build, and fight live without a desktop install.</p></li><li><h3><a href="https://rat-detective.animasai.co">Rat Detective Online</a></h3><p>Playable multiplayer browser game built with Three.js, TypeScript, socket.io, and physics-based interactions.</p></li></ul></div></section><button id="fullscreen" type="button" aria-label="Enter full screen" aria-pressed="false" hidden><span aria-hidden="true">⛶</span><span class="fullscreen-label">Full screen</span></button><p id="fullscreen-status" role="status" aria-live="polite"></p></body></html>

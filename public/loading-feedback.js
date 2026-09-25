@@ -1,0 +1,2 @@
+const indicator=document.createElement('div');indicator.id='selection-loading';indicator.hidden=true;indicator.setAttribute('role','status');indicator.setAttribute('aria-live','polite');indicator.innerHTML='<span class="loading-ring" aria-hidden="true"></span><span></span>';document.querySelector('#world').append(indicator);
+export function setLoading(label){indicator.hidden=!label;indicator.lastElementChild.textContent=label||'';document.querySelector('#scene').setAttribute('aria-busy',String(!!label))}

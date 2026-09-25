@@ -1,0 +1,28 @@
+.contact-page{position:absolute;left:0;top:0;transform-origin:0 0;width:360px;height:780px;overflow:hidden;border-radius:48px;background:linear-gradient(155deg,#f4eddd,#e9ddc5);color:#3e2d23;font-family:Studio,sans-serif;padding:72px 34px 42px;display:flex;flex-direction:column;box-sizing:border-box;touch-action:pan-y}
+.contact-camera{position:absolute;width:17px;height:17px;top:17px;left:calc(50% - 8.5px);border-radius:50%;background:#090c0b;box-shadow:inset 0 0 0 5px #111512}
+.contact-brand{display:flex;align-items:center;gap:12px;font-size:11px;line-height:1.45;letter-spacing:1.8px;color:#725a45}
+.contact-monogram{font:italic 29px Georgia,serif;letter-spacing:-2px;border:1px solid #8c735356;border-radius:50%;width:43px;height:43px;display:grid;place-items:center;padding:0 3px 4px 0}
+.contact-intro{margin-top:66px}.contact-eyebrow{font-size:10px;letter-spacing:2px;margin:0 0 19px;color:#8b7157}
+#contact-heading{font:normal 57px/.98 Georgia,serif;letter-spacing:-2.9px;margin:0;color:#3e2d23}#contact-heading em{font-weight:normal;color:#8c593b}#contact-heading:focus{outline:none}
+.contact-copy{font-size:17px;line-height:1.65;color:#776250;margin:24px 0 0;max-width:274px;text-wrap:pretty}
+.contact-actions{margin-top:auto}.contact-email{display:flex;align-items:center;justify-content:space-between;height:64px;border:1px solid #4f3321;border-radius:13px;padding:0 22px;background:#5d3d28;color:#fff4df;font-size:18px;text-decoration:none;box-shadow:0 5px 12px #5d3d2818,inset 0 1px #d5b48d42;transition:background .18s,transform .18s,box-shadow .18s}
+.contact-email>span:last-child{font-size:26px}.contact-email:hover{background:#724a2f;box-shadow:0 7px 16px #5d3d2828;transform:translateY(-2px)}.contact-email:active{transform:translateY(0);background:#49301f}
+.contact-page a:focus-visible{outline:3px solid #7d562e;outline-offset:5px}.contact-address{display:block;text-align:center;font-size:13px;letter-spacing:.2px;color:#8b745d;margin-top:16px}
+.contact-social{display:flex;justify-content:space-between;border-top:1px solid #a5896636;margin-top:31px;padding-top:11px;gap:25px}
+.contact-social a{display:flex;align-items:center;justify-content:space-between;flex:1;min-height:64px;text-decoration:none;font-size:15px;color:#6d553f}.contact-social a span{color:#a28766}.contact-social a:hover{color:#38271d;text-decoration:underline;text-underline-offset:4px}
+.contact-home-indicator{position:absolute;bottom:13px;left:calc(50% - 44px);width:88px;height:4px;background:#715c4447;border-radius:4px}
+.contact-page[data-landscape=true]{padding:30px 50px;display:grid;grid-template-columns:1.2fr 1fr;grid-template-rows:28px 1fr;column-gap:30px;border-radius:48px}
+.contact-page[data-landscape=true] .contact-camera{top:calc(50% - 8.5px);left:17px}.contact-page[data-landscape=true] .contact-brand{grid-column:1;gap:9px;font-size:10px}.contact-page[data-landscape=true] .contact-monogram{width:34px;height:34px;font-size:24px}.contact-page[data-landscape=true] .contact-intro{grid-column:1;margin-top:18px}.contact-page[data-landscape=true] .contact-eyebrow{display:none}.contact-page[data-landscape=true] #contact-heading{font-size:37px;letter-spacing:-1.9px}.contact-page[data-landscape=true] .contact-copy{font-size:17px;line-height:1.5;margin-top:14px;max-width:250px}.contact-page[data-landscape=true] .contact-actions{grid-column:2;grid-row:1/3;align-self:center;margin-top:8px}.contact-page[data-landscape=true] .contact-social{margin-top:25px}.contact-page[data-landscape=true] .contact-home-indicator{bottom:calc(50% - 44px);left:auto;right:13px;width:4px;height:88px}
+.contact-fallback{outline:12px solid #171a17;box-shadow:0 24px 90px #100b0745}
+body[data-object=pixel] #story-panel{display:none!important}body[data-contact-fallback=true] #still-contact-rest{visibility:hidden}
+body[data-object=pixel] #error{left:50%;top:10px;transform:translateX(-50%);max-width:calc(100% - 144px);padding:10px 15px;font-size:11px;z-index:5}body[data-object=pixel] #error p{display:inline;margin-right:12px}body[data-object=pixel] #error button{min-height:32px;font-size:11px}
+@media(prefers-reduced-motion:reduce){.contact-page a{transition:none!important}}
+
+.contact-page[data-landscape=true] .contact-email{height:74px;font-size:20px;padding:0 18px}.contact-page[data-landscape=true] .contact-social a{min-height:74px;font-size:16px}
+
+.contact-page[data-compact=true]{padding:49px 24px 27px;border-radius:38px}
+.contact-page[data-compact=true] .contact-brand{font-size:9px;gap:9px}.contact-page[data-compact=true] .contact-monogram{width:33px;height:33px;font-size:24px}
+.contact-page[data-compact=true] .contact-intro{margin-top:28px}.contact-page[data-compact=true] .contact-eyebrow{font-size:9px;margin-bottom:13px}
+.contact-page[data-compact=true] #contact-heading{font-size:40px;letter-spacing:-1.9px}.contact-page[data-compact=true] .contact-copy{font-size:16px;line-height:1.5;margin-top:17px}
+.contact-page[data-compact=true] .contact-email{height:64px;font-size:18px;padding:0 17px}.contact-page[data-compact=true] .contact-address{font-size:12px;margin-top:11px}.contact-page[data-compact=true] .contact-social{margin-top:17px;padding-top:5px;gap:15px}.contact-page[data-compact=true] .contact-social a{min-height:64px;font-size:14px}
+.contact-page[data-compact=true] .contact-camera{width:13px;height:13px;top:13px;left:calc(50% - 6.5px)}
