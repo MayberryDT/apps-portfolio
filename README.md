@@ -10,20 +10,19 @@ Cloudflare Worker `product-portfolio-preview`. Its complete deployable site is
 The Worker also serves `www.tylermayberry.dev` and redirects the old
 `portfolio.animasai.co` alias to the apex domain.
 
-Connect the existing Worker to `MayberryDT/apps-portfolio` in **Workers &
-Pages → product-portfolio-preview → Settings → Builds**. Set production branch
-to `master`, root directory to the repository root, no build command, and
-deploy command to `npx wrangler deploy`. Keep preview builds separate from production. The
-Worker name in `wrangler.jsonc` must match the existing Worker.
+The existing Worker is connected to `MayberryDT/apps-portfolio` in **Workers &
+Pages → product-portfolio-preview → Settings → Builds**. Its production branch
+is `master`, root directory is the repository root, build command is empty, and
+deploy command is `npx wrangler deploy`. The Worker name in `wrangler.jsonc`
+matches the existing Worker.
 
-Before enabling the Git trigger, verify that `master` contains the complete
-reviewed `public/` tree and that its files and key routes match the active
-Worker. The September 19 deployment of the old card site was rolled back; do
-not reconnect the stale revision. Keep the active Worker version ID for rollback
-before each release. Once connected, a push to `master` should deploy through
-Workers Builds; check its build log, active version, and live routes after a
-release. Cloudflare Web Analytics is injected by the edge on the HTML pages;
-traffic and page views are under **Web Analytics** in the Cloudflare dashboard.
+The September 19 deployment of the old card site was rolled back. The current
+`master` contains the reviewed `public/` tree that matches the live studio.
+Keep the active Worker version ID for rollback before each release. A push to
+`master` deploys through Workers Builds; check its build log, active version,
+and live routes after a release. Cloudflare Web Analytics is injected by the
+edge on the HTML pages; traffic and page views are under **Web Analytics** in
+the Cloudflare dashboard.
 
 Live site: https://tylermayberry.dev
 
@@ -44,4 +43,3 @@ Tyler builds practical AI systems, internal tools, automation workflows, and pro
 ## Notes
 
 Some linked projects are live prototypes rather than maintained commercial products. They should be read as evidence of building, product judgment, and experimentation, not as traction claims.
-
