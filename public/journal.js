@@ -9,10 +9,10 @@ const mobileView=matchMedia('(max-width:700px), (max-height:600px) and (pointer:
 // Original, locally synthesized paper noise. No remote audio, autoplay, or media permissions.
 class PaperSound {
  constructor(){this.enabled=true;this.voices=new Set();this.played=0;try{this.enabled=localStorage.getItem('journal-sound')!=='off'}catch{}}
- unlock(){if(!this.enabled)return;try{this.context??=new (window.AudioContext||window.webkitAudioContext)();this.context.resume().catch(()=>{});}catch{}}
+ unlock(){if(!this.enabled||document.documentElement.dataset.sound==='off')return;try{this.context??=new (window.AudioContext||window.webkitAudioContext)();this.context.resume().catch(()=>{});}catch{}}
  toggle(){this.enabled=!this.enabled;try{localStorage.setItem('journal-sound',this.enabled?'on':'off')}catch{}if(this.enabled)this.unlock();else this.stop();}
  turn(strength=1,duration=.24){
-  const c=this.context;if(!this.enabled||!c||c.state!=='running')return;
+  const c=this.context;if(!this.enabled||document.documentElement.dataset.sound==='off'||!c||c.state!=='running')return;
   const length=Math.ceil(c.sampleRate*duration),buffer=c.createBuffer(1,length,c.sampleRate),samples=buffer.getChannelData(0);let smooth=0;
   for(let i=0;i<length;i++){smooth=.58*smooth+.42*(Math.random()*2-1);samples[i]=smooth*(.65+.35*Math.sin(i/97));}
   const source=c.createBufferSource(),filter=c.createBiquadFilter(),gain=c.createGain();source.buffer=buffer;filter.type='bandpass';filter.frequency.value=1300+Math.random()*1200;filter.Q.value=.65;

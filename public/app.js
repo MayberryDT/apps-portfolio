@@ -1,6 +1,8 @@
 import {connectStudioContent} from './studio-content.js';
 import {assetBytes,assetImage,lightingAsset} from './asset-cache.js';
 import {setLoading} from './loading-feedback.js';
+import {roomAudio} from './room-audio.js';
+import {addRoomLight} from './room-light.js';
 import {responsiveAsset} from './responsive-assets.js';
 import {detailAssets} from './detail-assets.js';
 import {Journal} from './journal.js';
@@ -145,7 +147,8 @@ function applyRoute({initial=false}={}){
  if(state.route===route&&!initial)return;
  $('error').hidden=true;drag=null;phoneDrag=null;document.body.dataset.dragging='false';
  if(state.object!==next.object)state.angle=0;
- Object.assign(state,next,{route});state.detailsReady=readyAreas.has(state.area);targetAngle=0;setBusy(null);
+ const prev={area:state.area,focused:state.focused,object:state.object,project:state.project,detail:state.detail};
+ Object.assign(state,next,{route});roomAudio.route(initial?{}:prev,next);state.detailsReady=readyAreas.has(state.area);targetAngle=0;setBusy(null);
  document.body.dataset.area=state.area;document.body.dataset.object=state.object||'none';if(document.body.dataset.arrival!=='hero')document.title=(projectById.get(state.project)?.name||photoById.get(state.object)?.title||shelfById.get(state.object)?.title||extraObjects[state.object]?.title||areas[state.area]?.name||'Tyler’s studio')+' · Tyler Mayberry';
  if((document.body.dataset.entry==='about'&&state.detail==='about')||(document.body.dataset.entry==='press'&&state.detail==='facts'))document.title=document.body.dataset.entryTitle;
  updateUI();
@@ -346,6 +349,7 @@ function warmNext(){
 }
 setTimeout(warmNext,3500);
 async function start(){
+ addRoomLight(document.querySelector('#scene'));
  try{
   const response=await fetch('assets/scenes.json');if(!response.ok)throw new Error('Camera unavailable');cameras=await response.json();
   cameras.room.registration=[.997,1,-.0025,-.033];cameras.room.artFrames=artFrames;cameras.room.artQuads={};
@@ -364,7 +368,7 @@ const shelf=new ShelfGallery({world:$('world'),panel:$('story-panel'),scene:stag
 const journal=new Journal({host:$('world'),panel:$('story-panel'),onClose:()=>navigate('room')});
 const contact=new ContactLanding($('world'));
 const workstation=new Workstation({scene:stage,world:$('world'),onProject:project=>navigate('desk',true,'monitor',project)});
-window.studio={state,objects,zoom,journal,contact,gallery,shelf,navigate,views,tiles,workstation,focusDestination,prepareRoute:()=>applyRoute({initial:true}),get cameras(){return cameras}};
+window.studio={state,objects,zoom,journal,contact,gallery,shelf,navigate,views,tiles,workstation,focusDestination,audio:roomAudio,prepareRoute:()=>applyRoute({initial:true}),get cameras(){return cameras}};
 window.studio.initialized=start();
 connectStudioContent(window.studio);
 

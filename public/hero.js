@@ -1,5 +1,6 @@
 /* Own only hero availability, entry animation and the room/hero boundary.
    app.js remains the room's route, content, input and inspection owner. */
+import {roomAudio} from './room-audio.js';
 const hero = document.querySelector('#hero');
 const outside = document.querySelector('#outside');
 const identity = document.querySelector('.hero-identity');
@@ -206,6 +207,7 @@ async function leave({writeHistory = true} = {}) {
   cancel.textContent = 'Back to room';
   live.textContent = 'Going outside…';
   hero.focus({preventScroll:true});
+  roomAudio.leave({motion:!motion.matches});
   try {
     if (!motion.matches && image.naturalWidth && typeof hero.animate === 'function') await playJourney('reverse');
   } catch {
@@ -280,6 +282,8 @@ for (const link of hero.querySelectorAll('[data-arrival-target]')) {
     event.preventDefault();
     if (link === enter && enter.getAttribute('aria-disabled') === 'true') return;
     const target = link.dataset.arrivalTarget;
+    // The click is the gesture that lets the room's sound begin.
+    roomAudio.arrive({motion:target === '#room' && !motion.matches && Boolean(image.naturalWidth)});
     arrive(target, {animate:target === '#room', then:link.dataset.then || null});
   });
 }
