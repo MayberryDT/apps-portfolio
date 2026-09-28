@@ -311,7 +311,7 @@ body[data-object=omarchy] #story-title{margin-bottom:16px}
 .ad-ws b{display:inline-block;width:22px;text-align:center;font-weight:400;color:#565f89}.ad-ws b.on{color:#7aa2f7}
 .ad-status i{display:inline-block;width:8px;height:8px;margin-right:8px;border-radius:50%;background:#9ece6a;box-shadow:0 0 8px #9ece6a;animation:ad-pulse 1.6s ease-in-out infinite}
 @keyframes ad-pulse{50%{opacity:.35}}
-.ad-win{display:flex;flex-direction:column;min-height:0;border:2px solid #3b4261;border-radius:8px;background:#1a1b26;overflow:hidden}
+.ad-win{position:relative;display:flex;flex-direction:column;min-height:0;border:2px solid #3b4261;border-radius:8px;background:#1a1b26;overflow:hidden}
 .ad-win header{display:flex;justify-content:space-between;padding:5px 10px;font-size:13px;color:#7982a9;background:#16161e;border-bottom:1px solid #292e42}
 .ad-win header em{font-style:normal;color:#bb9af7}
 .ad-browser{flex:0 0 440px;border-color:#7aa2f7}
@@ -332,9 +332,12 @@ body[data-object=omarchy] #story-title{margin-bottom:16px}
 .ad-bars i{flex:1;height:40%;border-radius:2px;background:linear-gradient(to top,#9ece6a,#e0af68 70%,#f7768e);transition:height .25s ease}
 .ad-mem{display:flex;align-items:center;gap:8px;padding:0 12px;color:#7982a9;font-size:12px}
 .ad-mem i{height:8px;border-radius:4px;background:#7aa2f7;transition:width .6s ease}
-.ad-cursor{position:absolute;left:0;top:0;z-index:2;pointer-events:none;transition:transform .7s cubic-bezier(.3,.7,.2,1)}
-.ad-cursor svg{width:18px;height:22px;fill:#f5f7ff;stroke:#1a1b26;stroke-width:1.2;filter:drop-shadow(0 2px 3px #0008)}
-.ad-cursor span{margin-left:4px;padding:2px 6px;border-radius:4px;background:#bb9af7;color:#16161e;font-size:11px;vertical-align:top}
+/* ibara.app's Cua cursor: each window's agent has its own colour, a white edge and a glow. */
+.ad-win header em{color:var(--c,#bb9af7)}
+.ad-cursor{position:absolute;left:-4px;top:-4px;z-index:2;pointer-events:none;filter:drop-shadow(0 0 6px var(--c));transition:transform .6s cubic-bezier(.3,.1,.25,1)}
+.ad-cursor svg{display:block;width:28px;height:28px;fill:var(--c);stroke:#fff;stroke-width:1.5;stroke-linejoin:round;transform-origin:10% 10%}
+.ad-cursor.click svg{animation:cuaclick .22s ease-out}
+@keyframes cuaclick{40%{transform:scale(.8)}}
 @media(prefers-reduced-motion:reduce){.agents-desk,.ad-cursor,.ad-row,.ad-row b,.ad-bars i,.ad-mem i{transition:none}.ad-status i{animation:none}}
 /* Projects polish (Tyler, 2026-09-28): every project image is shown whole. */
 #project-grid .project-file-media{flex:0 0 auto;aspect-ratio:16/9;min-height:0}
