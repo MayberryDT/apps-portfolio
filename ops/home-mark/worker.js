@@ -6,10 +6,8 @@ const SITES = {
   // Decree of War uses every screen edge for its HUD; its own pause menu links home.
   'dow.tylermayberry.dev': { binding: 'DOW', from: 'dow', overlay: false },
   'paycheck.tylermayberry.dev': { binding: 'PAYCHECK', from: 'paycheck' },
-  'inntouch.tylermayberry.dev': { binding: 'INNTOUCH', from: 'inntouch' },
   'stayconnect.tylermayberry.dev': { binding: 'STAYCONNECT', from: 'stayconnect' },
   'jobapps.tylermayberry.dev': { binding: 'JOBAPPS', from: 'jobapps' },
-  'txtsync.tylermayberry.dev': { binding: 'TXTSYNC', from: 'txtsync' },
 };
 
 const STYLE = `<style>
