@@ -14,7 +14,8 @@ It must never regress to the retired card site.
 
 ## Execution boundary
 
-- **Mode:** preparation complete. The run starts when Tyler says “set you
+- **Mode: delivery running.** Tyler said “Okay, I set you loose. Please implement
+  everything for me.” on 2026-09-28. The run started when Tyler said “set you
   loose” and then **does not pause**. The implementer makes all routine and
   creative choices within the spec and juice, including the ibara treatment.
   Tyler reviews at the end.

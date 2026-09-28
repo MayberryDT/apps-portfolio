@@ -6,7 +6,7 @@
 ## Key Facts
 
 - Canonical personal site: https://tylermayberry.dev/
-- Business/studio wrapper: Animas AI, https://animasai.co/
+- Company: Animas, https://animasai.co/
 - Email: tyler@animasai.co
 - GitHub: https://github.com/MayberryDT
 - LinkedIn: https://www.linkedin.com/in/mayberrydt/
@@ -18,7 +18,7 @@
 
 ## Relationship Between Sites
 
-TylerMayberry.dev is the canonical personal website for Tyler Mayberry. Animas AI is the business/studio entity Tyler uses for practical AI systems work.
+TylerMayberry.dev is the canonical personal website for Tyler Mayberry. Animas is Tyler's company; it plans, sets up and supports AI agents on computers people own.
 
 ## Pages
 
@@ -29,6 +29,6 @@ TylerMayberry.dev is the canonical personal website for Tyler Mayberry. Animas A
 
 ## Notes
 
-Use Tyler Mayberry as the primary person entity. Use Animas AI as the affiliated organization.
+Use Tyler Mayberry as the primary person entity. Use Animas as the affiliated organization.
 
 Content discovery: About is on the Contact phone (/about.html); Facts and press are reference pages in Notes (/press.html). Both URLs include complete readable HTML.
