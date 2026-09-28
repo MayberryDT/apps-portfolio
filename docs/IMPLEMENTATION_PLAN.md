@@ -84,12 +84,16 @@ It must never regress to the retired card site.
 
 ## Current work
 
-- 2026-09-28, preparation complete:
-  - guard in place;
-  - grill, research, COPYWRITING, juice, spec and this plan done;
-  - 20 unused animasai.co hostnames offline;
-  - Chartroom signed off by Tyler.
-- **Next action:** when Tyler says go, start outcome 1.
+- **Outcome 1 is live:** the Animas relaunch no longer breaks studio links (`d2f628e`).
+- **Outcomes 2–3 are live:**
+  - the seven projects serve at `name.tylermayberry.dev`, identical to before;
+  - the old addresses redirect through the `animasai-legacy-redirects` Worker
+    (source in `ops/legacy-redirects/`; rollback map in the Halla-only
+    `docs/research/animasai-redirect-switch-2026-09-28.json`);
+  - the studio links point to the new homes.
+- **Kept on their old addresses, not redirected:** InnTouch (Firebase) and Nova
+  Share (Supabase), so their logins can't break. See the blockers.
+- **Next:** outcome 4, the home mark on the moved projects.
 
 ## Outcomes, in order
 
@@ -114,14 +118,14 @@ It must never regress to the retired card site.
 
 ## Risks and blockers
 
-- **Risk:** if the new Animas site deploys before outcome 1 ships, the
-  studio's links to Masthead, Pip and ChartStead break, and so does the
-  Animas logo. The new site has no `masthead.html`, `pip.html`,
-  `chartstead.html` or `logo-mark-v2-lg.webp`.
-- **Open unknowns (these are work, not blockers):**
-  - where the moved projects' source repos live;
-  - how to capture the ibara recording through Ibara;
-  - whether the Worker has preview URLs.
+- **Ibara:** it denies control to `claude-code-halla@halla`, so browser, visual
+  and audio QA can't go through Ibara. Unblocks when Tyler grants this agent
+  control in Ibara Access. Everything else continues, and the checks run
+  once access exists.
+- **InnTouch and Nova Share redirects:** to finish them, add
+  `inntouch.tylermayberry.dev` to InnTouch's Firebase authorized domains and
+  `txtsync.tylermayberry.dev` to Nova Share's Supabase redirect URLs, then add
+  both to `ops/legacy-redirects`. Only Tyler has access to those consoles.
 - Tyler owns the Search Console follow-up.
 
 ## Evidence and records
