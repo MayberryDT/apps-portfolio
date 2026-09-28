@@ -151,6 +151,8 @@ function applyRoute({initial=false}={}){
  Object.assign(state,next,{route});roomAudio.route(initial?{}:prev,next);state.detailsReady=readyAreas.has(state.area);targetAngle=0;setBusy(null);
  document.body.dataset.area=state.area;document.body.dataset.object=state.object||'none';if(document.body.dataset.arrival!=='hero')document.title=(projectById.get(state.project)?.name||photoById.get(state.object)?.title||shelfById.get(state.object)?.title||extraObjects[state.object]?.title||areas[state.area]?.name||'Tyler’s studio')+' · Tyler Mayberry';
  if((document.body.dataset.entry==='about'&&state.detail==='about')||(document.body.dataset.entry==='press'&&state.detail==='facts'))document.title=document.body.dataset.entryTitle;
+ // room.html keeps its search title until the visitor moves to an object.
+ if(document.body.dataset.roomTitle&&state.area==='room'&&!state.object&&!state.project)document.title=document.body.dataset.roomTitle;
  updateUI();
  // Cache the photographic composite during travel; rerasterize once when settled.
  stage.style.willChange='transform';

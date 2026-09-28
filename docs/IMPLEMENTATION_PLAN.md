@@ -85,9 +85,32 @@ It must never regress to the retired card site.
      Only intended files may print.
   5. Look at the rendered studio. If it's broken, run
      `npx --yes wrangler@4.131.1 rollback <recorded id>`.
+- **When page copy changes,** update `sitemap.xml` `lastmod` and the page's
+  JSON-LD `dateModified`. After editing About or Press, rebuild
+  `profile-content.js` from them, so the Contact phone and Notes match the
+  pages.
 
 ## Current work
 
+- **SEO and AI-search pass (2026-09-28, Tyler: “do it all and ship it”):**
+  - About, Press and the room copy lead with ibara. Masthead is no longer
+    called the flagship.
+  - Press gains four common questions and a note separating ibara.app from
+    ibara.ai.
+  - The homepage project list and the room's project data follow
+    `projects.js`, and the structured data adds ibara and a line that tells
+    Tyler apart from others with his name.
+  - The entrance gains a role line on desktop and tablet, and its link has a
+    larger tap area.
+  - About and Press now load `room-bundle.css`.
+  - `llms.txt` uses Markdown links.
+  - The Worker adds security headers.
+  - The audit is in the Halla-only `docs/research/seo-audit-2026-09-28/`.
+  - **Still for Tyler:**
+    - the Cloudflare AI-crawler block;
+    - Search Console access for the SEO service account;
+    - LinkedIn and GitHub profile text;
+    - ibara.app's link to its GitHub repository, which returns 404.
 - **All eight outcomes are live (2026-09-28).** After his second sweep Tyler
   said “go ahead and deploy … ship it”, with review fixes to follow the same
   way.

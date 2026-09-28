@@ -20,7 +20,11 @@ export function connectStudioContent(studio) {
     const check=()=>{
       const state=studio.state;
       const ready=state.area==='contact'?studio.contact.visible:state.area==='journal'?studio.journal.visible&&studio.journal.ready:!state.busy&&!state.moving&&!state.loadingObject&&!state.returningObject&&(state.area==='room'||state.detailsReady); 
-      if(ready){document.documentElement.classList.add('studio-running');studio.focusDestination();return;}
+      if(ready){
+        // Someone already reading (scrolled in, or selecting text) keeps the page; its Studio link opens the room.
+        if((document.getElementById('entry-fallback')?.scrollTop||0)>80||String(getSelection()).trim())return;
+        document.documentElement.classList.add('studio-running');studio.focusDestination();return;
+      }
       if(performance.now()-started<60000)requestAnimationFrame(check);
     };
     check();

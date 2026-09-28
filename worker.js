@@ -1,3 +1,13 @@
+// Sent with every page and asset. HSTS covers this host only: the project
+// subdomains are separate Workers.
+const SECURITY_HEADERS = {
+  "Strict-Transport-Security": "max-age=31536000",
+  "X-Content-Type-Options": "nosniff",
+  "Referrer-Policy": "strict-origin-when-cross-origin",
+  "Permissions-Policy": "camera=(), microphone=(), geolocation=(), payment=(), usb=()",
+  "Content-Security-Policy": "frame-ancestors 'self'",
+};
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -40,12 +50,17 @@ export default {
       path === "/" ||
       path.endsWith(".html");
 
+    const headers = new Headers(response.headers);
+    for (const [name, value] of Object.entries(SECURITY_HEADERS)) headers.set(name, value);
     if (!isHtml) {
-      return response;
+      return new Response(response.body, {
+        status: response.status,
+        statusText: response.statusText,
+        headers,
+      });
     }
 
     // HTML must revalidate so portfolio layout fixes show up after deploys.
-    const headers = new Headers(response.headers);
     headers.set("Cache-Control", "public, max-age=0, must-revalidate");
     headers.set("CDN-Cache-Control", "no-cache");
     headers.set("Cloudflare-CDN-Cache-Control", "no-cache");

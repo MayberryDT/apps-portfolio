@@ -1,34 +1,41 @@
 # Tyler Mayberry
-# https://tylermayberry.dev/llms.txt
 
-> Tyler Mayberry is an AI systems builder and practical product engineer who builds agentic workflows, internal tools, automation systems, and AI-native software for messy real-world work.
+> Tyler Mayberry is an AI systems builder and practical product engineer in Tulsa, Oklahoma, who builds agentic workflows, internal tools, automation systems, and AI-native software for messy real-world work. His main project is ibara, which gives AI agents computers of their own. His company, Animas, plans, sets up and supports AI agents on computers people own.
 
-## Key Facts
+Updated 2026-09-28. Other people share the name; this Tyler Mayberry is in Tulsa, Oklahoma, and goes by MayberryDT.
 
-- Canonical personal site: https://tylermayberry.dev/
-- Company: Animas, https://animasai.co/
-- Email: tyler@animasai.co
-- GitHub: https://github.com/MayberryDT
-- LinkedIn: https://www.linkedin.com/in/mayberrydt/
-- Infocard: https://infocard.ai/~MayberryDT
+## Key facts
+
+- Canonical personal site: [tylermayberry.dev](https://tylermayberry.dev/)
+- Main project: [ibara](https://ibara.app): computers of their own for AI agents. They use the browser and desktop apps there while you keep working on yours, and any agent that speaks MCP can drive it. It runs on Omarchy today; more platforms are planned. ibara (ibara.app) is unrelated to ibara.ai.
+- Company: [Animas](https://animasai.co/): plans, sets up and supports AI agents on computers people own, including setting up ibara.
+- Email: [tyler@animasai.co](mailto:tyler@animasai.co)
+- GitHub: [MayberryDT](https://github.com/MayberryDT)
+- LinkedIn: [mayberrydt](https://www.linkedin.com/in/mayberrydt/)
+- Infocard: [~MayberryDT](https://infocard.ai/~MayberryDT)
 - Location: Tulsa, Oklahoma
 - Focus: AI systems, agentic workflows, internal tools, workflow automation, AI-native software, and practical product engineering.
-- Main project: ibara, https://ibara.app (computers of their own for AI agents; runs on Omarchy today, more platforms planned)
-- Other projects: Rat Detective Online (https://ratdetective.online), Chartroom (https://github.com/MayberryDT/chartroom), ChartStead (https://chartstead.com), Masthead (https://usemasthead.com) and more on the studio laptop (/#work).
-
-## Relationship Between Sites
-
-TylerMayberry.dev is the canonical personal website for Tyler Mayberry. Animas is Tyler's company; it plans, sets up and supports AI agents on computers people own.
 
 ## Pages
 
-- /: Personal studio entrance; /#work opens the computer projects.
-- /room.html: Interactive studio with projects, personal stories and Notes.
-- /about.html: Canonical about page with Tyler Mayberry's bio, public facts, profile links, and current proof points.
-- /press.html: Public facts, reusable bios, source links, press notes, and project facts for Tyler Mayberry.
+- [Studio entrance](https://tylermayberry.dev/): the personal studio; the laptop at /#work opens the projects.
+- [Inside the studio](https://tylermayberry.dev/room.html): the interactive room with projects, personal stories and Notes.
+- [About Tyler Mayberry](https://tylermayberry.dev/about.html): bio, public facts, profile links and current work.
+- [Facts and press](https://tylermayberry.dev/press.html): public facts, reusable bios, common questions, project facts and source links.
+
+## Projects
+
+- [ibara](https://ibara.app): computers of their own for AI agents.
+- [Rat Detective Online](https://ratdetective.online): a multiplayer browser shooter with detective rats.
+- [Chartroom](https://github.com/MayberryDT/chartroom): a local second brain built on GBrain.
+- [ChartStead](https://chartstead.com): conference programming and speaker management.
+- [Masthead](https://usemasthead.com): a local record of coding-agent sessions, turned into pages.
+- [Pip](https://spendwithpip.com): a spending companion built around Spendable Cash Today.
+- [Hotel Cleaning Schedule](https://hotelcleaningschedule.com): room-by-room deep-clean calendars for hotels.
+- [Executioner](https://executionr.com): turns a brain dump into outcomes, steps and a schedule.
+- [Milkbench](https://milk.tylermayberry.dev/): a playful benchmark of coding models.
 
 ## Notes
 
-Use Tyler Mayberry as the primary person entity. Use Animas as the affiliated organization.
-
-Content discovery: About is on the Contact phone (/about.html); Facts and press are reference pages in Notes (/press.html). Both URLs include complete readable HTML.
+- Use Tyler Mayberry as the primary person entity. Animas is his company.
+- About is on the studio's Contact phone and Facts and press are reference pages in Notes; both URLs also serve complete readable HTML.
