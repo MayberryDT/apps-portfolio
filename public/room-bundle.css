@@ -197,7 +197,7 @@ body[data-object=omarchy] #story-title{margin-bottom:16px}
 .project-desktop[data-expanded=true] #project-up{min-height:44px}
 @container(max-height:300px){
  .desktop-bar,.desktop-status{display:none}.file-toolbar{height:49px}
- #project-window{padding:13px 24px;gap:25px}.project-preview{height:135px;aspect-ratio:auto}
+ #project-window{padding:13px 24px;gap:25px;align-items:start}.project-preview{height:135px;aspect-ratio:auto}
  .project-eyebrow{margin-bottom:8px;font-size:9px}.project-copy{padding:0}.project-copy h2{font-size:25px;margin-bottom:9px}
  .project-description{font-size:12px;line-height:1.45;margin-bottom:12px}.project-visit{min-height:44px;font-size:12px}
  .file-sidebar{padding-top:16px}.file-sidebar p{display:none}.sidebar-signature{margin-top:auto}.project-files{padding-top:17px}
@@ -298,7 +298,7 @@ body[data-object=omarchy] #story-title{margin-bottom:16px}
  .project-file:hover .project-file-media img{transform:none}
 }
 /* The Omarchy monitor reads as a lit screen under glass, not a flat overlay (Tyler, 2026-09-28). */
-#omarchy-screen-still.omarchy-surface{background:#070910;-webkit-mask-image:linear-gradient(to right,transparent,#000 6px,#000 calc(100% - 6px),transparent),linear-gradient(to bottom,transparent,#000 6px,#000 calc(100% - 6px),transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(to right,transparent,#000 6px,#000 calc(100% - 6px),transparent),linear-gradient(to bottom,transparent,#000 6px,#000 calc(100% - 6px),transparent);mask-composite:intersect}
+#omarchy-screen-still.omarchy-surface{background:#070910}
 #omarchy-screen-still::before{content:'';position:absolute;inset:0;z-index:3;pointer-events:none;background:radial-gradient(130% 100% at 50% 45%,transparent 58%,rgba(0,0,0,.5) 100%)}
 #omarchy-screen-still::after{content:'';position:absolute;inset:0;z-index:4;pointer-events:none;background:linear-gradient(118deg,rgba(255,255,255,.075) 0%,rgba(255,255,255,.02) 26%,rgba(255,255,255,0) 44%);mix-blend-mode:screen}
 #omarchy-screen-still .omarchy-ascii{text-shadow:0 0 5px rgba(150,180,255,.35);transition:opacity .35s ease}
@@ -337,7 +337,7 @@ body[data-object=omarchy] #story-title{margin-bottom:16px}
 .ad-cursor span{margin-left:4px;padding:2px 6px;border-radius:4px;background:#bb9af7;color:#16161e;font-size:11px;vertical-align:top}
 @media(prefers-reduced-motion:reduce){.agents-desk,.ad-cursor,.ad-row,.ad-row b,.ad-bars i,.ad-mem i{transition:none}.ad-status i{animation:none}}
 /* Projects polish (Tyler, 2026-09-28): every project image is shown whole. */
-.project-file-media{flex:0 0 auto;aspect-ratio:16/9;min-height:0}
+#project-grid .project-file-media{flex:0 0 auto;aspect-ratio:16/9;min-height:0}
 .project-file-media img{object-fit:contain}
 .project-file-media::before,.project-preview::before{content:'';position:absolute;inset:-14px;background:var(--thumb) center/cover no-repeat;filter:blur(14px) brightness(.5) saturate(1.15);opacity:0;transition:opacity .25s ease}
 .project-file-media.has-image::before,.project-preview.has-image::before{opacity:1}

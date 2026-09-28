@@ -25,9 +25,11 @@ export class OmarchyScreen {
     this.canvas.height = 2400;
     this.canvas.hidden = true;
     this.root.append(this.text, this.canvas);
-    // The Projects tab shows agents at work; the Omarchy tab shows the screensaver.
+    // Agents work on the screen from arrival at the desk until the visitor leaves it;
+    // inspecting the monitor, its Omarchy tab brings the screensaver back.
     this.agents = new AgentsDesk();
     this.root.append(this.agents.root);
+    this.working = false;
     this.mode = 'screensaver';
     this.root.dataset.mode = 'screensaver';
     Object.assign(this.root.style, {width:'700px',height:'1200px',transform:quadTransform(screenQuads.omarchy,700,1200)});
@@ -41,7 +43,8 @@ export class OmarchyScreen {
     this.active = active;
     this.ready = false;
     this.stop();
-    if (!active) this.setMode('screensaver');
+    // Inspection opens on the ibara tab, and the desk view is the agents' too.
+    if (this.working) this.setMode('agents');
     if (active && this.loadState === 'failed') { this.loadState = 'idle'; this.loading = null; }
   }
 
@@ -50,7 +53,20 @@ export class OmarchyScreen {
     this.mode = mode;
     this.root.dataset.mode = mode;
     if (mode !== 'agents') this.agents.stop();
+    this.onmode?.(mode);
     this.sync();
+  }
+
+  desk(here, settled) {
+    if (!here) {
+      if (!this.working) return;
+      this.working = false;
+      this.agents.fresh = true;
+      this.setMode('screensaver');
+    } else if (!this.working && settled) {
+      this.working = true;
+      this.setMode('agents');
+    }
   }
 
   stop() {
@@ -94,7 +110,7 @@ export class OmarchyScreen {
   sync() {
     if (this.mode === 'agents') {
       this.stop();
-      if (!this.active || !this.ready) { this.agents.stop(); return; }
+      if (!this.working) { this.agents.stop(); return; }
       if (this.motion.matches) { this.agents.stop(); this.agents.still(); return; }
       if (document.hidden) this.agents.stop(); else this.agents.start();
       return;

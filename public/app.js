@@ -29,7 +29,7 @@ Object.defineProperty(state,'tab',{enumerable:true,get:selectedStoryTab});
 let cameras,raf=0,phoneDrag=null,drag=null,last=0,targetAngle=0,selectionToken=0,retryAction=()=>location.reload();
 const announce=s=>$('announcement').textContent=s;
 const request=()=>{if(!raf)raf=requestAnimationFrame(draw)};
-function panelVisible(value){journal.show(value&&state.detailsReady&&state.object==='notebook'&&journal.state.lift===1).then(()=>{if(state.object==='notebook'&&journal.visible&&(journal.ready||journal.error))setBusy(null)});const show=value&&!['monitor','pixel'].includes(state.object);document.body.dataset.focused=String(value&&(state.object!=='notebook'||journal.state.lift===1));$('story-panel').inert=!show;$('story-panel').setAttribute('aria-hidden',String(!show));workstation.layout(zoom.current,value&&!state.moving)}
+function panelVisible(value){journal.show(value&&state.detailsReady&&state.object==='notebook'&&journal.state.lift===1).then(()=>{if(state.object==='notebook'&&journal.visible&&(journal.ready||journal.error))setBusy(null)});const show=value&&!['monitor','pixel'].includes(state.object);document.body.dataset.focused=String(value&&(state.object!=='notebook'||journal.state.lift===1));$('story-panel').inert=!show;$('story-panel').setAttribute('aria-hidden',String(!show));workstation.layout(zoom.current,value&&!state.moving);workstation.omarchy.desk(state.area==='desk',!state.moving)}
 function geometry(){
  const {x,y,s}=zoom.current;
  state.transform=`translate(${x}px,${y}px) scale(${s})`;stage.style.transform=state.transform;
@@ -188,9 +188,9 @@ function updateUI(){
   if(focused||state.area==='photos'||state.area==='bookshelf'||directAreas.has(state.area))continue;
   const hit=document.createElement('button');hit.type='button';hit.dataset.area=key;hit.dataset.object=item.object;hit.className='btn scene-node '+(state.area==='room'?'area-hit':'object-hit');
   hit.setAttribute('aria-label',focused?'Back to '+area.name.toLowerCase():state.area==='room'?'Visit '+areas[key].name.toLowerCase():'Inspect '+item.objectName);
-  const label=focused?'← '+area.label:state.area==='room'?areas[key].label:item.object==='helm'?'Helm':item.objectName.replace(/^The |^the /,'');
+  const label=focused?'← '+area.label:state.area==='room'?areas[key].label:item.nodeLabel||item.objectName.replace(/^The |^the /,'');
   hit.innerHTML='<i aria-hidden="true"></i><span></span>';
-  hit.querySelector('span').textContent=label.charAt(0).toUpperCase()+label.slice(1);
+  hit.querySelector('span').textContent=item.nodeLabel||label.charAt(0).toUpperCase()+label.slice(1);
   hit.onclick=()=>{if(focused)navigate(state.area);else if(state.area==='room')navigate(key,directAreas.has(key));else navigate(key,true,item.object)};
   hit.tether=document.createElementNS('http://www.w3.org/2000/svg','line');$('node-leaders').append(hit.tether);
   $('hotspots').append(hit);
@@ -349,15 +349,18 @@ function warmNext(){
  warming=true;Promise.resolve().then(warmSteps[warmIndex++]).catch(()=>{}).finally(()=>{warming=false;setTimeout(warmNext,warmIndex<4?300:1200)});
 }
 setTimeout(warmNext,1500);
-// Omarchy monitor: the screensaver runs until the Projects tab shows agents at work.
+// Omarchy monitor: agents work while at the desk; its Omarchy tab brings the screensaver back.
 new MutationObserver(()=>{
  if(state.object!=='omarchy')return;
- const agents=$('tabs').querySelector('[role=tab][aria-selected=true]')?.textContent.trim()==='Projects';
- workstation.omarchy.setMode(agents?'agents':'screensaver');roomAudio.machine(agents);
+ const omarchy=$('tabs').querySelector('[role=tab][aria-selected=true]')?.textContent.trim()==='Omarchy';
+ workstation.omarchy.setMode(omarchy?'screensaver':'agents');
 }).observe($('tabs'),{subtree:true,attributes:true,attributeFilter:['aria-selected']});
 // Heading for the Contact phone starts preparing it straight away.
+let contactAnticipated=false;
 function anticipateContact(event){
- if(!state.ready||navigator.connection?.saveData||!event.target.closest?.('[data-area=contact]'))return;
+ const connection=navigator.connection;
+ if(contactAnticipated||!state.ready||connection?.saveData||/2g/.test(connection?.effectiveType||'')||!event.target.closest?.('[data-area=contact]'))return;
+ contactAnticipated=true;
  Promise.all([ensureDetails('contact'),objects.prepare('pixel',$('objects'),cameras.room)]).catch(()=>{});
 }
 $('world').addEventListener('pointerover',anticipateContact);$('world').addEventListener('focusin',anticipateContact);
@@ -381,6 +384,7 @@ const shelf=new ShelfGallery({world:$('world'),panel:$('story-panel'),scene:stag
 const journal=new Journal({host:$('world'),panel:$('story-panel'),onClose:()=>navigate('room')});
 const contact=new ContactLanding($('world'));
 const workstation=new Workstation({scene:stage,world:$('world'),onProject:project=>navigate('desk',true,'monitor',project)});
+workstation.omarchy.onmode=mode=>roomAudio.machine(mode==='agents');
 window.studio={state,objects,zoom,journal,contact,gallery,shelf,navigate,views,tiles,workstation,focusDestination,audio:roomAudio,keepRoute:()=>{laptopRemembered=true},prepareRoute:()=>applyRoute({initial:true}),get cameras(){return cameras}};
 window.studio.initialized=start();
 connectStudioContent(window.studio);

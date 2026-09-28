@@ -1,20 +1,21 @@
 // Agents at work on an Omarchy desktop, drawn as motion graphics for the portrait
 // monitor (spec outcome 7). A simulation in ibara.app's demo style, not a recording:
 // Tyler, 2026-09-28: "I want the cool motion effect animations of agents working."
+// Agents drive ibara over MCP, so the terminal shows a coding agent calling its tools.
 const TERMINAL = [
-  "$ ibara run --agent claude 'reconcile invoices'",
-  '» agent-1 on tater0 · opening chromium',
-  '» reading invoices.acme.test (6 open)',
-  '» matching payments to bank-export.csv',
-  '[ok] 1042, 1043 marked paid',
-  "$ ibara run --agent codex 'fill the q3 budget'",
-  '» agent-2 on tater1 · q3-budget.ods',
-  '» copying totals from receipts/',
-  '[ok] saved q3-budget.ods',
-  '$ ibara status',
-  '  tater0  agent-1  working  invoices',
-  '  tater1  agent-2  working  budget',
-  '  tater2  agent-3  waiting  review'
+  '> reconcile the open invoices, then fill q3',
+  '» ibara computer_status',
+  '  └ tater0 ready · tater1 ready',
+  '» ibara computer_begin tater0',
+  '» ibara computer_act click "Mark paid"',
+  '  └ #1042 paid · verified',
+  '» ibara computer_act click "Mark paid"',
+  '  └ #1043 paid · verified',
+  '» ibara computer_begin tater1',
+  '» ibara computer_act type 5 cells',
+  '  └ saved q3-budget.ods',
+  '» ibara computer_end tater0',
+  '  Invoices reconciled; the budget is filled.'
 ];
 const INVOICES = [['1042', 'Harbor Supply', '$1,240.00'], ['1043', 'Northwind', '$318.50'], ['1044', 'Cedar & Co', '$2,015.00'],
   ['1045', 'Blue Mesa', '$96.20'], ['1046', 'Fjord Labs', '$640.00'], ['1047', 'Juniper', '$1,105.75']];
@@ -26,7 +27,7 @@ export class AgentsDesk {
     this.root.className = 'agents-desk';
     this.root.innerHTML = `<div class="ad-bar"><span class="ad-ws"><b>1</b><b class="on">2</b><b>3</b></span><span class="ad-clock"></span><span class="ad-status"><i></i>3 agents</span></div>
       <section class="ad-win ad-browser"><header><span>invoices.acme.test</span><em>agent-1</em></header><div class="ad-page"><h4>Open invoices</h4><div class="ad-rows">${INVOICES.map(([n, who, amt]) => `<div class="ad-row"><span>#${n}</span><span>${who}</span><span>${amt}</span><b>Open</b></div>`).join('')}</div></div></section>
-      <section class="ad-win ad-term"><header><span>alacritty</span><em>ibara</em></header><pre></pre></section>
+      <section class="ad-win ad-term"><header><span>alacritty</span><em>claude</em></header><pre></pre></section>
       <div class="ad-split"><section class="ad-win ad-sheet"><header><span>q3-budget.ods</span><em>agent-2</em></header><div class="ad-grid">${['', 'Plan', 'Actual'].map(h => `<span class="h">${h}</span>`).join('')}${BUDGET.map(([k]) => `<span class="h">${k}</span><span></span><span></span>`).join('')}</div></section>
       <section class="ad-win ad-top"><header><span>btop</span><em>tater0</em></header><div class="ad-bars">${'<i></i>'.repeat(8)}</div><div class="ad-mem"><span>mem</span><i></i></div></section></div>
       <div class="ad-cursor" aria-hidden="true"><svg viewBox="0 0 16 20"><path d="M1 1l13 11.5H8.4l3.3 6.5-2.6 1.3-3.3-6.6L1 17.5z"/></svg><span>agent-1</span></div>`;
@@ -38,6 +39,7 @@ export class AgentsDesk {
     this.cursor = this.root.querySelector('.ad-cursor');
     this.clock = this.root.querySelector('.ad-clock');
     this.timer = 0;
+    this.fresh = true;
   }
   reset() {
     this.step = 0; this.line = 0; this.char = 0; this.lines = [];
@@ -55,12 +57,14 @@ export class AgentsDesk {
     this.mem.style.width = '58%';
     this.moveCursor(this.rows[2]);
     this.clock.textContent = new Date().toLocaleString('en-US', {weekday: 'long'}) + ' ' + new Date().toTimeString().slice(0, 5);
+    this.fresh = true;
   }
   start() {
     if (this.timer) return;
     // Open mid-work: the composed still, then carry on typing from where it leaves off.
-    this.still();
-    this.step = 26 * 2; this.line = 9; this.char = 0;
+    // A pause (hidden tab) resumes where it was.
+    if (this.fresh) { this.still(); this.step = 26 * 2; this.line = 9; this.char = 0; }
+    this.fresh = false;
     this.timer = setInterval(() => this.tick(), 70);
   }
   stop() { clearInterval(this.timer); this.timer = 0; }
@@ -75,7 +79,7 @@ export class AgentsDesk {
     this.step++;
     // Terminal: type the agent log, then keep the last lines on screen.
     const text = TERMINAL[this.line % TERMINAL.length];
-    this.char += text.startsWith('$') ? 1 : 3;
+    this.char += text.startsWith('>') ? 1 : 3;
     const shown = [...this.lines, text.slice(0, this.char)].slice(-12);
     this.term.textContent = shown.join('\n') + (this.step % 8 < 4 ? '▌' : ' ');
     if (this.char >= text.length) { this.lines.push(text); this.lines = this.lines.slice(-11); this.line++; this.char = 0; }

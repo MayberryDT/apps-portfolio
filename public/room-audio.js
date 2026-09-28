@@ -163,7 +163,7 @@ class RoomAudio {
     if (this.place === 'outside' && next.area) this.place = 'room';
     const place = this.target = next.area && next.area !== 'room' ? next.area : 'room';
     if (this.place !== 'outside' && !this.arriving) this.apply(place, next.focused ? 1.05 : 1.15);
-    this.fanTarget = next.area === 'desk' ? .025 : 0;
+    this.fanTarget = next.area === 'desk' ? (this.busy ? .2 : .025) : 0;
     if (!this.ctx || this.muted) return;
     if (next.area === 'journal' && prev.area !== 'journal') this.play('creak', .2, {delay: .5});
     const opened = next.focused && next.object && next.object !== prev.object;
@@ -177,7 +177,8 @@ class RoomAudio {
   }
   // The computer's fans rise while agents work on the Omarchy monitor.
   machine(busy) {
-    this.fanTarget = busy ? .2 : .025;
+    this.busy = busy;
+    this.fanTarget = this.target === 'desk' ? (busy ? .2 : .025) : 0;
     if (this.ctx && !this.muted) this.ramp(this.fan.gain, this.fanTarget, busy ? 2.2 : 1.2);
   }
   pickUp(object, area) {
