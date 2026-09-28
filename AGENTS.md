@@ -1,28 +1,40 @@
-# Agent notes — apps-portfolio
+# Agent entry point — tylermayberry.dev
 
-The production personal studio is served from `public/` by `worker.js` using
-`wrangler.jsonc`. Read the Production section of `README.md` before changing
-its deployment workflow. A release must compare the complete public asset tree
-and key routes with the active Worker, retain its version ID for rollback, and
-verify the new active version and live routes after deployment. Keep private
-source and agent instructions out of the served assets.
+Keep this file short. The [plan](docs/IMPLEMENTATION_PLAN.md) owns current state,
+authority, the next action and the release check.
 
-## Product cards
+## The live site is the personal studio. Never bring back the old card site.
 
-- The homepage is a curated product index (featured Masthead + supporting cards).
-- **When asked to add a product: always append a new card.** Never remove or replace an existing card unless the user explicitly requests removal or a ranked rearrange.
-- Prefer multi-row CSS grid areas over dumping every card into one horizontal row.
-- Live ChartStead URL: https://chartstead.com
-- Live Wargus TypeScript URL: https://wargus.animasai.co
-- Live Hotel Cleaning Schedule URL: https://hotelcleaningschedule.com
-- Deploy: Cloudflare Worker custom domains for tylermayberry.dev only.
+- https://tylermayberry.dev is the photographic **personal studio**: a room you
+  explore. It is served from `public/` by `worker.js` and `wrangler.jsonc`
+  (Cloudflare Worker `product-portfolio-preview`).
+- **Every push to `master` deploys to production** through Cloudflare Workers
+  Builds. A push is a release. Follow the plan's release check.
+- `master` is the only source of the site. On 2026-09-28 every file in
+  `master@e3d764e` `public/` matched the live site byte for byte.
+- The old **product-card index** (a grid of project cards led by Masthead) is
+  retired. It exists only in tags `old-card-site-2026-08` and `old-site/*`, and
+  in any commit before `0a051a7`. Never check out, restore, merge, copy from or
+  deploy those. On 2026-09-19 a stale `master` auto-deployed the old site over
+  the studio and had to be rolled back.
+- Tell them apart: the studio has `public/room.html`, `public/app.js` and
+  `public/projects.js`, and its hero reads “A Personal Studio”. The old site's
+  homepage is a card grid, with no `room.html`.
+- Before any git restore, checkout, reset, stash, merge, sync or deploy, check
+  that the result keeps `public/room.html` and leaves `public/` matching live.
+  If you cannot tell, stop and ask Tyler.
+- The GitHub repository is public. Never commit personal source material or
+  Halla-only development records.
 
-## Current supporting cards (display order as of 2026-08-13)
+## Read next
 
-1. ChartStead
-2. Pip
-3. Hotel Cleaning Schedule
-4. Executioner
-5. Milkbench
-6. Wargus TypeScript
-7. Rat Detective Online
+- [Plan](docs/IMPLEMENTATION_PLAN.md): current work, execution limits, protected
+  design and the release/rollback check.
+- [Project rules](docs/agents/project-rules.md): projects, content and search
+  preservation.
+- Creative or copy work: read [COPYWRITING.md](COPYWRITING.md) for audience and
+  voice. Read [juice.md](juice.md) and only the directions relevant to the
+  task. Use make-it-juicy to apply them. Update useful discoveries and stale
+  guidance as part of that work.
+- Studio object changes on Halla: the Halla-only
+  [object workflow](docs/agents/studio-object-workflow.md).
