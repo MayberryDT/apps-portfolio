@@ -42,7 +42,7 @@ you pick up. The light moves a little, the way it does in a real room.
 | Outside return | The door slides, the outside opens up again, then fades | Outside |
 | Room bed | Quiet room tone, outside muffled through the glass (brighter toward the right-side windows), and a rare faint wood creak | Always, in the room |
 | Desk | Faint laptop fan and monitor hum up close; a trackpad click when a project opens; a soft key tap when a window opens or closes; a mouse click | Desk area; laptop actions |
-| Omarchy / ibara | Fans rise gently while the agents work, and settle when you leave | Monitor inspection (outcome 7) |
+| Omarchy / ibara | Fans rise gently while the agents work, and settle when you leave | At the desk while agents work (outcome 7) |
 | Helm phone | A slide off the fabric mat, a small tick for the screen, a set-down tap back at rest | Pickup; screen actions; return |
 | Contact phone | Lifted from the entry console with a faint jingle of the XMAX keys beside it; a soft tick between tabs; set down | Pickup; tabs; return |
 | Bookshelf | Shaco: a vinyl-figure lift. Sonic/Dreamcast: a plastic lift. Baseball: a leather thump. Weightlifting item: a small metal knock. Student drawing: a paper rustle. Books: a spine sliding. | Inspect or put back |

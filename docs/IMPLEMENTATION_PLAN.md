@@ -14,7 +14,7 @@ It must never regress to the retired card site.
 
 ## Execution boundary
 
-- **Mode: delivery running.** Tyler said “Okay, I set you loose. Please implement
+- **Mode: delivered 2026-09-28.** New work needs Tyler's request. Tyler said “Okay, I set you loose. Please implement
   everything for me.” on 2026-09-28. The run started when Tyler said “set you
   loose” and then **does not pause**. The implementer makes all routine and
   creative choices within the spec and juice, including the ibara treatment.
@@ -88,30 +88,31 @@ It must never regress to the retired card site.
 
 ## Current work
 
-- **Outcomes 1–4 are live and reviewed.**
-  - Studio links survive the Animas relaunch.
-  - Seven projects moved to `name.tylermayberry.dev`.
-  - Old addresses redirect through `animasai-legacy-redirects`
-    (`ops/legacy-redirects/`).
-  - The `tm-home-mark` Worker (`ops/home-mark/`) adds the corner mark.
-    Decree of War has none; see the blockers.
-- **Outcomes 5–8 are on local branch `studio-next`,** with Tyler's first-sweep
-  feedback applied in `e6f9736`. Functional smoke passes 45/45.
-  - **Monitor:** screensaver until the Projects tab, then the agents motion
-    graphic. No videos. The screen reads as glass.
-  - **Projects computer:** whole images, polished grid and windows.
-  - **Content:** Rat Detective's new image; Decree of War removed for now.
-  - **Contact:** opens with nothing to download (4G phone 2.75 s → 1.36 s).
-  - **Sound:** 4.5 dB quieter.
-  - **Preview:** version `c6d0163c`,
-    https://c6d0163c-product-portfolio-preview.mayberrydt.workers.dev. It is
-    not deployed.
-- **Independent review of this round:** running.
-- **Next:**
-  1. Fix any review findings.
-  2. Tyler sweeps again.
-  3. Merge `studio-next` into `master` using the release check. That merge is
-     the deploy.
+- **All eight outcomes are live (2026-09-28).** After his second sweep Tyler
+  said “go ahead and deploy … ship it”, with review fixes to follow the same
+  way.
+  - **Outcomes 1–4:** studio links survive the Animas relaunch. Seven projects
+    moved to `name.tylermayberry.dev`, and old addresses redirect through
+    `animasai-legacy-redirects` (`ops/legacy-redirects/`). The `tm-home-mark`
+    Worker (`ops/home-mark/`) adds the corner mark; Decree of War has none,
+    because its HUD uses every edge.
+  - **Outcomes 5–8,** merged from `studio-next`:
+    - **Monitor:** the surface fits the photographed screen, checked in zoomed
+      renders. Agents appear when the camera reaches the desk. The node and
+      panel read ibara; the Omarchy tab brings the screensaver back. Each
+      window's agent has its own colourful Cua cursor, as on ibara.app. No
+      videos.
+    - **Projects computer:** whole images, a polished grid and windows.
+    - **Content:** Rat Detective's new image. Decree of War is off Projects
+      for now; its Notes page stays (Tyler).
+    - **Contact:** opens with nothing left to download (4G phone 2.75 s →
+      1.36 s).
+    - **Sound:** 4.5 dB quieter. Tyler checked sound and the phone behaviour
+      on his own phone.
+- **Reviews:** both sweep rounds were independently reviewed, and every finding
+  is fixed. One nit is left: the monitor surface overlaps the bezel by 1–5
+  source pixels, which reads as bezel.
+- **Next:** nothing is scheduled. New work starts from Tyler's request.
 
 ## Outcomes, in order
 
@@ -125,22 +126,18 @@ It must never regress to the retired card site.
    - the quiet door and the room remembering you;
    - Animas as a contact.
 
-   On `studio-next`.
+   Live.
 6. **Room presence:** sound and environment, per
-   [plan/room-presence.md](plan/room-presence.md). On `studio-next`.
-7. **ibara on the Omarchy monitor**, and first in Projects. On `studio-next`.
+   [plan/room-presence.md](plan/room-presence.md). Live.
+7. **ibara on the Omarchy monitor**, and first in Projects. Live.
 8. **Optimization audit, then optimize.** Findings go in
-   `plan/optimization-audit.md`. On `studio-next`. Then the candidate review,
-   the preview for Tyler's sweep, his feedback, and the merge to `master`.
+   `plan/optimization-audit.md`. Live, after two sweeps by Tyler and the
+   fixes from both.
 
 ## Risks and blockers
 
 - **Ibara:** unavailable while it's being worked on. Tyler checks visuals
   and sound himself.
-- **Real-phone checks** (iPhone audio unlock, GPU cost of the light layer)
-  depend on Tyler's device.
-- **Search Console is optional:** submit the sitemap and inspect `/` once.
-  Search brings few visitors.
 
 ## Evidence and records
 

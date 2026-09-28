@@ -30,8 +30,8 @@ otherwise. The implementer applies them in the planned run without pausing.
 headline direction. After Enter you hear the quiet of the place, the outside
 through the glass, and the soft physical sounds of what you pick up, and the
 light moves a little. Only things in the room make sound; the UI stays silent.
-Details: [room presence](docs/plan/room-presence.md). *Applied on the
-`studio-next` preview (2026-09-28); awaiting Tyler's listening sweep.*
+Details: [room presence](docs/plan/room-presence.md). *Applied live
+(2026-09-28), after Tyler's sweep: “the sounds and … the juice … is great”.*
 Tyler asked for “a lot more quiet sounds” and to “double down on the feeling”.
 
 **Arrival: the doorway, then a slow walk in.** Read for the entrance, Enter and
@@ -42,14 +42,13 @@ option 09 (2026-09-12).
 **The shortcut still walks you in.** Read for the entrance link. It fades in
 after the entrance settles, like a note left on the door. Using it plays the
 walk-in, carries on to the desk and wakes the laptop to Projects. It's never
-navigation chrome and never a teleport. *Applied on the preview.*
+navigation chrome and never a teleport. *Applied live.*
 
 **The room remembers you.** Read for returning visitors. They land in the room,
-and the laptop reopens to the last project they viewed. *Applied on the
-preview.*
+and the laptop reopens to the last project they viewed. *Applied live.*
 
 **Loading is part of the room.** Read for any loading state. Show the
-selected object warming up, never a spinner. *Applied on the preview* as a
+selected object warming up, never a spinner. *Applied live* as a
 warm ember in the loading label.
 
 **Speed is part of the feeling.** Read for any asset, model or loading change.
@@ -81,25 +80,25 @@ thing, not a lookalike. *Applied:* the Omarchy ASCII screensaver (R25).
 
 **Animas is a contact on the phone.** Read for the Contact phone. The company
 appears the way a phone shows a contact, “Animas, my company”, inside the
-object. *Applied on the preview.*
+object. *Applied live.*
 
-**The machine is working.** Read for the Omarchy monitor. The screensaver runs
-until you choose the Projects tab. Then agents are visibly at work: a tiled
-Tokyo Night desktop, an agent's cursor marking invoices paid, a terminal typing,
-a sheet filling in, btop pulsing, and the fans rising. It's motion graphics,
-never video: Tyler rejected the real recordings (2026-09-28). *Applied on the
-preview.*
+**The machine is working.** Read for the Omarchy monitor. The moment you reach
+the desk, agents are visibly at work on it: a tiled Tokyo Night desktop where
+every window has its own agent and colourful Cua cursor, as on ibara.app. One
+marks invoices paid, one types ibara tool calls, one fills a sheet and one
+watches btop pulse, and the fans rise. Never a plain white cursor (Tyler). The
+monitor is labelled ibara; inspecting it keeps them working, and its Omarchy
+tab brings the screensaver back. It's motion graphics, never video: Tyler
+rejected the real recordings (2026-09-28). *Applied live.*
 
 **A way home from every project.** Read for work on moved project sites. A
 small `tm.` mark sits in the corner. It widens on hover to say “Tyler
 Mayberry's studio”, and clicking it walks you into the studio with that
 project open on the laptop. *Applied live* on six moved projects (not
-Decree of War, whose HUD uses every edge). The studio side ships with the
-preview.
+Decree of War, whose HUD uses every edge). The studio side is live too.
 
 **A second look pays off.** Read for idle moments. Small quiet rewards for
-lingering, such as dappled light and dust in the sunbeam. *Applied on the
-preview; the evening light was dropped until it can be checked visually.*
+lingering, such as dappled light and dust in the sunbeam. *Applied live; the evening light was dropped until it can be checked visually.*
 
 ## Sources
 

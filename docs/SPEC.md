@@ -66,7 +66,8 @@ stays easy to reach.
     Masthead, Pip, Hotel Cleaning Schedule, Executioner, Milkbench, and Helm
     last.
   - Decree of War is removed from the studio for now (“just remove Decree of
-    War for now. We'll deal with it later”); its site stays up.
+    War for now. We'll deal with it later”); its site stays up, and so does
+    its Notes page (“keep Decree of War in the notes”).
   - No other project is removed, and moved projects are not added.
 - **Projects computer polish (Tyler's sweep):**
   - Every thumbnail and project window shows its whole image; nothing is
@@ -111,19 +112,24 @@ stays easy to reach.
 
 **7. ibara on the Omarchy monitor.**
 - ibara is the first Projects entry.
-- **Monitor behaviour (Tyler, 2026-09-28):**
-  - While inspected, the Omarchy screensaver runs on the **Omarchy** tab,
-    which is first.
-  - The **Projects** tab shows agents at work as motion graphics: a tiled
-    Omarchy desktop with an agent's cursor working through a browser, a
-    terminal, a spreadsheet and btop.
-  - Returning to the Omarchy tab brings the screensaver back.
+- **Monitor behaviour (Tyler's second sweep, 2026-09-28):**
+  - From the room, the monitor shows the Omarchy screensaver still.
+  - As soon as the camera reaches the desk (“Projects”), agents appear on the
+    monitor and work. The motion graphics show a tiled Omarchy desktop: a
+    browser, a terminal of ibara tool calls, a spreadsheet and btop, each
+    worked by its own agent with a colourful Cua cursor as on ibara.app.
+  - The monitor's node reads **ibara**. Inspecting it zooms in on the agents,
+    still working, with the **ibara** tab first.
+  - The **Omarchy** tab brings the screensaver back; the ibara tab returns to
+    the agents. Leaving the desk stops them.
 - **No videos:** “I don't want real videos.” The panel copy calls it an
   illustration in the ibara.app demo's style, with links to ibara.app and
   Animas.
-- **The screen reads as lit glass:** near-black, a feathered edge, glare and
-  a vignette, not a flat overlay.
-- Animation runs only while shown. Reduced motion gets a still.
+- **The screen fits the monitor:** the surface covers the photographed
+  screen to its edge, so none of the photo's lit screen shows around it. It
+  reads as lit glass, with glare and a vignette, not a flat overlay.
+- Animation runs only at the desk and in a visible tab. Reduced motion gets a
+  still.
 
 **8. Optimization audit, then optimization.** Last, after 1–7:
 - Audit the whole studio for load performance, runtime cost (CPU/GPU, memory,
@@ -145,7 +151,8 @@ stays easy to reach.
 
 ## Exclusions
 
-- Search Console follow-up (Tyler's).
+- Search Console follow-up: closed. Tyler submitted the sitemap, and Google
+  read it in late September 2026.
 - New studio projects other than ibara.
 - A menu or plain-text alternative.
 - Analytics tooling.
@@ -176,9 +183,12 @@ stays easy to reach.
   - reduced motion stills it;
   - no measurable frame drop at rest on a phone profile.
 - **ibara:**
-  - recording plays only while inspected;
-  - privacy review of every frame;
-  - reduced-motion still.
+  - agents appear on arrival at the desk and keep working through
+    inspection; the Omarchy tab brings the screensaver back;
+  - nothing runs outside the desk or in a hidden tab;
+  - reduced-motion still;
+  - the surface's edges checked in zoomed crops of the rendered desk and
+    monitor views, on desktop and a phone.
 - **Search identities:**
   - titles, canonicals and JSON-LD on `/`, `/about.html` and `/press.html`;
   - no remaining animasai.co page dependencies.
