@@ -104,11 +104,11 @@ It must never regress to the retired card site.
     larger tap area.
   - About and Press now load `room-bundle.css`.
   - `llms.txt` uses Markdown links. `robots.txt` declares Content Signals
-    (`search=yes, ai-input=yes, ai-train=yes`), matching ibara.app.
+    (`search=yes, ai-input=yes, ai-train=yes`), matching ibara.app. Tyler
+    turned off Cloudflare's AI-crawler block; GPTBot, ClaudeBot and CCBot get 200.
   - The Worker adds security headers.
   - The audit is in the Halla-only `docs/research/seo-audit-2026-09-28/`.
   - **Still for Tyler:**
-    - the Cloudflare AI-crawler block;
     - Search Console access for the SEO service account;
     - LinkedIn and GitHub profile text;
     - ibara.app's link to its GitHub repository, which returns 404.
