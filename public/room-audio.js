@@ -32,7 +32,8 @@ class RoomAudio {
     if (!this.ctx) {
       const Context = window.AudioContext || window.webkitAudioContext;
       if (!Context) return null;
-      const ctx = this.ctx = new Context({latencyHint: 'interactive'});
+      // The entrance may already have created the context inside the Enter click.
+      const ctx = this.ctx = window.__studioAudioContext || new Context({latencyHint: 'interactive'});
       this.master = ctx.createGain(); this.master.gain.value = 0;
       const limit = ctx.createDynamicsCompressor();
       limit.threshold.value = -20; limit.ratio.value = 4; limit.attack.value = .004; limit.release.value = .25;
@@ -46,7 +47,8 @@ class RoomAudio {
       this.breeze = ctx.createGain(); this.birds = ctx.createGain(); this.fan = ctx.createGain();
       for (const g of [this.breeze, this.birds, this.fan]) g.gain.value = 0;
       this.breeze.connect(this.glass); this.birds.connect(this.glass); this.fan.connect(this.room);
-      this.ready = this.load();
+      this.arrival = this.loadArrival();
+      this.ready = this.arrival.then(() => this.load());
     }
     if (this.ctx.state === 'suspended' && !document.hidden) this.ctx.resume().catch(() => {});
     this.level(this.muted ? 0 : 1, .6);
@@ -60,18 +62,22 @@ class RoomAudio {
     }
     return buf;
   }
-  async fetch(url) { const r = await fetch(url); if (!r.ok) throw new Error(url); return this.ctx.decodeAudioData(await r.arrayBuffer()); }
+  // Sound never competes with the room's images: arrival sounds first, the rest at low priority.
+  async fetch(url, priority = 'low') { const r = await fetch(url, {priority}); if (!r.ok) throw new Error(url); return this.ctx.decodeAudioData(await r.arrayBuffer()); }
+  // The walk-in's own sounds load first so they can play during it.
+  async loadArrival() {
+    try { await Promise.all(Object.entries(ONE_SHOTS).map(async ([k, u]) => { this.buffers[k] = await this.fetch(u, 'high'); })); } catch {}
+  }
   async load() {
     try {
-      const [meta, ...beds] = await Promise.all([fetch(FOLEY).then(r => r.json()), ...Object.values(BEDS).map(u => this.fetch(u))]);
+      const [meta, ...beds] = await Promise.all([fetch(FOLEY, {priority: 'low'}).then(r => r.json()), ...Object.values(BEDS).map(u => this.fetch(u))]);
       Object.keys(BEDS).forEach((k, i) => { this.buffers[k] = beds[i]; });
       this.cues = meta.cues; this.buffers.foley = await this.fetch(meta.file);
-      await Promise.all(Object.entries(ONE_SHOTS).map(async ([k, u]) => { this.buffers[k] = await this.fetch(u); }));
       for (const [k, gain] of [['breeze', this.breeze], ['birds', this.birds], ['fan', this.fan]]) {
         const src = this.ctx.createBufferSource(); src.buffer = this.buffers[k]; src.loop = true;
         src.connect(gain); src.start(0, Math.random() * this.buffers[k].duration);
       }
-      this.apply(this.place, 0.01);
+      this.apply(this.place, 1.5);
       this.creaks();
     } catch { /* Sound is a bonus; the room works silently. */ }
   }
@@ -131,7 +137,7 @@ class RoomAudio {
       this.play('gravel', .42); this.play('door', .5, {delay: .85}); this.play('steps', .34, {delay: 1.45});
       setTimeout(() => this.apply(this.target || 'room', 1.3), 1100);
     };
-    (this.ready || Promise.resolve()).then(go);
+    (this.arrival || Promise.resolve()).then(go);
   }
   // Back outside: the door slides, the outside opens up, then fades.
   leave({motion = true} = {}) {

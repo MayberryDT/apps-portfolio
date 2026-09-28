@@ -1,6 +1,14 @@
 /* Own only hero availability, entry animation and the room/hero boundary.
    app.js remains the room's route, content, input and inspection owner. */
-import {roomAudio} from './room-audio.js';
+// Room sound loads only when needed, off the entrance's critical path. The audio
+// context is still created inside the click, which Safari requires.
+let roomAudio = null;
+const withAudio = fn => import('./room-audio.js').then(m => { roomAudio = m.roomAudio; fn(roomAudio); }).catch(() => {});
+function audioGesture() {
+  if (window.__studioAudioContext) return;
+  const Context = window.AudioContext || window.webkitAudioContext;
+  if (Context) { window.__studioAudioContext = new Context({latencyHint:'interactive'}); window.__studioAudioContext.resume().catch(() => {}); }
+}
 const hero = document.querySelector('#hero');
 const outside = document.querySelector('#outside');
 const identity = document.querySelector('.hero-identity');
@@ -132,6 +140,8 @@ enter.addEventListener('focus', prepareRoom);
 async function prepareAfterHeroPaint() {
   try { await image.decode(); } catch { return; }
   await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+  // The small sound module wires the sound switch; its recordings load only after Enter.
+  if ('requestIdleCallback' in window) requestIdleCallback(() => withAudio(() => {}), {timeout:1500}); else setTimeout(() => withAudio(() => {}), 300);
   if (navigator.connection?.saveData) return;
   if ('requestIdleCallback' in window) requestIdleCallback(prepareRoom, {timeout:1000});
   else setTimeout(prepareRoom, 200);
@@ -207,7 +217,7 @@ async function leave({writeHistory = true} = {}) {
   cancel.textContent = 'Back to room';
   live.textContent = 'Going outside…';
   hero.focus({preventScroll:true});
-  roomAudio.leave({motion:!motion.matches});
+  withAudio(audio => audio.leave({motion:!motion.matches}));
   try {
     if (!motion.matches && image.naturalWidth && typeof hero.animate === 'function') await playJourney('reverse');
   } catch {
@@ -283,7 +293,9 @@ for (const link of hero.querySelectorAll('[data-arrival-target]')) {
     if (link === enter && enter.getAttribute('aria-disabled') === 'true') return;
     const target = link.dataset.arrivalTarget;
     // The click is the gesture that lets the room's sound begin.
-    roomAudio.arrive({motion:target === '#room' && !motion.matches && Boolean(image.naturalWidth)});
+    audioGesture();
+    const walk = target === '#room' && !motion.matches && Boolean(image.naturalWidth);
+    withAudio(audio => audio.arrive({motion:walk}));
     arrive(target, {animate:target === '#room', then:link.dataset.then || null});
   });
 }
