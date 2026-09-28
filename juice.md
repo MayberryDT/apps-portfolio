@@ -83,11 +83,12 @@ thing, not a lookalike. *Applied:* the Omarchy ASCII screensaver (R25).
 appears the way a phone shows a contact, “Animas, my company”, inside the
 object. *Applied on the preview.*
 
-**The machine is working.** Read for the ibara monitor. At rest it's the
-Omarchy screensaver. On inspection, the screensaver dissolves the way Omarchy
-unlocks. Then a real recording plays of agents working on an ibara desktop,
-with the fans rising softly. *Applied on the preview:* two of Tyler's public
-recordings from ibara.app play in windows on a Tokyo Night desktop.
+**The machine is working.** Read for the Omarchy monitor. The screensaver runs
+until you choose the Projects tab. Then agents are visibly at work: a tiled
+Tokyo Night desktop, an agent's cursor marking invoices paid, a terminal typing,
+a sheet filling in, btop pulsing, and the fans rising. It's motion graphics,
+never video: Tyler rejected the real recordings (2026-09-28). *Applied on the
+preview.*
 
 **A way home from every project.** Read for work on moved project sites. A
 small `tm.` mark sits in the corner. It widens on hover to say “Tyler
