@@ -44,7 +44,7 @@ export class OmarchyScreen {
     this.ready = false;
     this.stop();
     // Inspection opens on the ibara tab, and the desk view is the agents' too.
-    if (this.working) this.setMode('agents');
+    if (this.working || active) this.setMode('agents');
     if (active && this.loadState === 'failed') { this.loadState = 'idle'; this.loading = null; }
   }
 
@@ -65,7 +65,10 @@ export class OmarchyScreen {
       this.setMode('screensaver');
     } else if (!this.working && settled) {
       this.working = true;
-      this.setMode('agents');
+      // Arriving already inspecting keeps whichever tab was chosen on the way in.
+      if (!this.active) this.setMode('agents');
+      this.onmode?.(this.mode);
+      this.sync();
     }
   }
 
@@ -110,7 +113,8 @@ export class OmarchyScreen {
   sync() {
     if (this.mode === 'agents') {
       this.stop();
-      if (!this.working) { this.agents.stop(); return; }
+      // On the way in, the composed still; work carries on from it on arrival.
+      if (!this.working) { this.agents.stop(); if (this.agents.fresh) this.agents.still(); return; }
       if (this.motion.matches) { this.agents.stop(); this.agents.still(); return; }
       if (document.hidden) this.agents.stop(); else this.agents.start();
       return;

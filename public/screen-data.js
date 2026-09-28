@@ -1,5 +1,5 @@
 // Corners measured on the unchanged 1731 × 909 photographic desk source. The Omarchy
-// quad sits one pixel outside the photo's lit screen edge so none of it shows.
+// quad sits just outside the photo's lit screen edge (1–5 px) so none of it shows.
 // Convert once into the shared 1448 × 1086 room plane; TL, TR, BR, BL.
 const roomPoint = ([x, y]) => [160 + x * 400 / 1731, 350 + y * 210 / 909];
 export const screenQuads = {

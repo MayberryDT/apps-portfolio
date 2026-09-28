@@ -164,6 +164,8 @@ class RoomAudio {
     const place = this.target = next.area && next.area !== 'room' ? next.area : 'room';
     if (this.place !== 'outside' && !this.arriving) this.apply(place, next.focused ? 1.05 : 1.15);
     this.fanTarget = next.area === 'desk' ? (this.busy ? .2 : .025) : 0;
+    // The fan follows the room even while muted, so unmuting never plays a stale level.
+    if (this.ctx) this.ramp(this.fan.gain, this.fanTarget, 1.2);
     if (!this.ctx || this.muted) return;
     if (next.area === 'journal' && prev.area !== 'journal') this.play('creak', .2, {delay: .5});
     const opened = next.focused && next.object && next.object !== prev.object;
@@ -173,13 +175,12 @@ class RoomAudio {
     if (next.project && next.project !== prev.project) this.play('trackpad', .32);
     else if (prev.project && !next.project && next.object === 'monitor') this.play('key', .22);
     if (next.area === 'contact' && prev.area === 'contact' && next.detail !== prev.detail) this.play('tick', .18);
-    this.ramp(this.fan.gain, this.fanTarget, 1.2);
   }
   // The computer's fans rise while agents work on the Omarchy monitor.
   machine(busy) {
     this.busy = busy;
     this.fanTarget = this.target === 'desk' ? (busy ? .2 : .025) : 0;
-    if (this.ctx && !this.muted) this.ramp(this.fan.gain, this.fanTarget, busy ? 2.2 : 1.2);
+    if (this.ctx) this.ramp(this.fan.gain, this.fanTarget, busy ? 2.2 : 1.2);
   }
   pickUp(object, area) {
     if (object === 'helm') { this.play('cloth', .3); this.play('tick', .1, {delay: .7}); return; }
