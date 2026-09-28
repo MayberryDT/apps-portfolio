@@ -9,9 +9,7 @@
     { "binding": "MILK", "service": "milk-01-launch-site" },
     { "binding": "DOW", "service": "decree-of-war" },
     { "binding": "PAYCHECK", "service": "paycheck-sanity-checker-preview" },
-    { "binding": "INNTOUCH", "service": "inntouch-frontend-preview" },
     { "binding": "STAYCONNECT", "service": "stayconnect-proofofconcept" },
-    { "binding": "JOBAPPS", "service": "jobapps-copilot-mayberrydt-preview" },
-    { "binding": "TXTSYNC", "service": "txtsync" }
+    { "binding": "JOBAPPS", "service": "jobapps-copilot-mayberrydt-preview" }
   ]
 }
