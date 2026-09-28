@@ -13,7 +13,7 @@
 - Infocard: https://infocard.ai/~MayberryDT
 - Location: Tulsa, Oklahoma
 - Focus: AI systems, agentic workflows, internal tools, workflow automation, AI-native software, and practical product engineering.
-- Main project: ibara, https://ibara.app (computers of their own for AI agents; runs on Omarchy, macOS and Windows in development)
+- Main project: ibara, https://ibara.app (computers of their own for AI agents; runs on Omarchy today, more platforms planned)
 - Other projects: Rat Detective Online (https://ratdetective.online), Chartroom (https://github.com/MayberryDT/chartroom), ChartStead (https://chartstead.com), Masthead (https://usemasthead.com) and more on the studio laptop (/#work).
 
 ## Relationship Between Sites

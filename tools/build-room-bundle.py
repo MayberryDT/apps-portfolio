@@ -1,5 +1,5 @@
 """Rebuild public/room-bundle.css exactly as released: the room's stylesheets joined by newlines.
-index.html loads this bundle; room.html loads the same files separately. Run after any CSS change."""
+index.html and room.html both load this bundle. Run after editing any of the files below."""
 from pathlib import Path
 P = Path(__file__).resolve().parents[1] / 'public'
 FILES = ['vendor/basecoat/basecoat.min.css', 'style.css', 'workstation.css', 'tab-motion.css', 'studio-ui.css', 'contact-landing.css',

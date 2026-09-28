@@ -368,7 +368,7 @@ const shelf=new ShelfGallery({world:$('world'),panel:$('story-panel'),scene:stag
 const journal=new Journal({host:$('world'),panel:$('story-panel'),onClose:()=>navigate('room')});
 const contact=new ContactLanding($('world'));
 const workstation=new Workstation({scene:stage,world:$('world'),onProject:project=>navigate('desk',true,'monitor',project)});
-window.studio={state,objects,zoom,journal,contact,gallery,shelf,navigate,views,tiles,workstation,focusDestination,audio:roomAudio,prepareRoute:()=>applyRoute({initial:true}),get cameras(){return cameras}};
+window.studio={state,objects,zoom,journal,contact,gallery,shelf,navigate,views,tiles,workstation,focusDestination,audio:roomAudio,keepRoute:()=>{laptopRemembered=true},prepareRoute:()=>applyRoute({initial:true}),get cameras(){return cameras}};
 window.studio.initialized=start();
 connectStudioContent(window.studio);
 

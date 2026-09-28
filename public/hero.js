@@ -101,6 +101,7 @@ function cancelEntry() {
     sequence++;
     if (isExterior()) history.replaceState(null, '', '#room');
     revealRoom();
+    withAudio(audio => audio.settle());
     return;
   }
   // A cancelled direct URL must become an exterior URL before cached boot ends.
@@ -166,7 +167,9 @@ function revealRoom() {
 function followThrough(route) {
   const [area, object, project] = route.split('/');
   setTimeout(() => {
-    if (phase === 'room' && window.studio) window.studio.navigate(area, true, object, project || null);
+    // An explicit destination (the door, a project's home mark) wins over the
+    // laptop's memory of the last project.
+    if (phase === 'room' && window.studio) { window.studio.keepRoute?.(); window.studio.navigate(area, true, object, project || null); }
   }, motion.matches ? 0 : 320);
 }
 function doorTransform() {
@@ -312,6 +315,7 @@ function onRoute() {
     clearAnimations();
     window.studio.prepareRoute();
     revealRoom();
+    withAudio(audio => audio.settle());
     return;
   }
   if (isExterior()) {
@@ -360,6 +364,8 @@ if (from !== null && isExterior()) {
   heroPainted().then(() => arrive('#room', {then:project ? `desk/monitor/${project}` : 'desk/monitor'}));
 } else if (!location.hash && remember.get('studio-visited') === '1') {
   // A returning visitor lands in the room; #hero still shows the exterior.
+  // #room keeps Back meaning "go outside" with the usual walk-out.
+  history.replaceState(null, '', '#room');
   showExterior();
   arrive('#room', {animate:false, writeHistory:false, fade:true});
 } else if (isExterior()) {showExterior();prepareAfterHeroPaint();}

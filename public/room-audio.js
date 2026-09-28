@@ -22,11 +22,11 @@ class RoomAudio {
     document.documentElement.dataset.sound = this.muted ? 'off' : 'on';
     addEventListener('visibilitychange', () => this.visibility());
     // Returning visitors arrive without a click; the first gesture starts sound.
-    const inRoom = () => (document.body.dataset.arrival || 'room') === 'room';
-    const first = () => { if (inRoom() && this.place !== 'outside') this.unlock(); };
-    addEventListener('pointerdown', first, {capture: true});
-    addEventListener('keydown', first, {capture: true});
+    // WebKit unlocks audio on touchend/click, not pointerdown; listen for all.
+    const first = () => { if (this.inRoom() && this.place !== 'outside') this.unlock(); };
+    for (const type of ['pointerdown', 'touchend', 'click', 'keydown']) addEventListener(type, first, {capture: true});
   }
+  inRoom() { return (document.body.dataset.arrival || 'room') === 'room'; }
   // Must run inside a user gesture the first time (iOS/Safari autoplay rules).
   unlock() {
     if (!this.ctx) {
@@ -52,6 +52,7 @@ class RoomAudio {
     }
     if (this.ctx.state === 'suspended' && !document.hidden) this.ctx.resume().catch(() => {});
     this.level(this.muted ? 0 : 1, .6);
+    this.ramp(this.fan.gain, this.fanTarget || 0, 1);
     return this.ready;
   }
   impulse(seconds) {
@@ -123,7 +124,8 @@ class RoomAudio {
   setMuted(muted) {
     this.muted = muted; store.set('studio-sound', muted ? 'off' : 'on');
     document.documentElement.dataset.sound = muted ? 'off' : 'on';
-    if (!muted) this.unlock(); else this.level(0, .3);
+    // Outside, before Enter, the switch only stores the choice: the entrance stays silent.
+    if (muted) this.level(0, .3); else if (this.ctx || this.inRoom()) this.unlock();
   }
   // The walk in: gravel, the sliding glass door, a few steps on the wood floor,
   // while the outside falls away behind the glass.
@@ -133,7 +135,7 @@ class RoomAudio {
     const go = () => {
       setTimeout(() => { this.arriving = false; }, motion ? 1100 : 0);
       if (!motion) { this.apply('room', .8); this.play('door', .28); return; }
-      this.apply('outside', .01);
+      this.apply('outside', .6);
       this.play('gravel', .42); this.play('door', .5, {delay: .85}); this.play('steps', .34, {delay: 1.45});
       setTimeout(() => this.apply(this.target || 'room', 1.3), 1100);
     };
@@ -143,16 +145,23 @@ class RoomAudio {
   leave({motion = true} = {}) {
     if (!this.ctx) return;
     this.play('door', .45, {delay: motion ? .25 : 0});
-    setTimeout(() => this.apply('outside', 1.2), motion ? 450 : 0);
+    clearTimeout(this.leaveTimer);
+    this.leaveTimer = setTimeout(() => this.apply('outside', 1.2), motion ? 450 : 0);
     clearTimeout(this.fadeTimer);
     this.fadeTimer = setTimeout(() => { if (this.place === 'outside') { this.ramp(this.breeze.gain, 0, 5); this.ramp(this.birds.gain, 0, 5); } }, 6000);
   }
-  settle() { this.unlock(); if (this.place === 'outside') this.apply('room', 1.5); }
+  // A cancelled walk-out: stay in the room's sound.
+  settle() {
+    clearTimeout(this.leaveTimer); clearTimeout(this.fadeTimer);
+    this.place = this.target || 'room';
+    if (this.ctx) { this.unlock(); this.apply(this.place, 1.2); }
+  }
   // Route changes: the camera moves, so the room's sound follows it.
   route(prev, next) {
     if (this.place === 'outside' && next.area) this.place = 'room';
     const place = this.target = next.area && next.area !== 'room' ? next.area : 'room';
     if (this.place !== 'outside' && !this.arriving) this.apply(place, next.focused ? 1.05 : 1.15);
+    this.fanTarget = next.object === 'omarchy' ? .2 : next.area === 'desk' ? .025 : 0;
     if (!this.ctx || this.muted) return;
     if (next.area === 'journal' && prev.area !== 'journal') this.play('creak', .2, {delay: .5});
     const opened = next.focused && next.object && next.object !== prev.object;
@@ -162,7 +171,7 @@ class RoomAudio {
     if (next.project && next.project !== prev.project) this.play('trackpad', .32);
     else if (prev.project && !next.project && next.object === 'monitor') this.play('key', .22);
     if (next.area === 'contact' && prev.area === 'contact' && next.detail !== prev.detail) this.play('tick', .18);
-    this.ramp(this.fan.gain, next.object === 'omarchy' ? .2 : next.area === 'desk' ? .025 : 0, next.object === 'omarchy' ? 2.2 : 1.2);
+    this.ramp(this.fan.gain, this.fanTarget, next.object === 'omarchy' ? 2.2 : 1.2);
   }
   pickUp(object, area) {
     if (object === 'helm') { this.play('cloth', .3); this.play('tick', .1, {delay: .7}); return; }
@@ -189,7 +198,6 @@ const toggle = document.querySelector('#sound-toggle');
 if (toggle) {
   const sync = () => {
     toggle.setAttribute('aria-pressed', String(!roomAudio.muted));
-    toggle.setAttribute('aria-label', roomAudio.muted ? 'Turn room sound on' : 'Turn room sound off');
     toggle.dataset.state = roomAudio.muted ? 'off' : 'on';
   };
   toggle.addEventListener('click', () => { roomAudio.setMuted(!roomAudio.muted); sync(); });

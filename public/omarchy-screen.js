@@ -30,8 +30,8 @@ export class OmarchyScreen {
     this.ibara.className = 'ibara-desktop';
     this.ibara.innerHTML = `<div class="ibara-bar"><span>ibara</span><span class="ibara-live"></span><span class="ibara-bar-right">agents at work</span></div>
       <figure class="ibara-window"><figcaption>an agent at work</figcaption><video muted loop playsinline preload="none" data-poster="media/ibara/agent-at-work.webp" data-src="media/ibara/agent-at-work.mp4"></video></figure>
-      <figure class="ibara-window"><figcaption>the fleet</figcaption><video muted loop playsinline preload="none" data-poster="media/ibara/fleet-wall.webp" data-src="media/ibara/fleet-wall.mp4"></video></figure>
-      <p class="ibara-note">real recordings · ibara.app</p>`;
+      <figure class="ibara-window"><figcaption>the fleet view · sample machines</figcaption><video muted loop playsinline preload="none" data-poster="media/ibara/fleet-wall.webp" data-src="media/ibara/fleet-wall.mp4"></video></figure>
+      <p class="ibara-note">recorded at my desk · ibara.app</p>`;
     this.videos = [...this.ibara.querySelectorAll('video')];
     this.root.append(this.ibara);
     this.unlocked = false;
