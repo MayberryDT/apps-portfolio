@@ -9,6 +9,8 @@ const OUTSIDE = {outside: [16000, .5, .38], room: [950, .2, .1], desk: [700, .15
   bookshelf: [1400, .2, .11], journal: [1300, .2, .1], contact: [1700, .24, .13]};
 const SHELF = {shaco: [['soft', .3], ['cloth', .12]], sonic: [['plastic', .28]], dreamcast: [['plastic', .3]],
   baseball: [['leather', .34]], weightlifting: [['metal', .26, .8]], 'student-drawing': [['paper', .3]]};
+// Overall room level. Tyler, 2026-09-28: "pretty loud... toned down a little bit" (was 1).
+const VOLUME = .6;
 const store = {get(k) { try { return localStorage.getItem(k); } catch { return null; } },
   set(k, v) { try { localStorage.setItem(k, v); } catch {} }};
 
@@ -51,7 +53,7 @@ class RoomAudio {
       this.ready = this.arrival.then(() => this.load());
     }
     if (this.ctx.state === 'suspended' && !document.hidden) this.ctx.resume().catch(() => {});
-    this.level(this.muted ? 0 : 1, .6);
+    this.level(this.muted ? 0 : VOLUME, .6);
     this.ramp(this.fan.gain, this.fanTarget || 0, 1);
     return this.ready;
   }
@@ -119,7 +121,7 @@ class RoomAudio {
   visibility() {
     if (!this.ctx) return;
     if (document.hidden) { this.level(0, .25); setTimeout(() => document.hidden && this.ctx.suspend().catch(() => {}), 300); }
-    else { this.ctx.resume().then(() => this.level(this.muted ? 0 : 1, .8)).catch(() => {}); }
+    else { this.ctx.resume().then(() => this.level(this.muted ? 0 : VOLUME, .8)).catch(() => {}); }
   }
   setMuted(muted) {
     this.muted = muted; store.set('studio-sound', muted ? 'off' : 'on');
@@ -161,7 +163,7 @@ class RoomAudio {
     if (this.place === 'outside' && next.area) this.place = 'room';
     const place = this.target = next.area && next.area !== 'room' ? next.area : 'room';
     if (this.place !== 'outside' && !this.arriving) this.apply(place, next.focused ? 1.05 : 1.15);
-    this.fanTarget = next.object === 'omarchy' ? .2 : next.area === 'desk' ? .025 : 0;
+    this.fanTarget = next.area === 'desk' ? .025 : 0;
     if (!this.ctx || this.muted) return;
     if (next.area === 'journal' && prev.area !== 'journal') this.play('creak', .2, {delay: .5});
     const opened = next.focused && next.object && next.object !== prev.object;
@@ -171,7 +173,12 @@ class RoomAudio {
     if (next.project && next.project !== prev.project) this.play('trackpad', .32);
     else if (prev.project && !next.project && next.object === 'monitor') this.play('key', .22);
     if (next.area === 'contact' && prev.area === 'contact' && next.detail !== prev.detail) this.play('tick', .18);
-    this.ramp(this.fan.gain, this.fanTarget, next.object === 'omarchy' ? 2.2 : 1.2);
+    this.ramp(this.fan.gain, this.fanTarget, 1.2);
+  }
+  // The computer's fans rise while agents work on the Omarchy monitor.
+  machine(busy) {
+    this.fanTarget = busy ? .2 : .025;
+    if (this.ctx && !this.muted) this.ramp(this.fan.gain, this.fanTarget, busy ? 2.2 : 1.2);
   }
   pickUp(object, area) {
     if (object === 'helm') { this.play('cloth', .3); this.play('tick', .1, {delay: .7}); return; }

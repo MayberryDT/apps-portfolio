@@ -35,7 +35,7 @@ body[data-object=monitor] #world{touch-action:pan-y}
 .desktop-status{display:flex;align-items:center;justify-content:space-between;gap:12px;flex:none;min-height:29px;padding:6px 20px;border-top:1px solid #50688442;color:#a5b5c9;font-family:monospace;font-size:10px;background:#0e1827}
 .desktop-status-count{white-space:nowrap}
 #project-window{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#7288a466 transparent;display:grid;grid-template-columns:1.13fr 1fr;gap:32px;align-content:start;align-items:center;padding:36px}
-.project-preview{position:relative;min-width:0;aspect-ratio:1.4;background:#0b1422;border:1px solid #58789b40;border-radius:6px;overflow:hidden}
+.project-preview{position:relative;min-width:0;aspect-ratio:var(--image-ratio,1.4);background:#0b1422;border:1px solid #58789b40;border-radius:6px;overflow:hidden}
 .project-preview img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0}.project-preview img.loaded{opacity:1}
 .project-preview-fallback{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:15px;padding:24px;text-align:center;background:radial-gradient(ellipse at 50% 100%,color-mix(in srgb,var(--project-color) 12%,transparent),transparent 75%)}
 .preview-monogram{display:grid;place-items:center;width:85px;height:85px;border-radius:18px;background:color-mix(in srgb,var(--project-color) 15%,transparent);border:1px solid color-mix(in srgb,var(--project-color) 50%,transparent);color:var(--project-color);font-size:38px}
@@ -55,7 +55,7 @@ body[data-object=omarchy] #story-title{margin-bottom:16px}
 @container(max-width:600px){
  .file-sidebar{display:none}.desktop-owner img{width:59px}.desktop-owner{gap:11px}.desktop-bar{padding:0 15px;font-size:11px}.desktop-bar-right{display:none}.file-toolbar{padding:0 15px;gap:10px;font-size:10px}.file-count{font-size:10px}
  .project-files{padding:22px 14px 18px}.files-heading{padding:0 7px;margin-bottom:16px}#project-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:none;grid-auto-rows:minmax(122px,auto);gap:8px;flex:initial}.project-file{padding:10px;min-height:122px}.project-file-name{font-size:14px}.project-file-kind{font-size:10px}.project-file-icon{width:49px;height:49px;font-size:23px}
- #project-window{display:block;padding:23px 22px}.project-preview{aspect-ratio:1.75;margin-bottom:26px}.project-copy h2{font-size:32px}.project-eyebrow{margin-bottom:13px}.project-description{font-size:14px;line-height:1.65}.desktop-status{padding:8px 15px;font-size:9px}.desktop-status-count{display:none}
+ #project-window{display:block;padding:23px 22px}.project-preview{aspect-ratio:var(--image-ratio,1.75);margin-bottom:26px}.project-copy h2{font-size:32px}.project-eyebrow{margin-bottom:13px}.project-description{font-size:14px;line-height:1.65}.desktop-status{padding:8px 15px;font-size:9px}.desktop-status-count{display:none}
 }
 .project-desktop[data-expanded=true]{border:1px solid #8ba7c977;border-radius:12px;box-shadow:0 18px 60px #080e1870}
 .project-desktop[data-expanded=true] #project-up{min-height:44px}
@@ -127,7 +127,7 @@ body[data-object=omarchy] #story-title{margin-bottom:16px}
 .project-file-media{position:relative;display:grid;place-items:center;flex:1;width:100%;min-height:65px;margin-bottom:9px;border-radius:4px;overflow:hidden;background:#0b1422;outline:1px solid #ffffff1a;outline-offset:-1px}
 .project-file-media img{position:absolute;width:100%;height:100%;inset:0;object-fit:cover;opacity:0;transition:opacity 250ms ease,transform 400ms cubic-bezier(.22,1,.36,1)}
 .project-file-media img.loaded{opacity:1}
-.project-file[data-project=helm] .project-file-media img{object-fit:contain}
+
 .project-file-media .project-file-icon{width:40px;height:40px;margin:0;font-size:20px}
 .project-file-name,.project-file-kind{flex:none}
 .project-file-kind{margin-top:4px}
@@ -161,17 +161,52 @@ body[data-object=omarchy] #story-title{margin-bottom:16px}
  .project-desktop button:active,.project-visit:active{scale:1}
  .project-file:hover .project-file-media img{transform:none}
 }
-/* ibara on the Omarchy monitor (spec outcome 7): the screensaver unlocks to agents at work. */
-.omarchy-surface .omarchy-ascii,.omarchy-surface canvas{transition:opacity .55s ease,filter .55s ease}
-.omarchy-surface[data-ibara=on] .omarchy-ascii,.omarchy-surface[data-ibara=on] canvas{opacity:0;filter:blur(8px);transition:opacity .7s ease,filter .7s ease}
-.ibara-desktop{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;gap:24px;padding:30px;background:radial-gradient(120% 80% at 50% 0%,#1f2335 0,#16161e 72%);color:#c0caf5;font:22px/1.3 OmarchyMono,monospace;opacity:0;transform:scale(1.015);transition:opacity .6s ease .25s,transform .9s cubic-bezier(.2,.7,.2,1) .25s;pointer-events:none}
-.omarchy-surface[data-ibara=on] .ibara-desktop{opacity:1;transform:none}
-.ibara-bar{display:flex;align-items:center;gap:14px;height:46px;padding:0 16px;border:2px solid #2f3549;border-radius:10px;background:#1a1b26;color:#7aa2f7}
-.ibara-bar-right{margin-left:auto;color:#a9b1d6;font-size:18px}
-.ibara-live{width:12px;height:12px;border-radius:50%;background:#9ece6a;box-shadow:0 0 10px #9ece6a88;animation:ibara-live 1.6s ease-in-out infinite}
-@keyframes ibara-live{50%{opacity:.35}}
-.ibara-window{margin:0;border:2px solid #7aa2f7;border-radius:10px;overflow:hidden;background:#000;box-shadow:0 10px 30px #0008}
-.ibara-window figcaption{padding:8px 14px;background:#1a1b26;color:#a9b1d6;font-size:18px;border-bottom:2px solid #2f3549}
-.ibara-window video{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:#000}
-.ibara-note{margin:0;color:#565f89;font-size:17px;text-align:center}
-@media(prefers-reduced-motion:reduce){.ibara-desktop,.omarchy-surface .omarchy-ascii,.omarchy-surface canvas{transition:none}.ibara-live{animation:none}}
+/* The Omarchy monitor reads as a lit screen under glass, not a flat overlay (Tyler, 2026-09-28). */
+#omarchy-screen-still.omarchy-surface{background:#070910;-webkit-mask-image:linear-gradient(to right,transparent,#000 6px,#000 calc(100% - 6px),transparent),linear-gradient(to bottom,transparent,#000 6px,#000 calc(100% - 6px),transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(to right,transparent,#000 6px,#000 calc(100% - 6px),transparent),linear-gradient(to bottom,transparent,#000 6px,#000 calc(100% - 6px),transparent);mask-composite:intersect}
+#omarchy-screen-still::before{content:'';position:absolute;inset:0;z-index:3;pointer-events:none;background:radial-gradient(130% 100% at 50% 45%,transparent 58%,rgba(0,0,0,.5) 100%)}
+#omarchy-screen-still::after{content:'';position:absolute;inset:0;z-index:4;pointer-events:none;background:linear-gradient(118deg,rgba(255,255,255,.075) 0%,rgba(255,255,255,.02) 26%,rgba(255,255,255,0) 44%);mix-blend-mode:screen}
+#omarchy-screen-still .omarchy-ascii{text-shadow:0 0 5px rgba(150,180,255,.35);transition:opacity .35s ease}
+#omarchy-screen-still canvas{filter:drop-shadow(0 0 3px rgba(140,170,255,.28));transition:opacity .35s ease}
+#omarchy-screen-still[data-mode=agents] .omarchy-ascii,#omarchy-screen-still[data-mode=agents] canvas{opacity:0}
+/* Projects tab: agents at work, drawn as motion graphics (agents-desk.js). */
+.agents-desk{position:absolute;inset:0;display:flex;flex-direction:column;gap:10px;padding:10px;background:linear-gradient(160deg,#1f2335 0%,#16161e 60%,#11121a 100%);color:#c0caf5;font:15px/1.35 OmarchyMono,monospace;opacity:0;visibility:hidden;transition:opacity .45s ease,visibility 0s .45s}
+#omarchy-screen-still[data-mode=agents] .agents-desk{opacity:1;visibility:visible;transition:opacity .45s ease}
+.ad-bar{display:flex;align-items:center;justify-content:space-between;flex:0 0 30px;padding:0 10px;color:#a9b1d6;font-size:14px}
+.ad-ws b{display:inline-block;width:22px;text-align:center;font-weight:400;color:#565f89}.ad-ws b.on{color:#7aa2f7}
+.ad-status i{display:inline-block;width:8px;height:8px;margin-right:8px;border-radius:50%;background:#9ece6a;box-shadow:0 0 8px #9ece6a;animation:ad-pulse 1.6s ease-in-out infinite}
+@keyframes ad-pulse{50%{opacity:.35}}
+.ad-win{display:flex;flex-direction:column;min-height:0;border:2px solid #3b4261;border-radius:8px;background:#1a1b26;overflow:hidden}
+.ad-win header{display:flex;justify-content:space-between;padding:5px 10px;font-size:13px;color:#7982a9;background:#16161e;border-bottom:1px solid #292e42}
+.ad-win header em{font-style:normal;color:#bb9af7}
+.ad-browser{flex:0 0 440px;border-color:#7aa2f7}
+.ad-page{padding:14px 16px}
+.ad-page h4{margin:0 0 12px;font-weight:400;font-size:18px;color:#c0caf5}
+.ad-row{display:grid;grid-template-columns:70px 1fr 110px 72px;gap:8px;align-items:center;height:48px;padding:0 10px;border-bottom:1px solid #292e42;color:#a9b1d6;font-size:14px;transition:background .3s}
+.ad-row b{font-weight:400;text-align:center;border-radius:5px;padding:3px 0;background:#e0af6822;color:#e0af68;transition:background .3s,color .3s}
+.ad-row.focus{background:#7aa2f714}.ad-row.paid b{background:#9ece6a26;color:#9ece6a}
+.ad-term{flex:1 1 auto}
+.ad-term pre{flex:1;margin:0;padding:10px 12px;overflow:hidden;color:#a9b1d6;font:14px/1.45 OmarchyMono,monospace;white-space:pre-wrap}
+.ad-split{display:flex;flex:0 0 300px;gap:10px}
+.ad-sheet{flex:1.4}.ad-top{flex:1}
+.ad-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:1px;margin:10px;border:1px solid #292e42;background:#292e42}
+.ad-grid span{display:flex;align-items:center;height:36px;padding:0 8px;background:#1a1b26;color:#c0caf5;font-size:13px}
+.ad-grid span.h{background:#16161e;color:#7982a9}
+.ad-grid span.sel{outline:2px solid #7aa2f7;outline-offset:-2px;background:#7aa2f71a}
+.ad-bars{display:flex;align-items:flex-end;gap:6px;height:150px;padding:12px}
+.ad-bars i{flex:1;height:40%;border-radius:2px;background:linear-gradient(to top,#9ece6a,#e0af68 70%,#f7768e);transition:height .25s ease}
+.ad-mem{display:flex;align-items:center;gap:8px;padding:0 12px;color:#7982a9;font-size:12px}
+.ad-mem i{height:8px;border-radius:4px;background:#7aa2f7;transition:width .6s ease}
+.ad-cursor{position:absolute;left:0;top:0;z-index:2;pointer-events:none;transition:transform .7s cubic-bezier(.3,.7,.2,1)}
+.ad-cursor svg{width:18px;height:22px;fill:#f5f7ff;stroke:#1a1b26;stroke-width:1.2;filter:drop-shadow(0 2px 3px #0008)}
+.ad-cursor span{margin-left:4px;padding:2px 6px;border-radius:4px;background:#bb9af7;color:#16161e;font-size:11px;vertical-align:top}
+@media(prefers-reduced-motion:reduce){.agents-desk,.ad-cursor,.ad-row,.ad-row b,.ad-bars i,.ad-mem i{transition:none}.ad-status i{animation:none}}
+/* Projects polish (Tyler, 2026-09-28): every project image is shown whole. */
+.project-file-media{flex:0 0 auto;aspect-ratio:16/9;min-height:0}
+.project-file-media img{object-fit:contain}
+.project-file-media::before,.project-preview::before{content:'';position:absolute;inset:-14px;background:var(--thumb) center/cover no-repeat;filter:blur(14px) brightness(.5) saturate(1.15);opacity:0;transition:opacity .25s ease}
+.project-file-media.has-image::before,.project-preview.has-image::before{opacity:1}
+.project-preview img{object-fit:contain}
+.project-copy .project-summary{margin:0 0 14px}
+#project-grid{grid-template-rows:none;grid-auto-rows:auto;flex:0 0 auto}
+#project-grid .project-file{justify-content:flex-start;overflow:visible}
+@media(prefers-reduced-motion:reduce){.project-file-media::before,.project-preview::before{transition:none}}

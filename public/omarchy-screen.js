@@ -1,5 +1,6 @@
 import {screenQuads, quadTransform} from './screen-data.js';
 import {omarchyAscii} from './omarchy-ascii.js';
+import {AgentsDesk} from './agents-desk.js';
 
 // Native ttfx frames exported from Tyler's Omarchy screensaver, played as text cells.
 // The source engine, logo, export settings and licenses are recorded with the asset.
@@ -24,17 +25,11 @@ export class OmarchyScreen {
     this.canvas.height = 2400;
     this.canvas.hidden = true;
     this.root.append(this.text, this.canvas);
-    // On inspection the screensaver unlocks to ibara at work: two real recordings
-    // from ibara.app, loaded only when the monitor is inspected (spec outcome 7).
-    this.ibara = document.createElement('div');
-    this.ibara.className = 'ibara-desktop';
-    this.ibara.innerHTML = `<div class="ibara-bar"><span>ibara</span><span class="ibara-live"></span><span class="ibara-bar-right">agents at work</span></div>
-      <figure class="ibara-window"><figcaption>an agent at work</figcaption><video muted loop playsinline preload="none" data-poster="media/ibara/agent-at-work.webp" data-src="media/ibara/agent-at-work.mp4"></video></figure>
-      <figure class="ibara-window"><figcaption>the fleet view · sample machines</figcaption><video muted loop playsinline preload="none" data-poster="media/ibara/fleet-wall.webp" data-src="media/ibara/fleet-wall.mp4"></video></figure>
-      <p class="ibara-note">recorded at my desk · ibara.app</p>`;
-    this.videos = [...this.ibara.querySelectorAll('video')];
-    this.root.append(this.ibara);
-    this.unlocked = false;
+    // The Projects tab shows agents at work; the Omarchy tab shows the screensaver.
+    this.agents = new AgentsDesk();
+    this.root.append(this.agents.root);
+    this.mode = 'screensaver';
+    this.root.dataset.mode = 'screensaver';
     Object.assign(this.root.style, {width:'700px',height:'1200px',transform:quadTransform(screenQuads.omarchy,700,1200)});
     scene.append(this.root);
     this.motion.addEventListener('change', () => this.sync());
@@ -46,35 +41,16 @@ export class OmarchyScreen {
     this.active = active;
     this.ready = false;
     this.stop();
-    if (!active) this.lock();
+    if (!active) this.setMode('screensaver');
     if (active && this.loadState === 'failed') { this.loadState = 'idle'; this.loading = null; }
   }
 
-  unlock() {
-    this.unlockTimer = 0;
-    if (!this.active || !this.ready) return;
-    for (const video of this.videos) {
-      if (!video.poster) video.poster = video.dataset.poster;
-      if (!this.motion.matches && !video.src) video.src = video.dataset.src;
-    }
-    this.unlocked = true;
-    this.root.dataset.ibara = 'on';
-    this.playVideos();
-    // The screensaver has faded out; stop drawing it.
-    setTimeout(() => { if (this.unlocked) this.stop(); }, 800);
-  }
-
-  lock() {
-    clearTimeout(this.unlockTimer);
-    this.unlockTimer = 0;
-    this.unlocked = false;
-    this.root.dataset.ibara = 'off';
-    for (const video of this.videos) video.pause();
-  }
-
-  playVideos() {
-    if (!this.unlocked || document.hidden || this.motion.matches) { for (const video of this.videos) video.pause(); return; }
-    for (const video of this.videos) if (video.src) video.play().catch(() => {});
+  setMode(mode) {
+    if (mode === this.mode) return;
+    this.mode = mode;
+    this.root.dataset.mode = mode;
+    if (mode !== 'agents') this.agents.stop();
+    this.sync();
   }
 
   stop() {
@@ -116,10 +92,13 @@ export class OmarchyScreen {
   }
 
   sync() {
-    if (this.active && this.ready && !this.unlocked && !this.unlockTimer) {
-      this.unlockTimer = setTimeout(() => this.unlock(), this.motion.matches ? 0 : 1500);
+    if (this.mode === 'agents') {
+      this.stop();
+      if (!this.active || !this.ready) { this.agents.stop(); return; }
+      if (this.motion.matches) { this.agents.stop(); this.agents.still(); return; }
+      if (document.hidden) this.agents.stop(); else this.agents.start();
+      return;
     }
-    if (this.unlocked) { this.playVideos(); return; }
     if (!this.active || !this.ready || this.motion.matches || document.hidden) { this.stop(); return; }
     if (this.playing || this.loadState === 'failed') return;
     if (this.loadState !== 'ready') {

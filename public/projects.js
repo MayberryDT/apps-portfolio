@@ -1,6 +1,6 @@
-// Selected catalog: routes and assets preserved; order set by Tyler 2026-09-28.
+// Selected catalog: routes and assets preserved; order set by Tyler 2026-09-28; Decree of War removed for now at his request.
 export const projects=[
-{
+  {
     "id": "ibara",
     "name": "ibara",
     "category": "Agent computers",
@@ -19,7 +19,7 @@ export const projects=[
     "description": "A multiplayer browser shooter where detective rats throw bouncing cheese balls across a run-down noir city.\n\nIt started as a silly Three.js prototype and grew into streets, interiors, sewers, hazards and server-run AI opponents. The rule I keep: physical comedy stays at the center, and the atmosphere and networking are there to support it.",
     "url": "https://ratdetective.online",
     "image": "assets/projects/RatDetective.webp",
-    "imageAlt": "Rat Detective: City Under Siege title screen",
+    "imageAlt": "Rat Detective: a detective rat running through a noir alley during a cheese gunfight",
     "mark": "RD",
     "color": "#d59d7c",
     "role": null
@@ -106,18 +106,6 @@ export const projects=[
     "imageAlt": "Milkbench visual with a milk pour, model names, and Luna, Terra, and Sol results.",
     "mark": "MB",
     "color": "#e5d2b0",
-    "role": null
-  },
-  {
-    "id": "wargus-typescript",
-    "name": "Decree of War",
-    "category": "Browser strategy",
-    "description": "A browser strategy game: one Garden of War match against the computer, where you gather, build, train and fight.\n\nIt grew out of Wargus TypeScript, my broad attempt to bring Warcraft II-style RTS play to the browser. I narrowed it to one match that works reliably before adding more. The scope decision and upstream credits are in Notes.",
-    "url": "https://dow.tylermayberry.dev",
-    "image": "assets/projects/Wargus.webp",
-    "imageAlt": "Decree of War: a real-time strategy match in the browser, human against computer",
-    "mark": "DW",
-    "color": "#b0bc83",
     "role": null
   },
   {

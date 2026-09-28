@@ -73,7 +73,8 @@ export class Workstation {
       const image = element('img');
       image.alt = '';
       image.draggable = false;
-      image.addEventListener('load', () => { fallback.hidden = true; image.classList.add('loaded'); });
+      // The whole image is shown; the same (cached) image, blurred, fills the frame behind it.
+      image.addEventListener('load', () => { fallback.hidden = true; image.classList.add('loaded'); media.style.setProperty('--thumb', `url("${image.currentSrc || image.src}")`); media.classList.add('has-image'); });
       image.addEventListener('error', () => { image.hidden = true; fallback.hidden = false; });
       image.dataset.src = project.image;
       media.append(image);
@@ -153,7 +154,12 @@ export class Workstation {
     if (project.image) {
       const image = element('img');
       image.alt = project.imageAlt;
-      image.addEventListener('load', () => {fallback.hidden = true; image.classList.add('loaded');});
+      image.addEventListener('load', () => {
+        fallback.hidden = true; image.classList.add('loaded');
+        // The frame takes the image's own shape, so nothing is cropped or letterboxed.
+        media.style.setProperty('--image-ratio', `${image.naturalWidth} / ${image.naturalHeight}`);
+        media.style.setProperty('--thumb', `url("${image.currentSrc || image.src}")`); media.classList.add('has-image');
+      });
       image.addEventListener('error', () => {image.hidden = true; fallback.hidden = false;});
       image.src = responsiveAsset(project.image);
       media.append(image);
@@ -165,8 +171,10 @@ export class Workstation {
     heading.id = 'project-heading';
     heading.tabIndex = -1;
     copy.append(element('span', 'project-eyebrow', project.category), heading);
-    if(profileContent.summaries[project.name])copy.append(element('p','project-summary',profileContent.summaries[project.name]));
-    copy.append(element('p', 'project-description', project.description));
+    // The first paragraph leads; the older one-line summaries repeated it (polish, 2026-09-28).
+    const [lead, ...rest] = project.description.split(/\n\s*\n/);
+    copy.append(element('p', 'project-summary', lead));
+    for (const paragraph of rest) copy.append(element('p', 'project-description', paragraph));
     if (project.role) copy.append(element('p', 'project-role', project.role));
     const link = element('a', 'btn studio-control project-visit', project.id === 'chartroom' ? 'View on GitHub ↗' : project.url ? 'Visit project ↗' : 'Inspect the Helm phone →');
     link.href = project.url || project.route;

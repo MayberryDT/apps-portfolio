@@ -50,7 +50,7 @@ const remember = {
   set(key, value) { try { localStorage.setItem(key, value); } catch {} }
 };
 // Home marks on moved project sites link back with ?from=<subdomain>.
-const fromProject = {milk:'milkbench', dow:'wargus-typescript'};
+const fromProject = {milk:'milkbench'};
 
 function setPhase(value) {
   phase = value;

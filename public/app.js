@@ -339,15 +339,28 @@ async function ensureDetails(area=state.area){
 }
 // Bounded, low-priority warmup runs only while the visitor has a usable view.
 // It retains results in the same caches consumed by foreground selections.
-const warmSteps=[()=>Promise.all([ensureDetails('journal'),journal.load()]),()=>assetBytes(lightingAsset('phone'),'low'),()=>Promise.all(['portrait','landscape','compact'].map(kind=>assetImage(`assets/contact-screen-${kind}.webp`,'low'))),()=>objects.prepare('pixel',$('objects'),cameras.room)];
+// Contact comes first: it is how people reach Tyler, so it should open without a wait.
+const warmSteps=[()=>ensureDetails('contact'),()=>assetBytes(lightingAsset('phone'),'low'),()=>Promise.all(['portrait','landscape','compact'].map(kind=>assetImage(`assets/contact-screen-${kind}.webp`,'low'))),()=>objects.prepare('pixel',$('objects'),cameras.room),()=>Promise.all([ensureDetails('journal'),journal.load()])];
 let warmIndex=0,warming=false;
 function warmNext(){
  const connection=navigator.connection;
  if(warming||warmIndex>=warmSteps.length||connection?.saveData||/2g/.test(connection?.effectiveType||''))return;
  if(!state.ready||state.busy||state.moving||objects.actor?.state.moving||document.hidden||document.body.dataset.arrival&&document.body.dataset.arrival!=='room'){setTimeout(warmNext,1200);return}
- warming=true;Promise.resolve().then(warmSteps[warmIndex++]).catch(()=>{}).finally(()=>{warming=false;setTimeout(warmNext,1200)});
+ warming=true;Promise.resolve().then(warmSteps[warmIndex++]).catch(()=>{}).finally(()=>{warming=false;setTimeout(warmNext,warmIndex<4?300:1200)});
 }
-setTimeout(warmNext,3500);
+setTimeout(warmNext,1500);
+// Omarchy monitor: the screensaver runs until the Projects tab shows agents at work.
+new MutationObserver(()=>{
+ if(state.object!=='omarchy')return;
+ const agents=$('tabs').querySelector('[role=tab][aria-selected=true]')?.textContent.trim()==='Projects';
+ workstation.omarchy.setMode(agents?'agents':'screensaver');roomAudio.machine(agents);
+}).observe($('tabs'),{subtree:true,attributes:true,attributeFilter:['aria-selected']});
+// Heading for the Contact phone starts preparing it straight away.
+function anticipateContact(event){
+ if(!state.ready||navigator.connection?.saveData||!event.target.closest?.('[data-area=contact]'))return;
+ Promise.all([ensureDetails('contact'),objects.prepare('pixel',$('objects'),cameras.room)]).catch(()=>{});
+}
+$('world').addEventListener('pointerover',anticipateContact);$('world').addEventListener('focusin',anticipateContact);
 async function start(){
  addRoomLight(document.querySelector('#scene'));
  try{
