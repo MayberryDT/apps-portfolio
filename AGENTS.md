@@ -29,7 +29,7 @@ authority, the next action and the release check.
 ## Read next
 
 - [Plan](docs/IMPLEMENTATION_PLAN.md): current work, execution limits, protected
-  design and the release/rollback check.
+  design and the release/rollback check. [Spec](docs/SPEC.md): what must be true.
 - [Project rules](docs/agents/project-rules.md): projects, content and search
   preservation.
 - Creative or copy work: read [COPYWRITING.md](COPYWRITING.md) for audience and
