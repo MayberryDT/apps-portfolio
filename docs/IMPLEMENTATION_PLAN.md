@@ -95,25 +95,21 @@ It must never regress to the retired card site.
     (`ops/legacy-redirects/`).
   - The `tm-home-mark` Worker (`ops/home-mark/`) adds the corner mark.
     Decree of War has none; see the blockers.
-- **Outcomes 5–8 are complete on local branch `studio-next`** (head `cb0a5c5`,
-  not pushed to GitHub).
-  - The independent candidate review's findings were fixed in `2f242dc`, and
-    the re-review passed.
-  - Functional smoke passes 41/41.
-  - Preview for Tyler's sweep: version `627c98f3`,
-    https://627c98f3-product-portfolio-preview.mayberrydt.workers.dev. It is
-    not deployed, and all 319 files match the branch.
-  - Audit results are in `plan/optimization-audit.md` on the branch.
-- **Owed before or during the sweep:**
-  - the Ibara journey, visual and listening checks;
-  - the iPhone WebKit audio unlock;
-  - the light layer's GPU cost on a real phone.
-
-  None of these could run here; see the blockers. The walk-out's cancel
-  button is keyboard-only today (it predates this work); worth a glance.
+- **Outcomes 5–8 are on local branch `studio-next`,** with Tyler's first-sweep
+  feedback applied in `e6f9736`. Functional smoke passes 45/45.
+  - **Monitor:** screensaver until the Projects tab, then the agents motion
+    graphic. No videos. The screen reads as glass.
+  - **Projects computer:** whole images, polished grid and windows.
+  - **Content:** Rat Detective's new image; Decree of War removed for now.
+  - **Contact:** opens with nothing to download (4G phone 2.75 s → 1.36 s).
+  - **Sound:** 4.5 dB quieter.
+  - **Preview:** version `c6d0163c`,
+    https://c6d0163c-product-portfolio-preview.mayberrydt.workers.dev. It is
+    not deployed.
+- **Independent review of this round:** running.
 - **Next:**
-  1. Tyler sweeps the preview and gives feedback.
-  2. Apply the feedback.
+  1. Fix any review findings.
+  2. Tyler sweeps again.
   3. Merge `studio-next` into `master` using the release check. That merge is
      the deploy.
 
@@ -139,23 +135,12 @@ It must never regress to the retired card site.
 
 ## Risks and blockers
 
-- **Ibara:** it denies control to `claude-code-halla@halla`, so browser, visual
-  and audio QA can't go through Ibara. Unblocks when Tyler grants this agent
-  control in Ibara Access. Everything else continues, and the checks run
-  once access exists.
-- **InnTouch and Nova Share redirects:** to finish them, add
-  `inntouch.tylermayberry.dev` to InnTouch's Firebase authorized domains and
-  `txtsync.tylermayberry.dev` to Nova Share's Supabase redirect URLs, then add
-  both to `ops/legacy-redirects`. Only Tyler has access to those consoles.
-- **Decree of War's way home:** the live game was built from 82 uncommitted
-  changes in its checkout. Deploying the clean commit would roll that work
-  back. Merge branch `studio-home-link` into that work before its next deploy.
-  The branch also stops the game claiming `dow.animasai.co`.
-- **Repo configs that reclaim old hostnames:** Milk's untracked
-  `wrangler.jsonc` on Veelox was edited to stop claiming `milk.animasai.co`.
-  Other moved projects have no known source. If one is redeployed with an
-  old animasai.co route, it takes that hostname back from the redirect Worker.
-- Tyler owns the Search Console follow-up.
+- **Ibara:** unavailable while it's being worked on. Tyler checks visuals
+  and sound himself.
+- **Real-phone checks** (iPhone audio unlock, GPU cost of the light layer)
+  depend on Tyler's device.
+- **Search Console is optional:** submit the sitemap and inspect `/` once.
+  Search brings few visitors.
 
 ## Evidence and records
 

@@ -29,8 +29,9 @@ stays easy to reach.
 - `llms.txt` and `sitemap.xml` list the current project addresses.
 
 **2. Tyler's projects live at `name.tylermayberry.dev`.**
-- These move: milk, dow (Decree of War), paycheck, inntouch, stayconnect,
-  jobapps and txtsync (Nova Share).
+- These move: milk, dow (Decree of War), paycheck, stayconnect and jobapps.
+  InnTouch and Nova Share were taken offline instead (Tyler, 2026-09-28: “get
+  rid of InTouch and NovaShare … just drop those”).
 - Each serves the same site at its new address.
 - Each old animasai.co address gives a permanent redirect (301/308) that keeps
   the path and query. `wargus.animasai.co` redirects to `dow.tylermayberry.dev`.
@@ -62,9 +63,18 @@ stays easy to reach.
     may say it grew out of the Wargus port.
 - **Project order (Tyler, 2026-09-28):**
   - ibara first (outcome 7), then Rat Detective Online, Chartroom, ChartStead,
-    Masthead, Pip, Hotel Cleaning Schedule, Executioner, Milkbench, Decree of
-    War, and Helm last.
-  - Nothing is removed, and moved projects are not added.
+    Masthead, Pip, Hotel Cleaning Schedule, Executioner, Milkbench, and Helm
+    last.
+  - Decree of War is removed from the studio for now (“just remove Decree of
+    War for now. We'll deal with it later”); its site stays up.
+  - No other project is removed, and moved projects are not added.
+- **Projects computer polish (Tyler's sweep):**
+  - Every thumbnail and project window shows its whole image; nothing is
+    cropped.
+  - The grid fits image, name and category.
+  - Each window leads with the description's first paragraph, with no
+    repeated summary.
+  - Rat Detective uses its current social image.
 - **Project copy pass:** every entry says what it is, what Tyler did and one
   decision or reason, and links live. It's proofread, and facts come only from
   existing sources.
@@ -93,21 +103,27 @@ stays easy to reach.
   - living light near the windows;
   - loading shown as part of the room, never a spinner;
   - one small, accessible sound control that remembers its setting.
+- The overall level is modest (Tyler: “pretty loud … toned down a little”),
+  and adjustable in one place (`VOLUME` in `room-audio.js`).
 - Sound starts only after the Enter gesture. It never startles, loops audibly
   or plays in a hidden tab.
 - Reduced motion stills the environment movement, but not the sound.
 
 **7. ibara on the Omarchy monitor.**
-- ibara becomes the first Projects entry.
-- At rest, the monitor keeps the Omarchy screensaver. Inspecting it dissolves
-  the screensaver the way Omarchy unlocks, then plays a short, real recording
-  of agents actively working on an ibara desktop.
-- A short explanation links to ibara.app and Animas.
-- The recording is truthful and contains no private data, accounts or
-  personal files. It plays only while the monitor is inspected, and reduced
-  motion gets a still frame.
-- The implementer chooses the treatment. There is no design pause
-  (Tyler, 2026-09-28).
+- ibara is the first Projects entry.
+- **Monitor behaviour (Tyler, 2026-09-28):**
+  - While inspected, the Omarchy screensaver runs on the **Omarchy** tab,
+    which is first.
+  - The **Projects** tab shows agents at work as motion graphics: a tiled
+    Omarchy desktop with an agent's cursor working through a browser, a
+    terminal, a spreadsheet and btop.
+  - Returning to the Omarchy tab brings the screensaver back.
+- **No videos:** “I don't want real videos.” The panel copy calls it an
+  illustration in the ibara.app demo's style, with links to ibara.app and
+  Animas.
+- **The screen reads as lit glass:** near-black, a feathered edge, glare and
+  a vignette, not a flat overlay.
+- Animation runs only while shown. Reduced motion gets a still.
 
 **8. Optimization audit, then optimization.** Last, after 1–7:
 - Audit the whole studio for load performance, runtime cost (CPU/GPU, memory,
@@ -172,7 +188,7 @@ stays easy to reach.
 
 ## Settled and open decisions
 
-- **Settled 2026-09-28:**
+- **Settled 2026-09-28** (including Tyler's first sweep):
   - the project order;
   - home mark on moved projects only;
   - all seven juice ideas;
