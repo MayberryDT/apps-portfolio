@@ -1,4 +1,6 @@
+# tylermayberry.dev welcomes search engines and AI tools, including for training.
 User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /
 
 Sitemap: https://tylermayberry.dev/sitemap.xml

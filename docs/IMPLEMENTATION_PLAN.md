@@ -103,7 +103,8 @@ It must never regress to the retired card site.
   - The entrance gains a role line on desktop and tablet, and its link has a
     larger tap area.
   - About and Press now load `room-bundle.css`.
-  - `llms.txt` uses Markdown links.
+  - `llms.txt` uses Markdown links. `robots.txt` declares Content Signals
+    (`search=yes, ai-input=yes, ai-train=yes`), matching ibara.app.
   - The Worker adds security headers.
   - The audit is in the Halla-only `docs/research/seo-audit-2026-09-28/`.
   - **Still for Tyler:**
