@@ -93,13 +93,22 @@ It must never regress to the retired card site.
   - the studio links point to the new homes.
 - **Kept on their old addresses, not redirected:** InnTouch (Firebase) and Nova
   Share (Supabase), so their logins can't break. See the blockers.
-- **Outcome 4 is live:** the `tm-home-mark` Worker (`ops/home-mark/`) sits in
-  front of all seven `name.tylermayberry.dev` projects. It adds the corner
-  mark (bottom-center on Decree of War, clear of its HUD) and leaves every
-  page otherwise byte-identical. Visual placement is still to be checked once
-  Ibara access exists.
-- **Next:** the infra review runs in the background, while outcome 5 starts
-  on branch `studio-next`.
+- **Outcome 4 is live:** the `tm-home-mark` Worker (`ops/home-mark/`) fronts all
+  seven `name.tylermayberry.dev` projects.
+  - It adds the corner mark to six of them and forces HTTPS. Pages are
+    otherwise byte-identical, and z-index 1000 keeps each site's own dialogs
+    on top.
+  - **Decree of War** has no overlay, because its HUD uses every screen edge.
+    A paused-only in-game link is ready on branch `studio-home-link` in the
+    Decree of War repo, but not deployed; see blockers.
+  - The `?from=` return lands with outcome 5.
+- **Independent infra review:** all findings are fixed (the Decree of War
+  overlay, z-index, the Animas Notes entry on `studio-next`, and this status).
+- **Next:** outcome 5 is in progress on branch `studio-next`:
+  - done: Decree of War, project order, copy pass, the quiet door, `?from=`,
+    the room remembering you, and the Animas contact card with its
+    re-rendered phone assets;
+  - then outcomes 6–8.
 
 ## Outcomes, in order
 
@@ -107,8 +116,7 @@ It must never regress to the retired card site.
    discovery files. Live. Time-sensitive (see risks).
 2. **Projects move to `name.tylermayberry.dev`**, with redirects. Live.
 3. **Other old addresses redirect** to their real homes. Live.
-4. **The home mark goes on the moved projects**, with `?from=` return. Live.
-   Then the infra review.
+4. **The home mark goes on the moved projects.** Live and reviewed.
 5. **Studio updates:**
    - Decree of War, the new links, project order and copy pass;
    - the quiet door and the room remembering you;
@@ -132,6 +140,14 @@ It must never regress to the retired card site.
   `inntouch.tylermayberry.dev` to InnTouch's Firebase authorized domains and
   `txtsync.tylermayberry.dev` to Nova Share's Supabase redirect URLs, then add
   both to `ops/legacy-redirects`. Only Tyler has access to those consoles.
+- **Decree of War's way home:** the live game was built from 82 uncommitted
+  changes in its checkout. Deploying the clean commit would roll that work
+  back. Merge branch `studio-home-link` into that work before its next deploy.
+  The branch also stops the game claiming `dow.animasai.co`.
+- **Repo configs that reclaim old hostnames:** Milk's untracked
+  `wrangler.jsonc` on Veelox was edited to stop claiming `milk.animasai.co`.
+  Other moved projects have no known source. If one is redeployed with an
+  old animasai.co route, it takes that hostname back from the redirect Worker.
 - Tyler owns the Search Console follow-up.
 
 ## Evidence and records
@@ -147,6 +163,6 @@ It must never regress to the retired card site.
   - the retired board `docs/tasks/personal-world.md`;
   - `.design/`;
   - tag `studio-dev-history-2026-09-13` (older builds, not current);
-  - the Veelox backup `/home/tyler/Projects/personal-studio/`.
+  - the Veelox backup personal-studio folder.
 - **Last verified release:** `a0e66ddb-828c-44f9-b1dd-b4f4fd920fb2`, the build
   of `68b2150`.
