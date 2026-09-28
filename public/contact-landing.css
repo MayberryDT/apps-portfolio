@@ -26,3 +26,24 @@ body[data-object=pixel] #error{left:50%;top:10px;transform:translateX(-50%);max-
 .contact-page[data-compact=true] #contact-heading{font-size:40px;letter-spacing:-1.9px}.contact-page[data-compact=true] .contact-copy{font-size:16px;line-height:1.5;margin-top:17px}
 .contact-page[data-compact=true] .contact-email{height:64px;font-size:18px;padding:0 17px}.contact-page[data-compact=true] .contact-address{font-size:12px;margin-top:11px}.contact-page[data-compact=true] .contact-social{margin-top:17px;padding-top:5px;gap:15px}.contact-page[data-compact=true] .contact-social a{min-height:64px;font-size:14px}
 .contact-page[data-compact=true] .contact-camera{width:13px;height:13px;top:13px;left:calc(50% - 6.5px)}
+
+/* Animas appears the way a phone shows a contact (Tyler, 2026-09-28). */
+.contact-card{display:flex;align-items:center;gap:12px;min-height:52px;margin-top:4px;border-top:1px solid #a5896636;padding-top:8px;text-decoration:none;color:#6d553f}
+.contact-card-avatar{flex:0 0 34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#2b211a;color:#f3e6d2;font:600 17px/1 Georgia,"Times New Roman",serif;letter-spacing:.02em;box-shadow:inset 0 0 0 1px #d5b48d33}
+.contact-card-name{display:flex;flex-direction:column;flex:1;min-width:0;line-height:1.2}
+.contact-card-name strong{font-size:15px;font-weight:600;color:#4b3526}
+.contact-card-name small{font-size:12px;color:#8b745d;margin-top:2px}
+.contact-card-go{color:#a28766;font-size:15px}
+.contact-card:hover .contact-card-name strong{text-decoration:underline;text-underline-offset:4px}
+.contact-card:focus-visible{outline:2px solid #5d3d28;outline-offset:3px;border-radius:8px}
+.contact-page[data-compact=true] .contact-social a{min-height:50px}
+.contact-page[data-compact=true] .contact-card{min-height:44px;padding-top:5px;gap:10px}
+.contact-page[data-compact=true] .contact-card-avatar{flex-basis:30px;height:30px;font-size:15px}
+.contact-page[data-landscape=true] .contact-social{margin-top:14px}
+.contact-page[data-landscape=true] .contact-social a{min-height:52px}
+.contact-page[data-landscape=true] .contact-card{min-height:46px;padding-top:4px}
+.contact-page[data-landscape=true] .contact-email{height:62px}
+.contact-page[data-landscape=true] .contact-card{min-height:44px}
+.contact-page[data-landscape=true] .contact-email{height:56px}
+.contact-page[data-landscape=true] .contact-social a{min-height:44px}
+.contact-page[data-landscape=true] .contact-address{margin-top:10px}

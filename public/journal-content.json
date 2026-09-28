@@ -378,11 +378,14 @@
     },
     {
       "id": "animas-ai",
-      "title": "Animas AI",
+      "title": "Animas AI (the earlier site)",
       "category": "Websites",
       "date": "",
-      "aliases": [],
-      "summary": "The collection connects through Animas AI while each project keeps its purpose and stage of development; a money companion, scheduling app and browser game need different introductions. Products, tools and experiments, with a shared place on the web.",
+      "aliases": [
+        "Animas AI",
+        "Animas"
+      ],
+      "summary": "The earlier Animas AI site gathered my products, tools and experiments in one shared place on the web, each keeping its own purpose and stage. A money companion, a scheduling app and a browser game need different introductions.",
       "sections": [
         {
           "heading": "Different work needs different introductions",
@@ -397,14 +400,14 @@
           "text": "The longer account needs to explain the work behind its image: a small card needs a useful promise. An attractive picture alone doesn't establish a product's state. Project selection and claims are part of building the site, because the words have to match what actually exists."
         },
         {
-          "heading": "How the two sites fit",
-          "text": "Choosing the work to feature, I worked with coding agents on positioning, language and design: Animas AI introduces the collection. For more of the surrounding stories, interests and decisions, this personal studio. The projects overlap, with a different experience of reading about them."
+          "heading": "How it changed",
+          "text": "Choosing the work to feature, I worked with coding agents on positioning, language and design, and the site introduced the collection.\n\nIn September 2026 Animas became my company for setting up and supporting AI agents on computers people own. The projects moved here, to this studio, and their old addresses now point to their new homes."
         }
       ],
       "decision": "Introduce each project accurately: the collection should make its differences and connections easier to see.",
       "links": [
         {
-          "label": "Project website",
+          "label": "Animas today",
           "url": "https://animasai.co"
         }
       ]
@@ -557,8 +560,8 @@
     },
     {
       "id": "wargus-typescript",
-      "title": "Wargus TypeScript",
-      "summary": "A reliable experience first, room to expand afterward. That scope decision narrowed Wargus TypeScript to one Garden of War match against the computer. It had begun as a broad attempt to bring Warcraft II-derived RTS play into the browser.",
+      "title": "Decree of War",
+      "summary": "A reliable experience first, room to expand afterward. That scope decision narrowed Wargus TypeScript to one Garden of War match against the computer, now called Decree of War. It had begun as a broad attempt to bring Warcraft II-derived RTS play into the browser.",
       "sections": [
         {
           "heading": "Getting a match to work",
@@ -580,7 +583,9 @@
       "decision": "Before adding content, establish an experience that can support it. The fixed match needs to work faithfully.",
       "category": "Games",
       "date": "Started 2026-06",
-      "aliases": [],
+      "aliases": [
+        "Wargus TypeScript"
+      ],
       "links": []
     },
     {

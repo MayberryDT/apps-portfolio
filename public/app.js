@@ -128,8 +128,19 @@ function back(){
 }
 function setBusy(label){state.busy=!!label;setLoading(label)}
 function failure(message,fn){setBusy(null);$('error-message').textContent=message;$('error').hidden=false;retryAction=fn;syncContact()}
+// The laptop remembers the last project a returning visitor opened. It reopens
+// once per visit; blocked storage behaves like a first visit.
+const memory={get(k){try{return localStorage.getItem(k)}catch{return null}},set(k,v){try{localStorage.setItem(k,v)}catch{}}};
+const returningVisit=memory.get('studio-visited')==='1';let laptopRemembered=false;
+function rememberProject(next){
+ if(next.project){memory.set('studio-last-project',next.project);laptopRemembered=true;return next}
+ if(next.area!=='desk'||next.object!=='monitor'||laptopRemembered)return next;
+ laptopRemembered=true;const last=memory.get('studio-last-project');
+ if(!returningVisit||!projectById.has(last))return next;
+ history.replaceState(null,'','#desk/monitor/'+last);return parse();
+}
 function applyRoute({initial=false}={}){
- const next=parse(),route=next.area+(next.focused?'/'+next.object:'')+(next.project?'/'+next.project:'')+(next.detail?'/'+next.detail:'');
+ const next=rememberProject(parse()),route=next.area+(next.focused?'/'+next.object:'')+(next.project?'/'+next.project:'')+(next.detail?'/'+next.detail:'');
  const sameView=state.area===next.area&&state.object===next.object&&state.focused===next.focused;
  if(state.route===route&&!initial)return;
  $('error').hidden=true;drag=null;phoneDrag=null;document.body.dataset.dragging='false';

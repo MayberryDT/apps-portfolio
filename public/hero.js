@@ -34,6 +34,14 @@ let skipMotion = false;
 let pendingTarget = '#room';
 let phase = 'hero';
 const isExterior = () => !location.hash || location.hash === '#hero';
+// The room remembers returning visitors. Storage can be blocked or cleared;
+// every read falls back to a first visit.
+const remember = {
+  get(key) { try { return localStorage.getItem(key); } catch { return null; } },
+  set(key, value) { try { localStorage.setItem(key, value); } catch {} }
+};
+// Home marks on moved project sites link back with ?from=<subdomain>.
+const fromProject = {milk:'milkbench', dow:'wargus-typescript'};
 
 function setPhase(value) {
   phase = value;
@@ -139,7 +147,16 @@ function revealRoom() {
   world.focus({preventScroll:true});
   clearAnimations();
   enter.removeAttribute('aria-disabled');
+  remember.set('studio-visited', '1');
   window.studio.focusDestination();
+}
+// After the walk-in, carry on to a destination with the room's own camera,
+// so Back returns to the doorway view rather than the exterior.
+function followThrough(route) {
+  const [area, object, project] = route.split('/');
+  setTimeout(() => {
+    if (phase === 'room' && window.studio) window.studio.navigate(area, true, object, project || null);
+  }, motion.matches ? 0 : 320);
 }
 function doorTransform() {
   const width = hero.clientWidth, height = hero.clientHeight;
@@ -202,7 +219,7 @@ outside.addEventListener('click', event => {
   event.preventDefault();
   leave();
 });
-async function arrive(target = '#room', {animate = true, writeHistory = true} = {}) {
+async function arrive(target = '#room', {animate = true, writeHistory = true, then = null, fade = false} = {}) {
   const mine = ++sequence;
   pendingTarget = target;
   // Commit the destination before loading so browser Back cancels pending entry.
@@ -234,9 +251,16 @@ async function arrive(target = '#room', {animate = true, writeHistory = true} = 
       clearTimeout(loadingFeedback);
       setPhase('entering');
       await playJourney();
+    } else if (fade && !motion.matches && typeof hero.animate === 'function') {
+      // Returning visitors skip the walk-in; the entrance simply gives way.
+      clearTimeout(loadingFeedback);
+      setPhase('entering');
+      animations = [hero.animate([{opacity:1},{opacity:0}], {duration:420, easing:'ease-out', fill:'both'})];
+      await animations[0].finished;
     }
     if (mine !== sequence) return;
     revealRoom();
+    if (then) followThrough(then);
   } catch (error) {
     if (mine !== sequence) return;
     clearAnimations();
@@ -256,7 +280,7 @@ for (const link of hero.querySelectorAll('[data-arrival-target]')) {
     event.preventDefault();
     if (link === enter && enter.getAttribute('aria-disabled') === 'true') return;
     const target = link.dataset.arrivalTarget;
-    arrive(target, {animate:target === '#room'});
+    arrive(target, {animate:target === '#room', then:link.dataset.then || null});
   });
 }
 skip.addEventListener('click', () => {
@@ -308,7 +332,21 @@ function handleImageError() {
 }
 image.addEventListener('error',handleImageError);
 if (image.complete && !image.naturalWidth) handleImageError();
-if (isExterior()) {showExterior();prepareAfterHeroPaint();}
+function heroPainted(limit = 1500) {
+  return Promise.race([image.decode().catch(() => {}), new Promise(resolve => setTimeout(resolve, limit))]);
+}
+const from = new URLSearchParams(location.search).get('from');
+if (from !== null) history.replaceState(null, '', location.pathname + location.hash);
+if (from !== null && isExterior()) {
+  // Back from a project site: walk in and open that project on the laptop.
+  showExterior();
+  const project = fromProject[from];
+  heroPainted().then(() => arrive('#room', {then:project ? `desk/monitor/${project}` : 'desk/monitor'}));
+} else if (!location.hash && remember.get('studio-visited') === '1') {
+  // A returning visitor lands in the room; #hero still shows the exterior.
+  showExterior();
+  arrive('#room', {animate:false, writeHistory:false, fade:true});
+} else if (isExterior()) {showExterior();prepareAfterHeroPaint();}
 else arrive(location.hash, {animate:false,writeHistory:false});
 // Small observation seam: no image assets, secrets, timers or mutable state exposed.
 window.arrival = {get phase(){return phase;}, get pending(){return pendingTarget;}};
