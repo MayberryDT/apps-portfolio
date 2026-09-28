@@ -7,60 +7,74 @@ Rewrite it in place. Do not add a ticket board or a second status file.
 
 ## Outcome
 
-Deliver [spec](SPEC.md) outcomes 1–5, and outcome 6 when Tyler says go. The
-studio becomes the home of everything Tyler makes and stays an experience
-first. It must never regress to the retired card site. An outcome is complete
-when its spec verification passes, the release check passes, and Tyler has
-reviewed anything visual.
+Deliver every [spec](SPEC.md) outcome, 1–8, in one continuous run. Then Tyler
+does a full sweep and gives feedback, and the feedback is applied. The studio
+becomes the home of everything Tyler makes and feels even more like his room.
+It must never regress to the retired card site.
 
 ## Execution boundary
 
-- **Mode: preparation complete; delivery not started.** Start on Tyler's
-  explicit go. Outcome 6 needs a separate go.
-- **Granted for delivery (Tyler, 2026-09-28):**
-  - attach `name.tylermayberry.dev` custom domains to the moved projects'
-    existing Workers;
+- **Mode:** preparation complete. The run starts when Tyler says “set you
+  loose” and then **does not pause**. The implementer makes all routine and
+  creative choices within the spec and juice, including the ibara treatment.
+  Tyler reviews at the end.
+- **Granted (Tyler, 2026-09-28):**
+  - attach `name.tylermayberry.dev` domains to the moved projects' Workers;
   - switch only the moved animasai.co hostnames to permanent redirects;
-  - commit and push studio changes to `master` using the release check;
-  - fix and deploy the moved projects' own repositories.
+  - commit and push studio changes (a push to `master` deploys);
+  - fix and deploy the moved projects' own repositories;
+  - use Ibara for browser checks and the ibara recording.
 - **Never:**
-  - touch the new Animas site (animasai.co apex and www), `animas-ai`, or the
-    client-work sites (list: Halla-only
+  - touch the new Animas site (apex and www), `animas-ai`, or the client-work
+    sites (listed in the Halla-only
     `docs/research/animasai-subdomains-2026-09-28.md`);
-  - re-enable the 20 hostnames taken offline on 2026-09-28;
-  - restore the old card site.
-- **Source:** GitHub `MayberryDT/apps-portfolio` (public), branch `master`. The
-  Halla checkout tracks `origin/master`. **A push to `master` is a production
-  deploy.**
-- Halla-only records are listed in `.git/info/exclude` and must never be staged.
-- Rollback version: record the active version before each push. The last
-  verified release is `ef40a1fd-c68a-4fa9-bda9-1511511fcaa4`, the build of
-  `f1aeca4`.
+  - re-enable the 20 hostnames taken offline;
+  - restore the old card site;
+  - publish private data in the ibara recording.
+- **Release routes:**
+  - **Outcomes 1–4 go live** as each is verified. They are link and domain
+    work, and outcome 1 must beat the Animas deploy.
+  - **Outcomes 5–8 are built on branch `studio-next`.** They're published as
+    one preview version for Tyler's sweep (`wrangler versions upload`, or a
+    non-production build), then merged to `master` after his feedback.
+- **Source:** GitHub `MayberryDT/apps-portfolio` (public), branch `master`.
+  The Halla checkout tracks it. Halla-only records are listed in
+  `.git/info/exclude` and are never staged.
+- **Reviews:** a separate reviewer agent checks the live infra work after
+  outcome 4, and the full candidate before Tyler's sweep. Material findings
+  are fixed before moving on.
 
 ## Protected design
 
-The room is the website. Room and furniture views are photographic in one fixed
-coordinate system. Only the selected object becomes 3D, and phones animate back
-to rest on exit. Liquid-glass nodes and panels sit in the scene. There are no
-conventional headers, footers or bottom menus; the single subtle entrance link
-in spec outcome 5 is the agreed exception. Back, Escape, history, keyboard,
-touch and reduced motion all keep working. Original personal artwork, existing
-links and the search identities stay as they are. The full contract is
-invariants S1–S8 in `docs/design/studio-update-system.md` (Halla-only).
+- **The room is the website.** Room and furniture views are photographic in
+  one fixed coordinate system. Only the selected object becomes 3D.
+- **Phones** animate back to rest on exit.
+- **UI:** liquid-glass nodes and panels sit in the scene. There are no
+  conventional headers, footers or bottom menus. Two exceptions are agreed:
+  - the single subtle entrance link (spec outcome 5);
+  - the small sound control (outcome 6).
+- **Always working:** Back, Escape, history, keyboard, touch and reduced
+  motion.
+- **Unchanged:** original personal artwork, existing links and the search
+  identities.
+- **Full contract:** invariants S1–S8 in `docs/design/studio-update-system.md`
+  (Halla-only).
 
 ## Development and release
 
 - **Local preview:** from the repo root, run
-  `npx --yes wrangler@4.131.1 dev --port 8787`. Verified 2026-09-28: it
-  serves `public/` exactly as deployed.
-- **Browser, visual and phone checks:** use Ibara (see the Halla agent
-  instructions). There's no physical iPhone, so use WebKit at iPhone sizes.
-- **Release check (every push to `master`):**
-  1. `test -f public/room.html`. Then `git diff --stat origin/master -- public`
-     must show only the intended files.
-  2. Record the active version: `npx --yes wrangler@4.131.1 deployments list`.
-  3. Push. Then check that the GitHub check “Workers Builds:
-     product-portfolio-preview” succeeds.
+  `npx --yes wrangler@4.131.1 dev --port 8787`. Verified 2026-09-28: it serves
+  `public/` exactly as deployed.
+- **Browser, visual, audio and phone checks:** run them through Ibara. There's
+  no physical iPhone, so use WebKit at iPhone sizes.
+- **Release check** for every push to `master`:
+  1. Run `test -f public/room.html`, then
+     `git diff --stat origin/master -- public`. Only the intended files may
+     appear.
+  2. Record the active version:
+     `npx --yes wrangler@4.131.1 deployments list`.
+  3. Push, then check that “Workers Builds: product-portfolio-preview”
+     succeeds.
   4. From `public/`, confirm every served file matches live:
      `git ls-files | grep -v -e '\.md$' -e '^\.assetsignore$' | while read -r f; do u="$f"; [ "$f" = index.html ] && u=""; [ "$(curl -s "https://tylermayberry.dev/$u" | sha256sum)" = "$(sha256sum < "$f")" ] || echo "DIFF $f"; done`
      Only intended files may print.
@@ -69,48 +83,59 @@ invariants S1–S8 in `docs/design/studio-update-system.md` (Halla-only).
 
 ## Current work
 
-- 2026-09-28: preparation done.
-  - Guard added.
-  - The grill covered scope, messaging and feel.
-  - Focused Monid research done.
-  - COPYWRITING.md, juice.md and the spec written.
-  - Offline: the private tools, company demos and unclear sites; mapping in
-    `docs/research/animasai-offline-2026-09-28.json` (Halla-only).
-  - Chartroom project signed off by Tyler.
-- **Next action:** on Tyler's go, start spec outcome 1.
+- 2026-09-28, preparation complete:
+  - guard in place;
+  - grill, research, COPYWRITING, juice, spec and this plan done;
+  - 20 unused animasai.co hostnames offline;
+  - Chartroom signed off by Tyler.
+- **Next action:** when Tyler says go, start outcome 1.
 
-## Remaining outcomes
+## Outcomes, in order
 
-1. Studio links survive the new Animas site. **Time-sensitive:** see the risk
-   below.
-2. Projects move to `name.tylermayberry.dev` with redirects.
-3. Other old addresses redirect to their real homes.
-4. Home mark on the moved projects.
-5. Studio updates: Decree of War, links, the entrance link, returning
-   visitors, project order, the Animas line.
-6. ibara on the Omarchy monitor and first in Projects. Separate go; rendered
-   options first.
+1. **Studio survives the new Animas site**, including Animas metadata and the
+   discovery files. Live. Time-sensitive (see risks).
+2. **Projects move to `name.tylermayberry.dev`**, with redirects. Live.
+3. **Other old addresses redirect** to their real homes. Live.
+4. **The home mark goes on the moved projects**, with `?from=` return. Live.
+   Then the infra review.
+5. **Studio updates:**
+   - Decree of War, the new links, project order and copy pass;
+   - the quiet door and the room remembering you;
+   - Animas as a contact.
+
+   On `studio-next`.
+6. **Room presence:** sound and environment, per
+   [plan/room-presence.md](plan/room-presence.md). On `studio-next`.
+7. **ibara on the Omarchy monitor**, and first in Projects. On `studio-next`.
+8. **Optimization audit, then optimize.** Findings go in
+   `plan/optimization-audit.md`. On `studio-next`. Then the candidate review,
+   the preview for Tyler's sweep, his feedback, and the merge to `master`.
 
 ## Risks and blockers
 
-- **Risk:** if the new Animas site is deployed before outcome 1 ships, the
-  studio's Masthead, Pip and ChartStead links and the Animas logo break,
-  because the new site has no `masthead.html`, `pip.html`, `chartstead.html` or
-  `logo-mark-v2-lg.webp`.
+- **Risk:** if the new Animas site deploys before outcome 1 ships, the
+  studio's links to Masthead, Pip and ChartStead break, and so does the
+  Animas logo. The new site has no `masthead.html`, `pip.html`,
+  `chartstead.html` or `logo-mark-v2-lg.webp`.
+- **Open unknowns (these are work, not blockers):**
+  - where the moved projects' source repos live;
+  - how to capture the ibara recording through Ibara;
+  - whether the Worker has preview URLs.
 - Tyler owns the Search Console follow-up.
 
 ## Evidence and records
 
-- Decisions (Chartroom): `decisions/tylermayberry-dev-personal-studio-direction`,
-  `decisions/tylermayberry-dev-point-and-click-studio`,
-  `decisions/tylermayberry-dev-cloudflare-hosting`, and the 2026-09-28 grill
-  facts on entity `tylermayberry-dev`.
-- Research: `docs/research/audience-2026-09-28/` (Halla-only).
-- Halla-only design and history:
+- **Decisions:**
+  - Chartroom decisions `tylermayberry-dev-personal-studio-direction`,
+    `…-point-and-click-studio` and `…-cloudflare-hosting`;
+  - the 2026-09-28 facts on entity `tylermayberry-dev`.
+- **Research:** `docs/research/audience-2026-09-28/` (Halla-only).
+- **Halla-only history:**
   - `docs/design/`;
   - `docs/agents/studio-object-workflow.md`;
-  - `docs/tasks/personal-world.md` (the retired board);
+  - the retired board `docs/tasks/personal-world.md`;
   - `.design/`;
-  - tag `studio-dev-history-2026-09-13`, which holds older studio builds that
-    are not current;
-  - the Veelox backup at `/home/tyler/Projects/personal-studio/`.
+  - tag `studio-dev-history-2026-09-13` (older builds, not current);
+  - the Veelox backup `/home/tyler/Projects/personal-studio/`.
+- **Last verified release:** `a0e66ddb-828c-44f9-b1dd-b4f4fd920fb2`, the build
+  of `68b2150`.

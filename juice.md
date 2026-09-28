@@ -23,59 +23,78 @@ and the voice and truth rules in [COPYWRITING.md](COPYWRITING.md).
 ## Directions
 
 States: *Idea* (proposed), *Accepted* (Tyler chose it), *Applied* (live),
-*Retired*.
+*Retired*. Tyler accepted every direction below on 2026-09-28 unless marked
+otherwise. The implementer applies them in the planned run without pausing.
+
+**You are in my room.** Read for any sound, light or ambient work. This is the
+headline direction. After Enter you hear the quiet of the place, the outside
+through the glass, and the soft physical sounds of what you pick up, and the
+light moves a little. Only things in the room make sound; the UI stays silent.
+Details: [room presence](docs/plan/room-presence.md). *Accepted, not applied.*
+Tyler asked for “a lot more quiet sounds” and to “double down on the feeling”.
 
 **Arrival: the doorway, then a slow walk in.** Read for the entrance, Enter and
 the room entry. It should feel like approaching a real place, unhurried.
-*Applied and accepted:* the v40 journey and Outside return, and Enter
-option 09 (2026-09-12). *Accepted, not applied (2026-09-28):* returning
-visitors land straight in the room.
+*Applied and accepted:* the v40 journey, the Outside return and Enter
+option 09 (2026-09-12).
 
-**A quiet door to the work.** Read for the entrance. One small, subtle link goes
-straight into the laptop's Projects view and says what Tyler does in a few
-words. It should feel like part of the entrance, never like navigation chrome.
-*Accepted, not applied (2026-09-28).*
+**The shortcut still walks you in.** Read for the entrance link. It fades in
+after the entrance settles, like a note left on the door. Using it plays the
+walk-in, carries on to the desk and wakes the laptop to Projects. It's never
+navigation chrome and never a teleport. *Accepted, not applied.*
+
+**The room remembers you.** Read for returning visitors. They land in the room,
+and the laptop reopens to the last project they viewed. *Accepted, not
+applied.*
+
+**Loading is part of the room.** Read for any loading state. Show the
+selected object warming up, never a spinner. *Accepted, not applied.*
 
 **Speed is part of the feeling.** Read for any asset, model or loading change.
-A spinner or frozen screen breaks the spell before delight can land. The hero
-paints at once, 3D loads only on selection, and progress shows while it
-loads. *Mostly applied* in the v41+ performance work. *Research-backed
-interpretation (Monid pass, 2026-09-28).* Check on an iPhone in Safari.
+A frozen screen breaks the spell before delight can land. *Mostly applied* in
+the v41+ work. This is research-backed interpretation (Monid pass). Outcome 8
+audits it.
 
-**Things answer your hand.** Read for any inspection, phone or shelf prop. A
-picked-up object lifts, turns within limits and settles back to rest. *Applied
-and accepted* (2026-09-11).
+**Things answer your hand.** Read for any inspection, phone or shelf prop.
+Objects lift, turn within limits, settle back to rest, and now make soft,
+physical sounds. *Motion applied and accepted (2026-09-11); sound accepted,
+not applied.*
 
-**Honest surfaces and light.** Read before any new art, reveal or model. Real
-contact shadows, cables and material finish matter more than polish.
-*Accepted principle:* Tyler rejected the artificial v7 desk and the shiny hero
-background; the v8 desk is the standard.
+**Honest surfaces and light.** Read before any new art, reveal, model or
+light effect. Real contact, cables and materials matter more than polish, and
+a light effect that looks like a filter gets dropped. *Accepted principle:*
+Tyler rejected the artificial v7 desk and the shiny hero; the v8 desk is the
+standard.
 
 **Every belonging has a story.** Read for photos, the shelf, Notes and project
-copy. Specific, lived reasons, as bonuses that reward curiosity and never gate
-the work or Contact. *Applied and accepted:* the v49 copy.
+copy. Stories are specific and lived, and they're bonuses that never gate the
+work or Contact. *Applied and accepted:* the v49 copy.
 
-**Small sounds, left on.** Read for audio. The Notes page-turn is subtle and on
-by default; texture over optimization. *Applied; Tyler kept it on
-(2026-09-28).*
+**Small sounds, left on.** Read for audio defaults. Sound is on by default,
+because it's experience over optimization. *Applied:* the Notes page-turn,
+which Tyler kept on (2026-09-28).
 
 **Native, exact details.** Read for screens and devices. Reproduce the real
 thing, not a lookalike. *Applied:* the Omarchy ASCII screensaver (R25).
 
-**The machine is working.** Read for the ibara monitor work. At rest the
-monitor shows the Omarchy screensaver. When inspected, agents are visibly and
-actively working on the Omarchy desktop through ibara: alive, but it belongs
-to the room. *Accepted direction (2026-09-28); not applied.* Rendered options
-come first, and it starts only on Tyler's go.
+**Animas is a contact on the phone.** Read for the Contact phone. The company
+appears the way a phone shows a contact, “Animas, my company”, inside the
+object. *Accepted, not applied.*
+
+**The machine is working.** Read for the ibara monitor. At rest it's the
+Omarchy screensaver. On inspection, the screensaver dissolves the way Omarchy
+unlocks. Then a real recording plays of agents working on an ibara desktop,
+with the fans rising softly. *Accepted, not applied.* The implementer chooses
+the exact treatment.
 
 **A way home from every project.** Read for work on moved project sites. A
-small mark in a corner, like a watermark, out of the way but clickable, leads
-back to the studio. *Accepted, not applied (2026-09-28).* The studio's `tm.`
-monogram is the natural candidate.
+small `tm.` mark sits in the corner. It widens on hover to say “Tyler
+Mayberry's studio”, and clicking it walks you into the studio with that
+project open on the laptop. *Accepted, not applied.*
 
-**A second look pays off.** Read for idle or ambient moments. A small, quiet
-reward for lingering or returning. *Idea:* it must keep room views
-photographic, cost little and respect reduced motion.
+**A second look pays off.** Read for idle moments. Small quiet rewards for
+lingering, such as dappled light and dust in the sunbeam. *Accepted as part
+of room presence; not applied.*
 
 ## Sources
 
