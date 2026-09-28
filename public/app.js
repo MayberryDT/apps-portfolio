@@ -1,6 +1,8 @@
 import {connectStudioContent} from './studio-content.js';
 import {assetBytes,assetImage,lightingAsset} from './asset-cache.js';
 import {setLoading} from './loading-feedback.js';
+import {roomAudio} from './room-audio.js';
+import {addRoomLight} from './room-light.js';
 import {responsiveAsset} from './responsive-assets.js';
 import {detailAssets} from './detail-assets.js';
 import {Journal} from './journal.js';
@@ -27,7 +29,7 @@ Object.defineProperty(state,'tab',{enumerable:true,get:selectedStoryTab});
 let cameras,raf=0,phoneDrag=null,drag=null,last=0,targetAngle=0,selectionToken=0,retryAction=()=>location.reload();
 const announce=s=>$('announcement').textContent=s;
 const request=()=>{if(!raf)raf=requestAnimationFrame(draw)};
-function panelVisible(value){journal.show(value&&state.detailsReady&&state.object==='notebook'&&journal.state.lift===1).then(()=>{if(state.object==='notebook'&&journal.visible&&(journal.ready||journal.error))setBusy(null)});const show=value&&!['monitor','pixel'].includes(state.object);document.body.dataset.focused=String(value&&(state.object!=='notebook'||journal.state.lift===1));$('story-panel').inert=!show;$('story-panel').setAttribute('aria-hidden',String(!show));workstation.layout(zoom.current,value&&!state.moving)}
+function panelVisible(value){journal.show(value&&state.detailsReady&&state.object==='notebook'&&journal.state.lift===1).then(()=>{if(state.object==='notebook'&&journal.visible&&(journal.ready||journal.error))setBusy(null)});const show=value&&!['monitor','pixel'].includes(state.object);document.body.dataset.focused=String(value&&(state.object!=='notebook'||journal.state.lift===1));$('story-panel').inert=!show;$('story-panel').setAttribute('aria-hidden',String(!show));workstation.layout(zoom.current,value&&!state.moving);workstation.omarchy.desk(state.area==='desk',!state.moving)}
 function geometry(){
  const {x,y,s}=zoom.current;
  state.transform=`translate(${x}px,${y}px) scale(${s})`;stage.style.transform=state.transform;
@@ -128,13 +130,25 @@ function back(){
 }
 function setBusy(label){state.busy=!!label;setLoading(label)}
 function failure(message,fn){setBusy(null);$('error-message').textContent=message;$('error').hidden=false;retryAction=fn;syncContact()}
+// The laptop remembers the last project a returning visitor opened. It reopens
+// once per visit; blocked storage behaves like a first visit.
+const memory={get(k){try{return localStorage.getItem(k)}catch{return null}},set(k,v){try{localStorage.setItem(k,v)}catch{}}};
+const returningVisit=memory.get('studio-visited')==='1';let laptopRemembered=false;
+function rememberProject(next){
+ if(next.project){memory.set('studio-last-project',next.project);laptopRemembered=true;return next}
+ if(next.area!=='desk'||next.object!=='monitor'||laptopRemembered)return next;
+ laptopRemembered=true;const last=memory.get('studio-last-project');
+ if(!returningVisit||!projectById.has(last))return next;
+ history.replaceState(null,'','#desk/monitor/'+last);return parse();
+}
 function applyRoute({initial=false}={}){
- const next=parse(),route=next.area+(next.focused?'/'+next.object:'')+(next.project?'/'+next.project:'')+(next.detail?'/'+next.detail:'');
+ const next=rememberProject(parse()),route=next.area+(next.focused?'/'+next.object:'')+(next.project?'/'+next.project:'')+(next.detail?'/'+next.detail:'');
  const sameView=state.area===next.area&&state.object===next.object&&state.focused===next.focused;
  if(state.route===route&&!initial)return;
  $('error').hidden=true;drag=null;phoneDrag=null;document.body.dataset.dragging='false';
  if(state.object!==next.object)state.angle=0;
- Object.assign(state,next,{route});state.detailsReady=readyAreas.has(state.area);targetAngle=0;setBusy(null);
+ const prev={area:state.area,focused:state.focused,object:state.object,project:state.project,detail:state.detail};
+ Object.assign(state,next,{route});roomAudio.route(initial?{}:prev,next);state.detailsReady=readyAreas.has(state.area);targetAngle=0;setBusy(null);
  document.body.dataset.area=state.area;document.body.dataset.object=state.object||'none';if(document.body.dataset.arrival!=='hero')document.title=(projectById.get(state.project)?.name||photoById.get(state.object)?.title||shelfById.get(state.object)?.title||extraObjects[state.object]?.title||areas[state.area]?.name||'Tyler’s studio')+' · Tyler Mayberry';
  if((document.body.dataset.entry==='about'&&state.detail==='about')||(document.body.dataset.entry==='press'&&state.detail==='facts'))document.title=document.body.dataset.entryTitle;
  updateUI();
@@ -174,9 +188,9 @@ function updateUI(){
   if(focused||state.area==='photos'||state.area==='bookshelf'||directAreas.has(state.area))continue;
   const hit=document.createElement('button');hit.type='button';hit.dataset.area=key;hit.dataset.object=item.object;hit.className='btn scene-node '+(state.area==='room'?'area-hit':'object-hit');
   hit.setAttribute('aria-label',focused?'Back to '+area.name.toLowerCase():state.area==='room'?'Visit '+areas[key].name.toLowerCase():'Inspect '+item.objectName);
-  const label=focused?'← '+area.label:state.area==='room'?areas[key].label:item.object==='helm'?'Helm':item.objectName.replace(/^The |^the /,'');
+  const label=focused?'← '+area.label:state.area==='room'?areas[key].label:item.nodeLabel||item.objectName.replace(/^The |^the /,'');
   hit.innerHTML='<i aria-hidden="true"></i><span></span>';
-  hit.querySelector('span').textContent=label.charAt(0).toUpperCase()+label.slice(1);
+  hit.querySelector('span').textContent=item.nodeLabel||label.charAt(0).toUpperCase()+label.slice(1);
   hit.onclick=()=>{if(focused)navigate(state.area);else if(state.area==='room')navigate(key,directAreas.has(key));else navigate(key,true,item.object)};
   hit.tether=document.createElementNS('http://www.w3.org/2000/svg','line');$('node-leaders').append(hit.tether);
   $('hotspots').append(hit);
@@ -325,16 +339,33 @@ async function ensureDetails(area=state.area){
 }
 // Bounded, low-priority warmup runs only while the visitor has a usable view.
 // It retains results in the same caches consumed by foreground selections.
-const warmSteps=[()=>Promise.all([ensureDetails('journal'),journal.load()]),()=>assetBytes(lightingAsset('phone'),'low'),()=>Promise.all(['portrait','landscape','compact'].map(kind=>assetImage(`assets/contact-screen-${kind}.webp`,'low'))),()=>objects.prepare('pixel',$('objects'),cameras.room)];
+// Contact comes first: it is how people reach Tyler, so it should open without a wait.
+const warmSteps=[()=>ensureDetails('contact'),()=>assetBytes(lightingAsset('phone'),'low'),()=>Promise.all(['portrait','landscape','compact'].map(kind=>assetImage(`assets/contact-screen-${kind}.webp`,'low'))),()=>objects.prepare('pixel',$('objects'),cameras.room),()=>Promise.all([ensureDetails('journal'),journal.load()])];
 let warmIndex=0,warming=false;
 function warmNext(){
  const connection=navigator.connection;
  if(warming||warmIndex>=warmSteps.length||connection?.saveData||/2g/.test(connection?.effectiveType||''))return;
  if(!state.ready||state.busy||state.moving||objects.actor?.state.moving||document.hidden||document.body.dataset.arrival&&document.body.dataset.arrival!=='room'){setTimeout(warmNext,1200);return}
- warming=true;Promise.resolve().then(warmSteps[warmIndex++]).catch(()=>{}).finally(()=>{warming=false;setTimeout(warmNext,1200)});
+ warming=true;Promise.resolve().then(warmSteps[warmIndex++]).catch(()=>{}).finally(()=>{warming=false;setTimeout(warmNext,warmIndex<4?300:1200)});
 }
-setTimeout(warmNext,3500);
+setTimeout(warmNext,1500);
+// Omarchy monitor: agents work while at the desk; its Omarchy tab brings the screensaver back.
+new MutationObserver(()=>{
+ if(state.object!=='omarchy')return;
+ const omarchy=$('tabs').querySelector('[role=tab][aria-selected=true]')?.textContent.trim()==='Omarchy';
+ workstation.omarchy.setMode(omarchy?'screensaver':'agents');
+}).observe($('tabs'),{subtree:true,attributes:true,attributeFilter:['aria-selected']});
+// Heading for the Contact phone starts preparing it straight away.
+let contactAnticipated=false;
+function anticipateContact(event){
+ const connection=navigator.connection;
+ if(contactAnticipated||!state.ready||connection?.saveData||/2g/.test(connection?.effectiveType||'')||!event.target.closest?.('[data-area=contact]'))return;
+ contactAnticipated=true;
+ Promise.all([ensureDetails('contact'),objects.prepare('pixel',$('objects'),cameras.room)]).catch(()=>{});
+}
+$('world').addEventListener('pointerover',anticipateContact);$('world').addEventListener('focusin',anticipateContact);
 async function start(){
+ addRoomLight(document.querySelector('#scene'));
  try{
   const response=await fetch('assets/scenes.json');if(!response.ok)throw new Error('Camera unavailable');cameras=await response.json();
   cameras.room.registration=[.997,1,-.0025,-.033];cameras.room.artFrames=artFrames;cameras.room.artQuads={};
@@ -353,7 +384,8 @@ const shelf=new ShelfGallery({world:$('world'),panel:$('story-panel'),scene:stag
 const journal=new Journal({host:$('world'),panel:$('story-panel'),onClose:()=>navigate('room')});
 const contact=new ContactLanding($('world'));
 const workstation=new Workstation({scene:stage,world:$('world'),onProject:project=>navigate('desk',true,'monitor',project)});
-window.studio={state,objects,zoom,journal,contact,gallery,shelf,navigate,views,tiles,workstation,focusDestination,prepareRoute:()=>applyRoute({initial:true}),get cameras(){return cameras}};
+workstation.omarchy.onmode=mode=>roomAudio.machine(mode==='agents'&&workstation.omarchy.working);
+window.studio={state,objects,zoom,journal,contact,gallery,shelf,navigate,views,tiles,workstation,focusDestination,audio:roomAudio,keepRoute:()=>{laptopRemembered=true},prepareRoute:()=>applyRoute({initial:true}),get cameras(){return cameras}};
 window.studio.initialized=start();
 connectStudioContent(window.studio);
 

@@ -1,5 +1,6 @@
 import {screenQuads, quadTransform} from './screen-data.js';
 import {omarchyAscii} from './omarchy-ascii.js';
+import {AgentsDesk} from './agents-desk.js';
 
 // Native ttfx frames exported from Tyler's Omarchy screensaver, played as text cells.
 // The source engine, logo, export settings and licenses are recorded with the asset.
@@ -24,6 +25,13 @@ export class OmarchyScreen {
     this.canvas.height = 2400;
     this.canvas.hidden = true;
     this.root.append(this.text, this.canvas);
+    // Agents work on the screen from arrival at the desk until the visitor leaves it;
+    // inspecting the monitor, its Omarchy tab brings the screensaver back.
+    this.agents = new AgentsDesk();
+    this.root.append(this.agents.root);
+    this.working = false;
+    this.mode = 'screensaver';
+    this.root.dataset.mode = 'screensaver';
     Object.assign(this.root.style, {width:'700px',height:'1200px',transform:quadTransform(screenQuads.omarchy,700,1200)});
     scene.append(this.root);
     this.motion.addEventListener('change', () => this.sync());
@@ -35,7 +43,33 @@ export class OmarchyScreen {
     this.active = active;
     this.ready = false;
     this.stop();
+    // Inspection opens on the ibara tab, and the desk view is the agents' too.
+    if (this.working || active) this.setMode('agents');
     if (active && this.loadState === 'failed') { this.loadState = 'idle'; this.loading = null; }
+  }
+
+  setMode(mode) {
+    if (mode === this.mode) return;
+    this.mode = mode;
+    this.root.dataset.mode = mode;
+    if (mode !== 'agents') this.agents.stop();
+    this.onmode?.(mode);
+    this.sync();
+  }
+
+  desk(here, settled) {
+    if (!here) {
+      if (!this.working) return;
+      this.working = false;
+      this.agents.fresh = true;
+      this.setMode('screensaver');
+    } else if (!this.working && settled) {
+      this.working = true;
+      // Arriving already inspecting keeps whichever tab was chosen on the way in.
+      if (!this.active) this.setMode('agents');
+      this.onmode?.(this.mode);
+      this.sync();
+    }
   }
 
   stop() {
@@ -77,6 +111,14 @@ export class OmarchyScreen {
   }
 
   sync() {
+    if (this.mode === 'agents') {
+      this.stop();
+      // On the way in, the composed still; work carries on from it on arrival.
+      if (!this.working) { this.agents.stop(); if (this.agents.fresh) this.agents.still(); return; }
+      if (this.motion.matches) { this.agents.stop(); this.agents.still(); return; }
+      if (document.hidden) this.agents.stop(); else this.agents.start();
+      return;
+    }
     if (!this.active || !this.ready || this.motion.matches || document.hidden) { this.stop(); return; }
     if (this.playing || this.loadState === 'failed') return;
     if (this.loadState !== 'ready') {

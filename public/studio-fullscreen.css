@@ -11,3 +11,13 @@ body[data-focused=true]>#fullscreen{visibility:hidden}
 @media(orientation:landscape) and (max-height:600px) and (pointer:coarse){
  #fullscreen .fullscreen-label{display:inline}
 }
+
+/* Room sound switch: beside full screen, same glass (docs/plan/room-presence.md). */
+html body>#sound-toggle{position:fixed;z-index:60;top:max(12px,env(safe-area-inset-top));right:calc(max(12px,env(safe-area-inset-right)) + 54px);display:flex;align-items:center;justify-content:center;width:44px;height:44px;padding:0;border:1px solid #fff7e962;border-radius:12px;background:linear-gradient(130deg,#fff8ea25,#fff8ea09),#3d3327c9;color:#fff9ef;box-shadow:inset 0 1px 1px #fffdf575;backdrop-filter:blur(17px) saturate(135%);-webkit-backdrop-filter:blur(17px) saturate(135%);touch-action:manipulation;cursor:pointer}
+html body>#fullscreen[hidden]~#sound-toggle{right:max(12px,env(safe-area-inset-right))}
+#sound-toggle svg{width:20px;height:20px}
+#sound-toggle[data-state=on] .sound-off,#sound-toggle[data-state=off] .sound-on{display:none}
+html body>#sound-toggle:focus-visible{outline:2px solid #f5dfb9;outline-offset:3px}
+body:is([data-arrival=entering],[data-arrival=leaving],[data-arrival=loading])>#sound-toggle{visibility:hidden}
+body[data-focused=true]>#sound-toggle{visibility:hidden}
+@media(orientation:landscape) and (max-height:600px) and (pointer:coarse){html body>#fullscreen:not([hidden])~#sound-toggle{right:calc(max(12px,env(safe-area-inset-right)) + 134px)}}
