@@ -95,17 +95,26 @@ It must never regress to the retired card site.
     (`ops/legacy-redirects/`).
   - The `tm-home-mark` Worker (`ops/home-mark/`) adds the corner mark.
     Decree of War has none; see the blockers.
-- **Outcomes 5–8 are complete on local branch `studio-next`** (`7ea29e1..34dc75f`),
-  with 34/34 functional smoke checks passing.
-  - Preview for Tyler's sweep: version `e3e7b63a`,
-    https://e3e7b63a-product-portfolio-preview.mayberrydt.workers.dev. It is
+- **Outcomes 5–8 are complete on local branch `studio-next`** (head `cb0a5c5`,
+  not pushed to GitHub).
+  - The independent candidate review's findings were fixed in `2f242dc`, and
+    the re-review passed.
+  - Functional smoke passes 41/41.
+  - Preview for Tyler's sweep: version `627c98f3`,
+    https://627c98f3-product-portfolio-preview.mayberrydt.workers.dev. It is
     not deployed, and all 319 files match the branch.
   - Audit results are in `plan/optimization-audit.md` on the branch.
+- **Owed before or during the sweep:**
+  - the Ibara journey, visual and listening checks;
+  - the iPhone WebKit audio unlock;
+  - the light layer's GPU cost on a real phone.
+
+  None of these could run here; see the blockers. The walk-out's cancel
+  button is keyboard-only today (it predates this work); worth a glance.
 - **Next:**
-  1. Finish the independent candidate review.
-  2. Tyler sweeps the preview and gives feedback.
-  3. Apply the feedback.
-  4. Merge `studio-next` into `master` using the release check. That merge is
+  1. Tyler sweeps the preview and gives feedback.
+  2. Apply the feedback.
+  3. Merge `studio-next` into `master` using the release check. That merge is
      the deploy.
 
 ## Outcomes, in order
