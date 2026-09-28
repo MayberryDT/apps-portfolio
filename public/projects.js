@@ -1,5 +1,17 @@
 // Selected catalog: routes and assets preserved; order set by Tyler 2026-09-28.
 export const projects=[
+{
+    "id": "ibara",
+    "name": "ibara",
+    "category": "Agent computers",
+    "description": "ibara gives AI agents computers of their own: they use the browser and desktop apps there while you keep working on yours. Any agent that speaks MCP can drive it.\n\nI built it on Omarchy, where it runs today; macOS and Windows are in development. Watch it at work on the portrait monitor beside the laptop. My company, Animas, sets it up for people who want it handled.",
+    "url": "https://ibara.app",
+    "image": "assets/projects/ibara.webp",
+    "imageAlt": "ibara: give your agents a computer you own",
+    "mark": "ib",
+    "color": "#8fc3d9",
+    "role": null
+  },
   {
     "id": "rat-detective-online",
     "name": "Rat Detective Online",

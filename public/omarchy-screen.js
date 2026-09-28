@@ -24,6 +24,17 @@ export class OmarchyScreen {
     this.canvas.height = 2400;
     this.canvas.hidden = true;
     this.root.append(this.text, this.canvas);
+    // On inspection the screensaver unlocks to ibara at work: two real recordings
+    // from ibara.app, loaded only when the monitor is inspected (spec outcome 7).
+    this.ibara = document.createElement('div');
+    this.ibara.className = 'ibara-desktop';
+    this.ibara.innerHTML = `<div class="ibara-bar"><span>ibara</span><span class="ibara-live"></span><span class="ibara-bar-right">agents at work</span></div>
+      <figure class="ibara-window"><figcaption>an agent at work</figcaption><video muted loop playsinline preload="none" data-poster="media/ibara/agent-at-work.webp" data-src="media/ibara/agent-at-work.mp4"></video></figure>
+      <figure class="ibara-window"><figcaption>the fleet</figcaption><video muted loop playsinline preload="none" data-poster="media/ibara/fleet-wall.webp" data-src="media/ibara/fleet-wall.mp4"></video></figure>
+      <p class="ibara-note">real recordings · ibara.app</p>`;
+    this.videos = [...this.ibara.querySelectorAll('video')];
+    this.root.append(this.ibara);
+    this.unlocked = false;
     Object.assign(this.root.style, {width:'700px',height:'1200px',transform:quadTransform(screenQuads.omarchy,700,1200)});
     scene.append(this.root);
     this.motion.addEventListener('change', () => this.sync());
@@ -35,7 +46,35 @@ export class OmarchyScreen {
     this.active = active;
     this.ready = false;
     this.stop();
+    if (!active) this.lock();
     if (active && this.loadState === 'failed') { this.loadState = 'idle'; this.loading = null; }
+  }
+
+  unlock() {
+    this.unlockTimer = 0;
+    if (!this.active || !this.ready) return;
+    for (const video of this.videos) {
+      if (!video.poster) video.poster = video.dataset.poster;
+      if (!this.motion.matches && !video.src) video.src = video.dataset.src;
+    }
+    this.unlocked = true;
+    this.root.dataset.ibara = 'on';
+    this.playVideos();
+    // The screensaver has faded out; stop drawing it.
+    setTimeout(() => { if (this.unlocked) this.stop(); }, 800);
+  }
+
+  lock() {
+    clearTimeout(this.unlockTimer);
+    this.unlockTimer = 0;
+    this.unlocked = false;
+    this.root.dataset.ibara = 'off';
+    for (const video of this.videos) video.pause();
+  }
+
+  playVideos() {
+    if (!this.unlocked || document.hidden || this.motion.matches) { for (const video of this.videos) video.pause(); return; }
+    for (const video of this.videos) if (video.src) video.play().catch(() => {});
   }
 
   stop() {
@@ -77,6 +116,10 @@ export class OmarchyScreen {
   }
 
   sync() {
+    if (this.active && this.ready && !this.unlocked && !this.unlockTimer) {
+      this.unlockTimer = setTimeout(() => this.unlock(), this.motion.matches ? 0 : 1500);
+    }
+    if (this.unlocked) { this.playVideos(); return; }
     if (!this.active || !this.ready || this.motion.matches || document.hidden) { this.stop(); return; }
     if (this.playing || this.loadState === 'failed') return;
     if (this.loadState !== 'ready') {

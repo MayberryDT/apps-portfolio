@@ -12,7 +12,7 @@ export const areas={
     "subtitle": "Ideas turned into things you can use",
     "mark": "At my desk",
     "footnote": "From my desk",
-    "alt": "A walnut corner desk with a portrait monitor displaying Omarchy, an open laptop with ten projects, a blue-lit mouse and a phone running the Helm preview.",
+    "alt": "A walnut corner desk with a portrait monitor displaying Omarchy, an open laptop with eleven projects, a blue-lit mouse and a phone running the Helm preview.",
     "tabs": [
       [
         "Projects",
@@ -119,14 +119,15 @@ export const extraObjects={
     "object": "omarchy",
     "objectName": "The Omarchy monitor",
     "category": "On my computer",
-    "title": "Omarchy",
-    "subtitle": "The operating system I use",
-    "mark": "My setup",
+    "title": "ibara, on Omarchy",
+    "subtitle": "Agents at work on the operating system I use",
+    "mark": "Real recordings",
     "footnote": "On the vertical monitor",
     "tabs": [
+      ["ibara", "<p class=\"panel-lead\">Agents at work on my computers</p><p>ibara gives AI agents computers of their own. They use the browser and desktop apps there, through one MCP server any agent can connect to, while I keep working on mine.</p><p>On the screen: an agent operating the Omarchy computer beside my laptop, and a wall of connected Omarchy machines in the ibara console. Both are real recordings.</p><p>It runs on Omarchy today; macOS and Windows are in development. If you’d like ibara set up for you, that’s what my company, Animas, does.</p><a class=\"book-source\" href=\"https://ibara.app\" target=\"_blank\" rel=\"noopener noreferrer\">Visit ibara <span aria-hidden=\"true\">↗</span></a> <a class=\"book-source\" href=\"https://animasai.co\" target=\"_blank\" rel=\"noopener noreferrer\">Animas <span aria-hidden=\"true\">↗</span></a>"],
       [
         "Omarchy",
-        "<p class=\"panel-lead\">What&#39;s on my computer</p><p>Using it, building things for it too: Omarchy is my operating system. It&#39;s built around Arch Linux and Hyprland, with desktop and terminal tools and a keyboard-focused workflow.</p><p>The environment on the portrait monitor, beside the projects and Helm handset.</p><p>Follow the link for Omarchy itself and its documentation. Published Omarchy projects of my own, I don&#39;t have any yet.</p><a class=\"book-source\" href=\"https://omarchy.org/\" target=\"_blank\" rel=\"noopener noreferrer\">Explore Omarchy <span aria-hidden=\"true\">↗</span></a>"
+        "<p class=\"panel-lead\">What&#39;s on my computer</p><p>Using it, building things for it too: Omarchy is my operating system. It&#39;s built around Arch Linux and Hyprland, with desktop and terminal tools and a keyboard-focused workflow.</p><p>The environment on the portrait monitor, beside the projects and Helm handset.</p><p>Follow the link for Omarchy itself and its documentation. ibara is the Omarchy project I&#39;m building.</p><a class=\"book-source\" href=\"https://omarchy.org/\" target=\"_blank\" rel=\"noopener noreferrer\">Explore Omarchy <span aria-hidden=\"true\">↗</span></a>"
       ]
     ]
   },
