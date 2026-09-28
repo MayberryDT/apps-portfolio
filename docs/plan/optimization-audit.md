@@ -53,6 +53,10 @@ Response time, text compression and caching passed.
 - **Mobile `weightlifting.glb` (1 MB, PNG texture).** The one mobile prop
   without a WebP texture. It is left unchanged until someone can look at it:
   the texture may be PNG on purpose.
+- **Agents working at the desk.** Since Tyler's second sweep, agents run on
+  the monitor whenever the visitor is at the desk. Over 10 s at the desk they
+  add about 8% main-thread time: 678 → 737 ms at 1440 px and 1023 → 1102 ms
+  at 390 px. They stop outside the desk and in hidden tabs.
 - **Long-lived caching.** Assets revalidate with ETags. Long `max-age` needs
   content-hashed URLs, or new HTML could run against stale scripts after a
   deploy. That is a bigger build change, noted for later.
