@@ -1,0 +1,17 @@
+{
+  // Deployed by hand: npx --yes wrangler@4.131.1 deploy (from this folder).
+  // Custom domains name.tylermayberry.dev are attached through the Cloudflare API.
+  "name": "tm-home-mark",
+  "main": "worker.js",
+  "compatibility_date": "2026-09-28",
+  "workers_dev": false,
+  "services": [
+    { "binding": "MILK", "service": "milk-01-launch-site" },
+    { "binding": "DOW", "service": "decree-of-war" },
+    { "binding": "PAYCHECK", "service": "paycheck-sanity-checker-preview" },
+    { "binding": "INNTOUCH", "service": "inntouch-frontend-preview" },
+    { "binding": "STAYCONNECT", "service": "stayconnect-proofofconcept" },
+    { "binding": "JOBAPPS", "service": "jobapps-copilot-mayberrydt-preview" },
+    { "binding": "TXTSYNC", "service": "txtsync" }
+  ]
+}

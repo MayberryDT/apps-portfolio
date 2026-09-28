@@ -93,7 +93,13 @@ It must never regress to the retired card site.
   - the studio links point to the new homes.
 - **Kept on their old addresses, not redirected:** InnTouch (Firebase) and Nova
   Share (Supabase), so their logins can't break. See the blockers.
-- **Next:** outcome 4, the home mark on the moved projects.
+- **Outcome 4 is live:** the `tm-home-mark` Worker (`ops/home-mark/`) sits in
+  front of all seven `name.tylermayberry.dev` projects. It adds the corner
+  mark (bottom-center on Decree of War, clear of its HUD) and leaves every
+  page otherwise byte-identical. Visual placement is still to be checked once
+  Ibara access exists.
+- **Next:** the infra review runs in the background, while outcome 5 starts
+  on branch `studio-next`.
 
 ## Outcomes, in order
 
