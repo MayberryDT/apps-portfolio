@@ -63,6 +63,8 @@ you pick up. The light moves a little, the way it does in a real room.
 - **Time of day (only if it looks photographic).** A warmer, lower light in the
   visitor's evening, using same-image edits with registration checked. Drop
   it if it looks like a filter; honest surfaces come first.
+  **Dropped for now (2026-09-28):** it can't be checked visually until Ibara
+  access exists.
 
 ## Sourcing and budget
 
@@ -75,6 +77,15 @@ you pick up. The light moves a little, the way it does in a real room.
   foley loads with its area.
 - **Levels:** normalize every file, then mix by ear in the actual room
   views. A capture per area goes into the evidence.
+
+## As built (2026-09-28, `studio-next`)
+
+- **Code:** `public/room-audio.js` for sound and `public/room-light.js` for
+  light, dust and the loading ember.
+- **Audio:** assets in `public/audio/`, 809 KB in total.
+- **Credits:** sources are credited on `model-credits.html`. The full
+  source record is in the Halla-only `docs/research/studio-next-evidence/sound-sources.json`.
+- **Still owed:** a listening pass and a check on a real phone.
 
 ## Done when
 

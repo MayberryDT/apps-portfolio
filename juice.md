@@ -30,7 +30,8 @@ otherwise. The implementer applies them in the planned run without pausing.
 headline direction. After Enter you hear the quiet of the place, the outside
 through the glass, and the soft physical sounds of what you pick up, and the
 light moves a little. Only things in the room make sound; the UI stays silent.
-Details: [room presence](docs/plan/room-presence.md). *Accepted, not applied.*
+Details: [room presence](docs/plan/room-presence.md). *Applied on the
+`studio-next` preview (2026-09-28); awaiting Tyler's listening sweep.*
 Tyler asked for “a lot more quiet sounds” and to “double down on the feeling”.
 
 **Arrival: the doorway, then a slow walk in.** Read for the entrance, Enter and
@@ -41,14 +42,15 @@ option 09 (2026-09-12).
 **The shortcut still walks you in.** Read for the entrance link. It fades in
 after the entrance settles, like a note left on the door. Using it plays the
 walk-in, carries on to the desk and wakes the laptop to Projects. It's never
-navigation chrome and never a teleport. *Accepted, not applied.*
+navigation chrome and never a teleport. *Applied on the preview.*
 
 **The room remembers you.** Read for returning visitors. They land in the room,
-and the laptop reopens to the last project they viewed. *Accepted, not
-applied.*
+and the laptop reopens to the last project they viewed. *Applied on the
+preview.*
 
 **Loading is part of the room.** Read for any loading state. Show the
-selected object warming up, never a spinner. *Accepted, not applied.*
+selected object warming up, never a spinner. *Applied on the preview* as a
+warm ember in the loading label.
 
 **Speed is part of the feeling.** Read for any asset, model or loading change.
 A frozen screen breaks the spell before delight can land. *Mostly applied* in
@@ -57,8 +59,8 @@ audits it.
 
 **Things answer your hand.** Read for any inspection, phone or shelf prop.
 Objects lift, turn within limits, settle back to rest, and now make soft,
-physical sounds. *Motion applied and accepted (2026-09-11); sound accepted,
-not applied.*
+physical sounds. *Motion applied and accepted (2026-09-11); sound applied on the
+preview.*
 
 **Honest surfaces and light.** Read before any new art, reveal, model or
 light effect. Real contact, cables and materials matter more than polish, and
@@ -79,22 +81,24 @@ thing, not a lookalike. *Applied:* the Omarchy ASCII screensaver (R25).
 
 **Animas is a contact on the phone.** Read for the Contact phone. The company
 appears the way a phone shows a contact, “Animas, my company”, inside the
-object. *Accepted, not applied.*
+object. *Applied on the preview.*
 
 **The machine is working.** Read for the ibara monitor. At rest it's the
 Omarchy screensaver. On inspection, the screensaver dissolves the way Omarchy
 unlocks. Then a real recording plays of agents working on an ibara desktop,
-with the fans rising softly. *Accepted, not applied.* The implementer chooses
-the exact treatment.
+with the fans rising softly. *Applied on the preview:* two of Tyler's public
+recordings from ibara.app play in windows on a Tokyo Night desktop.
 
 **A way home from every project.** Read for work on moved project sites. A
 small `tm.` mark sits in the corner. It widens on hover to say “Tyler
 Mayberry's studio”, and clicking it walks you into the studio with that
-project open on the laptop. *Accepted, not applied.*
+project open on the laptop. *Applied live* on six moved projects (not
+Decree of War, whose HUD uses every edge). The studio side ships with the
+preview.
 
 **A second look pays off.** Read for idle moments. Small quiet rewards for
-lingering, such as dappled light and dust in the sunbeam. *Accepted as part
-of room presence; not applied.*
+lingering, such as dappled light and dust in the sunbeam. *Applied on the
+preview; the evening light was dropped until it can be checked visually.*
 
 ## Sources
 

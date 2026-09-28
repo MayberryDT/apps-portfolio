@@ -63,6 +63,10 @@ It must never regress to the retired card site.
 
 ## Development and release
 
+- **Stylesheet bundle:** `index.html` and `room.html` load `room-bundle.css`,
+  which is 12 stylesheets joined in order. After editing any of them, run
+  `python3 tools/build-room-bundle.py`. Otherwise the change never reaches
+  visitors.
 - **Local preview:** from the repo root, run
   `npx --yes wrangler@4.131.1 dev --port 8787`. Verified 2026-09-28: it serves
   `public/` exactly as deployed.
@@ -84,31 +88,25 @@ It must never regress to the retired card site.
 
 ## Current work
 
-- **Outcome 1 is live:** the Animas relaunch no longer breaks studio links (`d2f628e`).
-- **Outcomes 2–3 are live:**
-  - the seven projects serve at `name.tylermayberry.dev`, identical to before;
-  - the old addresses redirect through the `animasai-legacy-redirects` Worker
-    (source in `ops/legacy-redirects/`; rollback map in the Halla-only
-    `docs/research/animasai-redirect-switch-2026-09-28.json`);
-  - the studio links point to the new homes.
-- **Kept on their old addresses, not redirected:** InnTouch (Firebase) and Nova
-  Share (Supabase), so their logins can't break. See the blockers.
-- **Outcome 4 is live:** the `tm-home-mark` Worker (`ops/home-mark/`) fronts all
-  seven `name.tylermayberry.dev` projects.
-  - It adds the corner mark to six of them and forces HTTPS. Pages are
-    otherwise byte-identical, and z-index 1000 keeps each site's own dialogs
-    on top.
-  - **Decree of War** has no overlay, because its HUD uses every screen edge.
-    A paused-only in-game link is ready on branch `studio-home-link` in the
-    Decree of War repo, but not deployed; see blockers.
-  - The `?from=` return lands with outcome 5.
-- **Independent infra review:** all findings are fixed (the Decree of War
-  overlay, z-index, the Animas Notes entry on `studio-next`, and this status).
-- **Next:** outcome 5 is in progress on branch `studio-next`:
-  - done: Decree of War, project order, copy pass, the quiet door, `?from=`,
-    the room remembering you, and the Animas contact card with its
-    re-rendered phone assets;
-  - then outcomes 6–8.
+- **Outcomes 1–4 are live and reviewed.**
+  - Studio links survive the Animas relaunch.
+  - Seven projects moved to `name.tylermayberry.dev`.
+  - Old addresses redirect through `animasai-legacy-redirects`
+    (`ops/legacy-redirects/`).
+  - The `tm-home-mark` Worker (`ops/home-mark/`) adds the corner mark.
+    Decree of War has none; see the blockers.
+- **Outcomes 5–8 are complete on local branch `studio-next`** (`7ea29e1..34dc75f`),
+  with 34/34 functional smoke checks passing.
+  - Preview for Tyler's sweep: version `e3e7b63a`,
+    https://e3e7b63a-product-portfolio-preview.mayberrydt.workers.dev. It is
+    not deployed, and all 319 files match the branch.
+  - Audit results are in `plan/optimization-audit.md` on the branch.
+- **Next:**
+  1. Finish the independent candidate review.
+  2. Tyler sweeps the preview and gives feedback.
+  3. Apply the feedback.
+  4. Merge `studio-next` into `master` using the release check. That merge is
+     the deploy.
 
 ## Outcomes, in order
 
