@@ -184,5 +184,6 @@ It must never regress to the retired card site.
   - `.design/`;
   - tag `studio-dev-history-2026-09-13` (older builds, not current);
   - the Veelox backup personal-studio folder.
-- **Last verified release:** `a0e66ddb-828c-44f9-b1dd-b4f4fd920fb2`, the build
-  of `68b2150`.
+- **Last verified release:** `a3bf0124-69c0-46bf-9cc3-7203726f0d26`, the build
+  of `a659c58` (Cirlet rename, 2026-09-30). Rollback target before it:
+  `7ee0481c-8eec-47b4-b375-7e1b15a0ceb5`.
