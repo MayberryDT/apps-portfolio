@@ -78,8 +78,8 @@ which Tyler kept on (2026-09-28).
 **Native, exact details.** Read for screens and devices. Reproduce the real
 thing, not a lookalike. *Applied:* the Omarchy ASCII screensaver (R25).
 
-**Animas is a contact on the phone.** Read for the Contact phone. The company
-appears the way a phone shows a contact, “Animas, my company”, inside the
+**Cirlet is a contact on the phone.** Read for the Contact phone. The company
+appears the way a phone shows a contact, “Cirlet, my company”, inside the
 object. *Applied live.*
 
 **The machine is working.** Read for the Omarchy monitor. The moment you reach

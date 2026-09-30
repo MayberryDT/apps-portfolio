@@ -132,7 +132,7 @@ export class Journal {
   this.referenceStart=this.pages.length;
   this.references=profileContent.references.map((r,i)=>({...r,page:this.referenceStart+i,category:'Reference'}));
   for(const ref of this.references)this.pages.push(page(ref.page,'j-reference-page',`<span class="j-kicker">Facts and press / Reference</span><div class="reference-copy">${ref.html}</div>`,'Facts and press'));
-  if(this.pages.length%2)this.pages.push(page(this.pages.length,'j-reference-page','<span class="j-kicker">Reference</span><h2>From the studio</h2><nav class="j-project-links"><a href="/about.html">About Tyler</a><a href="/#work">Explore the projects</a><a href="mailto:tyler@animasai.co">Email Tyler</a></nav>','Facts and press'));
+  if(this.pages.length%2)this.pages.push(page(this.pages.length,'j-reference-page','<span class="j-kicker">Reference</span><h2>From the studio</h2><nav class="j-project-links"><a href="/about.html">About Tyler</a><a href="/#work">Explore the projects</a><a href="mailto:tyler@cirlet.com">Email Tyler</a></nav>','Facts and press'));
  }
  resize(){
   if(!this.data)return;const oldPage=this.page;this.cancel();

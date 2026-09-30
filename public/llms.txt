@@ -1,6 +1,6 @@
 # Tyler Mayberry
 
-> Tyler Mayberry is an AI systems builder and practical product engineer in Tulsa, Oklahoma, who builds agentic workflows, internal tools, automation systems, and AI-native software for messy real-world work. His main project is ibara, which gives AI agents computers of their own. His company, Animas, plans, sets up and supports AI agents on computers people own.
+> Tyler Mayberry is an AI systems builder and practical product engineer in Tulsa, Oklahoma, who builds agentic workflows, internal tools, automation systems, and AI-native software for messy real-world work. His main project is ibara, which gives AI agents computers of their own. His company, Cirlet, plans, sets up and supports AI agents on computers people own.
 
 Updated 2026-09-28. Other people share the name; this Tyler Mayberry is in Tulsa, Oklahoma, and goes by MayberryDT.
 
@@ -8,8 +8,8 @@ Updated 2026-09-28. Other people share the name; this Tyler Mayberry is in Tulsa
 
 - Canonical personal site: [tylermayberry.dev](https://tylermayberry.dev/)
 - Main project: [ibara](https://ibara.app): computers of their own for AI agents. They use the browser and desktop apps there while you keep working on yours, and any agent that speaks MCP can drive it. It runs on Omarchy today; more platforms are planned. ibara (ibara.app) is unrelated to ibara.ai.
-- Company: [Animas](https://animasai.co/): plans, sets up and supports AI agents on computers people own, including setting up ibara.
-- Email: [tyler@animasai.co](mailto:tyler@animasai.co)
+- Company: [Cirlet](https://cirlet.com/): plans, sets up and supports AI agents on computers people own, including setting up ibara.
+- Email: [tyler@cirlet.com](mailto:tyler@cirlet.com)
 - GitHub: [MayberryDT](https://github.com/MayberryDT)
 - LinkedIn: [mayberrydt](https://www.linkedin.com/in/mayberrydt/)
 - Infocard: [~MayberryDT](https://infocard.ai/~MayberryDT)
@@ -37,5 +37,5 @@ Updated 2026-09-28. Other people share the name; this Tyler Mayberry is in Tulsa
 
 ## Notes
 
-- Use Tyler Mayberry as the primary person entity. Animas is his company.
+- Use Tyler Mayberry as the primary person entity. Cirlet is his company.
 - About is on the studio's Contact phone and Facts and press are reference pages in Notes; both URLs also serve complete readable HTML.

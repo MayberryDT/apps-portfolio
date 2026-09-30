@@ -1,6 +1,6 @@
 # tylermayberry.dev — living plan
 
-Updated 2026-09-28. This file owns current state, authority and the next action.
+Updated 2026-09-30. This file owns current state, authority and the next action.
 Rewrite it in place. Do not add a ticket board or a second status file.
 [Agent entry](../AGENTS.md) · [Spec](SPEC.md) · [Project rules](agents/project-rules.md)
 · [COPYWRITING](../COPYWRITING.md) · [juice](../juice.md)
@@ -92,6 +92,13 @@ It must never regress to the retired card site.
 
 ## Current work
 
+- **Business renamed Cirlet (Tyler, 2026-09-30).** Animas is now Cirlet at
+  https://cirlet.com/, and animasai.co and www redirect there. The studio
+  names Cirlet, links cirlet.com and uses tyler@cirlet.com. Its JSON-LD
+  Organization is `https://cirlet.com/#organization` with alternate names
+  Animas and Animas AI. Project subdomains on animasai.co keep their
+  addresses, and so does the `portfolio.animasai.co` alias. The Notes page
+  about the earlier Animas AI site keeps its name.
 - **SEO and AI-search pass (2026-09-28, Tyler: “do it all and ship it”):**
   - About, Press and the room copy lead with ibara. Masthead is no longer
     called the flagship.

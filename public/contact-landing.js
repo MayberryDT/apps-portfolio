@@ -4,7 +4,7 @@ export function contactFrame(vw=innerWidth,vh=innerHeight){
  const height=Math.min(landscape?360:820,vh-(landscape?124:120),(vw-64)/ratio);
  return{landscape,compact:!landscape&&height<600,height,width:height*ratio,cx:vw/2,cy:vh/2-10};
 }
-export const CONTACT={email:'mailto:tyler@animasai.co',github:'https://github.com/MayberryDT',linkedin:'https://www.linkedin.com/in/mayberrydt/',company:'https://animasai.co'};
+export const CONTACT={email:'mailto:tyler@cirlet.com',github:'https://github.com/MayberryDT',linkedin:'https://www.linkedin.com/in/mayberrydt/',company:'https://cirlet.com'};
 // Native HTML is the display at rest after pickup. The same page is captured to
 // the model's screen texture during motion; links never depend on canvas picking.
 export class ContactLanding {
@@ -13,9 +13,9 @@ export class ContactLanding {
   this.root.innerHTML=`<span class="contact-camera" aria-hidden="true"></span>
    <header class="contact-brand"><span class="contact-monogram" aria-hidden="true">tm.</span><span>TYLER<br>MAYBERRY</span></header>
    <div class="contact-intro"><p class="contact-eyebrow">From my studio</p><h1 id="contact-heading" tabindex="-1">Say<br>hello</h1><p class="contact-copy">A project in mind, an idea to share, or just saying hello? You can reach me here.</p></div>
-   <div class="contact-actions"><a class="contact-email" href="${CONTACT.email}"><span>Email me</span><span aria-hidden="true">↗</span></a><span class="contact-address">tyler@animasai.co</span>
+   <div class="contact-actions"><a class="contact-email" href="${CONTACT.email}"><span>Email me</span><span aria-hidden="true">↗</span></a><span class="contact-address">tyler@cirlet.com</span>
     <nav class="contact-social" aria-label="Elsewhere"><a href="${CONTACT.github}" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a><a href="${CONTACT.linkedin}" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a></nav>
-    <a class="contact-card" href="${CONTACT.company}" target="_blank" rel="noopener noreferrer"><span class="contact-card-avatar" aria-hidden="true">a</span><span class="contact-card-name"><strong>Animas</strong><small>My company</small></span><span class="contact-card-go" aria-hidden="true">↗</span></a></div>
+    <a class="contact-card" href="${CONTACT.company}" target="_blank" rel="noopener noreferrer"><span class="contact-card-avatar" aria-hidden="true">c</span><span class="contact-card-name"><strong>Cirlet</strong><small>My company</small></span><span class="contact-card-go" aria-hidden="true">↗</span></a></div>
    <span class="contact-home-indicator" aria-hidden="true"></span>`;
   const tabs=document.createElement('nav');tabs.className='contact-tabs';tabs.setAttribute('aria-label','Phone pages');tabs.innerHTML='<a href="#contact" data-contact-tab="contact">Contact</a><a href="/about.html" data-contact-tab="about">About</a>';
   this.root.querySelector('.contact-brand').after(tabs);
