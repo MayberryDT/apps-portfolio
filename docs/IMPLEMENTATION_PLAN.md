@@ -1,6 +1,6 @@
 # tylermayberry.dev — living plan
 
-Updated 2026-09-30. This file owns current state, authority and the next action.
+Updated 2026-10-01. This file owns current state, authority and the next action.
 Rewrite it in place. Do not add a ticket board or a second status file.
 [Agent entry](../AGENTS.md) · [Spec](SPEC.md) · [Project rules](agents/project-rules.md)
 · [COPYWRITING](../COPYWRITING.md) · [juice](../juice.md)
@@ -92,6 +92,10 @@ It must never regress to the retired card site.
 
 ## Current work
 
+- **Self-Hosted AI Agent added to Projects (Tyler, 2026-10-01).** The
+  eleventh project, https://selfhostedaiagent.com/, sits after Milkbench and
+  before Helm, in `projects.js`, the homepage list, the room's structured
+  data and noscript list, and `llms.txt`.
 - **Business renamed Cirlet (Tyler, 2026-09-30).** Animas is now Cirlet at
   https://cirlet.com/, and animasai.co and www redirect there. The studio
   names Cirlet, links cirlet.com and uses tyler@cirlet.com. Its JSON-LD
@@ -184,6 +188,7 @@ It must never regress to the retired card site.
   - `.design/`;
   - tag `studio-dev-history-2026-09-13` (older builds, not current);
   - the Veelox backup personal-studio folder.
-- **Last verified release:** `a3bf0124-69c0-46bf-9cc3-7203726f0d26`, the build
-  of `a659c58` (Cirlet rename, 2026-09-30). Rollback target before it:
-  `7ee0481c-8eec-47b4-b375-7e1b15a0ceb5`.
+- **Last verified release:** `646fd662-8287-4dc3-abaf-6307c3092203`, the build
+  of `861bcdf` (Self-Hosted AI Agent added to Projects, 2026-10-01). Rollback
+  target before it: `8956155f-f019-4562-85e5-4c319b9a6375`. smoke-studio.py
+  49/49 locally and live; every served file matched live.
