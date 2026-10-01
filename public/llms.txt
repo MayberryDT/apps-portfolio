@@ -34,6 +34,7 @@ Updated 2026-09-28. Other people share the name; this Tyler Mayberry is in Tulsa
 - [Hotel Cleaning Schedule](https://hotelcleaningschedule.com): room-by-room deep-clean calendars for hotels.
 - [Executioner](https://executionr.com): turns a brain dump into outcomes, steps and a schedule.
 - [Milkbench](https://milk.tylermayberry.dev/): a playful benchmark of coding models.
+- [Self-Hosted AI Agent](https://selfhostedaiagent.com/): which computer should run a self-hosted AI agent, and what it costs to run.
 
 ## Notes
 

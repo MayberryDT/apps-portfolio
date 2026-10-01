@@ -109,6 +109,18 @@ export const projects=[
     "role": null
   },
   {
+    "id": "selfhostedaiagent",
+    "name": "Self-Hosted AI Agent",
+    "category": "Agent computers",
+    "description": "A plain guide to the computer a self-hosted AI agent runs on: pick yours to see whether it's enough, what it costs to run, and when a Mac mini is worth it.\n\nMost agents don't need new hardware, because the thinking happens with the AI provider. The guide says when a computer you already own is enough, and when a local model changes that.",
+    "url": "https://selfhostedaiagent.com/",
+    "image": "assets/projects/SelfHostedAIAgent.webp",
+    "imageAlt": "Self-Hosted AI Agent: which computer should run your agent? Old laptop, mini PC, Mac mini, Raspberry Pi or VPS.",
+    "mark": "SH",
+    "color": "#b9c9a3",
+    "role": null
+  },
+  {
     "id": "helm",
     "name": "Helm",
     "category": "Work in progress",
