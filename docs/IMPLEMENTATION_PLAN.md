@@ -109,6 +109,11 @@ It must never regress to the retired card site.
     sitemap entries. Keep Tyler's words; fix only obvious typos.
   - **Shipped:** 8 notes from 2026-07-06 to 2026-09-29 in `3df4ce2`, build
     `d92d0e85-87d8-4fc6-a54c-0592df671bca`.
+  - **Contact phone (Main, 2026-10-02):** asked to change “Animas, my company”
+    → animasai.co into “Cirlet, my company” → https://cirlet.com. The phone
+    already does this since the Cirlet rename (`contact-landing.js`
+    `CONTACT.company`, live, and smoke-studio's “Cirlet contact card” check);
+    only `docs/SPEC.md` still described Animas and is updated.
 - **Self-Hosted AI Agent added to Projects (Tyler, 2026-10-01).** The
   eleventh project, https://selfhostedaiagent.com/, sits after Milkbench and
   before Helm, in `projects.js`, the homepage list, the room's structured

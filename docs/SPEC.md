@@ -90,8 +90,10 @@ stays easy to reach.
     project they last viewed. A first visit still sees the entrance.
   - If storage is blocked or cleared, the visitor gets the first-visit
     behaviour and everything still works.
-- **Animas on the Contact phone:** it appears as a contact entry, “Animas, my
-  company”, linking to animasai.co. There's no other sales content.
+- **Cirlet on the Contact phone:** it appears as a contact entry, “Cirlet, my
+  company”, linking to https://cirlet.com. There's no other sales content.
+  (Until 2026-09-30 this was “Animas, my company” → animasai.co; animasai.co
+  is becoming a separate small-business resource site.)
 - **Notes:** the page-turn sound stays on by default.
 
 **6. Room presence: sound and environment.**
@@ -172,7 +174,7 @@ stays easy to reach.
   - entrance link → walk-in → Projects;
   - first visit versus returning visit, including the remembered project and
     blocked storage;
-  - Decree of War → dow, and Contact → Animas;
+  - Decree of War → dow, and Contact → Cirlet;
   - back and history.
 - **Sound:**
   - no audio before Enter; the toggle works and persists;
