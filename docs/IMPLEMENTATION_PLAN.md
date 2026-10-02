@@ -102,11 +102,15 @@ It must never regress to the retired card site.
   journal are unchanged. `worker.js` serves `/notes` and `/notes/<slug>` from
   `public/notes/*.html` and 308s `/notes/` and `*.html` to them.
   - **Source:** `content/notes.json` holds each note and its X post ids, plus
-    candidates skipped on purpose. Halla-only `scripts/notes.py fetch` lists
-    new long posts, threads and articles from @tylermayberry (xurl runs on
-    Veelox: `XURL="ssh veelox /home/tyler/.local/bin/xurl"`); after editing
-    notes.json, `scripts/notes.py build` regenerates the pages, feed and
-    sitemap entries. Keep Tyler's words; fix only obvious typos.
+    posts skipped on purpose; it is the skip list. **Never read X through
+    xurl or the paid X API for notes** (Tyler, 2026-10-02). The weekly Veelox
+    job `marketing-notes` (Sundays 10:00 Central;
+    `/home/tyler/Projects/marketing/automation/notes-job/`) reads
+    x.com/tylermayberry in Chrome on AcePC AK2 through ibara, read-only,
+    writes the new long posts, threads and articles to a JSON file, and runs
+    Halla-only `scripts/notes.py add <file>` then `build`, this release check,
+    the push and a live check. `scripts/notes.py status` prints the newest
+    note and known ids. Keep Tyler's words; fix only obvious typos.
   - **Shipped:** 8 notes from 2026-07-06 to 2026-09-29 in `3df4ce2`, build
     `d92d0e85-87d8-4fc6-a54c-0592df671bca`.
   - **Contact phone (Main, 2026-10-02):** asked to change “Animas, my company”
