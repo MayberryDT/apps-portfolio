@@ -1,6 +1,6 @@
 # tylermayberry.dev — living plan
 
-Updated 2026-10-01. This file owns current state, authority and the next action.
+Updated 2026-10-02. This file owns current state, authority and the next action.
 Rewrite it in place. Do not add a ticket board or a second status file.
 [Agent entry](../AGENTS.md) · [Spec](SPEC.md) · [Project rules](agents/project-rules.md)
 · [COPYWRITING](../COPYWRITING.md) · [juice](../juice.md)
@@ -92,6 +92,23 @@ It must never regress to the retired card site.
 
 ## Current work
 
+- **Notes from X (Tyler, 2026-10-02: “do all of the setup now”, marketing
+  plan `/home/tyler/Projects/marketing/PLAN.md` on Veelox).** Plain, crawlable
+  pages outside the room: `/notes` (newest first) and `/notes/<slug>`, each
+  with Tyler's text, date, the original X post, LinkedIn and at most one
+  property link; Article JSON-LD (author `#tyler-mayberry`, `isBasedOn` the X
+  post), RSS at `/notes/feed.xml`, sitemap entries and an `llms.txt` line. The
+  About and Press footers gain a quiet Notes link; the room, entrance and
+  journal are unchanged. `worker.js` serves `/notes` and `/notes/<slug>` from
+  `public/notes/*.html` and 308s `/notes/` and `*.html` to them.
+  - **Source:** `content/notes.json` holds each note and its X post ids, plus
+    candidates skipped on purpose. Halla-only `scripts/notes.py fetch` lists
+    new long posts, threads and articles from @tylermayberry (xurl runs on
+    Veelox: `XURL="ssh veelox /home/tyler/.local/bin/xurl"`); after editing
+    notes.json, `scripts/notes.py build` regenerates the pages, feed and
+    sitemap entries. Keep Tyler's words; fix only obvious typos.
+  - **Shipped:** 8 notes from 2026-07-06 to 2026-09-29 in `3df4ce2`, build
+    `d92d0e85-87d8-4fc6-a54c-0592df671bca`.
 - **Self-Hosted AI Agent added to Projects (Tyler, 2026-10-01).** The
   eleventh project, https://selfhostedaiagent.com/, sits after Milkbench and
   before Helm, in `projects.js`, the homepage list, the room's structured
@@ -188,7 +205,8 @@ It must never regress to the retired card site.
   - `.design/`;
   - tag `studio-dev-history-2026-09-13` (older builds, not current);
   - the Veelox backup personal-studio folder.
-- **Last verified release:** `646fd662-8287-4dc3-abaf-6307c3092203`, the build
-  of `861bcdf` (Self-Hosted AI Agent added to Projects, 2026-10-01). Rollback
-  target before it: `8956155f-f019-4562-85e5-4c319b9a6375`. smoke-studio.py
-  49/49 locally and live; every served file matched live.
+- **Last verified release:** `d92d0e85-87d8-4fc6-a54c-0592df671bca`, the build
+  of `3df4ce2` (Notes from X, 2026-10-02). Rollback target before it:
+  `4d035a52-ac73-4238-95c2-d93e42748265` (build of `c605441`). verify-worker
+  and smoke-studio.py 49/49 locally and live; every served file matched live
+  (notes checked at their extensionless URLs).
