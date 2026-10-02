@@ -1,0 +1,258 @@
+{
+ "account": "tylermayberry",
+ "user_id": "1767562442505093120",
+ "index_intro": "Longer posts and threads I've written on X, kept here in one place.",
+ "notes": [
+  {
+   "slug": "ibara-for-omarchy",
+   "title": "ibara: a computer you own for your agents",
+   "date": "2026-09-29",
+   "x_url": "https://x.com/tylermayberry/status/2105034136859939266",
+   "source_ids": [
+    "2105034136859939266",
+    "2105034138541822106",
+    "2105034140718621070",
+    "2105034143306531060",
+    "2105034146007720053",
+    "2105034148276818413",
+    "2105034150579429636",
+    "2105034153112842505",
+    "2105034155134468326"
+   ],
+   "property": "ibara.app",
+   "body": [
+    "OpenAI, Meta and xAI all just gave their agents a computer.",
+    "But it's only available in their cloud, for a VM that's most likely less powerful than the potato in your closet.",
+    "ibara for Omarchy gives your agent a PC you own.",
+    "Free and Open Source",
+    "ibara gives your agents computer use across the Omarchy machines you own.",
+    "The agent gets a spare's desktop, browser and apps, and you watch, take control and hand back.",
+    "Works with any agent. Get connected with a copy/paste prompt.",
+    "Checked, not just claimed.",
+    "Your agent checks the work it made as a real user on a real machine.",
+    "ibara tracks every task leaving a complete log of everything the agent does for review.",
+    "Your hardware. Your connection.",
+    "Keep all your logins and access, or restrict it in any way that you want.",
+    "Computer use with a real home ip and no expensive cloud bill.",
+    "Basic hardware is plenty, ibara idles at 17.8 MiB.",
+    "You choose who's driving.",
+    "Watch the spare from the console, take control when you want, hand it back when you're done.",
+    "One driver at a time. By default ibara asks before an agent sends, spends or deletes, and always asks before changing access.",
+    "(you can also 'dangerously' allow complete access)",
+    "132 of 157 runs passed the benchmark's checks.",
+    "Claude Code with Opus 5.5 and Codex with GPT-6-Astra each passed 22 of 23.",
+    "Even @opencode on the free plan passed 14 of 22 using big-pickle.",
+    "Big thanks to @trycua here.",
+    "Grok Bot, Dots and Muse give an agent its own computer in the vendor's cloud.",
+    "OpenClaw and Hermes run on your hardware but are the agent.",
+    "ibara is a separate computer you own that any agent can use.",
+    "Two Omarchy 4 computers, Tailscale on both, and one agent (even free @opencode works).",
+    "Install on each, add the spare from the console, copy the connect prompt to your agent and give it a first task.",
+    "I made it as plug-and-play as possible.",
+    "Start with one spare. Connect the rest.",
+    "Lightweight, built for basic hardware, free and open source.",
+    "Install ibara, or take over the demo in your browser first.",
+    "https://ibara.app"
+   ]
+  },
+  {
+   "slug": "openai-anthropic-compute",
+   "title": "A theory about OpenAI, Anthropic and compute",
+   "date": "2026-09-26",
+   "x_url": "https://x.com/tylermayberry/status/2103921194873573870",
+   "source_ids": [
+    "2103921194873573870"
+   ],
+   "property": null,
+   "body": [
+    "I have a theory about what's happening with openai and anthropic.",
+    "Anthropic was compute constrained for so long because everyone was using their models for work and coding.",
+    "This gave openai lots of compute headroom to develop, research, and hand out that compute to their users.",
+    "Once openai grabbed such a major market share with better models and usage, they become the ones who were compute constrained.",
+    "This gave anthropic the wiggle room they needed to research and develop Opus 5.5 with crazy limits.",
+    "Now I'm thinking we might see the pendulum swing again in a month or so.",
+    "Or I could be blowing hot air, who knows?",
+    "Might be coming back to this tweet in a month."
+   ]
+  },
+  {
+   "slug": "old-computers-for-agents",
+   "title": "Giving old computers to agents",
+   "date": "2026-09-25",
+   "x_url": "https://x.com/tylermayberry/status/2103562364117549234",
+   "source_ids": [
+    "2103562364117549234"
+   ],
+   "property": "ibara.app",
+   "body": [
+    "Give your agents instant computer use access to any Omarchy machine you own.",
+    "I'm nearing the first release of ibara: an Omarchy-native computer use layer that turns your hardware into agent infrastructure.",
+    "Today I'm integrating the awesome @trycua driver for computer use and polishing the UI.",
+    "Soon you can give every potato pc you have to your agents so they have real BARE-METAL computers to work on.",
+    "Remember that old Dell Optiplex tower you shoved in the attic and forgot about?",
+    "Install Omarchy with its insane installation speeds -> install the ibara plugin -> connect to your Omarchy fleet.",
+    "Boom. Your forgotten antique has a new reason to live again in less than 5 minutes. (okay maybe 10-15)"
+   ]
+  },
+  {
+   "slug": "personal-app-agents-can-use",
+   "title": "Building a personal app that agents can actually use",
+   "date": "2026-09-13",
+   "x_url": "https://x.com/tylermayberry/status/2099026835585778061",
+   "source_ids": [
+    "2099026835585778061"
+   ],
+   "property": null,
+   "body": [
+    "Super App started as a health app with a place to write notes. About a week ago, I made it for my phone. It had Fitbit data and sections for food, movement, body measurements, and other health records. Pretty straightforward. Building it with AI agents, I added capabilities one at a time, and each addition changed what the underlying system needed to do.",
+    "A completely custom app, just for me, to track what I do and keep my data together. When I have something for my agent to record, I open it and leave a note. There are more capabilities now (Bluetooth scale readings, a personal wiki, agent updates, offline data and an export), but most of my use still starts there. A note from the app on my home screen.",
+    "Editing a note keeps the original, so I can clarify something later without losing what I first wrote. I want that freedom when I capture things. A meal, a workout, an observation, an idea for the app (all in the same note if that's how they come out); the agent can organize them afterwards.",
+    "Having to choose between 4 forms first would get in the way. As the app grew beyond health, I gave it its own project and added camera access, image attachments and editing. More ways to get something down while it's still in my head.",
+    "As more features arrived, I kept asking for compact controls and fewer labels. More room for the content. Some of the notes themselves became requests for improvements, because I was already using the app to capture what needed doing. I asked for pictures and reported that new notes weren't scrolling into view. When I asked an agent to implement those changes, it had the original requests.",
+    "The screens got a consistent look too: square edges, the dark Tokyo Night palette and shared imagery. Search and filters open when I need them. I wanted the app to do more while staying easy to open and use.",
+    "Body history and interactive charts, with measured weight and impedance kept separate from estimated body-composition values. The distinction matters when I look at a reading. After we connected the scale through Bluetooth, I stepped on it and the reading arrived in the app. We checked that it saved. No manufacturer's app, no extra account, no computer needed for a normal weigh-in.",
+    "Food records gained researched calorie and nutrient estimates (with their sources and assumptions attached), alongside Fitbit records. Notes give those numbers context; what I ate, how a workout felt and what was happening that day can help explain them. It already makes a day easier to review. I want to use that context across a longer stretch of time too.",
+    "When a sleep score was missing, the Fitbit code had been substituting deep-sleep minutes. Different measures, same field. We fixed the processing, and corrections to notes needed care too. A summary using an older version can show that it needs another look.",
+    "An agent could have explained that wrong number convincingly (that's what bothers me about the bug). I want to trace an answer back to its source, particularly once we're looking across months of records. An explanation can sound reasonable while starting from something that was never a sleep score.",
+    "Keep missing food logs missing, keep the assumptions attached to estimates, and avoid carrying mistakes forward. Collecting more data is only useful if we can trust what the records mean.",
+    "Saved progress gives another agent somewhere to resume when a session stops. We added records of completed changes too, so it can see what actually finished. Before an agent saves a review, it checks whether the notes changed while it was working. Then it reads the saved result back.",
+    "I have a phone interface, and the agents have direct tools for the records. Their work stays in the app after the conversation ends; procedures and results can be reused while the information behind them is still valid. When that information changes, the conclusions need checking.",
+    "I started treating agent use as part of the app's design. That's what I mean by agent-first. A notes review starts with finding new entries, reading the relevant material and preparing an update. The tools give the agent a way to carry that work through to a saved result.",
+    "To capture notes, inspect records and see more of the agents' work in one place, I brought their knowledge and messages into the app. I want to see what an agent says it finished; I also want to check the update is actually there.",
+    "The GBrain browser gives me access to the shared knowledge system my agents use, and the Grokbot inbox holds their messages. Connected, with different jobs. A message saying the work is done doesn't establish that the result was saved.",
+    "One note, several things it describes. One day, several notes. A finding with sources from different places. I wanted a wiki so I could follow those connections, and the agents could find the relevant pieces too.",
+    "It grew to more than 4,000 generated pages covering notes, days, datasets and findings. Views of records already there. I hadn't written thousands of articles.",
+    "For browsing, we separated opening saved content from preparing an export, which had been slowing the wiki down. Now the app opens the page first and checks for changes in the background. From a day to its notes and measurements. From a finding back to the information supporting it.",
+    "To find correlations I'd otherwise miss, I want a few months of connected history to work with. That's a big part of what I'm building this for.",
+    "An unusually difficult workout is one example to investigate. What did the sleep leading up to it look like? Does that combination keep appearing? We'd need wearable records, workout notes and a clear view of which days had both; a note entered late needs to link to the day it describes, while retaining when I actually wrote it. Otherwise we could be comparing the wrong days.",
+    "Bring the relevant evidence together through the wiki, then give me an answer I can inspect. I want to understand why the agent thinks a relationship deserves a closer look, with the records behind that judgment.",
+    "For any comparison, repeatable calculations and a clear account of the records included or missing. Those are things I want to see. A correlation gives us something to investigate. Working out what caused what needs more evidence.",
+    "Something really interesting, hopefully, over the next few months. Even a promising idea that doesn't hold up would be useful. The record needs time to grow before we can see what the comparisons are worth.",
+    "I want the exceptions too: the unusual week that explains most of a result, or another part of my routine changing at the same time. Show me those details. They can change what a pattern means.",
+    "Export readable pages, structured records and original evidence. That's available now, with GBrain and Grokbot kept outside the personal archive.",
+    "Without a connection, I still want access to my data. The phone keeps a copy of Fitbit data published by Halla, my server, and retains the last complete copy if Halla goes away.",
+    "To finish the archive, we still need to fill gaps in supporting evidence and do more work on larger archives and recovery. The app reports those gaps. I want to know what I actually have. Downloading a file shouldn't make it look as though every part of the record is there.",
+    "Capture in Home, review records in Health, find knowledge and agent updates in Brain. The wiki, offline copy and export in Data. Those are the 4 main areas now.",
+    "The original notes are still there, and everyday use still starts with opening the app, leaving a note and having the agent help organize it. Broader unattended analysis is still to build.",
+    "I made a custom app to track what I do. It now connects those records and gives agents a way to work with them. Over the next few months, I want to see which patterns are actually worth paying attention to. A thought left on my phone can stay useful long after I've forgotten writing it."
+   ]
+  },
+  {
+   "slug": "not-just-top-down",
+   "title": "You can't just build from the top down",
+   "date": "2026-08-09",
+   "x_url": "https://x.com/tylermayberry/status/2086481029137625490",
+   "source_ids": [
+    "2086481029137625490"
+   ],
+   "property": null,
+   "body": [
+    "I'm starting to see a split happening with the software engineers, AI builders, founders, whatever you want to call them.",
+    "There's a big group that's just trying to automate everything from the top down.",
+    "And then there's people who are trying to get down to lower levels with their agent and actually direct it and tell it what to do instead of handing it off to another bigger orchestrator agent.",
+    "It's really cool and sexy that the orchestrator can actually orchestrate subagents now and build a usable product. And it's a lot of fun to use.",
+    "But every time I've done that, I get a much worse result compared to if I actually use a much faster, less intelligent model and give it clear instructions and iterate over and over again over time and have much more human input and human in the loop interactions.",
+    "And frankly, I don't know if you'll ever actually be able to get away from this if you want to stand out.",
+    "While sure, the orchestrator method will always work and will always create products that function and are useful. I still use it regularly to build internal tools for myself.",
+    "But if you actually want that polished look and feel with real human intent, you're going to have to get into the lower levels.",
+    "You can't just build from the top down."
+   ]
+  },
+  {
+   "slug": "milkbench",
+   "title": "Milkbench",
+   "date": "2026-07-21",
+   "x_url": "https://x.com/tylermayberry/status/2079579189527605455",
+   "source_ids": [
+    "2079579189527605455"
+   ],
+   "property": null,
+   "body": [
+    "All GPT-5.6 models and reasoning levels, tested for taste.",
+    "I created a prompt to one-shot a website for milk as if it was some sort of new revolutionary tech product. But it’s just milk.",
+    "We're tasting the milk.",
+    "Then I took that one prompt and, from a clean session on a clean slate, gave it to Codex across all different models and reasoning levels:",
+    "Luna: Light, Medium, High, Extra High, Max.",
+    "Terra: Light, Medium, High, Extra High, Max, Ultra.",
+    "Sol: Light, Medium, High, Extra High, Max, Ultra.",
+    "17 sites. Same prompt. Same product.",
+    "The results are pretty expected, but there were some interesting findings.",
+    "Sol Ultra is 32% of the total cost. One out of 17 sites was a third of the cost. Sol as a family is 73% of the total API cost, even though it only has 6 of the 17 sites.",
+    "Meanwhile, all five Luna runs together cost $3.97. Luna High and Extra High cost less than a dollar and take about 15 minutes. The value there is pretty outstanding.",
+    "Some things didn’t correlate at all. More thinking doesn’t mean a better site, turning up the effort doesn’t always mean it creates more work, and the size of the sites really didn’t have any relevance at all.",
+    "The heaviest site is 45x larger than the lightest: Terra Ultra is 10.9 MB, while Luna Max is only 0.24 MB. Same prompt, same product, but widely different shipping weight. But Sol consistently shipped lightweight sites with a premium feel, and Terra always shipped heavy sites.",
+    "Sol Ultra also made up about 24% of all token spend, using 1.33 million tokens and taking 70 minutes. Across all the runs, the lowest was Terra Medium at 59k tokens, while the highest was Sol Ultra at 1.33 million.",
+    "Terra Medium is a real outlier. It’s a higher effort than Terra Low, but it took less time, used fewer tokens, and was significantly cheaper. It also made a pretty terrible site.",
+    "Sol’s effort ladder isn’t a clean scale either. Medium is slower and has more token spend than High, while High is slower than Extra High.",
+    "The carton is the real skill check, and pretty much all the models fail. Sol Ultra does the best here, but it also spent 22 times more tokens than Terra Medium.",
+    "The hero section is another regular problem. The carton on top of the headline shows up across multiple models and effort levels. Sol Extra High is the only one that actually put the carton behind the headline, but then it put white text on a white carton.",
+    "Luna Light really outperformed its price tag, while Sol Light already feels very premium at a fraction of the cost. Sol Ultra is probably the best one-shot, but it’s also the worst value.",
+    "The family breakdown is pretty interesting.",
+    "Luna has the best effort-to-taste until you hit Max. Terra is the chaotic middle child. Sol is the premium one, but it comes with 73% of the total API cost.",
+    "Turning the reasoning up is not a quality slider. There’s a lot of variability.",
+    "The higher efforts fairly consistently reduce catastrophic failures and unlock animations and interactivity, but the peak taste is often around the mid-high levels, not at the absolute top of the dial.",
+    "Overall, Luna High and Extra High are the best value. Sol Ultra is the best website overall. And the best premium taste is Sol, especially once you break into Sol High.",
+    "The Milkbench overview has all the benchmark details and sites available to browse.",
+    "https://milk.animasai.co/"
+   ]
+  },
+  {
+   "slug": "starbucks-and-places-to-work",
+   "title": "Starbucks and places to work",
+   "date": "2026-07-07",
+   "x_url": "https://x.com/tylermayberry/status/2074521575144235257",
+   "source_ids": [
+    "2074521575144235257"
+   ],
+   "property": null,
+   "body": [
+    "Why is Starbucks getting worse at supporting people working in it?",
+    "These are the only tables inside this brand new Starbucks that have an outlet for laptops.",
+    "And you have to sit on a bench hunched over your laptop to use the only outlet spot in the whole building.",
+    "It was JUST BUILT. Everything is being designed to sell to you and send you on your way now.",
+    "Starbucks used to be my reliable place to get a few hours of work done when I'm on the move.",
+    "Might be rethinking that now.",
+    "Good news is that I think culture is beginning to swing this in the other direction here in the states.",
+    "Not that it's going to support more electronic use, (although I don't think that's going anywhere), but people are craving human interactions again in a big way.",
+    "Which means people will want to spend a significant portion of their day in places like Starbucks, where they can be around other people and be productive.",
+    "We can only guess how it will play out from here, though.",
+    "I'd place bets on community-centered, affordable coworking spots doing well in the future."
+   ]
+  },
+  {
+   "slug": "launching-pip",
+   "title": "Launching Pip as a web app",
+   "date": "2026-07-06",
+   "x_url": "https://x.com/tylermayberry/status/2074195599625482421",
+   "source_ids": [
+    "2074195599625482421",
+    "2074195601630334986",
+    "2074195603052232722",
+    "2074196896839848193"
+   ],
+   "property": null,
+   "body": [
+    "I'm launching Pip today on Product Hunt.",
+    "This is something I started some time ago and I was gonna make it an actual app on the App Store and Play Store, but instead of jumping through all those hurdles, I just decided to release it as a web app and move on to other projects.",
+    "This isn't my current focus at the moment, but I do think it has real potential and I do think it's genuinely useful. I use it in my everyday life at the moment.",
+    "The whole idea is to help people who hate budgeting, hate spreadsheets, and wouldn't do it no matter how much it would help them.",
+    "Pip does it all automatically for you by accessing your transactions and bank through Plaid, taking into account how much you wanna save and your monthly bills through the cash engine, and then gives you one daily number that you can spend that day.",
+    "You can also ask Pip about anything about your finances and your accounts. And he'll talk to you about it.",
+    "I'll drop the Product Hunt link and Pip demo below.",
+    "Product Hunt:\nhttps://www.producthunt.com/products/pip-5",
+    "Pip site with demo:\nhttps://spendwithpip.com",
+    "Also, it's open source MIT license.\nhttps://github.com/MayberryDT/Pip"
+   ]
+  }
+ ],
+ "skipped": [
+  {
+   "id": "2105891004863930846",
+   "reason": "ytfast thread: a feature list that depends on its videos"
+  },
+  {
+   "id": "2101399331513446648",
+   "reason": "Chartroom article: the post says Codex wrote it"
+  }
+ ]
+}

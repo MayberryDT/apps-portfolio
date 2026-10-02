@@ -29,12 +29,16 @@ export default {
       "/about": "/about.html", "/about/": "/about.html",
       "/press": "/press.html", "/press/": "/press.html",
       "/room": "/room.html", "/room/": "/room.html",
+      "/notes/": "/notes", "/notes/index.html": "/notes",
       "/googleb6430c0f57fbd860": "/googleb6430c0f57fbd860.html",
     };
     const isPublicAlias = ["www.tylermayberry.dev", "portfolio.animasai.co"].includes(url.hostname);
     const isProduction = url.hostname === "tylermayberry.dev" || isPublicAlias;
-    if (Object.hasOwn(aliases, path) || isPublicAlias || (isProduction && url.protocol !== "https:")) {
-      if (Object.hasOwn(aliases, path)) url.pathname = aliases[path];
+    // Notes live at extensionless URLs; their .html filenames redirect there.
+    const redirectTo = Object.hasOwn(aliases, path) ? aliases[path]
+      : /^\/notes\/[a-z0-9-]+\.html$/.test(path) ? path.slice(0, -5) : null;
+    if (redirectTo || isPublicAlias || (isProduction && url.protocol !== "https:")) {
+      if (redirectTo) url.pathname = redirectTo;
       if (isProduction) { url.hostname = "tylermayberry.dev"; url.protocol = "https:"; url.port = ""; }
       return Response.redirect(url.href, 308);
     }
@@ -43,6 +47,8 @@ export default {
     // The root is an internal asset lookup, never a public redirect to index.html.
     const assetUrl = new URL(request.url);
     if (path === "/") assetUrl.pathname = "/index.html";
+    else if (path === "/notes") assetUrl.pathname = "/notes/index.html";
+    else if (/^\/notes\/[a-z0-9-]+$/.test(path)) assetUrl.pathname = path + ".html";
     const response = await env.ASSETS.fetch(new Request(assetUrl, request));
     const contentType = response.headers.get("content-type") || "";
     const isHtml =

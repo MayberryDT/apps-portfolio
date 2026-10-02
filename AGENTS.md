@@ -38,3 +38,4 @@ authority, the next action and the release check.
   guidance as part of that work.
 - Studio object changes on Halla: the Halla-only
   [object workflow](docs/agents/studio-object-workflow.md).
+- Marketing plan: `/home/tyler/Projects/marketing/PLAN.md` on Veelox.

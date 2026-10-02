@@ -22,6 +22,7 @@ Updated 2026-09-28. Other people share the name; this Tyler Mayberry is in Tulsa
 - [Inside the studio](https://tylermayberry.dev/room.html): the interactive room with projects, personal stories and Notes.
 - [About Tyler Mayberry](https://tylermayberry.dev/about.html): bio, public facts, profile links and current work.
 - [Facts and press](https://tylermayberry.dev/press.html): public facts, reusable bios, common questions, project facts and source links.
+- [Notes](https://tylermayberry.dev/notes): longer posts and threads Tyler has written on X, one page each ([RSS](https://tylermayberry.dev/notes/feed.xml)).
 
 ## Projects
 

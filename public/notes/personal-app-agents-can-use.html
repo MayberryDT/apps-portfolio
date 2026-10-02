@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Building a personal app that agents can actually use | Tyler Mayberry</title>
+<meta name="description" content="Super App started as a health app with a place to write notes. About a week ago, I made it for my phone. It had Fitbit data and sections for food…">
+<link rel="canonical" href="https://tylermayberry.dev/notes/personal-app-agents-can-use">
+<link rel="alternate" type="application/rss+xml" title="Tyler Mayberry: Notes" href="https://tylermayberry.dev/notes/feed.xml">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-tm.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Building a personal app that agents can actually use | Tyler Mayberry">
+<meta property="og:description" content="Super App started as a health app with a place to write notes. About a week ago, I made it for my phone. It had Fitbit data and sections for food…">
+<meta property="og:url" content="https://tylermayberry.dev/notes/personal-app-agents-can-use">
+<meta property="og:site_name" content="Tyler Mayberry">
+<meta name="twitter:card" content="summary">
+<style>@font-face{font-family:Studio;src:url('/vendor/Lato-Latin.eb9baa740a77.woff2') format('woff2');font-display:swap}html{background:#f6f0e4;color:#302b25;font:18px/1.65 Studio,Arial,sans-serif;-webkit-text-size-adjust:100%}body{margin:0;padding:28px 22px 48px}.page{max-width:680px;margin:0 auto}a{color:#6c462e;text-underline-offset:3px;overflow-wrap:anywhere}.site{display:flex;gap:6px 18px;flex-wrap:wrap;font-size:15px;margin-bottom:48px}.site a{color:#725a45}.site a[aria-current]{color:#3e2d23;text-decoration:none}h1,h2{font-family:Georgia,serif;font-weight:normal;color:#3e2d23;line-height:1.2;letter-spacing:0}h1{font-size:clamp(30px,6vw,40px);margin:.2em 0 .7em}h2{font-size:22px;margin:0 0 4px}.meta,time{color:#8b7157;font-size:15px}.lead{color:#5b4a3c}.notes{list-style:none;padding:0;margin:40px 0 0}.notes li{padding:22px 0;border-top:1px solid #a5896640}.notes h2 a{color:#3e2d23;text-decoration:none}.notes h2 a:hover{text-decoration:underline}.notes p{margin:6px 0 0}article p{margin:0 0 1.05em}.links{display:flex;gap:8px 20px;flex-wrap:wrap;margin-top:40px;padding-top:20px;border-top:1px solid #a5896640;font-size:16px}footer.end{margin-top:56px;font-size:14px;color:#8b7157}footer.end a{color:#8b7157}</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","@id":"https://tylermayberry.dev/notes/personal-app-agents-can-use#article","headline":"Building a personal app that agents can actually use","description":"Super App started as a health app with a place to write notes. About a week ago, I made it for my phone. It had Fitbit data and sections for food…","datePublished":"2026-09-13","dateModified":"2026-09-13","author":{"@type":"Person","@id":"https://tylermayberry.dev/#tyler-mayberry","name":"Tyler Mayberry","url":"https://tylermayberry.dev/"},"publisher":{"@id":"https://tylermayberry.dev/#tyler-mayberry"},"isBasedOn":"https://x.com/tylermayberry/status/2099026835585778061","url":"https://tylermayberry.dev/notes/personal-app-agents-can-use","mainEntityOfPage":"https://tylermayberry.dev/notes/personal-app-agents-can-use","inLanguage":"en","isPartOf":{"@id":"https://tylermayberry.dev/notes#notes"}}</script>
+</head>
+<body>
+<div class="page">
+<nav class="site" aria-label="Site"><a href="/">Tyler Mayberry</a><a href="/notes">Notes</a></nav>
+<main>
+<article>
+<time datetime="2026-09-13">September 13, 2026</time>
+<h1>Building a personal app that agents can actually use</h1>
+<p>Super App started as a health app with a place to write notes. About a week ago, I made it for my phone. It had Fitbit data and sections for food, movement, body measurements, and other health records. Pretty straightforward. Building it with AI agents, I added capabilities one at a time, and each addition changed what the underlying system needed to do.</p>
+<p>A completely custom app, just for me, to track what I do and keep my data together. When I have something for my agent to record, I open it and leave a note. There are more capabilities now (Bluetooth scale readings, a personal wiki, agent updates, offline data and an export), but most of my use still starts there. A note from the app on my home screen.</p>
+<p>Editing a note keeps the original, so I can clarify something later without losing what I first wrote. I want that freedom when I capture things. A meal, a workout, an observation, an idea for the app (all in the same note if that&#x27;s how they come out); the agent can organize them afterwards.</p>
+<p>Having to choose between 4 forms first would get in the way. As the app grew beyond health, I gave it its own project and added camera access, image attachments and editing. More ways to get something down while it&#x27;s still in my head.</p>
+<p>As more features arrived, I kept asking for compact controls and fewer labels. More room for the content. Some of the notes themselves became requests for improvements, because I was already using the app to capture what needed doing. I asked for pictures and reported that new notes weren&#x27;t scrolling into view. When I asked an agent to implement those changes, it had the original requests.</p>
+<p>The screens got a consistent look too: square edges, the dark Tokyo Night palette and shared imagery. Search and filters open when I need them. I wanted the app to do more while staying easy to open and use.</p>
+<p>Body history and interactive charts, with measured weight and impedance kept separate from estimated body-composition values. The distinction matters when I look at a reading. After we connected the scale through Bluetooth, I stepped on it and the reading arrived in the app. We checked that it saved. No manufacturer&#x27;s app, no extra account, no computer needed for a normal weigh-in.</p>
+<p>Food records gained researched calorie and nutrient estimates (with their sources and assumptions attached), alongside Fitbit records. Notes give those numbers context; what I ate, how a workout felt and what was happening that day can help explain them. It already makes a day easier to review. I want to use that context across a longer stretch of time too.</p>
+<p>When a sleep score was missing, the Fitbit code had been substituting deep-sleep minutes. Different measures, same field. We fixed the processing, and corrections to notes needed care too. A summary using an older version can show that it needs another look.</p>
+<p>An agent could have explained that wrong number convincingly (that&#x27;s what bothers me about the bug). I want to trace an answer back to its source, particularly once we&#x27;re looking across months of records. An explanation can sound reasonable while starting from something that was never a sleep score.</p>
+<p>Keep missing food logs missing, keep the assumptions attached to estimates, and avoid carrying mistakes forward. Collecting more data is only useful if we can trust what the records mean.</p>
+<p>Saved progress gives another agent somewhere to resume when a session stops. We added records of completed changes too, so it can see what actually finished. Before an agent saves a review, it checks whether the notes changed while it was working. Then it reads the saved result back.</p>
+<p>I have a phone interface, and the agents have direct tools for the records. Their work stays in the app after the conversation ends; procedures and results can be reused while the information behind them is still valid. When that information changes, the conclusions need checking.</p>
+<p>I started treating agent use as part of the app&#x27;s design. That&#x27;s what I mean by agent-first. A notes review starts with finding new entries, reading the relevant material and preparing an update. The tools give the agent a way to carry that work through to a saved result.</p>
+<p>To capture notes, inspect records and see more of the agents&#x27; work in one place, I brought their knowledge and messages into the app. I want to see what an agent says it finished; I also want to check the update is actually there.</p>
+<p>The GBrain browser gives me access to the shared knowledge system my agents use, and the Grokbot inbox holds their messages. Connected, with different jobs. A message saying the work is done doesn&#x27;t establish that the result was saved.</p>
+<p>One note, several things it describes. One day, several notes. A finding with sources from different places. I wanted a wiki so I could follow those connections, and the agents could find the relevant pieces too.</p>
+<p>It grew to more than 4,000 generated pages covering notes, days, datasets and findings. Views of records already there. I hadn&#x27;t written thousands of articles.</p>
+<p>For browsing, we separated opening saved content from preparing an export, which had been slowing the wiki down. Now the app opens the page first and checks for changes in the background. From a day to its notes and measurements. From a finding back to the information supporting it.</p>
+<p>To find correlations I&#x27;d otherwise miss, I want a few months of connected history to work with. That&#x27;s a big part of what I&#x27;m building this for.</p>
+<p>An unusually difficult workout is one example to investigate. What did the sleep leading up to it look like? Does that combination keep appearing? We&#x27;d need wearable records, workout notes and a clear view of which days had both; a note entered late needs to link to the day it describes, while retaining when I actually wrote it. Otherwise we could be comparing the wrong days.</p>
+<p>Bring the relevant evidence together through the wiki, then give me an answer I can inspect. I want to understand why the agent thinks a relationship deserves a closer look, with the records behind that judgment.</p>
+<p>For any comparison, repeatable calculations and a clear account of the records included or missing. Those are things I want to see. A correlation gives us something to investigate. Working out what caused what needs more evidence.</p>
+<p>Something really interesting, hopefully, over the next few months. Even a promising idea that doesn&#x27;t hold up would be useful. The record needs time to grow before we can see what the comparisons are worth.</p>
+<p>I want the exceptions too: the unusual week that explains most of a result, or another part of my routine changing at the same time. Show me those details. They can change what a pattern means.</p>
+<p>Export readable pages, structured records and original evidence. That&#x27;s available now, with GBrain and Grokbot kept outside the personal archive.</p>
+<p>Without a connection, I still want access to my data. The phone keeps a copy of Fitbit data published by Halla, my server, and retains the last complete copy if Halla goes away.</p>
+<p>To finish the archive, we still need to fill gaps in supporting evidence and do more work on larger archives and recovery. The app reports those gaps. I want to know what I actually have. Downloading a file shouldn&#x27;t make it look as though every part of the record is there.</p>
+<p>Capture in Home, review records in Health, find knowledge and agent updates in Brain. The wiki, offline copy and export in Data. Those are the 4 main areas now.</p>
+<p>The original notes are still there, and everyday use still starts with opening the app, leaving a note and having the agent help organize it. Broader unattended analysis is still to build.</p>
+<p>I made a custom app to track what I do. It now connects those records and gives agents a way to work with them. Over the next few months, I want to see which patterns are actually worth paying attention to. A thought left on my phone can stay useful long after I&#x27;ve forgotten writing it.</p>
+<p class="links"><a href="https://x.com/tylermayberry/status/2099026835585778061">Original post on X</a><a href="https://www.linkedin.com/in/mayberrydt/">Tyler on LinkedIn</a></p>
+</article>
+</main>
+<footer class="end">Tyler Mayberry · <a href="/">The studio</a> · <a href="/about.html">About</a> · <a href="/notes/feed.xml">RSS</a></footer>
+</div>
+</body>
+</html>
