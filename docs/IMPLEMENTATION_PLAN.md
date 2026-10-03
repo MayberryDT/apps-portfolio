@@ -100,9 +100,14 @@ It must never regress to the retired card site.
   `worker.js` maps both and serves the copy as `text/markdown`. Linked from
   the About, Press and Notes footers, in `sitemap.xml` and `llms.txt`. Edit
   both files together and update “Last updated” and the sitemap `lastmod`.
-  It gives the location as Missouri (Kansas City and St. Louis); other pages
-  still say Tulsa. Rollback before it: version
-  `743bb57e-4dd7-4ef6-a9f6-95abe4f22cf5`.
+  Rollback before it: version `743bb57e-4dd7-4ef6-a9f6-95abe4f22cf5`.
+- **Location is Missouri (Tyler, 2026-10-02).** Tyler no longer lives in
+  Tulsa. Every page, `llms.txt` and the Person JSON-LD say “Missouri (Kansas
+  City and St. Louis)”; `homeLocation` is Missouri, US (`addressRegion` MO, no
+  city). `profile-content.js` was rebuilt from About and Press with the
+  extraction in `scripts/build-integrated-studio.py`. cirlet.com and
+  animasai.co share the Person node, so update it there too. Rollback before
+  it: version `df02616b-d085-4b2f-9f0c-62a4faefaa31`.
 
 - **Notes from X (Tyler, 2026-10-02: “do all of the setup now”, marketing
   plan `/home/tyler/Projects/marketing/PLAN.md` on Veelox).** Plain, crawlable

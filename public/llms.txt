@@ -1,8 +1,8 @@
 # Tyler Mayberry
 
-> Tyler Mayberry is an AI systems builder and practical product engineer in Tulsa, Oklahoma, who builds agentic workflows, internal tools, automation systems, and AI-native software for messy real-world work. His main project is ibara, which gives AI agents computers of their own. His company, Cirlet, plans, sets up and supports AI agents on computers people own.
+> Tyler Mayberry is an AI systems builder and practical product engineer in Missouri (Kansas City and St. Louis), who builds agentic workflows, internal tools, automation systems, and AI-native software for messy real-world work. His main project is ibara, which gives AI agents computers of their own. His company, Cirlet, plans, sets up and supports AI agents on computers people own.
 
-Updated 2026-09-28. Other people share the name; this Tyler Mayberry is in Tulsa, Oklahoma, and goes by MayberryDT.
+Updated 2026-10-02. Other people share the name; this Tyler Mayberry is in Missouri (Kansas City and St. Louis), and goes by MayberryDT.
 
 ## Key facts
 
@@ -13,7 +13,7 @@ Updated 2026-09-28. Other people share the name; this Tyler Mayberry is in Tulsa
 - GitHub: [MayberryDT](https://github.com/MayberryDT)
 - LinkedIn: [mayberrydt](https://www.linkedin.com/in/mayberrydt/)
 - Infocard: [~MayberryDT](https://infocard.ai/~MayberryDT)
-- Location: Tulsa, Oklahoma
+- Location: Missouri (Kansas City and St. Louis)
 - Focus: AI systems, agentic workflows, internal tools, workflow automation, AI-native software, and practical product engineering.
 
 ## Pages
