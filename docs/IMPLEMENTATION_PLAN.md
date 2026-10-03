@@ -92,6 +92,18 @@ It must never regress to the retired card site.
 
 ## Current work
 
+- **AI instructions page (Main, 2026-10-02, marketing wiki playbook
+  “Publish an AI instructions page for branded answers”).** Plain page outside
+  the room at `/ai-instructions` (`public/ai-instructions.html`, Notes styling)
+  and its Markdown copy at `/ai-instructions.md`, stored as
+  `public/ai-instructions.txt` because `.assetsignore` drops `.md` files;
+  `worker.js` maps both and serves the copy as `text/markdown`. Linked from
+  the About, Press and Notes footers, in `sitemap.xml` and `llms.txt`. Edit
+  both files together and update “Last updated” and the sitemap `lastmod`.
+  It gives the location as Missouri (Kansas City and St. Louis); other pages
+  still say Tulsa. Rollback before it: version
+  `743bb57e-4dd7-4ef6-a9f6-95abe4f22cf5`.
+
 - **Notes from X (Tyler, 2026-10-02: “do all of the setup now”, marketing
   plan `/home/tyler/Projects/marketing/PLAN.md` on Veelox).** Plain, crawlable
   pages outside the room: `/notes` (newest first) and `/notes/<slug>`, each

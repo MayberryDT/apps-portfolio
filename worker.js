@@ -18,7 +18,7 @@ export default {
       return new Response("Not found", { status: 404 });
     }
     if (path.split("/").some((segment) => segment.startsWith(".")) ||
-        /\.(?:md|py|toml|jsonc)$/i.test(path) ||
+        (/\.(?:md|py|toml|jsonc)$/i.test(path) && path !== "/ai-instructions.md") ||
         /^\/(?:docs|scripts|source|evidence)(?:\/|$)/.test(path) ||
         path === "/journal-prototype.html") {
       return new Response("Not found", { status: 404 });
@@ -30,6 +30,7 @@ export default {
       "/press": "/press.html", "/press/": "/press.html",
       "/room": "/room.html", "/room/": "/room.html",
       "/notes/": "/notes", "/notes/index.html": "/notes",
+      "/ai-instructions/": "/ai-instructions", "/ai-instructions.html": "/ai-instructions",
       "/googleb6430c0f57fbd860": "/googleb6430c0f57fbd860.html",
     };
     const isPublicAlias = ["www.tylermayberry.dev", "portfolio.animasai.co"].includes(url.hostname);
@@ -49,6 +50,9 @@ export default {
     if (path === "/") assetUrl.pathname = "/index.html";
     else if (path === "/notes") assetUrl.pathname = "/notes/index.html";
     else if (/^\/notes\/[a-z0-9-]+$/.test(path)) assetUrl.pathname = path + ".html";
+    else if (path === "/ai-instructions") assetUrl.pathname = "/ai-instructions.html";
+    // The Markdown copy is stored as .txt because .assetsignore drops every .md file.
+    else if (path === "/ai-instructions.md") assetUrl.pathname = "/ai-instructions.txt";
     const response = await env.ASSETS.fetch(new Request(assetUrl, request));
     const contentType = response.headers.get("content-type") || "";
     const isHtml =
@@ -58,6 +62,7 @@ export default {
 
     const headers = new Headers(response.headers);
     for (const [name, value] of Object.entries(SECURITY_HEADERS)) headers.set(name, value);
+    if (path === "/ai-instructions.md" && response.ok) headers.set("Content-Type", "text/markdown; charset=utf-8");
     if (!isHtml) {
       return new Response(response.body, {
         status: response.status,
