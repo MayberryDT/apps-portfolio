@@ -108,3 +108,8 @@ lingering, such as dappled light and dust in the sunbeam. *Applied live; the eve
 - Halla-only design records in `docs/design/`, such as `studio-hero-entry.md`
   and `studio-helm-realism.md`. The research is in
   `docs/research/audience-2026-09-28/`.
+
+
+## About and Press — Tyler, 8 October 2026
+
+The portfolio presents Tyler and his work, without regional insurance sales positioning. About and Press are ordinary readable pages at `/about.html` and `/press.html`, reachable from visible links on the entrance and in the room. They must not launch the room, notebook or contact phone. The studio itself remains intact. Public biography uses existing approved facts; no new personal facts are inferred. This supersedes older requirements to place all profile content inside objects or to have no navigation outside the scene. Build and verify on Halla.

@@ -29,3 +29,8 @@ retired along with that site.
 
 - Cloudflare Worker custom domains only. Netlify is forbidden unless Tyler asks
   for it in the current task.
+
+
+## About and Press — Tyler, 8 October 2026
+
+The portfolio presents Tyler and his work, without regional insurance sales positioning. About and Press are ordinary readable pages at `/about.html` and `/press.html`, reachable from visible links on the entrance and in the room. They must not launch the room, notebook or contact phone. The studio itself remains intact. Public biography uses existing approved facts; no new personal facts are inferred. This supersedes older requirements to place all profile content inside objects or to have no navigation outside the scene. Build and verify on Halla.

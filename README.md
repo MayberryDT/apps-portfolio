@@ -1,5 +1,7 @@
 # tylermayberry.dev
 
+Current release (2026-10-08): About and Press are ordinary pages at /about.html and /press.html. The studio entrance and room link directly to them; regional sales wording is removed. Cloudflare version ff8c9556-3e1c-4e1b-b723-e63027218952; rollback 057e99e9-9c05-45da-8c96-61c191cdd5c9. See docs/IMPLEMENTATION_PLAN.md.
+
 Tyler Mayberry's personal studio: a photographic room you explore to find his
 projects, interests, photos, notes and contact.
 

@@ -1,6 +1,6 @@
 # tylermayberry.dev — living plan
 
-Updated 2026-10-02. This file owns current state, authority and the next action.
+Updated 2026-10-08. This file owns current state, authority and the next action.
 Rewrite it in place. Do not add a ticket board or a second status file.
 [Agent entry](../AGENTS.md) · [Spec](SPEC.md) · [Project rules](agents/project-rules.md)
 · [COPYWRITING](../COPYWRITING.md) · [juice](../juice.md)
@@ -13,6 +13,8 @@ becomes the home of everything Tyler makes and feels even more like his room.
 It must never regress to the retired card site.
 
 ## Execution boundary
+
+- **Current release, October 8:** ordinary About and Press pages are live, with visible links from the entrance and room. Public copy and Person metadata no longer position Tyler by region. The photographic studio is preserved. Version **ff8c9556-3e1c-4e1b-b723-e63027218952**; rollback **057e99e9-9c05-45da-8c96-61c191cdd5c9**. Independent review resolved the shortcut/control collision and found no material remaining issue. Desktop/phone, no-JavaScript, native-browser and live route checks passed. Evidence: /home/halla/build/marketing/offer-20261009. Next: maintain the ordinary profile pages when approved facts change.
 
 - **Mode: delivered 2026-09-28.** New work needs Tyler's request. Tyler said “Okay, I set you loose. Please implement
   everything for me.” on 2026-09-28. The run started when Tyler said “set you
@@ -50,8 +52,7 @@ It must never regress to the retired card site.
 - **The room is the website.** Room and furniture views are photographic in
   one fixed coordinate system. Only the selected object becomes 3D.
 - **Phones** animate back to rest on exit.
-- **UI:** liquid-glass nodes and panels sit in the scene. There are no
-  conventional headers, footers or bottom menus. Two exceptions are agreed:
+- **UI:** liquid-glass nodes and panels sit in the scene. The studio keeps its existing scene controls. Ordinary About and Press pages and visible direct links are authorized (Tyler, Oct8). Earlier exceptions remain:
   - the single subtle entrance link (spec outcome 5);
   - the small sound control (outcome 6).
 - **Always working:** Back, Escape, history, keyboard, touch and reduced
@@ -101,13 +102,7 @@ It must never regress to the retired card site.
   the About, Press and Notes footers, in `sitemap.xml` and `llms.txt`. Edit
   both files together and update “Last updated” and the sitemap `lastmod`.
   Rollback before it: version `743bb57e-4dd7-4ef6-a9f6-95abe4f22cf5`.
-- **Location is Missouri (Tyler, 2026-10-02).** Tyler no longer lives in
-  Tulsa. Every page, `llms.txt` and the Person JSON-LD say “Missouri (Kansas
-  City and St. Louis)”; `homeLocation` is Missouri, US (`addressRegion` MO, no
-  city). `profile-content.js` was rebuilt from About and Press with the
-  extraction in `scripts/build-integrated-studio.py`. cirlet.com and
-  animasai.co share the Person node, so update it there too. Rollback before
-  it: version `df02616b-d085-4b2f-9f0c-62a4faefaa31`.
+- **Personal portfolio, updated 2026-10-08.** No city/state sales positioning in public copy or Person metadata. About and Press are ordinary pages, reachable directly from the entrance and room. Studio scenes remain intact.
 
 - **Notes from X (Tyler, 2026-10-02: “do all of the setup now”, marketing
   plan `/home/tyler/Projects/marketing/PLAN.md` on Veelox).** Plain, crawlable
@@ -236,3 +231,8 @@ It must never regress to the retired card site.
   `4d035a52-ac73-4238-95c2-d93e42748265` (build of `c605441`). verify-worker
   and smoke-studio.py 49/49 locally and live; every served file matched live
   (notes checked at their extensionless URLs).
+
+
+## About and Press — Tyler, 8 October 2026
+
+The portfolio presents Tyler and his work, without regional insurance sales positioning. About and Press are ordinary readable pages at `/about.html` and `/press.html`, reachable from visible links on the entrance and in the room. They must not launch the room, notebook or contact phone. The studio itself remains intact. Public biography uses existing approved facts; no new personal facts are inferred. This supersedes older requirements to place all profile content inside objects or to have no navigation outside the scene. Build and verify on Halla.
