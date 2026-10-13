@@ -123,8 +123,7 @@ It must never regress to the retired card site.
     Halla-only `scripts/notes.py add <file>` then `build`, this release check,
     the push and a live check. `scripts/notes.py status` prints the newest
     note and known ids. Keep Tyler's words; fix only obvious typos.
-  - **Shipped:** 8 notes from 2026-07-06 to 2026-09-29 in `3df4ce2`, build
-    `d92d0e85-87d8-4fc6-a54c-0592df671bca`.
+  - **Shipped:** 9 notes from 2026-07-06 to 2026-10-09. “Refreshing expired music streams” added in `1261391` on 2026-10-13. Workers Builds produced no check-run or deployment during this run, so the committed source was deployed directly with Wrangler as `e91a44aa-7cb1-4b4f-bb47-d32f04c23e5f`; rollback `50f8593a-856f-408a-9ae9-ab6b1a9eece8`. Only four intended Notes/sitemap assets uploaded. Live note/index content and RSS XML passed; the note and preserved photographic studio were checked visually through ibara on AK2.
   - **Contact phone (Main, 2026-10-02):** asked to change “Animas, my company”
     → animasai.co into “Cirlet, my company” → https://cirlet.com. The phone
     already does this since the Cirlet rename (`contact-landing.js`
