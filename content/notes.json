@@ -243,6 +243,33 @@
     "Pip site with demo:\nhttps://spendwithpip.com",
     "Also, it's open source MIT license.\nhttps://github.com/MayberryDT/Pip"
    ]
+  },
+  {
+   "slug": "refreshing-expired-music-streams",
+   "title": "Refreshing expired music streams",
+   "date": "2026-10-09",
+   "x_url": "https://x.com/tylermayberry/status/2108641378473271648",
+   "source_ids": [
+    "2108641378473271648",
+    "2108641466784309306",
+    "2108641468793692355"
+   ],
+   "property": null,
+   "body": [
+    "Shipped Fast YouTube Music 0.2.0.",
+    "Pick a remix chip and your next song becomes that mix.",
+    "I took the little mix chips straight from YouTube Music.",
+    "Now when you click 'Pump Up' or 'Workout' it will recreate the playlist for you based on that genre.",
+    "Also made the giant art clickable to play/pause.",
+    "Now when you click a song it does this cool little animation I wanted.",
+    "Click any song in Music now and its cover flies straight into the big Now Playing view.",
+    "I also fixed a stall bug, which was the real reason for this new release. I just added the rest as the cherry on top.",
+    "After about 6 hours, YouTube's stream links expire.",
+    "On Repeat one, mpv kept looping the dead link. 20,000 times a second. Now it grabs a fresh one.",
+    "Also fixed songs cutting out early, mostly in long mixes or after a long pause.",
+    "Flickering between the buffering spinner and the pause button with no sound: that's what the stall looked like, if you ever hit it.",
+    "http://github.com/MayberryDT/ytfast"
+   ]
   }
  ],
  "skipped": [
