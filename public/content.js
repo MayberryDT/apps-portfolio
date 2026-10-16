@@ -12,7 +12,7 @@ export const areas={
     "subtitle": "Ideas turned into things you can use",
     "mark": "At my desk",
     "footnote": "From my desk",
-    "alt": "A walnut corner desk with a portrait monitor displaying Omarchy, an open laptop with ten projects, a blue-lit mouse and a phone running the Helm preview.",
+    "alt": "A walnut corner desk with a portrait monitor displaying Omarchy, an open laptop with its projects, a blue-lit mouse and a phone running the Helm preview.",
     "tabs": [
       [
         "Projects",

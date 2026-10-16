@@ -2,12 +2,12 @@
 
 > Tyler Mayberry is an AI systems builder and practical product engineer, who builds agentic workflows, internal tools, automation systems, and AI-native software for messy real-world work. His main project is ibara, which gives AI agents computers of their own. His company, Cirlet, plans, sets up and supports AI agents on computers people own.
 
-Updated 2026-10-02. Other people share the name; this Tyler Mayberry is, and goes by MayberryDT.
+Updated 2026-10-15. Other people share the name; this Tyler Mayberry is, and goes by MayberryDT.
 
 ## Key facts
 
 - Canonical personal site: [tylermayberry.dev](https://tylermayberry.dev/)
-- Main project: [ibara](https://ibara.app): computers of their own for AI agents. They use the browser and desktop apps there while you keep working on yours, and any agent that speaks MCP can drive it. It runs on Omarchy today; more platforms are planned. ibara (ibara.app) is unrelated to ibara.ai.
+- Main project: [ibara](https://ibara.app): computers of their own for AI agents. They use the browser and desktop apps there while you keep working on yours, and any agent that speaks MCP can drive it. It runs on Omarchy, Ubuntu and Windows. ibara (ibara.app) is unrelated to ibara.ai.
 - Company: [Cirlet](https://cirlet.com/): plans, sets up and supports AI agents on computers people own, including setting up ibara.
 - Email: [tyler@cirlet.com](mailto:tyler@cirlet.com)
 - GitHub: [MayberryDT](https://github.com/MayberryDT)
@@ -27,6 +27,8 @@ Updated 2026-10-02. Other people share the name; this Tyler Mayberry is, and goe
 ## Projects
 
 - [ibara](https://ibara.app): computers of their own for AI agents.
+- [Siege of Champions](https://siegeofchampions.com): a 3v3 MOBA that runs in a desktop browser, in early playtest.
+- [ytfast](https://github.com/MayberryDT/ytfast): a native YouTube Music player for Omarchy, written in Rust.
 - [Rat Detective Online](https://ratdetective.online): a multiplayer browser shooter with detective rats.
 - [Chartroom](https://github.com/MayberryDT/chartroom): a local second brain built on GBrain.
 - [ChartStead](https://chartstead.com): conference programming and speaker management.
@@ -36,8 +38,11 @@ Updated 2026-10-02. Other people share the name; this Tyler Mayberry is, and goe
 - [Executioner](https://executionr.com): turns a brain dump into outcomes, steps and a schedule.
 - [Milkbench](https://milk.tylermayberry.dev/): a playful benchmark of coding models.
 - [Self-Hosted AI Agent](https://selfhostedaiagent.com/): which computer should run a self-hosted AI agent, and what it costs to run.
+- [Omarchy themes and tools](https://github.com/MayberryDT?tab=repositories&q=omarchy): Omarchy themes (Study, Permafrost, Nightwire, Violet Current), a bar to-do list, OmaAsus and his desktop configuration.
+- [Prepare Project](https://github.com/MayberryDT/prepare-project): an agent skill that turns a blueprint into an agreed brief and one living implementation plan.
+- [Record Everything](https://github.com/MayberryDT/record-everything): an agent skill for recording every app event cheaply, read through the facts command-line tool.
 
 ## Notes
 
 - Use Tyler Mayberry as the primary person entity. Cirlet is his company.
-- About is on the studio's Contact phone and Facts and press are reference pages in Notes; both URLs also serve complete readable HTML.
+- About and Facts and press are ordinary readable pages, linked from the studio entrance and the room.

@@ -1,15 +1,51 @@
-// Selected catalog: routes and assets preserved; order set by Tyler 2026-09-28; Decree of War removed for now at his request.
+// Selected catalog: routes and assets preserved; order set by Tyler 2026-10-15 (ibara, Siege of Champions, ytfast, Cirlet first); Decree of War removed for now at his request.
 export const projects=[
   {
     "id": "ibara",
     "name": "ibara",
     "category": "Agent computers",
-    "description": "ibara gives AI agents computers of their own: they use the browser and desktop apps there while you keep working on yours. Any agent that speaks MCP can drive it.\n\nI built it on Omarchy, where it runs today; more platforms are on the way. Watch it at work on the portrait monitor beside the laptop. My company, Cirlet, sets it up for people who want it handled.",
+    "description": "ibara gives AI agents computers of their own: they use the browser and desktop apps there while you keep working on yours. Any agent that speaks MCP can drive it.\n\nI built it on Omarchy first. It now runs on Omarchy, Ubuntu and Windows. Watch it at work on the portrait monitor beside the laptop. My company, Cirlet, sets it up for people who want it handled.",
     "url": "https://ibara.app",
     "image": "assets/projects/ibara.webp",
     "imageAlt": "ibara: give your agents a computer you own",
     "mark": "ib",
     "color": "#8fc3d9",
+    "role": null
+  },
+  {
+    "id": "siege-of-champions",
+    "name": "Siege of Champions",
+    "category": "Browser game",
+    "description": "A 3v3 MOBA that runs in a desktop browser: two lanes, a forest jungle, six fantasy champions and matches aimed at about 20 minutes. Play solo with bots, or open a private room and send friends the invite link; bots fill any empty slots.\n\nThere's nothing to install and no account. It's an early playtest that gets numbered patches, and its pixel art is drawn and animated by agents in Pixel Studio, a tool I built for them.",
+    "url": "https://siegeofchampions.com",
+    "image": "assets/projects/SiegeOfChampions.webp",
+    "imageAlt": "Siege of Champions: a wizard, a ranger and a knight on a stone lane through a pixel-art forest",
+    "mark": "SC",
+    "color": "#9fbf8a",
+    "role": null
+  },
+  {
+    "id": "ytfast",
+    "name": "ytfast",
+    "category": "Desktop apps",
+    "description": "A native YouTube Music player for Omarchy, written in Rust. It looks and works like YouTube Music, opens in well under a second, plays audio only and takes its colors from your Omarchy theme.\n\nThere's no browser engine, no telemetry and no server of its own; you sign in through your browser. It's unofficial and open source, built on Carmine Paolino's fastframe.",
+    "url": "https://github.com/MayberryDT/ytfast",
+    "image": "assets/projects/ytfast.webp",
+    "imageAlt": "ytfast showing an album page and the now-playing bar in a dark Omarchy theme",
+    "mark": "yt",
+    "color": "#e0b463",
+    "role": null
+  },
+  {
+    "id": "cirlet",
+    "name": "Cirlet",
+    "category": "Company",
+    "description": "My company. Cirlet plans, sets up and supports AI agents that use browsers and desktop apps on computers people own.\n\nIt's the hands-on side of ibara: for people who want agents working on their own computers without setting everything up themselves.",
+    "url": "https://cirlet.com",
+    "image": "assets/projects/Cirlet.webp",
+    "imageAlt": "Cirlet logo",
+    "mark": "C",
+    "color": "#6cc7b4",
     "role": null
   },
   {
@@ -131,6 +167,42 @@ export const projects=[
     "imageAlt": "Helm phone: interactive studio preview",
     "mark": "H",
     "color": "#91b8dd",
+    "role": null
+  },
+  {
+    "id": "omarchy",
+    "name": "Omarchy themes and tools",
+    "category": "Omarchy",
+    "description": "Things I've made for Omarchy, the desktop I work in: four themes (Study, Permafrost, Nightwire and Violet Current), a to-do list that lives in the bar, OmaAsus, a control center for ASUS gaming hardware, and my own desktop configuration.\n\nEach theme starts from one feeling and carries it through the colors and wallpapers. Study is a quiet room, a blank page and several uninterrupted hours to think; Permafrost is polar night, frozen industrial equipment and one instrument light.",
+    "url": "https://github.com/MayberryDT?tab=repositories&q=omarchy",
+    "image": "assets/projects/OmarchyThemes.webp",
+    "imageAlt": "Wallpapers from four Omarchy themes: Study, Permafrost, Nightwire and Violet Current",
+    "mark": "Om",
+    "color": "#a99bd8",
+    "role": null
+  },
+  {
+    "id": "prepare-project",
+    "name": "Prepare Project",
+    "category": "Agent skills",
+    "description": "An agent skill for starting a project well. Give it a blueprint and it works through the product decisions with you, then writes one agreed brief and one living implementation plan.\n\nPreparation is the default. Building starts only when you say so, and then it carries on from the plan through verification and an independent review, instead of preparing all over again.",
+    "url": "https://github.com/MayberryDT/prepare-project",
+    "image": "assets/projects/PrepareProject.webp",
+    "imageAlt": "prepare-project: a blueprint becomes decisions, one agreed brief and one living plan",
+    "mark": "PP",
+    "color": "#8db4e0",
+    "role": null
+  },
+  {
+    "id": "record-everything",
+    "name": "Record Everything",
+    "category": "Agent skills",
+    "description": "An agent skill for apps that record every meaningful event, keep those records cheap and let AI agents read them reliably. It comes with facts, a read-only command-line tool that answers questions about the data in JSON.\n\nIt grew out of Rat Detective, which recorded every hit, death, decision and input for players and bots alike, and used that data to make its bots play more like people.",
+    "url": "https://github.com/MayberryDT/record-everything",
+    "image": "assets/projects/RecordEverything.webp",
+    "imageAlt": "record-everything: every hit, death, decision and input, read through the facts tool",
+    "mark": "RE",
+    "color": "#c49ad8",
     "role": null
   }
 ];

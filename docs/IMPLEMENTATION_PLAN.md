@@ -1,6 +1,6 @@
 # tylermayberry.dev — living plan
 
-Updated 2026-10-08. This file owns current state, authority and the next action.
+Updated 2026-10-15. This file owns current state, authority and the next action.
 Rewrite it in place. Do not add a ticket board or a second status file.
 [Agent entry](../AGENTS.md) · [Spec](SPEC.md) · [Project rules](agents/project-rules.md)
 · [COPYWRITING](../COPYWRITING.md) · [juice](../juice.md)
@@ -129,6 +129,7 @@ It must never regress to the retired card site.
     already does this since the Cirlet rename (`contact-landing.js`
     `CONTACT.company`, live, and smoke-studio's “Cirlet contact card” check);
     only `docs/SPEC.md` still described Animas and is updated.
+- **Podcast refresh (Tyler, 2026-10-15).** Projects now has 17 entries. Tyler set the order: ibara, Siege of Champions, ytfast, Cirlet, then the existing order through Helm. After Helm come the new Omarchy themes and tools, Prepare Project and Record Everything. remembrall.dev stays off because it is marketing. Decree of War stays off. ibara reads "Omarchy, Ubuntu and Windows" everywhere; Tyler is releasing Windows the same night. The change covers the homepage list and JSON-LD, the room's ItemList, product nodes and static list, About, Press, `llms.txt` (including the stale About/Press line), both AI-instructions files, `profile-content.js` (rebuilt from the current pages) and new desktop and mobile card images. The stray "Tyler Mayberry · ." line on the homepage is fixed. `smoke-studio.py` checks the new laptop order and passed 49/49 locally. Rollback: `6a918573-1fd1-4c78-86c8-be18444925a6`.
 - **Self-Hosted AI Agent added to Projects (Tyler, 2026-10-01).** The
   eleventh project, https://selfhostedaiagent.com/, sits after Milkbench and
   before Helm, in `projects.js`, the homepage list, the room's structured
