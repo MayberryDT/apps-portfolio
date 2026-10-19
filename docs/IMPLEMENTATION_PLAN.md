@@ -236,3 +236,9 @@ It must never regress to the retired card site.
 ## About and Press — Tyler, 8 October 2026
 
 The portfolio presents Tyler and his work, without regional insurance sales positioning. About and Press are ordinary readable pages at `/about.html` and `/press.html`, reachable from visible links on the entrance and in the room. They must not launch the room, notebook or contact phone. The studio itself remains intact. Public biography uses existing approved facts; no new personal facts are inferred. This supersedes older requirements to place all profile content inside objects or to have no navigation outside the scene. Build and verify on Halla.
+
+## Prepared marketing profile-description correction —19October2026
+
+Marketing's current owned About/Press maintenance found the old general-agent/ibara-setup Cirlet description on both live pages. Prepared public/about.html and public/press.html plus derived public/profile-content.js and only those two sitemap lastmod dates: current independent-agency AI/automation help, no new personal/product facts, application announcement, pricing or design change. Removed explicit Cirlet-as-ibara-setup sentence from Press answer; fixed missing period in short bio. Existing titles/canonicals/H1s and shared studio summaries/reference order preserved; six affected shared reference cards updated. No home/room/project-card edit. Unrelated ops/home-mark/worker.js dirty work preserved.
+
+Not deployed. Before/candidate desktop390comparisons, shared-profile/native checks and Development and release safeguards above remain required. Queue/evidence owner: marketing/queue/20261019-portfolio-profile-cirlet-description.md. Do not rerun scripts/build-integrated-studio.py: it starts from a frozen September site; current profile content was updated narrowly from the approved current About/Press facts, preserving IDs/order/summaries. No old-card restoration, new biography, private media or third-party product-claim update.
