@@ -2,12 +2,12 @@
 
 > Tyler Mayberry is an AI systems builder and practical product engineer, who builds agentic workflows, internal tools, automation systems, and AI-native software for messy real-world work. His main project is ibara, which gives AI agents computers of their own. His company, Cirlet, plans, sets up and supports AI agents on computers people own.
 
-Updated 2026-10-15. Other people share the name; this Tyler Mayberry is, and goes by MayberryDT.
+Updated 2026-10-20. Other people share the name; this Tyler Mayberry is, and goes by MayberryDT.
 
 ## Key facts
 
 - Canonical personal site: [tylermayberry.dev](https://tylermayberry.dev/)
-- Main project: [ibara](https://ibara.app): computers of their own for AI agents. They use the browser and desktop apps there while you keep working on yours, and any agent that speaks MCP can drive it. It runs on Omarchy, Ubuntu and Windows. ibara (ibara.app) is unrelated to ibara.ai.
+- Main project: [ibara](https://ibara.app): computers of their own for AI agents. They use the browser and desktop apps there while you keep working on yours, and any agent that speaks MCP can drive it. It is built for Omarchy. No other platform is supported or planned. ibara (ibara.app) is unrelated to ibara.ai.
 - Company: [Cirlet](https://cirlet.com/): plans, sets up and supports AI agents on computers people own, including setting up ibara.
 - Email: [tyler@cirlet.com](mailto:tyler@cirlet.com)
 - GitHub: [MayberryDT](https://github.com/MayberryDT)
