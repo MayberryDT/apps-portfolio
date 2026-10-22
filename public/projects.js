@@ -4,7 +4,7 @@ export const projects=[
     "id": "ibara",
     "name": "ibara",
     "category": "Agent computers",
-    "description": "ibara gives AI agents computers of their own: they use the browser and desktop apps there while you keep working on yours. Any agent that speaks MCP can drive it.\n\nI build it for Omarchy. No other platform is supported or planned. Watch it at work on the portrait monitor beside the laptop. My company, Cirlet, sets it up for people who want it handled.",
+    "description": "ibara gives AI agents computers of their own: they use the browser and desktop apps there while you keep working on yours. Any agent that speaks MCP can drive it.\n\nI build it for Omarchy. No other platform is supported or planned. Watch it at work on the portrait monitor beside the laptop. It’s free and open source. The site walks you through setup and a first task.",
     "url": "https://ibara.app",
     "image": "assets/projects/ibara.webp",
     "imageAlt": "ibara: give your agents a computer you own",
